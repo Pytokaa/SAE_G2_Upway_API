@@ -32,4 +32,9 @@ public partial class Produit
     [Column("quantiteproduit")]
     public int Quantiteproduit { get; set; }   
     
+    
+    
+    //relations avec les autres tables 
+    
+    public Accessoire? Accessoires { get; set; }
 }
