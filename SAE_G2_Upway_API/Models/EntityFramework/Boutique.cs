@@ -20,4 +20,7 @@ public partial class Boutique
     
     [ForeignKey(nameof(IdAdresse))]
     public Adresse Adresse { get; set; }
+    
+    //relation avec la table commande
+    public ICollection<Commande> Commandes { get; set; } = new List<Commande>();
 }

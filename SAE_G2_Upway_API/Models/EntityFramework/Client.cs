@@ -33,8 +33,17 @@ public partial class Client
     public string Password { get; set; }
     
     
+    //relation avec la table fonction
+    
+    public int IdFonction { get; set; }
+    [ForeignKey(nameof(IdFonction))]
+    public Fonction Fonction { get; set; }
+    
     //relation avec la table alerte
     public ICollection<Alerte> Alertes { get; set; } = new List<Alerte>();
+    
+    //relation avec la table client 
+    public ICollection<Commande> Commandes { get; set; } = new List<Commande>();    
     
     
 }

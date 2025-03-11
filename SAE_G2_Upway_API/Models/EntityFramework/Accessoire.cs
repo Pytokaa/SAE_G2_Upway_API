@@ -13,6 +13,8 @@ public partial class Accessoire
     [Column("idaccessoire")] 
     public int IdAccessoire { get; set; }
     
+    //relation avec la table Produit
+    
     [ForeignKey("idproduit")]
     public int ProduitId { get; set; }
 
@@ -24,5 +26,8 @@ public partial class Accessoire
     
     [ForeignKey(nameof(CategorieAccessoireId))]
     public CategorieAccessoire CategorieAccessoire { get; set; }
+    
+    [Column("dateaccessoire")]
+    public DateTime DateAccessoire { get; set; }
     
 }

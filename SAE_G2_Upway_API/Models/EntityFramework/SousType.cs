@@ -15,5 +15,7 @@ public partial class SousType
     [StringLength(30)]
     public string Libellesoustype { get; set; }
     
-    ICollection<SurType> surTypes { get; set; } =  new List<SurType>();
+    
+    //relation avec la table SurType    
+    ICollection<SurType> SurTypes { get; set; } =  new List<SurType>();
 }

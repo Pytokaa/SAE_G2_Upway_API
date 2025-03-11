@@ -10,6 +10,9 @@ public partial class Commande
     [Column("idcommande")]
     public int IdCommande { get; set; }
     
+    [Column("datecommande")]
+    public DateTime DateCommande { get; set; }
+    
     //relation avec la table codereduc
     public int IdCode { get; set; }
     [ForeignKey(nameof(IdCode))]
@@ -31,6 +34,11 @@ public partial class Commande
     [ForeignKey(nameof(IdAdresse))]
     public Adresse Adresse { get; set; }
     
+    //relation avec la table boutique
+    public int IdBoutique { get; set; }
+    [ForeignKey(nameof(IdBoutique))]
+    public Boutique Boutique { get; set; }
+    
     //relation avec la table adresse (facturation)
     public int IdAdresseFactu { get; set; }
     [ForeignKey(nameof(IdAdresseFactu))]
@@ -41,5 +49,9 @@ public partial class Commande
     [ForeignKey(nameof(IdModePayement))]
     public ModePayement ModePayement { get; set; }
     
+    //relation avec la table Client
+    public int IdClient { get; set; }
+    [ForeignKey(nameof(IdClient))]
+    public Client Client { get; set; }
     
 }

@@ -14,11 +14,6 @@ public partial class ModePayement
     [StringLength(50)]
     public string NomModepayement { get; set; }
     
-    [ForeignKey("idproduit")]
-    public Produit Idproduit { get; set; }
-    
-    public Produit Produit { get; set; }
-    
     //relation avec la table Commande
     
     public ICollection<Commande> Commandes { get; set; } = new List<Commande>();

@@ -29,11 +29,6 @@ public partial class RapportInspection
     [StringLength(500)]
     public string Commentaire { get; set; }
     
-    //relation avec la table Produit
-    public int IdProduit { get; set; }
-    [ForeignKey(nameof(Produit))]
-    public Produit Produit { get; set; }
-    
     //relation avec la table Velo
     public int IdVelo { get; set; }
     [ForeignKey(nameof(IdVelo))]

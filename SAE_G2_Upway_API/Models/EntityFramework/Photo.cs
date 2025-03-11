@@ -17,4 +17,7 @@ public partial class Photo
     [Column("description")]
     [StringLength(200)]
     public string Description { get; set; }
+    
+    //relation avec la table produit
+    public Produit? Produit { get; set; }
 }

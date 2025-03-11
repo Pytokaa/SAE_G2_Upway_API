@@ -44,6 +44,11 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
         [ForeignKey(nameof(IdModele))]
         public Modele Modele { get; set; }
         
+        //relation avec la table CategorieVelo
+        public int IdCat  { get; set; }
+        [ForeignKey(nameof(IdCat))]
+        public CategorieVelo CategorieVelo { get; set; }
+        
         //relationn avec la table etat
         public int IdEtat { get; set; }
         [ForeignKey(nameof(IdEtat))]

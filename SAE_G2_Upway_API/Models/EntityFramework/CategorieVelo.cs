@@ -13,4 +13,7 @@ public class CategorieVelo
     [Column("nomcat")]
     [StringLength(50)]
     public string NomCategorie { get; set; }
+    
+    //relation avec la table velo
+    public ICollection<Velo> Velos { get; set; } = new List<Velo>();
 }

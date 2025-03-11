@@ -16,6 +16,11 @@ public partial class Produit
     [Column("idproduit")]
     public int Idproduit { get; set; }
     
+    //relation avec la table photo
+    public int IdPhoto  { get; set; }
+    [ForeignKey(nameof(IdPhoto))]
+    public Photo Photo { get; set; }
+    
     
     [Column("nomproduit")]
     [StringLength(100)]
@@ -25,12 +30,12 @@ public partial class Produit
     [Column("prixproduit")]
     public double Prixproduit { get; set; }
     
-    [Column("descriptionproduit")]
+    [Column("description")]
     [StringLength(200)]
     public string Descriptionproduit { get; set; }
     
-    [Column("quantiteproduit")]
-    public int Quantiteproduit { get; set; }   
+    [Column("stock")]
+    public int Stockproduit { get; set; }   
     
     
     
