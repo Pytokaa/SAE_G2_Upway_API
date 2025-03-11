@@ -13,4 +13,7 @@ public partial class Etat
     
     [Column("nometat")]
     public string NomEtat { get; set; }
+    
+    //relation avec la table Velo
+    public ICollection<Velo> Velos { get; set; } = new List<Velo>();
 }

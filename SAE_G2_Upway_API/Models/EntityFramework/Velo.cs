@@ -25,11 +25,29 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
         [Column("typecadre")]
         [StringLength(50)]
         public string Typecadre { get; set; }
+
+        //relation avec la table Rapport inspection
+        public RapportInspection? RapportInspection { get; set; }
         
+        //relation avec la table taille (min)
+        public int IdTailleMin { get; set; }
+        [ForeignKey(nameof(IdTailleMin))]
+        public Taille TailleMin { get; set; }
         
+        //relation avec la table taille (max)
+        public int IdTailleMax { get; set; }
+        [ForeignKey(nameof(IdTailleMax))]
+        public Taille TailleMax { get; set; }
         
+        //relation avec la table Modele
+        public int IdModele { get; set; }
+        [ForeignKey(nameof(IdModele))]
+        public Modele Modele { get; set; }
         
-        
+        //relationn avec la table etat
+        public int IdEtat { get; set; }
+        [ForeignKey(nameof(IdEtat))]
+        public Etat Etat { get; set; }
         
         
     }

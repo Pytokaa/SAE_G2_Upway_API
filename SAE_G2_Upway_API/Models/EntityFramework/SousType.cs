@@ -14,4 +14,6 @@ public partial class SousType
     [Column("libellesoustype")]
     [StringLength(30)]
     public string Libellesoustype { get; set; }
+    
+    ICollection<SurType> surTypes { get; set; } =  new List<SurType>();
 }

@@ -13,4 +13,10 @@ public partial class Marque
     [Column("nommarque")]
     [StringLength(30)]
     public string NomMarque { get; set; }
+    
+    //relation avec la table modele
+    public ICollection<Modele> Modeles { get; set; } = new List<Modele>();
+    
+    //relation avec la table Produit
+    public ICollection<Produit> Produits { get; set; } = new List<Produit>();
 }

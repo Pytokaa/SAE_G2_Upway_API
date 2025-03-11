@@ -13,4 +13,13 @@ public partial class Modele
     [Column("nomModele")]
     [StringLength(200)]
     public string NomModele { get; set; }
+    
+    // relation avec la table marque
+    
+    public int IdMarque { get; set; }
+    [ForeignKey(nameof(IdMarque))]
+    public Marque Marque { get; set; }
+    
+    //relation avecc la table Velo
+    public ICollection<Velo> Velos { get; set; } = new List<Velo>();
 }

@@ -37,4 +37,14 @@ public partial class Produit
     //relations avec les autres tables 
     
     public Accessoire? Accessoires { get; set; }
+    
+    //relation avec la table Marque
+    
+    public int IdMarque { get; set; }
+    [ForeignKey(nameof(IdMarque))]
+    public Marque Marque { get; set; }
+    
+    
+    //relation avec la table Rapport inspection
+    ICollection<RapportInspection> RapportInspections { get; set; } = new List<RapportInspection>();
 }

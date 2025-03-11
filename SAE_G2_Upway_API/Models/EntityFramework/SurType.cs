@@ -21,4 +21,9 @@ public partial class SurType
     
     [Column("checke")]
     public bool Checke { get; set; }
+    
+    //relation avec la table SousType
+    public int IdSousType { get; set; }
+    [ForeignKey(nameof(IdSousType))]
+    public SousType SousType { get; set; }
 }

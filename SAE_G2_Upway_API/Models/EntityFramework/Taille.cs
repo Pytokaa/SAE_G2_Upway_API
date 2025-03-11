@@ -16,4 +16,10 @@ public partial class Taille
     
     //relation avec la table Alerte
     public ICollection<Alerte> Alerte { get; set; } =  new List<Alerte>();
+    
+    //relation avec la table velo (min)
+    public ICollection<Velo> VelosMin { get; set; }
+    
+    //relation avec la table velo (max)
+    public ICollection<Velo> VelosMax { get; set; }
 }
