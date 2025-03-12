@@ -10,7 +10,7 @@ public partial class Habite
     [Column("idhabite")]
     public int Idhabite { get; set; }
     [Column("idclient")]
-    public int Idclient { get; set; }
+    public int? Idclient { get; set; }
     [Column("idadresse")]
     public int Idadresse { get; set; }
     
