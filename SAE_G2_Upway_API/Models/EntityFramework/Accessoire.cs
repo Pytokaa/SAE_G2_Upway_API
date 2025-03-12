@@ -15,7 +15,7 @@ public partial class Accessoire
     
     [Column("idproduit")]
     public int IdProduit { get; set; }
-    [Column("idcatA")]
+    [Column("idcata")]
     public int IdCatA { get; set; }
     
     [Column("dateaccessoire")]
