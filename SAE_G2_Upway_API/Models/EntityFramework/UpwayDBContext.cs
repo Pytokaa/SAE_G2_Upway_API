@@ -61,7 +61,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la relation avec la table Produit
                 entity.HasOne(d => d.Produit)
-                    .WithOne(p => p.Accessoires)
+                    .WithOne(p => p.Accessoire)
                     .HasForeignKey<Accessoire>(d => d.IdProduit)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Accessoire_Produit");
@@ -293,7 +293,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la relation avec la table Produit
                 entity.HasOne(d => d.Produit)
-                    .WithOne(p => p.Velos)
+                    .WithOne(p => p.Velo)
                     .HasForeignKey<Velo>(d => d.IdProduit)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Velo_Produit");
