@@ -22,4 +22,7 @@ public partial class Moteur
 
     [InverseProperty(nameof(Est_Compose.LeMoteur))]
     public virtual ICollection<Est_Compose> LesVelos { get; set; } = new List<Est_Compose>();
+
+    [InverseProperty(nameof(Est_De_ModeleM.LeMoteur))]
+    public ICollection<Est_De_ModeleM> LesModeles { get; set; } = new List<Est_De_ModeleM>();
 }
