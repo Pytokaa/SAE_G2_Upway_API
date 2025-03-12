@@ -6,14 +6,16 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 [Table("type")]
 public partial class Type
 {
+    //Colonne
     [Key]
     [Column("idtype")]
     public int Idtype { get; set; }
     
     [Column("nomtype")]
     [StringLength(50)]
-    public virtual string NomType { get; set; }
-
+    public string NomType { get; set; }
+    
+    //Relation avec La table valide
     [InverseProperty(nameof(Valide.LeType))]
     public virtual ICollection<Valide> LesRapports { get; set; } = new List<Valide>();
     

@@ -8,22 +8,25 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 [Table("surtype")]
 public partial class SurType
 {
+    //Colonne
     [Key]
     [Column("idsurtype")]
-    public int IdSurtype { get; set; }
-    
+    public int IdSurType { get; set; }
+
+    [Column("idsoustype")]
+    public int IdSousType { get; set; }
+
     [Column("libellesurtype")]
     [StringLength(100)]
-    public string Libellesurtype { get; set; }
+    public string LibelleSurType { get; set; }
     
     [Column("repare")]
     public bool Repare { get; set; }
     
     [Column("checke")]
     public bool Checke { get; set; }
-    
+
     //relation avec la table SousType
-    public int IdSousType { get; set; }
     [ForeignKey(nameof(IdSousType))]
-    public SousType SousType { get; set; }
+    public virtual SousType LeSousType { get; set; } = null!;
 }
