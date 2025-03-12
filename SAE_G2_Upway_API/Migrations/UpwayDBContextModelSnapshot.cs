@@ -76,6 +76,9 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdCatA");
 
+                    b.HasIndex("IdProduit")
+                        .IsUnique();
+
                     b.ToTable("accessoire", "upway");
                 });
 
@@ -798,7 +801,8 @@ namespace SAE_G2_Upway_API.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdModele"));
 
                     b.Property<int>("IdMarque")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("idmarque");
 
                     b.Property<string>("NomModele")
                         .IsRequired()
@@ -944,36 +948,42 @@ namespace SAE_G2_Upway_API.Migrations
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Produit", b =>
                 {
                     b.Property<int>("Idproduit")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("idproduit");
 
-                    b.Property<string>("Descriptionproduit")
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idproduit"));
+
+                    b.Property<string>("DescriptionProduit")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
-                        .HasColumnName("description");
+                        .HasColumnName("descriptionproduit");
 
                     b.Property<int>("IdMarque")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("idmarque");
 
                     b.Property<int>("IdPhoto")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("idphoto");
 
-                    b.Property<string>("Nomproduit")
+                    b.Property<string>("NomProduit")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("nomproduit");
 
-                    b.Property<double>("Prixproduit")
+                    b.Property<double>("PrixProduit")
                         .HasColumnType("double precision")
                         .HasColumnName("prixproduit");
 
-                    b.Property<int>("Stockproduit")
+                    b.Property<int>("StockProduit")
                         .HasColumnType("integer")
-                        .HasColumnName("stock");
+                        .HasColumnName("stockproduit");
 
-                    b.HasKey("Idproduit");
+                    b.HasKey("Idproduit")
+                        .HasName("PK_Produit");
 
                     b.HasIndex("IdMarque");
 
@@ -1041,7 +1051,8 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnName("historique");
 
                     b.Property<int>("IdVelo")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("idvelo");
 
                     b.HasKey("IdRapport");
 
@@ -1080,7 +1091,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdSousType"));
 
-                    b.Property<string>("Libellesoustype")
+                    b.Property<string>("LibelleSousType")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
@@ -1295,7 +1306,8 @@ namespace SAE_G2_Upway_API.Migrations
                         .WithMany("APhotos")
                         .HasForeignKey("IdProduit")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Produit_A_Pour_Photo");
 
                     b.Navigation("Photo");
 
@@ -1311,7 +1323,16 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CategorieAccessoire_Accessoire");
 
+                    b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Produit", "Produit")
+                        .WithOne("Accessoire")
+                        .HasForeignKey("SAE_G2_Upway_API.Models.EntityFramework.Accessoire", "IdProduit")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Produit_Accessoire");
+
                     b.Navigation("CategorieAccessoire");
+
+                    b.Navigation("Produit");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Adresse", b =>
@@ -1570,7 +1591,8 @@ namespace SAE_G2_Upway_API.Migrations
                         .WithMany("DansLesFavoris")
                         .HasForeignKey("IdProduit")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Produit_Est_En_Favoris");
 
                     b.Navigation("ClientFavoris");
 
@@ -1719,15 +1741,6 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Photo_Produit");
 
-                    b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Accessoire", "Accessoires")
-                        .WithOne("Produit")
-                        .HasForeignKey("SAE_G2_Upway_API.Models.EntityFramework.Produit", "Idproduit")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Accessoire_Produit");
-
-                    b.Navigation("Accessoires");
-
                     b.Navigation("Marque");
 
                     b.Navigation("Photo");
@@ -1754,20 +1767,20 @@ namespace SAE_G2_Upway_API.Migrations
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.RapportInspection", b =>
                 {
-                    b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Velo", "Velo")
+                    b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Velo", "LeVelo")
                         .WithOne("RapportInspection")
                         .HasForeignKey("SAE_G2_Upway_API.Models.EntityFramework.RapportInspection", "IdVelo")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("FK_Velo_RapportInspection");
 
-                    b.Navigation("Velo");
+                    b.Navigation("LeVelo");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.SurType", b =>
                 {
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.SousType", "LeSousType")
-                        .WithMany("SurTypes")
+                        .WithMany("LesSurTypes")
                         .HasForeignKey("IdSousType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1819,7 +1832,7 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasConstraintName("FK_Velo_Modele");
 
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Produit", "Produit")
-                        .WithOne("Velos")
+                        .WithOne("Velo")
                         .HasForeignKey("SAE_G2_Upway_API.Models.EntityFramework.Velo", "IdProduit")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
@@ -1857,8 +1870,6 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Navigation("LesCommandes");
 
                     b.Navigation("LesCommandesAccessoire");
-
-                    b.Navigation("Produit");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Adresse", b =>
@@ -1981,18 +1992,22 @@ namespace SAE_G2_Upway_API.Migrations
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Photo", b =>
                 {
-                    b.Navigation("AProduit");
+                    b.Navigation("AProduit")
+                        .IsRequired();
 
-                    b.Navigation("Produit");
+                    b.Navigation("Produit")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Produit", b =>
                 {
                     b.Navigation("APhotos");
 
+                    b.Navigation("Accessoire");
+
                     b.Navigation("DansLesFavoris");
 
-                    b.Navigation("Velos");
+                    b.Navigation("Velo");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.RapportInspection", b =>
@@ -2011,7 +2026,7 @@ namespace SAE_G2_Upway_API.Migrations
                 {
                     b.Navigation("AType");
 
-                    b.Navigation("SurTypes");
+                    b.Navigation("LesSurTypes");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Statut", b =>
@@ -2047,7 +2062,8 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Navigation("LesSousCategories");
 
-                    b.Navigation("RapportInspection");
+                    b.Navigation("RapportInspection")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
