@@ -11,7 +11,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
         public UpwayDBContext(DbContextOptions<UpwayDBContext> options)
             : base(options) { }
-
+        public virtual DbSet<A_Pour_Photo> PourPhotos { get; set; }
         public virtual DbSet<Accessoire> Accessoires { get; set; }
         public virtual DbSet<Adresse> Adresses { get; set; }
         public virtual DbSet<Alerte> Alertes { get; set; }
@@ -23,16 +23,29 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<CodeReduc> CodeReducs { get; set; }
         public virtual DbSet<Commande> Commandes { get; set; }
+        public virtual DbSet<Concerne> Concerns { get; set; }
+        public virtual DbSet<Contient> Contients { get; set; }
+        public virtual DbSet<Est_Caracterise> Est_Caracterises { get; set; }
+        public virtual DbSet<Est_Compose>Est_Composes { get; set; }
+        public virtual DbSet<Est_De_ModeleM>Est_De_ModeleMs { get; set; }
+        public virtual DbSet<Est_En_Favoris>Est_En_Favoris { get; set; }
+        public virtual DbSet<Est_Mis_Panier_Accessoire>Est_Mis_Panier_Accessoires { get; set; }
+        public virtual DbSet<Est_Mis_Panier_Velo>Est_Mis_Panier_Velos { get; set; }
+        public virtual DbSet<Est_Propose_Similaire>Est_Propose_Similaires { get; set; }
         public virtual DbSet<Etat> Etats { get; set; }
         public virtual DbSet<Fonction> Fonctions { get; set; }
+        public virtual DbSet<Habite>Habites { get; set; }
         public virtual DbSet<Marque> Marques { get; set; }
         public virtual DbSet<ModeExpedition> ModeExpeditions { get; set; }
         public virtual DbSet<Modele> Modeles { get; set; }
         public virtual DbSet<ModePayement> ModePayements { get; set; }
         public virtual DbSet<Moteur> Moteurs { get; set; }
         public virtual DbSet<Pays> Pays { get; set; }
+        public virtual DbSet<Peut_Etre_Teste>Peut_Etre_Testes { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Possede>Possedes { get; set; }
         public virtual DbSet<Produit> Produits { get; set; }
+        public virtual DbSet<Propose_Assur>Propose_Assurs { get; set; }
         public virtual DbSet<RapportInspection> RapportInspections { get; set; }
         public virtual DbSet<SousCategorie> SousCategories { get; set; }
         public virtual DbSet<SousType> SousTypes { get; set; }
@@ -40,6 +53,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         public virtual DbSet<SurType> SurTypes { get; set; }
         public virtual DbSet<Taille> Tailles { get; set; }
         public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<Valide> Valides { get; set; }
         public virtual DbSet<Velo> Velos { get; set; }
 
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
@@ -757,6 +771,274 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasForeignKey(c => c.IdType)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Type_Contient");
+            });
+            modelBuilder.Entity<A_Pour_Photo>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(pp => pp.Idapourphoto);
+
+                // Configurer la relation avec la table Photo
+                entity.HasOne(pp => pp.Photo)
+                      .WithOne(p => p.AProduit) // Supposons que Photo.AProduit est une collection de A_Pour_Photo
+                      .HasForeignKey<A_Pour_Photo>(pp => pp.IdPhoto)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Produit
+                entity.HasOne(pp => pp.ProduitAPhoto)
+                      .WithMany(p => p.APhotos) // Supposons que Produit.APhotos est une collection de A_Pour_Photo
+                      .HasForeignKey(pp => pp.IdProduit)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Concerne>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(c => c.IdConcerne);
+
+                // Configurer la relation avec la table Alerte
+                entity.HasOne(c => c.ConcerneAlerte)
+                      .WithMany(a => a.EstConcerneCategorie) // Supposons que Alerte.EstConcerneCategorie est une collection de Concerne
+                      .HasForeignKey(c => c.IdAlerte)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table CategorieVelo
+                entity.HasOne(c => c.ConcerneCategorieVelo)
+                      .WithMany(cv => cv.ConcerneAlerte) // Supposons que CategorieVelo.ConcerneAlerte est une collection de Concerne
+                      .HasForeignKey(c => c.IdCat)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Contient>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(c => c.IdContient);
+
+                // Configurer la relation avec la table SousType
+                entity.HasOne(c => c.ContientSousType)
+                      .WithMany(st => st.AType) // Supposons que SousType.AType est une collection de Contient
+                      .HasForeignKey(c => c.IdSoustype)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Type
+                entity.HasOne(c => c.ContientType)
+                      .WithMany(t => t.ASousTypes) // Supposons que Type.ASousTypes est une collection de Contient
+                      .HasForeignKey(c => c.IdType)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Est_Caracterise>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(ec => ec.IdestCaracterise);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(ec => ec.CaracteriseVelo)
+                      .WithMany(v => v.Caracteristiques) // Supposons que Velo.Caracteristiques est une collection de Est_Caracterise
+                      .HasForeignKey(ec => ec.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Caracteristique
+                entity.HasOne(ec => ec.Caracterise)
+                      .WithMany(c => c.CaracteriseVelo) // Supposons que Caracteristique.CaracteriseVelo est une collection de Est_Caracterise
+                      .HasForeignKey(ec => ec.IdCaract)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Est_Compose>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(ec => ec.IdCompose);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(ec => ec.LeVelo)
+                      .WithMany(v => v.LesMoteurs) // Supposons que Velo.LesMoteurs est une collection de Est_Compose
+                      .HasForeignKey(ec => ec.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Moteur
+                entity.HasOne(ec => ec.LeMoteur)
+                      .WithMany(m => m.LesVelos) // Supposons que Moteur.LesVelos est une collection de Est_Compose
+                      .HasForeignKey(ec => ec.IdMoteur)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Est_De_ModeleM>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(edm => edm.EstDeModeleM);
+
+                // Configurer la relation avec la table Modele
+                entity.HasOne(edm => edm.LeModele)
+                      .WithMany(m => m.LesMoteurs) // Supposons que Modele.LesMoteurs est une collection de Est_De_ModeleM
+                      .HasForeignKey(edm => edm.IdModele)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Moteur
+                entity.HasOne(edm => edm.LeMoteur)
+                      .WithMany(m => m.LesModeles) // Supposons que Moteur.LesModeles est une collection de Est_De_ModeleM
+                      .HasForeignKey(edm => edm.IdMoteur)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Est_En_Favoris>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(eef => eef.IdEstEnFavoris);
+
+                // Configurer la relation avec la table Client
+                entity.HasOne(eef => eef.ClientFavoris)
+                      .WithMany(c => c.LesFavoris) // Supposons que Client.LesFavoris est une collection de Est_En_Favoris
+                      .HasForeignKey(eef => eef.IdClient)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Produit
+                entity.HasOne(eef => eef.LesProduits)
+                      .WithMany(p => p.DansLesFavoris) // Supposons que Produit.DansLesFavoris est une collection de Est_En_Favoris
+                      .HasForeignKey(eef => eef.IdProduit)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Est_Mis_Panier_Accessoire>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(empa => empa.IdEstProposeSimilaire);
+
+                // Configurer la relation avec la table Accessoire
+                entity.HasOne(empa => empa.LAccessoire)
+                      .WithMany(a => a.LesCommandesAccessoire) // Supposons que Accessoire.LesCommandesAccessoire est une collection de Est_Mis_Panier_Accessoire
+                      .HasForeignKey(empa => empa.IdAccessoire)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(empa => empa.LaCommande)
+                      .WithMany(c => c.LesAccessoires) // Supposons que Commande.LesAccessoires est une collection de Est_Mis_Panier_Accessoire
+                      .HasForeignKey(empa => empa.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Est_Mis_Panier_Velo>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(empv => empv.IdPanierVelo);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(empv => empv.PanierVelo)
+                      .WithMany(v => v.ACommandes) // Supposons que Velo.ACommandes est une collection de Est_Mis_Panier_Velo
+                      .HasForeignKey(empv => empv.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(empv => empv.PanierCommande)
+                      .WithMany(c => c.PanierVelo) // Supposons que Commande.PanierVelo est une collection de Est_Mis_Panier_Velo
+                      .HasForeignKey(empv => empv.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Est_Propose_Similaire>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(eps => eps.IdEstProposeSimilaire);
+
+                // Configurer la relation avec la table Accessoire
+                entity.HasOne(eps => eps.LAccessoire)
+                      .WithMany(a => a.LesCommandes) // Supposons que Accessoire.LesCommandes est une collection de Est_Propose_Similaire
+                      .HasForeignKey(eps => eps.IdAccessoire)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(eps => eps.LaCommande)
+                      .WithMany(c => c.LesSimilaires) // Supposons que Commande.LesSimilaires est une collection de Est_Propose_Similaire
+                      .HasForeignKey(eps => eps.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Habite>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(h => h.Idhabite);
+
+                // Configurer la relation avec la table Client
+                entity.HasOne(h => h.ClientHabite)
+                      .WithMany(c => c.HabiteA) // Supposons que Client.HabiteA est une collection de Habite
+                      .HasForeignKey(h => h.Idclient)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Adresse
+                entity.HasOne(h => h.AdresseHabite)
+                      .WithMany(a => a.AClients) // Supposons que Adresse.AClients est une collection de Habite
+                      .HasForeignKey(h => h.Idadresse)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+            modelBuilder.Entity<Peut_Etre_Teste>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(pet => pet.IdTest);
+
+                // Configurer la relation avec la table Boutique
+                entity.HasOne(pet => pet.LaBoutique)
+                      .WithMany(b => b.LesVelos) // Supposons que Boutique.LesVelos est une collection de Peut_Etre_Teste
+                      .HasForeignKey(pet => pet.IdBoutique)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(pet => pet.LeVelo)
+                      .WithMany(v => v.LesBoutiques) // Supposons que Velo.LesBoutiques est une collection de Peut_Etre_Teste
+                      .HasForeignKey(pet => pet.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Possede>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(p => p.IdPossede);
+
+                // Configurer la relation avec la table SousCategorie
+                entity.HasOne(p => p.LaSousCategorie)
+                      .WithMany(sc => sc.LesVelos) // Supposons que SousCategorie.LesVelos est une collection de Possede
+                      .HasForeignKey(p => p.IdSousCat)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(p => p.LeVelo)
+                      .WithMany(v => v.LesSousCategories) // Supposons que Velo.LesSousCategories est une collection de Possede
+                      .HasForeignKey(p => p.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Propose_Assur>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(pa => pa.IdProposeAssur);
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(pa => pa.Commande)
+                      .WithMany(c => c.AssurancesPropose) // Supposons que Commande.AssurancesPropose est une collection de Propose_Assur
+                      .HasForeignKey(pa => pa.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Assurance
+                entity.HasOne(pa => pa.Assurance)
+                      .WithMany(a => a.AssureCommande) // Supposons que Assurance.AssureCommande est une collection de Propose_Assur
+                      .HasForeignKey(pa => pa.IdAssurance)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+            });
+
+            modelBuilder.Entity<Valide>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(v => v.IdValide);
+
+                // Configurer la relation avec la table RapportInspection
+                entity.HasOne(v => v.LeRapport)
+                      .WithMany(r => r.LesTypes) // Supposons que RapportInspection.LesTypes est une collection de Valide
+                      .HasForeignKey(v => v.IdRapport)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
+
+                // Configurer la relation avec la table Type
+                entity.HasOne(v => v.LeType)
+                      .WithMany(t => t.LesRapports) // Supposons que Type.LesRapports est une collection de Valide
+                      .HasForeignKey(v => v.IdType)
+                      .OnDelete(DeleteBehavior.Cascade); // Optionnel : définir le comportement de suppression
             });
 
             OnModelCreatingPartial(modelBuilder);
