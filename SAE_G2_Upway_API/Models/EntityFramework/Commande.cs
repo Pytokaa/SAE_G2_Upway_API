@@ -63,4 +63,10 @@ public partial class Commande
 
     [InverseProperty(nameof(Est_Mis_Panier_Accessoire.LaCommande))]
     public virtual ICollection<Est_Mis_Panier_Accessoire> LesAccessoires { get; set; } = new List<Est_Mis_Panier_Accessoire>();
+    
+    //relatino avec la table est_mis_panier_velo
+    
+    [InverseProperty(nameof(Est_Mis_Panier_Velo.PanierCommande))]
+    public virtual ICollection<Est_Mis_Panier_Velo> PanierVelo { get; set; } = new List<Est_Mis_Panier_Velo>();
+    
 }
