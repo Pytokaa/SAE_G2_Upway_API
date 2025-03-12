@@ -13,6 +13,8 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         public int IdAccessoire { get; set; }
         [Column("idcommande")]
         public int IdCommande { get; set; }
+        [Column("quantite")]
+        public int Quantite { get; set; }
 
         //foreign key
 
