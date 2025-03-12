@@ -23,7 +23,7 @@ public partial class Caracteristique
     [ForeignKey(nameof(IdSousCat))]
     public SousCategorie SousCategorie { get; set; }
     
-    //relation avec la table est_caracterise
+    //relation avec la table est_caracterise oui
     [InverseProperty(nameof(Est_Caracterise.Caracterise))]
     public virtual ICollection<Est_Caracterise> CaracteriseVelo { get; set; } =  new List<Est_Caracterise>();
     
