@@ -58,7 +58,7 @@ public partial class Commande
     
     //relation avec la table adresse (facturation)
     [ForeignKey(nameof(IdAdresseFactu))]
-    public virtual Adresse? AdresseFactu { get; set; };
+    public virtual Adresse? AdresseFactu { get; set; }
     
     //relation avec la table ModePayement
     
