@@ -26,6 +26,11 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
         [StringLength(50)]
         public string Typecadre { get; set; }
 
+        //relation avec la table Produit
+        [ForeignKey("idproduit")]
+        public int ProduitId { get; set; }
+        public Produit Produit { get; set; }
+
         //relation avec la table Rapport inspection
         public RapportInspection? RapportInspection { get; set; }
         

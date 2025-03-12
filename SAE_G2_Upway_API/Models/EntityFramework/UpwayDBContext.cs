@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.Intrinsics.X86;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -9,16 +7,11 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 {
     public partial class UpwayDBContext : DbContext
     {
-        public UpwayDBContext()
-        {
-        }
+        public UpwayDBContext() { }
 
         public UpwayDBContext(DbContextOptions<UpwayDBContext> options)
-            : base(options)
-        {
-        }
+            : base(options) { }
 
-        // Déclaration des DbSet
         public virtual DbSet<Accessoire> Accessoires { get; set; }
         public virtual DbSet<Adresse> Adresses { get; set; }
         public virtual DbSet<Alerte> Alertes { get; set; }
@@ -53,14 +46,14 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseLoggerFactory(MyLoggerFactory)
-                 .EnableSensitiveDataLogging()
-                 .UseNpgsql("Server=localhost;port=5432;Database=SAE_G2_Upway; uid=postgres; password=postgres;SearchPath=upway");
+                .EnableSensitiveDataLogging()
+                .UseNpgsql("Server=localhost;port=5432;Database=SAE_G2_Upway; uid=postgres; password=postgres;SearchPath=upway");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("upway");
 
-            // Configuration des entités et des relations
+            // Configuration des tables
             modelBuilder.Entity<Accessoire>(entity =>
             {
                 entity.HasKey(e => e.IdAccessoire).HasName("PK_Accessoire");
@@ -98,7 +91,192 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                 entity.Property(e => e.Mailclient)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
 
+            // Configuration des autres tables restantes
+            modelBuilder.Entity<Commande>(entity =>
+            {
+                entity.HasKey(e => e.IdCommande).HasName("PK_Commande");
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.Commandes)
+                    .HasForeignKey(d => d.IdClient)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Commande_Client");
+            });
+
+            modelBuilder.Entity<Produit>(entity =>
+            {
+                entity.HasKey(e => e.Idproduit).HasName("PK_Produit");
+                entity.HasOne(d => d.Marque)
+                    .WithMany(p => p.Produits)
+                    .HasForeignKey(d => d.IdMarque)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Produit_Marque");
+            });
+
+            modelBuilder.Entity<Velo>(entity =>
+            {
+                entity.HasKey(e => e.Idvelo).HasName("PK_Velo");
+                entity.HasOne(d => d.Produit)
+                    .WithOne(p => p.Velos)
+                    .HasForeignKey<Velo>(d => d.ProduitId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Velo_Produit");
+            });
+
+            modelBuilder.Entity<Alerte>(entity =>
+            {
+                entity.HasKey(e => e.IdAlerte).HasName("PK_Alerte");
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50);
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.Alertes)
+                    .HasForeignKey(d => d.IdClient)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Alerte_Client");
+                entity.HasOne(d => d.Taille)
+                    .WithMany()
+                    .HasForeignKey(d => d.IdTaille)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Alerte_Taille");
+            });
+
+            modelBuilder.Entity<Assurance>(entity =>
+            {
+                entity.HasKey(e => e.IdAssurance).HasName("PK_Assurance");
+                entity.Property(e => e.NomAssurance)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Boutique>(entity =>
+            {
+                entity.HasKey(e => e.IdBoutique).HasName("PK_Boutique");
+                entity.HasOne(d => d.Adresse)
+                    .WithMany()
+                    .HasForeignKey(d => d.IdAdresse)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Boutique_Adresse");
+            });
+
+            modelBuilder.Entity<Caracteristique>(entity =>
+            {
+                entity.HasKey(e => e.IdCaract).HasName("PK_Caracteristique");
+                entity.Property(e => e.Typecaract)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<CategorieAccessoire>(entity =>
+            {
+                entity.HasKey(e => e.IdCatA).HasName("PK_CategorieAccessoire");
+                entity.Property(e => e.NomCatA)
+                    .IsRequired()
+                    .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<CategorieVelo>(entity =>
+            {
+                entity.HasKey(e => e.IdCat).HasName("PK_CategorieVelo");
+                entity.Property(e => e.NomCategorie)
+                    .IsRequired()
+                    .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<CodeReduc>(entity =>
+            {
+                entity.HasKey(e => e.Idcode).HasName("PK_CodeReduc");
+                entity.Property(e => e.Libellecode)
+                    .IsRequired()
+                    .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<Etat>(entity =>
+            {
+                entity.HasKey(e => e.IdEtat).HasName("PK_Etat");
+                entity.Property(e => e.NomEtat)
+                    .IsRequired()
+                    .HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<Fonction>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Fonction");
+                entity.Property(e => e.NomFonction)
+                    .IsRequired()
+                    .HasMaxLength(80);
+            });
+
+            modelBuilder.Entity<Marque>(entity =>
+            {
+                entity.HasKey(e => e.IdMarque).HasName("PK_Marque");
+                entity.Property(e => e.NomMarque)
+                    .IsRequired()
+                    .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<ModeExpedition>(entity =>
+            {
+                entity.HasKey(e => e.IdModeExp).HasName("PK_ModeExpedition");
+                entity.Property(e => e.LibellemodeExp)
+                    .IsRequired()
+                    .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<ModePayement>(entity =>
+            {
+                entity.HasKey(e => e.Idmodepayement).HasName("PK_ModePayement");
+                entity.Property(e => e.NomModepayement)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Moteur>(entity =>
+            {
+                entity.HasKey(e => e.IdMoteur).HasName("PK_Moteur");
+                entity.Property(e => e.Positionmoteur)
+                    .IsRequired()
+                    .HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<Pays>(entity =>
+            {
+                entity.HasKey(e => e.IdPays).HasName("PK_Pays");
+                entity.Property(e => e.NomPays)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Photo>(entity =>
+            {
+                entity.HasKey(e => e.IdPhoto).HasName("PK_Photo");
+                entity.Property(e => e.Url)
+                    .IsRequired()
+                    .HasMaxLength(300);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<Statut>(entity =>
+            {
+                entity.HasKey(e => e.IdStatut).HasName("PK_Statut");
+                entity.Property(e => e.NomStatut)
+                    .IsRequired()
+                    .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<Taille>(entity =>
+            {
+                entity.HasKey(e => e.Idtaille).HasName("PK_Taille");
+            });
+
+            modelBuilder.Entity<Type>(entity =>
+            {
+                entity.HasKey(e => e.Idtype).HasName("PK_Type");
+                entity.Property(e => e.NomType)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

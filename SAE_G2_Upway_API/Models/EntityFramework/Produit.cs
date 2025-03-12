@@ -42,6 +42,7 @@ public partial class Produit
     //relations avec les autres tables 
     
     public Accessoire? Accessoires { get; set; }
+    public Velo? Velos { get; set; }
 
     //relation avec la table est en favoris, un produit peut etre dans plusieurs liste de favoris
 
