@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-//il faut encore ajouter les id pour les photos et les marques
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 [Table("produit")]
