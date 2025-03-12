@@ -17,8 +17,9 @@ public partial class Photo
     [Column("description")]
     [StringLength(200)]
     public string Description { get; set; }
-    
+
     //relation avec la table produit
+    [InverseProperty(nameof(Produit.Photo))]
     public virtual Produit Produit { get; set; } = null!;
     
     //relation avec la table a_pour_photo
