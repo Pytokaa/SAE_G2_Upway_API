@@ -17,7 +17,7 @@ public partial class Habite
     //relation avec la table client
     [ForeignKey(nameof(Idclient))]
     [InverseProperty(nameof(Client.HabiteA))]
-    public virtual Client? ClientHabite { get; set; };
+    public virtual Client? ClientHabite { get; set; }
     
     //relation avec la table adresse
     [ForeignKey(nameof(Idadresse))]
