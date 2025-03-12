@@ -214,7 +214,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Commande_Adresse");
                 entity.HasOne(d => d.AdresseFactu)
-                    .WithMany(p => p.Commandes)
+                    .WithMany(p => p.CommandesFactu)
                     .HasForeignKey(d => d.IdAdresseFactu)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Commande_AdresseFactu");
