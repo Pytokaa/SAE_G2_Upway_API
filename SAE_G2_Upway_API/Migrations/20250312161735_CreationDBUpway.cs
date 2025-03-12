@@ -149,7 +149,7 @@ namespace SAE_G2_Upway_API.Migrations
                 {
                     idmoteur = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    positionmoteur = table.Column<int>(type: "integer", maxLength: 20, nullable: false),
+                    positionmoteur = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     couplemoteur = table.Column<int>(type: "integer", nullable: false),
                     vitessemax = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -292,7 +292,8 @@ namespace SAE_G2_Upway_API.Migrations
                     idmodele = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idmarque = table.Column<int>(type: "integer", nullable: false),
-                    nomModele = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false)
+                    nommodele = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    MarqueIdMarque = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -303,7 +304,13 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "marque",
                         principalColumn: "idmarque",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_modele_marque_MarqueIdMarque",
+                        column: x => x.MarqueIdMarque,
+                        principalSchema: "upway",
+                        principalTable: "marque",
+                        principalColumn: "idmarque");
                 });
 
             migrationBuilder.CreateTable(
@@ -314,7 +321,7 @@ namespace SAE_G2_Upway_API.Migrations
                     idadresse = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idpays = table.Column<int>(type: "integer", nullable: false),
-                    rue = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    rue = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     cp = table.Column<int>(type: "integer", nullable: false),
                     ville = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
                 },
@@ -339,7 +346,7 @@ namespace SAE_G2_Upway_API.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idphoto = table.Column<int>(type: "integer", nullable: false),
                     idmarque = table.Column<int>(type: "integer", nullable: false),
-                    nomproduit = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    nomproduit = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     prixproduit = table.Column<double>(type: "double precision", nullable: false),
                     stockproduit = table.Column<int>(type: "integer", nullable: false),
                     descriptionproduit = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false)
@@ -371,7 +378,7 @@ namespace SAE_G2_Upway_API.Migrations
                     idcaract = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idsouscat = table.Column<int>(type: "integer", nullable: false),
-                    typecaract = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    typecaract = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -393,7 +400,7 @@ namespace SAE_G2_Upway_API.Migrations
                     idsurtype = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idsoustype = table.Column<int>(type: "integer", nullable: false),
-                    libellesurtype = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    libellesurtype = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     repare = table.Column<bool>(type: "boolean", nullable: false),
                     checke = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -428,7 +435,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "type",
                         principalColumn: "idtype",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_contient_soustype_idsoustype",
                         column: x => x.idsoustype,
@@ -488,7 +495,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "moteur",
                         principalColumn: "idmoteur",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_estdemodelem_modele_idmodele",
                         column: x => x.idmodele,
@@ -568,7 +575,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "photo",
                         principalColumn: "idphoto",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Produit_A_Pour_Photo",
                         column: x => x.idproduit,
@@ -627,7 +634,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "client",
                         principalColumn: "idclient",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Produit_Est_En_Favoris",
                         column: x => x.idproduit,
@@ -692,7 +699,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "modele",
                         principalColumn: "idmodele",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Velo_Produit",
                         column: x => x.idproduit,
@@ -721,7 +728,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "categorievelo",
                         principalColumn: "idcat",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_concerne_alerte_idalerte",
                         column: x => x.idalerte,
@@ -858,7 +865,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "moteur",
                         principalColumn: "idmoteur",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_estcompose_velo_idvelo",
                         column: x => x.idvelo,
@@ -935,7 +942,7 @@ namespace SAE_G2_Upway_API.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idvelo = table.Column<int>(type: "integer", nullable: false),
                     date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    centre = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    centre = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     historique = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     commentaire = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
                 },
@@ -1086,7 +1093,7 @@ namespace SAE_G2_Upway_API.Migrations
                         principalSchema: "upway",
                         principalTable: "type",
                         principalColumn: "idtype",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_valide_rapportinspection_idrapport",
                         column: x => x.idrapport,
@@ -1332,6 +1339,12 @@ namespace SAE_G2_Upway_API.Migrations
                 schema: "upway",
                 table: "modele",
                 column: "idmarque");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_modele_MarqueIdMarque",
+                schema: "upway",
+                table: "modele",
+                column: "MarqueIdMarque");
 
             migrationBuilder.CreateIndex(
                 name: "IX_peutetreteste_idboutique",

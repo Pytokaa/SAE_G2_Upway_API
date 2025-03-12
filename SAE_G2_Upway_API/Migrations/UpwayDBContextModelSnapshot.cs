@@ -101,8 +101,8 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<string>("Rue")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
                         .HasColumnName("rue");
 
                     b.Property<string>("Ville")
@@ -224,8 +224,8 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<string>("Typecaract")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
                         .HasColumnName("typecaract");
 
                     b.HasKey("IdCaract")
@@ -804,15 +804,20 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idmarque");
 
+                    b.Property<int?>("MarqueIdMarque")
+                        .HasColumnType("integer");
+
                     b.Property<string>("NomModele")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
-                        .HasColumnName("nomModele");
+                        .HasColumnName("nommodele");
 
                     b.HasKey("IdModele");
 
                     b.HasIndex("IdMarque");
+
+                    b.HasIndex("MarqueIdMarque");
 
                     b.ToTable("modele", "upway");
                 });
@@ -830,9 +835,10 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("couplemoteur");
 
-                    b.Property<int>("Positionmoteur")
+                    b.Property<string>("Positionmoteur")
+                        .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("integer")
+                        .HasColumnType("character varying(20)")
                         .HasColumnName("positionmoteur");
 
                     b.Property<int>("VitesseMax")
@@ -970,8 +976,8 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<string>("NomProduit")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
                         .HasColumnName("nomproduit");
 
                     b.Property<double>("PrixProduit")
@@ -1030,8 +1036,8 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<string>("Centre")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
                         .HasColumnName("centre");
 
                     b.Property<string>("Commentaire")
@@ -1142,8 +1148,8 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<string>("LibelleSurType")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
                         .HasColumnName("libellesurtype");
 
                     b.Property<bool>("Repare")
@@ -1298,7 +1304,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Photo", "Photo")
                         .WithOne("AProduit")
                         .HasForeignKey("SAE_G2_Upway_API.Models.EntityFramework.A_Pour_Photo", "IdPhoto")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Photo_A_Pour_Photo");
 
@@ -1490,7 +1496,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.CategorieVelo", "ConcerneCategorieVelo")
                         .WithMany("ConcerneAlerte")
                         .HasForeignKey("IdCat")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_CategorieVelo_Concerne");
 
@@ -1510,7 +1516,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Type", "ContientType")
                         .WithMany("ASousTypes")
                         .HasForeignKey("IdType")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Type_Contient");
 
@@ -1543,7 +1549,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Moteur", "LeMoteur")
                         .WithMany("LesVelos")
                         .HasForeignKey("IdMoteur")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Moteur_Est_Compose");
 
@@ -1569,7 +1575,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Moteur", "LeMoteur")
                         .WithMany("LesModeles")
                         .HasForeignKey("IdMoteur")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Moteur_Est_De_ModeleM");
 
@@ -1583,7 +1589,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Client", "ClientFavoris")
                         .WithMany("LesFavoris")
                         .HasForeignKey("IdClient")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Client_Est_En_Favoris");
 
@@ -1678,11 +1684,15 @@ namespace SAE_G2_Upway_API.Migrations
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Modele", b =>
                 {
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Marque", "Marque")
-                        .WithMany("Modeles")
+                        .WithMany()
                         .HasForeignKey("IdMarque")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Marque_Modele");
+
+                    b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Marque", null)
+                        .WithMany("Modeles")
+                        .HasForeignKey("MarqueIdMarque");
 
                     b.Navigation("Marque");
                 });
@@ -1799,7 +1809,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Type", "LeType")
                         .WithMany("LesRapports")
                         .HasForeignKey("IdType")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Type_Valide");
 
@@ -1827,7 +1837,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Modele", "LeModele")
                         .WithMany("Velos")
                         .HasForeignKey("IdModele")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Velo_Modele");
 

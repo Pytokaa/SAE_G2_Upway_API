@@ -246,7 +246,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration des colonnes
                 entity.Property(p => p.NomProduit)
-                    .HasMaxLength(100);
+                    .HasMaxLength(250);
 
                 entity.Property(p => p.DescriptionProduit)
                     .HasMaxLength(200);
@@ -458,7 +458,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne Typecaract
                 entity.Property(e => e.Typecaract)
-                    .HasMaxLength(100)
+                    .HasMaxLength(250)
                     .IsRequired();
 
                 // Configuration de la relation avec la table SousCategorie
@@ -1075,6 +1075,10 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                       .WithOne(edm => edm.LeModele)
                       .HasForeignKey(edm => edm.IdModele)
                       .OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(e => e.NomModele)
+                    .HasColumnName("nommodele")
+                    .IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);

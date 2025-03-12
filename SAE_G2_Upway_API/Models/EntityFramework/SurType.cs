@@ -17,7 +17,7 @@ public partial class SurType
     public int IdSousType { get; set; }
 
     [Column("libellesurtype")]
-    [StringLength(100)]
+    [StringLength(250)]
     public string LibelleSurType { get; set; }
     
     [Column("repare")]

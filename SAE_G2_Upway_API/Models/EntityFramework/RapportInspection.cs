@@ -20,7 +20,7 @@ public partial class RapportInspection
     public DateTime Date { get; set; }
     
     [Column("centre")]
-    [StringLength(100)]
+    [StringLength(250)]
     public string Centre { get; set; }
     
     

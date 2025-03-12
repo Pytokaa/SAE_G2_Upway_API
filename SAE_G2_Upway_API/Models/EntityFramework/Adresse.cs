@@ -18,7 +18,7 @@ public partial class Adresse
     public int PaysId { get; set; }
     
     [Column("rue")]
-    [StringLength(100)]
+    [StringLength(250)]
     public string Rue { get; set; }
     
     [Column("cp")]
