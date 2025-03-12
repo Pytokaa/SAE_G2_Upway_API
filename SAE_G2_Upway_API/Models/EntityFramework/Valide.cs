@@ -6,6 +6,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     [Table("valide")]
     public partial class Valide
     {
+        //Colonne
         [Key]
         [Column("idvalide")]
         public int IdValide { get; set; }
@@ -14,10 +15,12 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         [Column("idtype")]
         public int IdType { get; set; }
 
+        //Relation avec la table Rapport
         [ForeignKey(nameof(IdRapport))]
         [InverseProperty(nameof(RapportInspection.LesTypes))]
         public virtual RapportInspection LeRapport { get; set; } = null!;
 
+        //Relation avec la table Type
         [ForeignKey(nameof(IdType))]
         [InverseProperty(nameof(Type.LesRapports))]
         public virtual Type LeType { get; set; } = null!;
