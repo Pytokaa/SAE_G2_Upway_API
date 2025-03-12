@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
     [Table("estmispanieraccessorie")]
-    public class Est_Mis_Panier_Accessoire
+    public partial class Est_Mis_Panier_Accessoire
     {
         [Key]
         [Column("idpanieraccessoire")]
@@ -18,10 +18,10 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
         [ForeignKey(nameof(IdAccessoire))]
         [InverseProperty(nameof(Accessoire.LesCommandesAccessoire))]
-        public Accessoire LAccessoire { get; set; } = null!;
+        public virtual Accessoire LAccessoire { get; set; } = null!;
 
         [ForeignKey(nameof(IdCommande))]
         [InverseProperty(nameof(Commande.LesAccessoires))]
-        public Commande LaCommande { get; set; } = null!;
+        public virtual Commande LaCommande { get; set; } = null!;
     }
 }

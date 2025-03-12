@@ -233,13 +233,13 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Relation avec la table Photo
                 entity.HasOne(p => p.Photo)
-                      .WithMany()
-                      .HasForeignKey(p => p.IdPhoto)
+                      .WithOne(f => f.Produit)
+                      .HasForeignKey<Produit>(p => p.IdPhoto)
                       .OnDelete(DeleteBehavior.Restrict);
 
                 // Relation avec la table Marque
                 entity.HasOne(p => p.Marque)
-                      .WithMany()
+                      .WithMany(f => f.Produits)
                       .HasForeignKey(p => p.IdMarque)
                       .OnDelete(DeleteBehavior.Restrict);
 
@@ -377,92 +377,249 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
             modelBuilder.Entity<Boutique>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdBoutique).HasName("PK_Boutique");
+
+                // Configuration de la colonne NomBoutique
+                entity.Property(e => e.NomBoutique)
+                    .HasColumnName("nomboutique")
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Adresse
                 entity.HasOne(d => d.Adresse)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdAdresse)
+                    .WithOne(a => a.Boutique)
+                    .HasForeignKey<Boutique>(d => d.IdAdresse)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Boutique_Adresse");
+
+                // Configuration de la relation avec la table Commande
+                entity.HasMany(d => d.Commandes)
+                    .WithOne(c => c.Boutique)
+                    .HasForeignKey(c => c.IdBoutique)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Boutique_Commande");
             });
 
             modelBuilder.Entity<Caracteristique>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdCaract).HasName("PK_Caracteristique");
+
+                // Configuration de la colonne Typecaract
                 entity.Property(e => e.Typecaract)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                    .HasColumnName("typecaract")
+                    .HasMaxLength(100)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table SousCategorie
+                entity.HasOne(d => d.SousCategorie)
+                    .WithMany(s => s.Caracteristiques)
+                    .HasForeignKey(d => d.IdSousCat)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Caracteristique_SousCategorie");
             });
 
             modelBuilder.Entity<CategorieAccessoire>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdCatA).HasName("PK_CategorieAccessoire");
+
+                // Configuration de la colonne NomCatA
                 entity.Property(e => e.NomCatA)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                    .HasColumnName("nomcata")
+                    .HasMaxLength(30)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Accessoire
+                entity.HasMany(d => d.Accessoires)
+                    .WithOne(a => a.CategorieAccessoire)
+                    .HasForeignKey(a => a.CategorieAccessoireId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_CategorieAccessoire_Accessoire");
             });
 
             modelBuilder.Entity<CategorieVelo>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdCat).HasName("PK_CategorieVelo");
+
+                // Configuration de la colonne NomCategorie
                 entity.Property(e => e.NomCategorie)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                    .HasColumnName("nomcat")
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Velo
+                entity.HasMany(d => d.Velos)
+                    .WithOne(v => v.CategorieVelo)
+                    .HasForeignKey(v => v.IdCat)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_CategorieVelo_Velo");
+
+                // Configuration de la relation avec la table Concerne
+                entity.HasMany(d => d.ConcerneAlerte)
+                    .WithOne(c => c.ConcerneCategorieVelo)
+                    .HasForeignKey(c => c.IdCat)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_CategorieVelo_Concerne");
             });
 
             modelBuilder.Entity<CodeReduc>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.Idcode).HasName("PK_CodeReduc");
+
+                // Configuration de la colonne Libellecode
                 entity.Property(e => e.Libellecode)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                    .HasColumnName("libellecode")
+                    .HasMaxLength(30)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Commande
+                entity.HasMany(d => d.Commandes)
+                    .WithOne(c => c.Code)
+                    .HasForeignKey(c => c.IdCode)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_CodeReduc_Commande");
             });
 
             modelBuilder.Entity<Etat>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdEtat).HasName("PK_Etat");
+
+                // Configuration de la colonne NomEtat
                 entity.Property(e => e.NomEtat)
-                    .IsRequired()
-                    .HasMaxLength(20);
+                    .HasColumnName("nometat")
+                    .HasMaxLength(20)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Velo
+                entity.HasMany(d => d.Velos)
+                    .WithOne(v => v.Etat)
+                    .HasForeignKey(v => v.IdEtat)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Etat_Velo");
             });
 
             modelBuilder.Entity<Fonction>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.Id).HasName("PK_Fonction");
+
+                // Configuration de la colonne NomFonction
                 entity.Property(e => e.NomFonction)
-                    .IsRequired()
-                    .HasMaxLength(80);
+                    .HasColumnName("nomfonction")
+                    .HasMaxLength(80)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Client
+                entity.HasMany(d => d.Clients)
+                    .WithOne(c => c.Fonction)
+                    .HasForeignKey(c => c.IdFonction)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Fonction_Client");
             });
 
             modelBuilder.Entity<Marque>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdMarque).HasName("PK_Marque");
+
+                // Configuration de la colonne NomMarque
                 entity.Property(e => e.NomMarque)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                    .HasColumnName("nommarque")
+                    .HasMaxLength(30)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Modele
+                entity.HasMany(d => d.Modeles)
+                    .WithOne(m => m.Marque)
+                    .HasForeignKey(m => m.IdMarque)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Marque_Modele");
+
+                // Configuration de la relation avec la table Produit
+                entity.HasMany(d => d.Produits)
+                    .WithOne(p => p.Marque)
+                    .HasForeignKey(p => p.IdMarque)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Marque_Produit");
             });
 
             modelBuilder.Entity<ModeExpedition>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdModeExp).HasName("PK_ModeExpedition");
+
+                // Configuration de la colonne LibellemodeExp
                 entity.Property(e => e.LibellemodeExp)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                    .HasColumnName("libellemodeexp")
+                    .HasMaxLength(30)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Commande
+                entity.HasMany(d => d.Commandes)
+                    .WithOne(c => c.ModeExpedition)
+                    .HasForeignKey(c => c.IdModeExp)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_ModeExpedition_Commande");
             });
 
             modelBuilder.Entity<ModePayement>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.Idmodepayement).HasName("PK_ModePayement");
+
+                // Configuration de la colonne NomModepayement
                 entity.Property(e => e.NomModepayement)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                    .HasColumnName("nommodepayement")
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Commande
+                entity.HasMany(d => d.Commandes)
+                    .WithOne(c => c.ModePayement)
+                    .HasForeignKey(c => c.IdModePayement)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_ModePayement_Commande");
             });
 
             modelBuilder.Entity<Moteur>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdMoteur).HasName("PK_Moteur");
+
+                // Configuration de la colonne Positionmoteur
                 entity.Property(e => e.Positionmoteur)
-                    .IsRequired()
-                    .HasMaxLength(20);
+                    .HasColumnName("positionmoteur")
+                    .HasMaxLength(20)
+                    .IsRequired();
+
+                // Configuration de la colonne CoupleMoteur
+                entity.Property(e => e.CoupleMoteur)
+                    .HasColumnName("couplemoteur")
+                    .IsRequired();
+
+                // Configuration de la colonne VitesseMax
+                entity.Property(e => e.VitesseMax)
+                    .HasColumnName("vitessemax")
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Est_Compose
+                entity.HasMany(d => d.LesVelos)
+                    .WithOne(e => e.LeMoteur)
+                    .HasForeignKey(e => e.IdMoteur)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Moteur_Est_Compose");
+
+                // Configuration de la relation avec la table Est_De_ModeleM
+                entity.HasMany(d => d.LesModeles)
+                    .WithOne(e => e.LeMoteur)
+                    .HasForeignKey(e => e.IdMoteur)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Moteur_Est_De_ModeleM");
             });
 
             modelBuilder.Entity<Pays>(entity =>
