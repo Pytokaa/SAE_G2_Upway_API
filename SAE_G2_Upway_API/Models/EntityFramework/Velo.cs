@@ -39,6 +39,17 @@ public partial class Velo
     [StringLength(50)]
     public string Typecadre { get; set; }
 
+    [Column("annee")]
+    public DateTime Annee { get; set; }
+
+    [Column("bestseller")]
+    public bool BestSeller { get; set; }
+    [Column("nbvente")]
+    public int NbVente { get; set; }
+    [Column("qualitevelo")]
+    [StringLength(100)]
+    public string QualiteVelo { get; set; }
+
     //relation avec la table Produit
     [ForeignKey(nameof(IdProduit))]
     [InverseProperty(nameof(Produit.Velo))]
