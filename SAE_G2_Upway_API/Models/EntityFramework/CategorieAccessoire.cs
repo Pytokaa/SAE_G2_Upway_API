@@ -15,5 +15,5 @@ public partial class CategorieAccessoire
     public string NomCatA { get; set; }
     
     //relation avec la table Accessoire
-    public ICollection<Accessoire> Accessoires { get; set; } = new List<Accessoire>();
+    public virtual ICollection<Accessoire> Accessoires { get; set; } = new List<Accessoire>();
 }
