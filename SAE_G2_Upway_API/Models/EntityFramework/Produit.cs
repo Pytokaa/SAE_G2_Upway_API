@@ -38,10 +38,12 @@ public partial class Produit
 
     //relation avec la table photo
     [ForeignKey(nameof(IdPhoto))]
+    [InverseProperty(nameof(Photo.Produit))]
     public virtual Photo Photo { get; set; } = null!;
 
     //relation avec la table Marque
     [ForeignKey(nameof(IdMarque))]
+    [InverseProperty(nameof(Marque.Produits))]
     public virtual Marque Marque { get; set; } = null!;
 
     //relations avec les autres tables 
