@@ -41,37 +41,41 @@ public partial class Velo
 
     //relation avec la table Produit
     [ForeignKey(nameof(IdProduit))]
-    public virtual Produit? Produit { get; set; } = null!;
+    public virtual Produit Produit { get; set; } = null!;
 
     //relation avec la table taille min et max
     //min
     [ForeignKey(nameof(IdTailleMin))]
-    public virtual Taille? TailleMin { get; set; } = null!;
+    public virtual Taille TailleMin { get; set; } = null!;
 
+    //max
     [ForeignKey(nameof(IdTailleMax))]
-    public virtual Taille? TailleMax { get; set; } = null!;
+    public virtual Taille TailleMax { get; set; } = null!;
 
     //Relation avec la table modele
 
     [ForeignKey(nameof(IdModele))]
-    public virtual Modele? LeModele { get; set; } = null!;
+    public virtual Modele LeModele { get; set; } = null!;
 
     //Relation avec la table CategorieVelo
 
     [ForeignKey(nameof(IdCat))]
-    public virtual CategorieVelo? LaCategorie { get; set; }
+    public virtual CategorieVelo LaCategorie { get; set; }
 
     //relation avec la table etat
     [ForeignKey(nameof(IdEtat))]
     public virtual Etat Etat { get; set; } = null!;
 
     //relation avec la table Rapport inspection
-    public RapportInspection? RapportInspection { get; set; }
+    [InverseProperty(nameof(RapportInspection.LeVelo))]
+    public virtual RapportInspection RapportInspection { get; set; }
         
   
+    //relation est compose
     [InverseProperty(nameof(Est_Compose.LeVelo))]
     public virtual ICollection<Est_Compose> LesMoteurs { get; set; } = new List<Est_Compose>();
 
+    //relation possede
     [InverseProperty(nameof(Possede.LeVelo))]
     public virtual ICollection<Possede> LesSousCategories { get; set; } = new List<Possede>();
     

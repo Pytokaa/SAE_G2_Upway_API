@@ -40,7 +40,7 @@ public partial class Commande
     
     //relation avec la table statut
     [ForeignKey(nameof(IdStatut))]
-    public virtual Statut? Statut { get; set; }
+    public virtual Statut Statut { get; set; } = null!;
     
     //relation avec la table modeExpedition
     
@@ -49,25 +49,25 @@ public partial class Commande
     
     //relation avec la table adresse (adresse simple)
     [ForeignKey(nameof(IdAdresse))]
-    public virtual Adresse? Adresse { get; set; }
+    public virtual Adresse Adresse { get; set; } = null!;
     
     //relation avec la table boutique
     
     [ForeignKey(nameof(IdBoutique))]
-    public virtual Boutique? Boutique { get; set; }
+    public virtual Boutique Boutique { get; set; } = null!;
     
     //relation avec la table adresse (facturation)
     [ForeignKey(nameof(IdAdresseFactu))]
-    public virtual Adresse? AdresseFactu { get; set; }
+    public virtual Adresse AdresseFactu { get; set; }= null!;
     
     //relation avec la table ModePayement
     
     [ForeignKey(nameof(IdModePayement))]
-    public virtual ModePayement? ModePayement { get; set; }
+    public virtual ModePayement ModePayement { get; set; } = null!;
     
     //relation avec la table Client
     [ForeignKey(nameof(IdClient))]
-    public virtual Client? Client { get; set; }
+    public virtual Client Client { get; set; } = null!;
     
     //relation avec la table propose_assur
     [InverseProperty(nameof(Propose_Assur.Commande))]

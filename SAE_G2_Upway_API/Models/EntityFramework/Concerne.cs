@@ -18,11 +18,11 @@ public partial class Concerne
     //relation avec la table alerte
     [ForeignKey(nameof(IdAlerte))]
     [InverseProperty(nameof(Alerte.EstConcerneCategorie))]
-    public virtual Alerte ConcerneAlerte { get; set; }
+    public virtual Alerte ConcerneAlerte { get; set; } = null!;
     
     
     //relation avec la table categorieVelo
     [ForeignKey(nameof(IdCat))]
     [InverseProperty(nameof(CategorieVelo.ConcerneAlerte))]
-    public virtual CategorieVelo ConcerneCategorieVelo { get; set; }
+    public virtual CategorieVelo ConcerneCategorieVelo { get; set; } = null!;
 }

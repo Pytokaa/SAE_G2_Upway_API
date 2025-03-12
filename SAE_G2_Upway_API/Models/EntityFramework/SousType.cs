@@ -7,17 +7,19 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 [Table("soustype")]
 public partial class SousType
 {
+    //Colonnes
     [Key]
     [Column("idsoustype")]
     public int IdSousType { get; set; }
     
     [Column("libellesoustype")]
     [StringLength(30)]
-    public string Libellesoustype { get; set; }
-    
-    
-    //relation avec la table SurType    
-    public virtual ICollection<SurType> SurTypes { get; set; } =  new List<SurType>();
+    public string LibelleSousType { get; set; }
+
+
+    //relation avec la table SurType
+    [InverseProperty(nameof(SurType.LeSousType))]
+    public virtual ICollection<SurType> LesSurTypes { get; set; } =  new List<SurType>();
     
     //relation avec la table 
     [InverseProperty(nameof(Contient.ContientSousType))]

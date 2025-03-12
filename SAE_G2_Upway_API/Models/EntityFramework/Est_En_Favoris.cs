@@ -15,11 +15,13 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         [Column("idproduit")]
         public int IdProduit { get; set; }
 
-        //Foreign key
+        //relation avec la table client
         [ForeignKey(nameof(IdClient))]
         [InverseProperty(nameof(Client.LesFavoris))]
         public virtual Client ClientFavoris { get; set; } = null!;
-
+        
+        
+        //relation avec la table client 
         [ForeignKey(nameof(IdProduit))]
         [InverseProperty(nameof(Produit.DansLesFavoris))]
         public virtual Produit LesProduits { get; set; } = null!;

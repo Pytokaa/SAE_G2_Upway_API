@@ -22,7 +22,7 @@ public partial class Caracteristique
     
     //relation avec la table souscategorie
     [ForeignKey(nameof(IdSousCat))]
-    public virtual SousCategorie? SousCategorie { get; set; }
+    public virtual SousCategorie SousCategorie { get; set; } = null!;
     
     //relation avec la table est_caracterise oui
     [InverseProperty(nameof(Est_Caracterise.Caracterise))]
