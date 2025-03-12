@@ -19,4 +19,8 @@ public partial class Assurance
     [Column("prixassurance",TypeName = "decimal(5,2)")]
     public decimal PrixAssurance { get; set; }
     
+    //relation avec la table propose_assur
+    [InverseProperty(nameof(Propose_Assur.Assurance))]
+    public virtual ICollection<Propose_Assur> AssureCommande { get; set; } =  new List<Propose_Assur>();
+    
 }
