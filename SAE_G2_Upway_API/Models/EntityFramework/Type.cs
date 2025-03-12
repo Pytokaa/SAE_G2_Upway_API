@@ -13,4 +13,7 @@ public partial class Type
     [Column("nomtype")]
     [StringLength(50)]
     public string NomType { get; set; }
+
+    [InverseProperty(nameof(Valide.LeType))]
+    public ICollection<Valide> LesRapports { get; set; } = new List<Valide>();
 }
