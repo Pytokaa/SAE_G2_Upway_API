@@ -62,14 +62,14 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                 // Configuration de la relation avec la table Produit
                 entity.HasOne(d => d.Produit)
                     .WithOne(p => p.Accessoires)
-                    .HasForeignKey<Accessoire>(d => d.ProduitId)
+                    .HasForeignKey<Accessoire>(d => d.IdProduit)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Accessoire_Produit");
 
                 // Configuration de la relation avec la table CategorieAccessoire
                 entity.HasOne(d => d.CategorieAccessoire)
                     .WithMany(c => c.Accessoires)
-                    .HasForeignKey(d => d.CategorieAccessoireId)
+                    .HasForeignKey(d => d.IdCatA)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Accessoire_CategorieAccessoire");
             });
@@ -141,7 +141,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                 // Configuration de la relation avec la table Alerte
                 entity.HasMany(d => d.Alertes)
                     .WithOne(a => a.Client)
-                    .HasForeignKey(a => a.Idclient)
+                    .HasForeignKey(a => a.IdClient)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Client_Alerte");
 
@@ -259,12 +259,12 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
             modelBuilder.Entity<Velo>(entity =>
             {
                 // Définir la clé primaire
-                entity.HasKey(e => e.Idvelo).HasName("PK_Velo");
+                entity.HasKey(e => e.IdVelo).HasName("PK_Velo");
 
                 // Configuration de la relation avec la table Produit
                 entity.HasOne(d => d.Produit)
                     .WithOne(p => p.Velos)
-                    .HasForeignKey<Velo>(d => d.ProduitId)
+                    .HasForeignKey<Velo>(d => d.IdProduit)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Velo_Produit");
 
@@ -290,14 +290,14 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasConstraintName("FK_Velo_TailleMax");
 
                 // Configuration de la relation avec la table Modele
-                entity.HasOne(d => d.Modele)
+                entity.HasOne(d => d.LeModele)
                     .WithMany(m => m.Velos)
                     .HasForeignKey(d => d.IdModele)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Velo_Modele");
 
                 // Configuration de la relation avec la table CategorieVelo
-                entity.HasOne(d => d.CategorieVelo)
+                entity.HasOne(d => d.LaCategorie)
                     .WithMany(c => c.Velos)
                     .HasForeignKey(d => d.IdCat)
                     .OnDelete(DeleteBehavior.Restrict)
@@ -341,13 +341,12 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne Budgetmax
                 entity.Property(e => e.Budgetmax)
-                    .HasColumnName("budgetmax")
                     .IsRequired();
 
                 // Configuration de la relation avec la table Client
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Alertes)
-                    .HasForeignKey(d => d.Idclient)
+                    .HasForeignKey(d => d.IdClient)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Alerte_Client");
 
@@ -382,7 +381,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomBoutique
                 entity.Property(e => e.NomBoutique)
-                    .HasColumnName("nomboutique")
                     .HasMaxLength(50)
                     .IsRequired();
 
@@ -408,7 +406,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne Typecaract
                 entity.Property(e => e.Typecaract)
-                    .HasColumnName("typecaract")
                     .HasMaxLength(100)
                     .IsRequired();
 
@@ -427,14 +424,13 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomCatA
                 entity.Property(e => e.NomCatA)
-                    .HasColumnName("nomcata")
                     .HasMaxLength(30)
                     .IsRequired();
 
                 // Configuration de la relation avec la table Accessoire
                 entity.HasMany(d => d.Accessoires)
                     .WithOne(a => a.CategorieAccessoire)
-                    .HasForeignKey(a => a.CategorieAccessoireId)
+                    .HasForeignKey(a => a.IdCatA)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_CategorieAccessoire_Accessoire");
             });
@@ -446,13 +442,12 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomCategorie
                 entity.Property(e => e.NomCategorie)
-                    .HasColumnName("nomcat")
                     .HasMaxLength(50)
                     .IsRequired();
 
                 // Configuration de la relation avec la table Velo
                 entity.HasMany(d => d.Velos)
-                    .WithOne(v => v.CategorieVelo)
+                    .WithOne(v => v.LaCategorie)
                     .HasForeignKey(v => v.IdCat)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_CategorieVelo_Velo");
@@ -472,7 +467,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne Libellecode
                 entity.Property(e => e.Libellecode)
-                    .HasColumnName("libellecode")
                     .HasMaxLength(30)
                     .IsRequired();
 
@@ -491,7 +485,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomEtat
                 entity.Property(e => e.NomEtat)
-                    .HasColumnName("nometat")
                     .HasMaxLength(20)
                     .IsRequired();
 
@@ -510,7 +503,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomFonction
                 entity.Property(e => e.NomFonction)
-                    .HasColumnName("nomfonction")
                     .HasMaxLength(80)
                     .IsRequired();
 
@@ -529,7 +521,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomMarque
                 entity.Property(e => e.NomMarque)
-                    .HasColumnName("nommarque")
                     .HasMaxLength(30)
                     .IsRequired();
 
@@ -555,7 +546,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne LibellemodeExp
                 entity.Property(e => e.LibellemodeExp)
-                    .HasColumnName("libellemodeexp")
                     .HasMaxLength(30)
                     .IsRequired();
 
@@ -574,7 +564,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomModepayement
                 entity.Property(e => e.NomModepayement)
-                    .HasColumnName("nommodepayement")
                     .HasMaxLength(50)
                     .IsRequired();
 
@@ -593,18 +582,15 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne Positionmoteur
                 entity.Property(e => e.Positionmoteur)
-                    .HasColumnName("positionmoteur")
                     .HasMaxLength(20)
                     .IsRequired();
 
                 // Configuration de la colonne CoupleMoteur
                 entity.Property(e => e.CoupleMoteur)
-                    .HasColumnName("couplemoteur")
                     .IsRequired();
 
                 // Configuration de la colonne VitesseMax
                 entity.Property(e => e.VitesseMax)
-                    .HasColumnName("vitessemax")
                     .IsRequired();
 
                 // Configuration de la relation avec la table Est_Compose
@@ -629,7 +615,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la colonne NomPays
                 entity.Property(e => e.NomPays)
-                    .HasColumnName("nompays")
                     .HasMaxLength(50)
                     .IsRequired();
 
@@ -643,12 +628,31 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
             modelBuilder.Entity<Photo>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdPhoto).HasName("PK_Photo");
+
+                // Configuration de la colonne Url
                 entity.Property(e => e.Url)
-                    .IsRequired()
-                    .HasMaxLength(300);
+                    .HasMaxLength(300)
+                    .IsRequired();
+
+                // Configuration de la colonne Description
                 entity.Property(e => e.Description)
                     .HasMaxLength(200);
+
+                // Configuration de la relation avec la table Produit (1 à 0..1)
+                entity.HasOne(d => d.Produit)
+                    .WithOne(p => p.Photo)
+                    .HasForeignKey<Produit>(p => p.IdPhoto)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Photo_Produit");
+
+                // Configuration de la relation avec la table A_Pour_Photo (1 à 0..1)
+                entity.HasOne(d => d.AProduit)
+                    .WithOne(a => a.Photo)
+                    .HasForeignKey<A_Pour_Photo>(a => a.IdPhoto)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Photo_A_Pour_Photo");
             });
 
             modelBuilder.Entity<Statut>(entity =>
