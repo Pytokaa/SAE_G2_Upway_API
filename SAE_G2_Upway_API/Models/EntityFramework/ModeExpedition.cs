@@ -15,5 +15,5 @@ public partial class ModeExpedition
     public string LibellemodeExp { get; set; }  
     
     //relation avec la table commande
-    public ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+    public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
 }

@@ -16,6 +16,6 @@ public partial class ModePayement
     
     //relation avec la table Commande
     
-    public ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+    public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
     
 }

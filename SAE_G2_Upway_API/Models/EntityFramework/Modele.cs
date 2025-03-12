@@ -9,19 +9,20 @@ public partial class Modele
     [Key]
     [Column("idmodele")]
     public int IdModele { get; set; }
+    [Column("idmarque")]
+    public int IdMarque { get; set; }
     
     [Column("nomModele")]
     [StringLength(200)]
     public string NomModele { get; set; }
     
     // relation avec la table marque
-    
-    public int IdMarque { get; set; }
     [ForeignKey(nameof(IdMarque))]
-    public Marque Marque { get; set; }
+    public Marque Marque { get; set; } = null!;
+    
     
     //relation avecc la table Velo
-    public ICollection<Velo> Velos { get; set; } = new List<Velo>();
+    public virtual ICollection<Velo> Velos { get; set; } = new List<Velo>();
 
     //relation avec la table moteur
     [InverseProperty(nameof(Est_De_ModeleM.LeModele))]

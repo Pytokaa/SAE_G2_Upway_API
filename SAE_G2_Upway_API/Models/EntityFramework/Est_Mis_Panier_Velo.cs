@@ -18,9 +18,10 @@ public partial class Est_Mis_Panier_Velo
     //relation avec la table velo
     [ForeignKey(nameof(IdVelo))]
     [InverseProperty(nameof(Velo.ACommandes))]
-    public virtual Velo PanierVelo { get; set; }
+    public virtual Velo PanierVelo { get; set; } = null!;
         
+    //relation avec la table commande
     [ForeignKey(nameof(IdCommande))]
     [InverseProperty(nameof(Commande.PanierVelo))]
-    public virtual Commande PanierCommande { get; set; }
+    public virtual Commande PanierCommande { get; set; } = null!;
 }

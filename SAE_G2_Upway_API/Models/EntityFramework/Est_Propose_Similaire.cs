@@ -13,12 +13,13 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         [Column("idcommande")]
         public int IdCommande { get; set; }
 
-        //foreign key
+        //relation avec la table accessoire
 
         [ForeignKey(nameof(IdAccessoire))]
         [InverseProperty(nameof(Accessoire.LesCommandes))]
         public virtual Accessoire LAccessoire { get; set; } = null!;
 
+        //relation avec la table commande
         [ForeignKey(nameof(IdCommande))]
         [InverseProperty(nameof(Commande.LesSimilaires))]
         public virtual Commande LaCommande { get; set; } = null!;

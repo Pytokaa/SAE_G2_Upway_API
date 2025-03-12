@@ -17,12 +17,12 @@ public partial class Habite
     //relation avec la table client
     [ForeignKey(nameof(Idclient))]
     [InverseProperty(nameof(Client.HabiteA))]
-    public virtual Client ClientHabite { get; set; }
+    public virtual Client ClientHabite { get; set; } = null!;
     
     //relation avec la table adresse
     [ForeignKey(nameof(Idadresse))]
     [InverseProperty(nameof(Adresse.AClients))]
-    public virtual Adresse AdresseHabite { get; set; }
+    public virtual Adresse AdresseHabite { get; set; } = null!;
     
     
 }

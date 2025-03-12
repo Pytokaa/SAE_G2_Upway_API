@@ -15,14 +15,15 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         [Column("idboutique")]
         public int IdBoutique { get; set; }
 
-        //foreign key
+        //relation avec la table boutique
 
         [ForeignKey(nameof(IdBoutique))]
         [InverseProperty(nameof(Boutique.LesVelos))]
-        public Boutique LaBoutique { get; set; } = null!;
+        public virtual Boutique LaBoutique { get; set; } = null!;
 
+        //relation avec la table velo
         [ForeignKey(nameof(IdVelo))]
         [InverseProperty(nameof(Velo.LesBoutiques))]
-        public Velo LeVelo { get; set; } = null!;
+        public virtual Velo LeVelo { get; set; } = null!;
     }
 }

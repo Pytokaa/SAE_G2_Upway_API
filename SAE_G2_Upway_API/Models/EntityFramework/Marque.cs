@@ -15,8 +15,8 @@ public partial class Marque
     public string NomMarque { get; set; }
     
     //relation avec la table modele
-    public ICollection<Modele> Modeles { get; set; } = new List<Modele>();
+    public virtual ICollection<Modele> Modeles { get; set; } = new List<Modele>();
     
     //relation avec la table Produit
-    public ICollection<Produit> Produits { get; set; } = new List<Produit>();
+    public virtual ICollection<Produit> Produits { get; set; } = new List<Produit>();
 }

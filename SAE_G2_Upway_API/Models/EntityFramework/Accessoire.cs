@@ -30,7 +30,7 @@ public partial class Accessoire
     
     //relation avec la table CategorieAccessoire
     [ForeignKey(nameof(IdCatA))]
-    public CategorieAccessoire? CategorieAccessoire { get; set; }
+    public CategorieAccessoire CategorieAccessoire { get; set; } = null!;
     
     //relation avec la table est_propose_similaire
 

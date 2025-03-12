@@ -15,6 +15,6 @@ public partial class Fonction
     public string NomFonction { get; set; }
     
     //relation avec la table client
-    public ICollection<Client> Clients { get; set; } = new List<Client>();
+    public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
     
 }
