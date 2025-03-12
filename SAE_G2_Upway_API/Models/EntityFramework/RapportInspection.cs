@@ -33,4 +33,7 @@ public partial class RapportInspection
     public int IdVelo { get; set; }
     [ForeignKey(nameof(IdVelo))]
     public Velo Velo { get; set; }
+
+    [InverseProperty(nameof(Valide.LeRapport))]
+    public virtual ICollection<Valide> LesTypes { get; set; } = new List<Valide>();
 }

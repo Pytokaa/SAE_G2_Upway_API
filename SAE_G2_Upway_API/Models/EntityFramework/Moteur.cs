@@ -19,4 +19,10 @@ public partial class Moteur
     public int CoupleMoteur { get; set; }
 
     [Column("vitessemax")] public int VitesseMax { get; set; }
+
+    [InverseProperty(nameof(Est_Compose.LeMoteur))]
+    public virtual ICollection<Est_Compose> LesVelos { get; set; } = new List<Est_Compose>();
+
+    [InverseProperty(nameof(Est_De_ModeleM.LeMoteur))]
+    public ICollection<Est_De_ModeleM> LesModeles { get; set; } = new List<Est_De_ModeleM>();
 }

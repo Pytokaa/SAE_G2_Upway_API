@@ -32,4 +32,8 @@ public partial class Alerte
     
     [ForeignKey(nameof(IdTaille))]
     public Taille Taille { get; set; }
+    
+    //relation avec la table Concerne
+    [InverseProperty(nameof(Concerne.ConcerneAlerte))]
+    public virtual ICollection<Concerne> EstConcerneCategorie { get; set; } =  new List<Concerne>();
 }

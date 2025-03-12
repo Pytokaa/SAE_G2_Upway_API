@@ -50,4 +50,13 @@ public partial class Client
     //Relation avec Est en favoris, un clients peut avoir plusieurs produit en favoris donc une liste
     [InverseProperty(nameof(Est_En_Favoris.ClientFavoris))]
     public virtual ICollection<Est_En_Favoris> LesFavoris { get; set; } = new List<Est_En_Favoris>();
+    
+    //relation avec la table habite
+    [InverseProperty(nameof(Habite.ClientHabite))]
+    public virtual ICollection<Habite> HabiteA { get; set; } = new List<Habite>();
+    
+    
+    
+    
+    
 }

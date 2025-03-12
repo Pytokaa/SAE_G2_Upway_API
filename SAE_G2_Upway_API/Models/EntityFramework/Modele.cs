@@ -22,4 +22,8 @@ public partial class Modele
     
     //relation avecc la table Velo
     public ICollection<Velo> Velos { get; set; } = new List<Velo>();
+
+    //relation avec la table moteur
+    [InverseProperty(nameof(Est_De_ModeleM.LeModele))]
+    public virtual ICollection<Est_De_ModeleM> LesMoteurs { get; set; } = new List<Est_De_ModeleM>();
 }

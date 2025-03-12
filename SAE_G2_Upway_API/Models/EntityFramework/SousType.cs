@@ -17,5 +17,9 @@ public partial class SousType
     
     
     //relation avec la table SurType    
-    ICollection<SurType> SurTypes { get; set; } =  new List<SurType>();
+    public virtual ICollection<SurType> SurTypes { get; set; } =  new List<SurType>();
+    
+    //relation avec la table 
+    [InverseProperty(nameof(Contient.ContientSousType))]
+    public virtual ICollection<Contient> AType { get; set; } =  new List<Contient>();
 }

@@ -19,5 +19,9 @@ public partial class Photo
     public string Description { get; set; }
     
     //relation avec la table produit
-    public Produit? Produit { get; set; }
+    public virtual Produit? Produit { get; set; }
+    
+    //relation avec la table a_pour_photo
+    [InverseProperty(nameof(A_Pour_Photo.Photo))]
+    public virtual A_Pour_Photo? AProduit { get; set; }
 }
