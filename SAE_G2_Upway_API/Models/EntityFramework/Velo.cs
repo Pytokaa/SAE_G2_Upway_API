@@ -11,8 +11,21 @@ public partial class Velo
 {
     [Key]
     [Column("idvelo")]
-    public int Idvelo { get; set; }
-        
+    public int IdVelo { get; set; }
+
+    [Column("idproduit")]
+    public int IdProduit { get; set; }
+    [Column("idtaillemin")]
+    public int IdTailleMin { get; set; }
+    [Column("idtaillemax")]
+    public int IdTailleMax { get; set; }
+    [Column("idmodele")]
+    public int IdModele { get; set; }
+    [Column("idcat")]
+    public int IdCat { get; set; }
+    [Column("idetat")]
+    public int IdEtat { get; set; }
+
     [Column("nbkms")]
     public double Nbkms { get; set; }
         
@@ -26,39 +39,36 @@ public partial class Velo
     [StringLength(50)]
     public string Typecadre { get; set; }
 
-        //relation avec la table Produit
-        [ForeignKey("idproduit")]
-        public int ProduitId { get; set; }
-        public Produit Produit { get; set; }
+    //relation avec la table Produit
+    [ForeignKey(nameof(IdProduit))]
+    public virtual Produit? Produit { get; set; } = null!;
 
-        //relation avec la table Rapport inspection
-        public RapportInspection? RapportInspection { get; set; }
-        
-    //relation avec la table taille (min)
-    public int IdTailleMin { get; set; }
+    //relation avec la table taille min et max
+    //min
     [ForeignKey(nameof(IdTailleMin))]
-    public Taille TailleMin { get; set; }
-        
-    //relation avec la table taille (max)
-    public int IdTailleMax { get; set; }
-    [ForeignKey(nameof(IdTailleMax))]
-    public Taille TailleMax { get; set; }
-        
-    //relation avec la table Modele
-    public int IdModele { get; set; }
-    [ForeignKey(nameof(IdModele))]
-    public Modele Modele { get; set; }
-        
-    //relation avec la table CategorieVelo
-    public int IdCat  { get; set; }
-    [ForeignKey(nameof(IdCat))]
-    public CategorieVelo CategorieVelo { get; set; }
-        
-    //relationn avec la table etat
-    public int IdEtat { get; set; }
-    [ForeignKey(nameof(IdEtat))]
-    public Etat Etat { get; set; }
+    public virtual Taille? TailleMin { get; set; } = null!;
 
+    [ForeignKey(nameof(IdTailleMax))]
+    public virtual Taille? TailleMax { get; set; } = null!;
+
+    //Relation avec la table modele
+
+    [ForeignKey(nameof(IdModele))]
+    public virtual Modele? LeModele { get; set; } = null!;
+
+    //Relation avec la table CategorieVelo
+
+    [ForeignKey(nameof(IdCat))]
+    public virtual CategorieVelo? LaCategorie { get; set; }
+
+    //relation avec la table etat
+    [ForeignKey(nameof(IdEtat))]
+    public virtual Etat Etat { get; set; } = null!;
+
+    //relation avec la table Rapport inspection
+    public RapportInspection? RapportInspection { get; set; }
+        
+  
     [InverseProperty(nameof(Est_Compose.LeVelo))]
     public virtual ICollection<Est_Compose> LesMoteurs { get; set; } = new List<Est_Compose>();
 
