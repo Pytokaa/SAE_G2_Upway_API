@@ -42,9 +42,14 @@ public partial class Produit
     //relations avec les autres tables 
     
     public Accessoire? Accessoires { get; set; }
-    
+
+    //relation avec la table est en favoris, un produit peut etre dans plusieurs liste de favoris
+
+    [InverseProperty(nameof(Est_En_Favoris.LesProduits))]
+    public virtual ICollection<Est_En_Favoris> DansLesFavoris { get; set; } = new List<Est_En_Favoris>();
+
     //relation avec la table Marque
-    
+
     public int IdMarque { get; set; }
     [ForeignKey(nameof(IdMarque))]
     public Marque Marque { get; set; }
