@@ -25,12 +25,12 @@ public partial class Accessoire
     //relation avec la table Produit
     
     [ForeignKey(nameof(IdProduit))]
-    public Produit Produit { get; set; }
+    public Produit? Produit { get; set; }
     
     
     //relation avec la table CategorieAccessoire
     [ForeignKey(nameof(IdCatA))]
-    public CategorieAccessoire CategorieAccessoire { get; set; }
+    public CategorieAccessoire? CategorieAccessoire { get; set; }
     
     
     

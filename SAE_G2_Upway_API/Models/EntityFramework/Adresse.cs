@@ -31,7 +31,7 @@ public partial class Adresse
    
     //relation avec la table pays
     [ForeignKey(nameof(PaysId))]
-    public virtual Pays Pays { get; set; }
+    public virtual Pays? Pays { get; set; }
     
     //relation avec la table Boutique
     public virtual Boutique? Boutique { get; set; }
