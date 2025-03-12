@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("peutetreteste")]
+    [Table("peut_etre_teste")]
     public partial class Peut_Etre_Teste
     {
         [Key]

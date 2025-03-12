@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("estenfavoris")]
+    [Table("est_en_favoris")]
     public partial class Est_En_Favoris
     {
         //Colonnes

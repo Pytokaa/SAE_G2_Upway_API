@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("estdemodelem")]
+    [Table("est_de_modelem")]
     public partial class Est_De_ModeleM
     {
         //Les colonnes

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("estmispanieraccessorie")]
+    [Table("est_mis_panier_accessoire")]
     public partial class Est_Mis_Panier_Accessoire
     {
         [Key]

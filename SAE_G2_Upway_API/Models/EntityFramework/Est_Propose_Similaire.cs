@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("estproposesimilaire")]
+    [Table("est_propose_similaire")]
     public partial class Est_Propose_Similaire
     {
         [Key]
