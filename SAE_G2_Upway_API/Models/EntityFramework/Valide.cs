@@ -15,9 +15,11 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         public int IdType { get; set; }
 
         [ForeignKey(nameof(IdRapport))]
-        public RapportInspection LeRapport { get; set; } = null!;
+        [InverseProperty(nameof(RapportInspection.LesTypes))]
+        public virtual RapportInspection LeRapport { get; set; } = null!;
 
         [ForeignKey(nameof(IdType))]
-        public Type LeType { get; set; } = null!;
+        [InverseProperty(nameof(Type.LesRapports))]
+        public virtual Type LeType { get; set; } = null!;
     }
 }

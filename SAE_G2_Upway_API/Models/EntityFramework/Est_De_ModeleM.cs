@@ -18,10 +18,10 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         //Foreign key
         [ForeignKey(nameof(IdModele))]
         [InverseProperty(nameof(Modele.LesMoteurs))]
-        public Modele LeModele { get; set; } = null!;
+        public virtual Modele LeModele { get; set; } = null!;
 
         [ForeignKey(nameof(IdMoteur))]
         [InverseProperty(nameof(Moteur.LesModeles))]
-        public Moteur LeMoteur { get; set; } = null!;
+        public virtual Moteur LeMoteur { get; set; } = null!;
     }
 }
