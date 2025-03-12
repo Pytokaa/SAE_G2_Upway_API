@@ -8,6 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 [Table("client")]
 public partial class Client
 {
+    //Colonnes
     [Key]
     [Column("idclient")]
     public int Idclient { get; set; }
@@ -37,13 +38,16 @@ public partial class Client
     
     public int IdFonction { get; set; }
     [ForeignKey(nameof(IdFonction))]
-    public Fonction Fonction { get; set; }
+    public virtual Fonction Fonction { get; set; }
     
     //relation avec la table alerte
-    public ICollection<Alerte> Alertes { get; set; } = new List<Alerte>();
+    public virtual ICollection<Alerte> Alertes { get; set; } = new List<Alerte>();
     
     //relation avec la table client 
-    public ICollection<Commande> Commandes { get; set; } = new List<Commande>();    
-    
-    
+    public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+
+
+    //Relation avec Est en favoris, un clients peut avoir plusieurs produit en favoris donc une liste
+    [InverseProperty(nameof(Est_En_Favoris.ClientFavoris))]
+    public virtual ICollection<Est_En_Favoris> LesFavoris { get; set; } = new List<Est_En_Favoris>();
 }
