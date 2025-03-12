@@ -13,6 +13,9 @@ public partial class Client
     [Column("idclient")]
     public int Idclient { get; set; }
     
+    [Column("idfonction")]
+    public int IdFonction { get; set; }
+    
     [Column("nomclient")]
     [StringLength(30)]
     public string Nomclient { get; set; }
@@ -35,10 +38,8 @@ public partial class Client
     
     
     //relation avec la table fonction
-    
-    public int IdFonction { get; set; }
     [ForeignKey(nameof(IdFonction))]
-    public virtual Fonction Fonction { get; set; }
+    public virtual Fonction? Fonction { get; set; }
     
     //relation avec la table alerte
     public virtual ICollection<Alerte> Alertes { get; set; } = new List<Alerte>();
