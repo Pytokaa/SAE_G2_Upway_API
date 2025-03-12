@@ -11,7 +11,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
         public UpwayDBContext(DbContextOptions<UpwayDBContext> options)
             : base(options) { }
-
+        public virtual DbSet<A_Pour_Photo> PourPhotos { get; set; }
         public virtual DbSet<Accessoire> Accessoires { get; set; }
         public virtual DbSet<Adresse> Adresses { get; set; }
         public virtual DbSet<Alerte> Alertes { get; set; }
@@ -23,16 +23,29 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<CodeReduc> CodeReducs { get; set; }
         public virtual DbSet<Commande> Commandes { get; set; }
+        public virtual DbSet<Concerne> Concerns { get; set; }
+        public virtual DbSet<Contient> Contients { get; set; }
+        public virtual DbSet<Est_Caracterise> Est_Caracterises { get; set; }
+        public virtual DbSet<Est_Compose>Est_Composes { get; set; }
+        public virtual DbSet<Est_De_ModeleM>Est_De_ModeleMs { get; set; }
+        public virtual DbSet<Est_En_Favoris>Est_En_Favoris { get; set; }
+        public virtual DbSet<Est_Mis_Panier_Accessoire>Est_Mis_Panier_Accessoires { get; set; }
+        public virtual DbSet<Est_Mis_Panier_Velo>Est_Mis_Panier_Velos { get; set; }
+        public virtual DbSet<Est_Propose_Similaire>Est_Propose_Similaires { get; set; }
         public virtual DbSet<Etat> Etats { get; set; }
         public virtual DbSet<Fonction> Fonctions { get; set; }
+        public virtual DbSet<Habite>Habites { get; set; }
         public virtual DbSet<Marque> Marques { get; set; }
         public virtual DbSet<ModeExpedition> ModeExpeditions { get; set; }
         public virtual DbSet<Modele> Modeles { get; set; }
         public virtual DbSet<ModePayement> ModePayements { get; set; }
         public virtual DbSet<Moteur> Moteurs { get; set; }
         public virtual DbSet<Pays> Pays { get; set; }
+        public virtual DbSet<Peut_Etre_Teste>Peut_Etre_Testes { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Possede>Possedes { get; set; }
         public virtual DbSet<Produit> Produits { get; set; }
+        public virtual DbSet<Propose_Assur>Propose_Assurs { get; set; }
         public virtual DbSet<RapportInspection> RapportInspections { get; set; }
         public virtual DbSet<SousCategorie> SousCategories { get; set; }
         public virtual DbSet<SousType> SousTypes { get; set; }
@@ -40,6 +53,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         public virtual DbSet<SurType> SurTypes { get; set; }
         public virtual DbSet<Taille> Tailles { get; set; }
         public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<Valide> Valides { get; set; }
         public virtual DbSet<Velo> Velos { get; set; }
 
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
@@ -241,6 +255,14 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .IsRequired();
 
                 entity.Property(p => p.StockProduit)
+                    .IsRequired();
+
+                entity.Property(e => e.IdPhoto)
+                    .HasColumnName("idphoto")
+                    .IsRequired();
+
+                entity.Property(e => e.IdMarque)
+                    .HasColumnName("idmarque")
                     .IsRequired();
 
                 // Configuration de la relation avec la table Photo
@@ -757,6 +779,302 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasForeignKey(c => c.IdType)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Type_Contient");
+            });
+            modelBuilder.Entity<A_Pour_Photo>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(pp => pp.Idapourphoto);
+
+                // Configurer la relation avec la table Photo
+                entity.HasOne(pp => pp.Photo)
+                      .WithOne(p => p.AProduit) 
+                      .HasForeignKey<A_Pour_Photo>(pp => pp.IdPhoto)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Produit
+                entity.HasOne(pp => pp.ProduitAPhoto)
+                      .WithMany(p => p.APhotos) 
+                      .HasForeignKey(pp => pp.IdProduit)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Concerne>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(c => c.IdConcerne);
+
+                // Configurer la relation avec la table Alerte
+                entity.HasOne(c => c.ConcerneAlerte)
+                      .WithMany(a => a.EstConcerneCategorie) 
+                      .HasForeignKey(c => c.IdAlerte)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table CategorieVelo
+                entity.HasOne(c => c.ConcerneCategorieVelo)
+                      .WithMany(cv => cv.ConcerneAlerte) 
+                      .HasForeignKey(c => c.IdCat)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Contient>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(c => c.IdContient);
+
+                // Configurer la relation avec la table SousType
+                entity.HasOne(c => c.ContientSousType)
+                      .WithMany(st => st.AType) 
+                      .HasForeignKey(c => c.IdSoustype)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Type
+                entity.HasOne(c => c.ContientType)
+                      .WithMany(t => t.ASousTypes) 
+                      .HasForeignKey(c => c.IdType)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Est_Caracterise>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(ec => ec.IdestCaracterise);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(ec => ec.CaracteriseVelo)
+                      .WithMany(v => v.Caracteristiques) 
+                      .HasForeignKey(ec => ec.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Caracteristique
+                entity.HasOne(ec => ec.Caracterise)
+                      .WithMany(c => c.CaracteriseVelo) 
+                      .HasForeignKey(ec => ec.IdCaract)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Est_Compose>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(ec => ec.IdCompose);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(ec => ec.LeVelo)
+                      .WithMany(v => v.LesMoteurs) 
+                      .HasForeignKey(ec => ec.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Moteur
+                entity.HasOne(ec => ec.LeMoteur)
+                      .WithMany(m => m.LesVelos) 
+                      .HasForeignKey(ec => ec.IdMoteur)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Est_De_ModeleM>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(edm => edm.EstDeModeleM);
+
+                // Configurer la relation avec la table Modele
+                entity.HasOne(edm => edm.LeModele)
+                      .WithMany(m => m.LesMoteurs) 
+                      .HasForeignKey(edm => edm.IdModele)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Moteur
+                entity.HasOne(edm => edm.LeMoteur)
+                      .WithMany(m => m.LesModeles) 
+                      .HasForeignKey(edm => edm.IdMoteur)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Est_En_Favoris>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(eef => eef.IdEstEnFavoris);
+
+                // Configurer la relation avec la table Client
+                entity.HasOne(eef => eef.ClientFavoris)
+                      .WithMany(c => c.LesFavoris) 
+                      .HasForeignKey(eef => eef.IdClient)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Produit
+                entity.HasOne(eef => eef.LesProduits)
+                      .WithMany(p => p.DansLesFavoris) 
+                      .HasForeignKey(eef => eef.IdProduit)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Est_Mis_Panier_Accessoire>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(empa => empa.IdEstProposeSimilaire);
+
+                // Configurer la relation avec la table Accessoire
+                entity.HasOne(empa => empa.LAccessoire)
+                      .WithMany(a => a.LesCommandesAccessoire) 
+                      .HasForeignKey(empa => empa.IdAccessoire)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(empa => empa.LaCommande)
+                      .WithMany(c => c.LesAccessoires) 
+                      .HasForeignKey(empa => empa.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Est_Mis_Panier_Velo>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(empv => empv.IdPanierVelo);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(empv => empv.PanierVelo)
+                      .WithMany(v => v.ACommandes) 
+                      .HasForeignKey(empv => empv.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(empv => empv.PanierCommande)
+                      .WithMany(c => c.PanierVelo) 
+                      .HasForeignKey(empv => empv.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Est_Propose_Similaire>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(eps => eps.IdEstProposeSimilaire);
+
+                // Configurer la relation avec la table Accessoire
+                entity.HasOne(eps => eps.LAccessoire)
+                      .WithMany(a => a.LesCommandes) 
+                      .HasForeignKey(eps => eps.IdAccessoire)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(eps => eps.LaCommande)
+                      .WithMany(c => c.LesSimilaires) 
+                      .HasForeignKey(eps => eps.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade); 
+            });
+
+            modelBuilder.Entity<Habite>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(h => h.Idhabite);
+
+                // Configurer la relation avec la table Client
+                entity.HasOne(h => h.ClientHabite)
+                      .WithMany(c => c.HabiteA) 
+                      .HasForeignKey(h => h.Idclient)
+                      .OnDelete(DeleteBehavior.Cascade); 
+
+                // Configurer la relation avec la table Adresse
+                entity.HasOne(h => h.AdresseHabite)
+                      .WithMany(a => a.AClients) 
+                      .HasForeignKey(h => h.Idadresse)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+            modelBuilder.Entity<Peut_Etre_Teste>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(pet => pet.IdTest);
+
+                // Configurer la relation avec la table Boutique
+                entity.HasOne(pet => pet.LaBoutique)
+                      .WithMany(b => b.LesVelos)
+                      .HasForeignKey(pet => pet.IdBoutique)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(pet => pet.LeVelo)
+                      .WithMany(v => v.LesBoutiques)
+                      .HasForeignKey(pet => pet.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Possede>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(p => p.IdPossede);
+
+                // Configurer la relation avec la table SousCategorie
+                entity.HasOne(p => p.LaSousCategorie)
+                      .WithMany(sc => sc.LesVelos)
+                      .HasForeignKey(p => p.IdSousCat)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                // Configurer la relation avec la table Velo
+                entity.HasOne(p => p.LeVelo)
+                      .WithMany(v => v.LesSousCategories)
+                      .HasForeignKey(p => p.IdVelo)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Propose_Assur>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(pa => pa.IdProposeAssur);
+
+                // Configurer la relation avec la table Commande
+                entity.HasOne(pa => pa.Commande)
+                      .WithMany(c => c.AssurancesPropose)
+                      .HasForeignKey(pa => pa.IdCommande)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                // Configurer la relation avec la table Assurance
+                entity.HasOne(pa => pa.Assurance)
+                      .WithMany(a => a.AssureCommande)
+                      .HasForeignKey(pa => pa.IdAssurance)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Valide>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(v => v.IdValide);
+
+                // Configurer la relation avec la table RapportInspection
+                entity.HasOne(v => v.LeRapport)
+                      .WithMany(r => r.LesTypes)
+                      .HasForeignKey(v => v.IdRapport)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                // Configurer la relation avec la table Type
+                entity.HasOne(v => v.LeType)
+                      .WithMany(t => t.LesRapports)
+                      .HasForeignKey(v => v.IdType)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+            modelBuilder.Entity<Modele>(entity =>
+            {
+                // Définir la clé primaire
+                entity.HasKey(e => e.IdModele);
+
+                // Configurer les propriétés
+                entity.Property(e => e.NomModele)
+                      .IsRequired()
+                      .HasMaxLength(200);
+
+                // Configurer la relation avec la table Marque
+                entity.HasOne(m => m.Marque)
+                      .WithMany()
+                      .HasForeignKey(m => m.IdMarque)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                // Configurer la relation avec la table Velo
+                entity.HasMany(m => m.Velos)
+                      .WithOne(v => v.LeModele)
+                      .HasForeignKey(v => v.IdModele)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                // Configurer la relation avec la table Est_De_ModeleM
+                entity.HasMany(m => m.LesMoteurs)
+                      .WithOne(edm => edm.LeModele)
+                      .HasForeignKey(edm => edm.IdModele)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
             OnModelCreatingPartial(modelBuilder);
