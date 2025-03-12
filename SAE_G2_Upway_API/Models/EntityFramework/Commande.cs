@@ -14,7 +14,7 @@ public partial class Commande
     public DateTime DateCommande { get; set; }
     
     [Column("idcode")]
-    public int IdCode { get; set; }
+    public int? IdCode { get; set; }
     
     [Column("idstatut")]
     public int IdStatut { get; set; }
