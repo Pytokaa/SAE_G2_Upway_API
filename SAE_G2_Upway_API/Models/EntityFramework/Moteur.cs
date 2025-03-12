@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Moteur
 {
     [Key]
-    [Column("idmoteur", TypeName = "integer")]
+    [Column("idmoteur")]
     public int IdMoteur { get; set; }
     
     [Column("positionmoteur")]

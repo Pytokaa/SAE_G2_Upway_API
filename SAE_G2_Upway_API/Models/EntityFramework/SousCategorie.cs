@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class SousCategorie
 {
     [Key]
-    [Column("idsouscat", TypeName = "integer")]
+    [Column("idsouscat")]
     public int IdSousCat { get; set; }
     
     [Column("typesouscat")]

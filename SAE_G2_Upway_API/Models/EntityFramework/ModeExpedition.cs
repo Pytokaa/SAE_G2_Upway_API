@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class ModeExpedition
 {
     [Key]
-    [Column("idmodeexp", TypeName = "integer")]
+    [Column("idmodeexp")]
     public int IdModeExp { get; set; }
     
     [Column("libellemodeexp")]

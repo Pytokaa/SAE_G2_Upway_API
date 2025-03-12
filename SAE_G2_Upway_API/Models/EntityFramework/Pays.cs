@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Pays
 {
     [Key]
-    [Column("idpays", TypeName = "integer")]
+    [Column("idpays")]
     public int IdPays { get; set; }
     
     [Column("nompays")]

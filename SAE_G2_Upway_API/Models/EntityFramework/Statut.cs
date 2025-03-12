@@ -9,7 +9,7 @@ public partial class Statut
 {
     //Colonnes
     [Key]
-    [Column("idstatut", TypeName = "integer")]
+    [Column("idstatut")]
     public int IdStatut { get; set; }
     
     [Column("nomstatut")]

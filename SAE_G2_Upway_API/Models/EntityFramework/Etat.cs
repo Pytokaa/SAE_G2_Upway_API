@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Etat
 {
     [Key]
-    [Column("idetat", TypeName = "integer")]
+    [Column("idetat")]
     public int IdEtat { get; set; }
     
     [Column("nometat")]

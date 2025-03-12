@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Taille
 {
     [Key]
-    [Column("idtaille", TypeName = "integer")]
+    [Column("idtaille")]
     public int Idtaille { get; set; }
     
     [Column("taillecm")]

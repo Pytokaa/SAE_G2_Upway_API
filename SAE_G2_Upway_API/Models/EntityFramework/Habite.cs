@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Habite
 {
     [Key]
-    [Column("idhabite", TypeName = "integer")]
+    [Column("idhabite")]
     public int Idhabite { get; set; }
     [Column("idclient")]
     public int Idclient { get; set; }

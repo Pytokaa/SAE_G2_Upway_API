@@ -10,7 +10,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class RapportInspection
 {
     [Key]
-    [Column("idrapport", TypeName = "integer")] 
+    [Column("idrapport")] 
     public int IdRapport { get; set; }
 
     [Column("idvelo")]

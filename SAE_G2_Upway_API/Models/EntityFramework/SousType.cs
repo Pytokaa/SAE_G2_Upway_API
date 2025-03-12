@@ -9,7 +9,7 @@ public partial class SousType
 {
     //Colonnes
     [Key]
-    [Column("idsoustype", TypeName = "integer")]
+    [Column("idsoustype")]
     public int IdSousType { get; set; }
     
     [Column("libellesoustype")]

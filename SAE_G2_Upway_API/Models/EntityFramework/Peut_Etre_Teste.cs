@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     public partial class Peut_Etre_Teste
     {
         [Key]
-        [Column("idtest", TypeName = "integer")]
+        [Column("idtest")]
         public int IdTest { get; set; }
         [Column("idvelo")]
         public int IdVelo { get; set; }
