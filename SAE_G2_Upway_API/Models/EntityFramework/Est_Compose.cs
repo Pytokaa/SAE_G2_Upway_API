@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("estcompose")]
+    [Table("est_compose")]
     public partial class Est_Compose
     {
         // Colonnes
