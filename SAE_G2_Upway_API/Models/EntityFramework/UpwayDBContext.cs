@@ -61,7 +61,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la relation avec la table Produit
                 entity.HasOne(d => d.Produit)
-                    .WithOne(p => p.Accessoires)
+                    .WithOne(p => p.Accessoire)
                     .HasForeignKey<Accessoire>(d => d.IdProduit)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Accessoire_Produit");
@@ -227,33 +227,63 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
             modelBuilder.Entity<Produit>(entity =>
             {
-                entity.HasKey(p => p.Idproduit);
-                entity.Property(p => p.Nomproduit).HasMaxLength(100);
-                entity.Property(p => p.Descriptionproduit).HasMaxLength(200);
+                // Définir la clé primaire
+                entity.HasKey(p => p.Idproduit).HasName("PK_Produit");
 
-                // Relation avec la table Photo
+                // Configuration des colonnes
+                entity.Property(p => p.NomProduit)
+                    .HasMaxLength(100);
+
+                entity.Property(p => p.DescriptionProduit)
+                    .HasMaxLength(200);
+
+                entity.Property(p => p.PrixProduit)
+                    .IsRequired();
+
+                entity.Property(p => p.StockProduit)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Photo
                 entity.HasOne(p => p.Photo)
-                      .WithOne(f => f.Produit)
-                      .HasForeignKey<Produit>(p => p.IdPhoto)
-                      .OnDelete(DeleteBehavior.Restrict);
+                    .WithOne(f => f.Produit)
+                    .HasForeignKey<Produit>(p => p.IdPhoto)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Produit_Photo");
 
-                // Relation avec la table Marque
+                // Configuration de la relation avec la table Marque
                 entity.HasOne(p => p.Marque)
-                      .WithMany(f => f.Produits)
-                      .HasForeignKey(p => p.IdMarque)
-                      .OnDelete(DeleteBehavior.Restrict);
+                    .WithMany(m => m.Produits)
+                    .HasForeignKey(p => p.IdMarque)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Produit_Marque");
 
-                // Relation avec la table Est_En_Favoris
+                // Configuration de la relation avec la table Est_En_Favoris
                 entity.HasMany(p => p.DansLesFavoris)
-                      .WithOne(f => f.LesProduits)
-                      .HasForeignKey(f => f.IdProduit)
-                      .OnDelete(DeleteBehavior.Cascade);
+                    .WithOne(f => f.LesProduits)
+                    .HasForeignKey(f => f.IdProduit)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Produit_Est_En_Favoris");
 
-                // Relation avec la table A_Pour_Photo
-                entity.HasOne(p => p.Accessoires)
-                      .WithOne(f => f.Produit)
-                      .HasForeignKey<Produit>(f => f.Idproduit)
-                      .OnDelete(DeleteBehavior.Cascade);
+                // Configuration de la relation avec la table Accessoire
+                entity.HasOne(p => p.Accessoire)
+                    .WithOne(a => a.Produit)
+                    .HasForeignKey<Accessoire>(a => a.IdProduit)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Produit_Accessoire");
+
+                // Configuration de la relation avec la table Velo
+                entity.HasOne(p => p.Velo)
+                    .WithOne(v => v.Produit)
+                    .HasForeignKey<Velo>(v => v.IdProduit)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Produit_Velo");
+
+                // Configuration de la relation avec la table A_Pour_Photo
+                entity.HasMany(p => p.APhotos)
+                    .WithOne(a => a.ProduitAPhoto)
+                    .HasForeignKey(a => a.IdProduit)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Produit_A_Pour_Photo");
             });
 
             modelBuilder.Entity<Velo>(entity =>
@@ -263,14 +293,14 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la relation avec la table Produit
                 entity.HasOne(d => d.Produit)
-                    .WithOne(p => p.Velos)
+                    .WithOne(p => p.Velo)
                     .HasForeignKey<Velo>(d => d.IdProduit)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Velo_Produit");
 
                 // Configuration de la relation avec la table RapportInspection
                 entity.HasOne(d => d.RapportInspection)
-                    .WithOne(r => r.Velo)
+                    .WithOne(r => r.LeVelo)
                     .HasForeignKey<RapportInspection>(r => r.IdVelo)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Velo_RapportInspection");
