@@ -13,6 +13,9 @@ public partial class RapportInspection
     [Column("idrapport")] 
     public int IdRapport { get; set; }
 
+    [Column("idvelo")]
+    public int IdVelo { get; set; }
+
     [Column("date")]
     public DateTime Date { get; set; }
     
@@ -30,9 +33,10 @@ public partial class RapportInspection
     public string Commentaire { get; set; }
     
     //relation avec la table Velo
-    public int IdVelo { get; set; }
+    
     [ForeignKey(nameof(IdVelo))]
-    public Velo Velo { get; set; }
+    [InverseProperty(nameof(Velo.RapportInspection))]
+    public Velo LeVelo { get; set; }
 
     [InverseProperty(nameof(Valide.LeRapport))]
     public virtual ICollection<Valide> LesTypes { get; set; } = new List<Valide>();

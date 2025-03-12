@@ -214,7 +214,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Commande_Adresse");
                 entity.HasOne(d => d.AdresseFactu)
-                    .WithMany(p => p.Commandes)
+                    .WithMany(p => p.CommandesFactu)
                     .HasForeignKey(d => d.IdAdresseFactu)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Commande_AdresseFactu");
@@ -657,23 +657,76 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
             modelBuilder.Entity<Statut>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdStatut).HasName("PK_Statut");
+
+                // Configuration de la colonne NomStatut
                 entity.Property(e => e.NomStatut)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                    .HasMaxLength(30)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Commande
+                entity.HasMany(d => d.Commandes)
+                    .WithOne(c => c.Statut)
+                    .HasForeignKey(c => c.IdStatut)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Statut_Commande");
             });
 
             modelBuilder.Entity<Taille>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.Idtaille).HasName("PK_Taille");
+
+                // Configuration de la colonne TailleCm
+                entity.Property(e => e.TailleCm)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Alerte
+                entity.HasMany(d => d.Alerte)
+                    .WithOne(a => a.Taille)
+                    .HasForeignKey(a => a.IdTaille)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Taille_Alerte");
+
+                // Configuration de la relation avec la table Velo (TailleMin)
+                entity.HasMany(d => d.VelosMin)
+                    .WithOne(v => v.TailleMin)
+                    .HasForeignKey(v => v.IdTailleMin)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Taille_Velo_Min");
+
+                // Configuration de la relation avec la table Velo (TailleMax)
+                entity.HasMany(d => d.VelosMax)
+                    .WithOne(v => v.TailleMax)
+                    .HasForeignKey(v => v.IdTailleMax)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Taille_Velo_Max");
             });
 
             modelBuilder.Entity<Type>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.Idtype).HasName("PK_Type");
+
+                // Configuration de la colonne NomType
                 entity.Property(e => e.NomType)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Valide
+                entity.HasMany(d => d.LesRapports)
+                    .WithOne(v => v.LeType)
+                    .HasForeignKey(v => v.IdType)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Type_Valide");
+
+                // Configuration de la relation avec la table Contient
+                entity.HasMany(d => d.ASousTypes)
+                    .WithOne(c => c.ContientType)
+                    .HasForeignKey(c => c.IdType)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Type_Contient");
             });
 
             OnModelCreatingPartial(modelBuilder);
