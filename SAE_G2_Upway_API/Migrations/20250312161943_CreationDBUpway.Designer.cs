@@ -12,7 +12,7 @@ using SAE_G2_Upway_API.Models.EntityFramework;
 namespace SAE_G2_Upway_API.Migrations
 {
     [DbContext(typeof(UpwayDBContext))]
-    [Migration("20250312161735_CreationDBUpway")]
+    [Migration("20250312161943_CreationDBUpway")]
     partial class CreationDBUpway
     {
         /// <inheritdoc />
