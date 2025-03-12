@@ -68,6 +68,9 @@ public partial class Velo
     //relation avec la table est_caracterise
     [InverseProperty(nameof(Est_Caracterise.CaracteriseVelo))]
     public virtual ICollection<Est_Caracterise> Caracteristiques { get; set; } = new List<Est_Caracterise>();
-    
+
+    [InverseProperty(nameof(Peut_Etre_Teste.LeVelo))]
+    public virtual ICollection<Peut_Etre_Teste> LesBoutiques { get; set; } = new List<Peut_Etre_Teste>();
+
 
 }
