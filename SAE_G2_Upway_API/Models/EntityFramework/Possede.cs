@@ -6,7 +6,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     public partial class Possede
     {
         [Key]
-        [Column("idpossede")]
+        [Column("idpossede", TypeName = "integer")]
         public int IdPossede { get; set; }
         [Column("idsouscat")]
         public int IdSousCat { get; set; }

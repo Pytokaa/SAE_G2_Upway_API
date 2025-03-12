@@ -6,7 +6,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Propose_Assur
 {
     [Key]
-    [Column("idproposeassur")]
+    [Column("idproposeassur", TypeName = "integer")]
     public int IdProposeAssur { get; set; }
     [Column("idassurance")]
     public int IdAssurance { get; set; }

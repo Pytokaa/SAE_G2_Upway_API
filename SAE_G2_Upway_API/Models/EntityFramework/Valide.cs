@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     {
         //Colonne
         [Key]
-        [Column("idvalide")]
+        [Column("idvalide", TypeName = "integer")]
         public int IdValide { get; set; }
         [Column("idrapport")]
         public int IdRapport { get; set; }

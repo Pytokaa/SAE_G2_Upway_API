@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Fonction
 {
     [Key]
-    [Column("idfonction")]
+    [Column("idfonction", TypeName = "integer")]
     public int Id { get; set; }
     
     [Column("nomfonction")]

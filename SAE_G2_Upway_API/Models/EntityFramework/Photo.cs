@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Photo
 {
     [Key]
-    [Column("idphoto")]
+    [Column("idphoto", TypeName = "integer")]
     public int IdPhoto { get; set; }
     
     [Column("url")]

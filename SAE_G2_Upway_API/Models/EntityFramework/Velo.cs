@@ -10,7 +10,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Velo
 {
     [Key]
-    [Column("idvelo")]
+    [Column("idvelo", TypeName ="integer")]
     public int IdVelo { get; set; }
 
     [Column("idproduit")]

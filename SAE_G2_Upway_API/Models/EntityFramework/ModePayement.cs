@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class ModePayement
 {
     [Key]
-    [Column("idmodepayement")]
+    [Column("idmodepayement", TypeName = "integer")]
     public int Idmodepayement { get; set; }
     
     [Column("nommodepayement")]

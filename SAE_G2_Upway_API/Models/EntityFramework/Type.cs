@@ -8,7 +8,7 @@ public partial class Type
 {
     //Colonne
     [Key]
-    [Column("idtype")]
+    [Column("idtype", TypeName = "integer")]
     public int Idtype { get; set; }
     
     [Column("nomtype")]

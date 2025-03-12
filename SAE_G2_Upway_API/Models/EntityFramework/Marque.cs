@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Marque
 {
     [Key]
-    [Column("idmarque")]
+    [Column("idmarque", TypeName = "integer")]
     public int IdMarque { get; set; }
     
     [Column("nommarque")]
