@@ -624,10 +624,21 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
             modelBuilder.Entity<Pays>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdPays).HasName("PK_Pays");
+
+                // Configuration de la colonne NomPays
                 entity.Property(e => e.NomPays)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                    .HasColumnName("nompays")
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Adresse
+                entity.HasMany(d => d.Adresses)
+                    .WithOne(a => a.Pays)
+                    .HasForeignKey(a => a.PaysId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Pays_Adresse");
             });
 
             modelBuilder.Entity<Photo>(entity =>
