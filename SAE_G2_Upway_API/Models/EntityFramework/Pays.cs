@@ -17,5 +17,5 @@ public partial class Pays
     
     
     //relations avec les adresses
-    public ICollection<Adresse> Adresses { get; set; } = new List<Adresse>();
+    public virtual ICollection<Adresse> Adresses { get; set; } = new List<Adresse>();
 }
