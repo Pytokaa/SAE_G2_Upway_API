@@ -300,7 +300,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la relation avec la table RapportInspection
                 entity.HasOne(d => d.RapportInspection)
-                    .WithOne(r => r.Velo)
+                    .WithOne(r => r.LeVelo)
                     .HasForeignKey<RapportInspection>(r => r.IdVelo)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Velo_RapportInspection");
