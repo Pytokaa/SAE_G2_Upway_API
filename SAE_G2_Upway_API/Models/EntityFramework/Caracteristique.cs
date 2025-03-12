@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Caracteristique
 {
     [Key]
-    [Column("idcaract", TypeName="integer")]
+    [Column("idcaract")]
     public int IdCaract { get; set; }
     [Column("idsouscat")]
     public int IdSousCat  { get; set; }

@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class CodeReduc
 {
     [Key]
-    [Column("idcode", TypeName="integer")]
+    [Column("idcode")]
     public int Idcode { get; set; }
     
     [Column("libellecode")]

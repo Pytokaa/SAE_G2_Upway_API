@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Est_Caracterise
 {
     [Key]
-    [Column("idestcaracterise", TypeName="integer")]
+    [Column("idestcaracterise")]
     public int IdestCaracterise { get; set; }
     [Column("idcaract")]
     public int IdCaract { get; set; }

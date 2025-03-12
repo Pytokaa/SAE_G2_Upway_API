@@ -10,7 +10,7 @@ public partial class SurType
 {
     //Colonne
     [Key]
-    [Column("idsurtype", TypeName = "integer")]
+    [Column("idsurtype")]
     public int IdSurType { get; set; }
 
     [Column("idsoustype")]

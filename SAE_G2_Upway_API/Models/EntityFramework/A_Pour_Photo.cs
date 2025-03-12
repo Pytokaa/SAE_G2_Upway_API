@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class A_Pour_Photo
 {
     [Key]
-    [Column("idapourphoto", TypeName="integer")]
+    [Column("idapourphoto")]
     public int Idapourphoto { get; set; }
     
     [Column("idphoto")]
