@@ -13,7 +13,7 @@ public partial class Moteur
     
     [Column("positionmoteur")]
     [StringLength(20)]
-    public int Positionmoteur { get; set; }
+    public string Positionmoteur { get; set; }
     
     [Column("couplemoteur")]
     public int CoupleMoteur { get; set; }
