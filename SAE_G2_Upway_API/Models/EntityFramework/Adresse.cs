@@ -11,7 +11,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Adresse
 {
     [Key]
-    [Column("idadresse", TypeName="integer")]
+    [Column("idadresse")]
     public int IdAdresse { get; set; }
     
     [Column("idpays")]

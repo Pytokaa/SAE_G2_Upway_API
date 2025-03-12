@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     {
         //Les colonnes
         [Key]
-        [Column("idestdemodelem", TypeName="integer")]
+        [Column("idestdemodelem")]
         public int EstDeModeleM { get; set; }
         [Column("idmoteur")]
         public int IdMoteur { get; set; }

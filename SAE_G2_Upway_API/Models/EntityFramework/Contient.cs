@@ -10,7 +10,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Contient
 {
     [Key]
-    [Column("idcontient", TypeName="integer")]
+    [Column("idcontient")]
     public int IdContient { get; set; }
     [Column("idsoustype")]
     public int IdSoustype { get; set; }
