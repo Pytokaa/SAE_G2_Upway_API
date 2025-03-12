@@ -12,7 +12,7 @@ using SAE_G2_Upway_API.Models.EntityFramework;
 namespace SAE_G2_Upway_API.Migrations
 {
     [DbContext(typeof(UpwayDBContext))]
-    [Migration("20250312161943_CreationDBUpway")]
+    [Migration("20250312164548_CreationDBUpway")]
     partial class CreationDBUpway
     {
         /// <inheritdoc />
@@ -68,7 +68,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<int>("IdCatA")
                         .HasColumnType("integer")
-                        .HasColumnName("idcatA");
+                        .HasColumnName("idcata");
 
                     b.Property<int>("IdProduit")
                         .HasColumnType("integer")
@@ -373,11 +373,11 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idadresse");
 
-                    b.Property<int>("IdAdresseFactu")
+                    b.Property<int?>("IdAdresseFactu")
                         .HasColumnType("integer")
                         .HasColumnName("idadressefactu");
 
-                    b.Property<int>("IdBoutique")
+                    b.Property<int?>("IdBoutique")
                         .HasColumnType("integer")
                         .HasColumnName("idboutique");
 
@@ -385,7 +385,7 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idclient");
 
-                    b.Property<int>("IdCode")
+                    b.Property<int?>("IdCode")
                         .HasColumnType("integer")
                         .HasColumnName("idcode");
 
@@ -432,7 +432,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdConcerne"));
 
-                    b.Property<int>("IdAlerte")
+                    b.Property<int?>("IdAlerte")
                         .HasColumnType("integer")
                         .HasColumnName("idalerte");
 
@@ -530,7 +530,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdVelo");
 
-                    b.ToTable("estcompose", "upway");
+                    b.ToTable("est_compose", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_De_ModeleM", b =>
@@ -556,7 +556,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdMoteur");
 
-                    b.ToTable("estdemodelem", "upway");
+                    b.ToTable("est_de_modelem", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_En_Favoris", b =>
@@ -582,7 +582,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdProduit");
 
-                    b.ToTable("estenfavoris", "upway");
+                    b.ToTable("est_en_favoris", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_Mis_Panier_Accessoire", b =>
@@ -602,13 +602,17 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idcommande");
 
+                    b.Property<int>("Quantite")
+                        .HasColumnType("integer")
+                        .HasColumnName("quantite");
+
                     b.HasKey("IdEstProposeSimilaire");
 
                     b.HasIndex("IdAccessoire");
 
                     b.HasIndex("IdCommande");
 
-                    b.ToTable("estmispanieraccessorie", "upway");
+                    b.ToTable("est_mis_panier_accessoire", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_Mis_Panier_Velo", b =>
@@ -660,7 +664,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdCommande");
 
-                    b.ToTable("estproposesimilaire", "upway");
+                    b.ToTable("est_propose_similaire", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Etat", b =>
@@ -718,7 +722,7 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idadresse");
 
-                    b.Property<int>("Idclient")
+                    b.Property<int?>("Idclient")
                         .HasColumnType("integer")
                         .HasColumnName("idclient");
 
@@ -898,7 +902,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdVelo");
 
-                    b.ToTable("peutetreteste", "upway");
+                    b.ToTable("peut_etre_teste", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Photo", b =>
@@ -1241,6 +1245,14 @@ namespace SAE_G2_Upway_API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdVelo"));
 
+                    b.Property<DateTime>("Annee")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("annee");
+
+                    b.Property<bool>("BestSeller")
+                        .HasColumnType("boolean")
+                        .HasColumnName("bestseller");
+
                     b.Property<int>("IdCat")
                         .HasColumnType("integer")
                         .HasColumnName("idcat");
@@ -1265,6 +1277,10 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idtaillemin");
 
+                    b.Property<int>("NbVente")
+                        .HasColumnType("integer")
+                        .HasColumnName("nbvente");
+
                     b.Property<double>("Nbkms")
                         .HasColumnType("double precision")
                         .HasColumnName("nbkms");
@@ -1276,6 +1292,12 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<double>("Prixneuf")
                         .HasColumnType("double precision")
                         .HasColumnName("prixneuf");
+
+                    b.Property<string>("QualiteVelo")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("qualitevelo");
 
                     b.Property<string>("Typecadre")
                         .IsRequired()
@@ -1426,14 +1448,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .WithMany("CommandesFactu")
                         .HasForeignKey("IdAdresseFactu")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
                         .HasConstraintName("FK_Commande_AdresseFactu");
 
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Boutique", "Boutique")
                         .WithMany("Commandes")
                         .HasForeignKey("IdBoutique")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
                         .HasConstraintName("FK_Boutique_Commande");
 
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Client", "Client")
@@ -1447,7 +1467,6 @@ namespace SAE_G2_Upway_API.Migrations
                         .WithMany("Commandes")
                         .HasForeignKey("IdCode")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
                         .HasConstraintName("FK_CodeReduc_Commande");
 
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.ModeExpedition", "ModeExpedition")
@@ -1493,8 +1512,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Alerte", "ConcerneAlerte")
                         .WithMany("EstConcerneCategorie")
                         .HasForeignKey("IdAlerte")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.CategorieVelo", "ConcerneCategorieVelo")
                         .WithMany("ConcerneAlerte")
@@ -1676,8 +1694,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Client", "ClientHabite")
                         .WithMany("HabiteA")
                         .HasForeignKey("Idclient")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AdresseHabite");
 
