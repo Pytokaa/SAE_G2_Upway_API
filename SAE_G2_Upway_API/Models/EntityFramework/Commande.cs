@@ -61,4 +61,6 @@ public partial class Commande
     [InverseProperty(nameof(Est_Propose_Similaire.LaCommande))]
     public virtual ICollection<Est_Propose_Similaire> LesSimilaires { get; set; } = new List<Est_Propose_Similaire>();
 
+    [InverseProperty(nameof(Est_Mis_Panier_Accessoire.LaCommande))]
+    public virtual ICollection<Est_Mis_Panier_Accessoire> LesAccessoires { get; set; } = new List<Est_Mis_Panier_Accessoire>();
 }
