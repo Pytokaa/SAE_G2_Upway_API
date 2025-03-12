@@ -13,7 +13,9 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Produit
 {
     [Key]
-    [Column("idproduit", TypeName = "serial")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Column("idproduit")]
+    
     public int Idproduit { get; set; }
 
     [Column("idphoto")]
