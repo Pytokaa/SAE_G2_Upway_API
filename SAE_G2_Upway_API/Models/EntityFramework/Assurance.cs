@@ -11,7 +11,7 @@ public partial class Assurance
     [Column("idassurance")]
     public int IdAssurance { get; set; }
     
-    [Column("nomassurannce")]
+    [Column("nomassurance")]
     [StringLength(50)]
     public string NomAssurance { get; set; }
     
