@@ -11,6 +11,12 @@ public partial class Alerte
     [Column("idalerte")]
     public int IdAlerte { get; set; }
     
+    [Column("idclient")]
+    public int IdClient { get; set; }
+    
+    [Column("idtaille")]
+    public int IdTaille { get; set; }
+    
     [Column("budgetmax")]
     public int Budgetmax { get; set; }
     
@@ -20,18 +26,15 @@ public partial class Alerte
     
     
     //relation avec la table client
+    [ForeignKey(nameof(IdClient))]
+    public virtual Client? Client { get; set; }
     
-    public int Idclient { get; set; }
-    
-    [ForeignKey(nameof(Idclient))]
-    public Client Client { get; set; }
     
     //relation avec la table taille
-    
-    public int IdTaille { get; set; }
-    
     [ForeignKey(nameof(IdTaille))]
-    public Taille Taille { get; set; }
+    public virtual Taille? Taille { get; set; }
+    
+    
     
     //relation avec la table Concerne
     [InverseProperty(nameof(Concerne.ConcerneAlerte))]

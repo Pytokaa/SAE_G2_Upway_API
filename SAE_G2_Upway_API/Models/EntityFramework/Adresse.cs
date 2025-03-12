@@ -14,6 +14,8 @@ public partial class Adresse
     [Column("idadresse")]
     public int IdAdresse { get; set; }
     
+    [Column("idpays")]
+    public int PaysId { get; set; }
     
     [Column("rue")]
     [StringLength(100)]
@@ -28,18 +30,13 @@ public partial class Adresse
     
    
     //relation avec la table pays
-    [Column("paysid")]
-    public int PaysId { get; set; }
-    
     [ForeignKey(nameof(PaysId))]
-    public virtual Pays Pays { get; set; }
+    public virtual Pays? Pays { get; set; }
     
     //relation avec la table Boutique
-    
     public virtual Boutique? Boutique { get; set; }
     
     //relation avec la table commande (adresse simple)
-    
     public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
     
     //relation avec la table commande (factu)
