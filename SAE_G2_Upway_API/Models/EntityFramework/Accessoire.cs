@@ -29,5 +29,11 @@ public partial class Accessoire
     
     [Column("dateaccessoire")]
     public DateTime DateAccessoire { get; set; }
-    
+
+    [InverseProperty(nameof(Est_Propose_Similaire.LAccessoire))]
+    public virtual ICollection<Est_Propose_Similaire> LesCommandes { get; set; } = new List<Est_Propose_Similaire>();
+
+    [InverseProperty(nameof(Est_Mis_Panier_Accessoire.LAccessoire))]
+    public virtual ICollection<Est_Mis_Panier_Accessoire> LesCommandesAccessoire { get; set; } = new List<Est_Mis_Panier_Accessoire>();
+
 }

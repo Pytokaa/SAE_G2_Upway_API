@@ -54,4 +54,13 @@ public partial class Commande
     [ForeignKey(nameof(IdClient))]
     public Client Client { get; set; }
     
+    //relation avec la table propose_assur
+    [InverseProperty(nameof(Propose_Assur.Commande))]
+    public virtual ICollection<Propose_Assur> AssurancesPropose { get; set; } =  new List<Propose_Assur>();
+
+    [InverseProperty(nameof(Est_Propose_Similaire.LaCommande))]
+    public virtual ICollection<Est_Propose_Similaire> LesSimilaires { get; set; } = new List<Est_Propose_Similaire>();
+
+    [InverseProperty(nameof(Est_Mis_Panier_Accessoire.LaCommande))]
+    public virtual ICollection<Est_Mis_Panier_Accessoire> LesAccessoires { get; set; } = new List<Est_Mis_Panier_Accessoire>();
 }

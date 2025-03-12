@@ -22,5 +22,11 @@ public partial class Boutique
     public Adresse Adresse { get; set; }
     
     //relation avec la table commande
-    public ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+    public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+
+    //relation avec peut etre teste
+
+    [InverseProperty(nameof(Peut_Etre_Teste.LaBoutique))]
+    public virtual ICollection<Peut_Etre_Teste> LesVelos { get; set; } = new List<Peut_Etre_Teste>();
+
 }
