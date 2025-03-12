@@ -10,7 +10,7 @@ public partial class Client
 {
     //Colonnes
     [Key]
-    [Column("idclient")]
+    [Column("idclient", TypeName="integer")]
     public int Idclient { get; set; }
     
     [Column("idfonction")]

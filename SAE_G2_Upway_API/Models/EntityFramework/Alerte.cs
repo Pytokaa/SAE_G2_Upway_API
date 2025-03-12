@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Alerte
 {
     [Key]
-    [Column("idalerte")]
+    [Column("idalerte", TypeName="integer")]
     public int IdAlerte { get; set; }
     
     [Column("idclient")]

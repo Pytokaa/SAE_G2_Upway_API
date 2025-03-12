@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Commande
 {
     [Key]
-    [Column("idcommande")]
+    [Column("idcommande", TypeName="integer")]
     public int IdCommande { get; set; }
     
     [Column("datecommande")]

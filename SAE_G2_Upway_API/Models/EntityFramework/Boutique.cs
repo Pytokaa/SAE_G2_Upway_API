@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Boutique
 {
     [Key]
-    [Column("idboutique")]
+    [Column("idboutique", TypeName="integer")]
     public int IdBoutique { get; set; }
     
     [Column("nomboutique")]
