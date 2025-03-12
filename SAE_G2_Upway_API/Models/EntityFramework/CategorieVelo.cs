@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 [Table("categorievelo")]
-public class CategorieVelo
+public partial class CategorieVelo
 {
     [Key]
     [Column("idcat")]
