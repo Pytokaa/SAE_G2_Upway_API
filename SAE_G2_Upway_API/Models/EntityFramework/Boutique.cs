@@ -21,7 +21,7 @@ public partial class Boutique
     //relation avec la table Adresse
     
     [ForeignKey(nameof(IdAdresse))]
-    public virtual Adresse? Adresse { get; set; }
+    public virtual Adresse Adresse { get; set; } = null!;
     
     //relation avec la table commande
     public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();

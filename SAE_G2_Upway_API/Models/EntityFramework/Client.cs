@@ -39,7 +39,7 @@ public partial class Client
     
     //relation avec la table fonction
     [ForeignKey(nameof(IdFonction))]
-    public virtual Fonction? Fonction { get; set; }
+    public virtual Fonction Fonction { get; set; } = null!;
     
     //relation avec la table alerte
     public virtual ICollection<Alerte> Alertes { get; set; } = new List<Alerte>();

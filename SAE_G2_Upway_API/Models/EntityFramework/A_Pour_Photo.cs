@@ -20,10 +20,10 @@ public partial class A_Pour_Photo
     //relation avec la table photo
     [ForeignKey(nameof(IdPhoto))]
     [InverseProperty(nameof(Photo.AProduit))]
-    public virtual Photo? Photo { get; set; }
+    public virtual Photo Photo { get; set; } = null!;
     
     //relation avec la table produit
     [ForeignKey(nameof(IdProduit))]
     [InverseProperty(nameof(Produit.APhotos))]
-    public virtual Produit? ProduitAPhoto { get; set; }
+    public virtual Produit ProduitAPhoto { get; set; } = null!;
 }
