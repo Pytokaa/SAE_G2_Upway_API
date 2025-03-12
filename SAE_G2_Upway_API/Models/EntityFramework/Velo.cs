@@ -47,7 +47,7 @@ public partial class Velo
     [Column("nbvente")]
     public int NbVente { get; set; }
     [Column("qualitevelo")]
-    [StringLength(100)]
+    [StringLength(250)]
     public string QualiteVelo { get; set; }
 
     //relation avec la table Produit
