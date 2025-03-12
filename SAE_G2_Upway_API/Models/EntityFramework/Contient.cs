@@ -21,13 +21,13 @@ public partial class Contient
     
     [ForeignKey(nameof(IdSoustype))]
     [InverseProperty(nameof(SousType.AType))]
-    public virtual SousType ContientSousType { get; set; }
+    public virtual SousType ContientSousType { get; set; } = null!;
     
     //relation avec la table Type
     
     [ForeignKey(nameof(IdType))]
     [InverseProperty(nameof(Type.ASousTypes))]
-    public virtual Type ContientType { get; set; }
+    public virtual Type ContientType { get; set; } = null!;
     
      
 }

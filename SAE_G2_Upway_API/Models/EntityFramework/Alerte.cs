@@ -32,7 +32,7 @@ public partial class Alerte
     
     //relation avec la table taille
     [ForeignKey(nameof(IdTaille))]
-    public virtual Taille? Taille { get; set; }
+    public virtual Taille Taille { get; set; } = null!;
     
     
     
