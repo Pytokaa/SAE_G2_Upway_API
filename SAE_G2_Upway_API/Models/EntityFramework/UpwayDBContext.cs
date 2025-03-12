@@ -132,7 +132,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasMaxLength(50);
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Alertes)
-                    .HasForeignKey(d => d.IdClient)
+                    .HasForeignKey(d => d.Idclient)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Alerte_Client");
                 entity.HasOne(d => d.Taille)
