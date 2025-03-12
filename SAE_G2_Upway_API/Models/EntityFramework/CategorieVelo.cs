@@ -12,8 +12,14 @@ public class CategorieVelo
     
     [Column("nomcat")]
     [StringLength(50)]
-    public string NomCategorie { get; set; }
+    public virtual string NomCategorie { get; set; }
     
     //relation avec la table velo
-    public ICollection<Velo> Velos { get; set; } = new List<Velo>();
+    public virtual ICollection<Velo> Velos { get; set; } = new List<Velo>();
+    
+    //relation avec la table conccerne
+    [InverseProperty(nameof(Concerne.ConcerneCategorieVelo))]
+    public virtual ICollection<Concerne> ConcerneAlerte { get; set; } =  new List<Concerne>();
+    
+    
 }
