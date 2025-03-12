@@ -57,5 +57,8 @@ public partial class Commande
     //relation avec la table propose_assur
     [InverseProperty(nameof(Propose_Assur.Commande))]
     public virtual ICollection<Propose_Assur> AssurancesPropose { get; set; } =  new List<Propose_Assur>();
-    
+
+    [InverseProperty(nameof(Est_Propose_Similaire.LaCommande))]
+    public virtual ICollection<Est_Propose_Similaire> LesSimilaires { get; set; } = new List<Est_Propose_Similaire>();
+
 }
