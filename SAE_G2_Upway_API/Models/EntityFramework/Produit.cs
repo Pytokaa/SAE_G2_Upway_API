@@ -6,14 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-//il faut encore ajouter les id pour les photos et les marques
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 [Table("produit")]
 public partial class Produit
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("idproduit")]
+    
     public int Idproduit { get; set; }
 
     [Column("idphoto")]
@@ -38,10 +39,12 @@ public partial class Produit
 
     //relation avec la table photo
     [ForeignKey(nameof(IdPhoto))]
+    [InverseProperty(nameof(Photo.Produit))]
     public virtual Photo Photo { get; set; } = null!;
 
     //relation avec la table Marque
     [ForeignKey(nameof(IdMarque))]
+    [InverseProperty(nameof(Marque.Produits))]
     public virtual Marque Marque { get; set; } = null!;
 
     //relations avec les autres tables 

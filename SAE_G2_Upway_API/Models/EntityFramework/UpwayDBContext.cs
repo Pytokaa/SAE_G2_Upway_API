@@ -257,6 +257,14 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                 entity.Property(p => p.StockProduit)
                     .IsRequired();
 
+                entity.Property(e => e.IdPhoto)
+                    .HasColumnName("idphoto")
+                    .IsRequired();
+
+                entity.Property(e => e.IdMarque)
+                    .HasColumnName("idmarque")
+                    .IsRequired();
+
                 // Configuration de la relation avec la table Photo
                 entity.HasOne(p => p.Photo)
                     .WithOne(f => f.Produit)

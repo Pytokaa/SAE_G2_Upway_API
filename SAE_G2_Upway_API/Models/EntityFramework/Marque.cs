@@ -16,7 +16,8 @@ public partial class Marque
     
     //relation avec la table modele
     public virtual ICollection<Modele> Modeles { get; set; } = new List<Modele>();
-    
+
     //relation avec la table Produit
+    [InverseProperty(nameof(Produit.Marque))]
     public virtual ICollection<Produit> Produits { get; set; } = new List<Produit>();
 }
