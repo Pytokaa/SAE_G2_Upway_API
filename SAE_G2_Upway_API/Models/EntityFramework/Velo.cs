@@ -62,4 +62,7 @@ public partial class Velo
     [InverseProperty(nameof(Est_Compose.LeVelo))]
     public virtual ICollection<Est_Compose> LesMoteurs { get; set; } = new List<Est_Compose>();
 
+    [InverseProperty(nameof(Possede.LeVelo))]
+    public virtual ICollection<Possede> LesSousCategories { get; set; } = new List<Possede>();
+
 }

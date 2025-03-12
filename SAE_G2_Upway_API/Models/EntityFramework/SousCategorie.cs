@@ -16,4 +16,8 @@ public partial class SousCategorie
     
     //relation avec la table caracteristique
     public ICollection<Caracteristique> Caracteristiques { get; set; } = new List<Caracteristique>();
+
+    //relation avec possede/velo
+    [InverseProperty(nameof(Possede.LaSousCategorie))]
+    public virtual ICollection<Possede> LesVelos { get; set; } = new List<Possede>();
 }
