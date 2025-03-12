@@ -248,6 +248,12 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                       .WithOne(f => f.LesProduits)
                       .HasForeignKey(f => f.IdProduit)
                       .OnDelete(DeleteBehavior.Cascade);
+
+                // Relation avec la table A_Pour_Photo
+                entity.HasOne(p => p.Accessoires)
+                      .WithOne(f => f.Produit)
+                      .HasForeignKey<Produit>(f => f.Idproduit)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Velo>(entity =>
