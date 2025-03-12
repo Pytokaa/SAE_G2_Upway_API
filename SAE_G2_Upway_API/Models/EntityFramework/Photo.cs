@@ -20,7 +20,7 @@ public partial class Photo
 
     //relation avec la table produit
     [InverseProperty(nameof(Produit.Photo))]
-    public virtual Produit Produit { get; set; } = null!;
+    public virtual Produit LeProduit { get; set; } = null!;
     
     //relation avec la table a_pour_photo
     [InverseProperty(nameof(A_Pour_Photo.Photo))]
