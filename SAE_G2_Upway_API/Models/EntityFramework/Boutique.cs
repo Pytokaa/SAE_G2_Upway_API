@@ -14,12 +14,14 @@ public partial class Boutique
     [StringLength(50)]
     public string NomBoutique { get; set; }
     
-    //relation avec la table Adresse
-    
+    [Column("idadresse")]
     public int IdAdresse { get; set; }
     
+    
+    //relation avec la table Adresse
+    
     [ForeignKey(nameof(IdAdresse))]
-    public Adresse Adresse { get; set; }
+    public virtual Adresse? Adresse { get; set; }
     
     //relation avec la table commande
     public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();

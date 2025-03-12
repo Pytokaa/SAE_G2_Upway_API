@@ -10,18 +10,19 @@ public partial class Caracteristique
     [Key]
     [Column("idcaract")]
     public int IdCaract { get; set; }
+    [Column("idsouscat")]
+    public int IdSousCat  { get; set; }
     
     
     [Column("typecaract")]
     [StringLength(100)]
     public string Typecaract { get; set; }
     
+    
+    
     //relation avec la table souscategorie
-    
-    public int IdSousCat  { get; set; }
-    
     [ForeignKey(nameof(IdSousCat))]
-    public SousCategorie SousCategorie { get; set; }
+    public virtual SousCategorie? SousCategorie { get; set; }
     
     //relation avec la table est_caracterise oui
     [InverseProperty(nameof(Est_Caracterise.Caracterise))]
