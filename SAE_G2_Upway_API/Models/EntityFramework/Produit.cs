@@ -15,45 +15,48 @@ public partial class Produit
     [Key]
     [Column("idproduit")]
     public int Idproduit { get; set; }
-    
-    //relation avec la table photo
-    public int IdPhoto  { get; set; }
-    [ForeignKey(nameof(IdPhoto))]
-    public Photo Photo { get; set; }
-    
-    
+
+    [Column("idphoto")]
+    public int IdPhoto { get; set; }
+
+    [Column("idmarque")]
+    public int IdMarque { get; set; }
+
     [Column("nomproduit")]
     [StringLength(100)]
-    public string Nomproduit { get; set; }
-    
-    
+    public string NomProduit { get; set; }
+
     [Column("prixproduit")]
-    public double Prixproduit { get; set; }
-    
-    [Column("description")]
+    public double PrixProduit { get; set; }
+
+    [Column("stockproduit")]
+    public int StockProduit { get; set; }
+
+    [Column("descriptionproduit")]
     [StringLength(200)]
-    public string Descriptionproduit { get; set; }
-    
-    [Column("stock")]
-    public int Stockproduit { get; set; }   
-    
-    
-    
+    public string DescriptionProduit { get; set; }
+
+    //relation avec la table photo
+    [ForeignKey(nameof(IdPhoto))]
+    public virtual Photo Photo { get; set; } = null!;
+
+    //relation avec la table Marque
+    [ForeignKey(nameof(IdMarque))]
+    public virtual Marque Marque { get; set; } = null!;
+
     //relations avec les autres tables 
-    
-    public Accessoire? Accessoires { get; set; }
-    public Velo? Velos { get; set; }
+    [InverseProperty(nameof(Accessoire.Produit))]
+    public virtual Accessoire? Accessoire { get; set; }
+
+    [InverseProperty(nameof(Velo.Produit))]
+    public virtual Velo? Velo { get; set; }
 
     //relation avec la table est en favoris, un produit peut etre dans plusieurs liste de favoris
 
     [InverseProperty(nameof(Est_En_Favoris.LesProduits))]
     public virtual ICollection<Est_En_Favoris> DansLesFavoris { get; set; } = new List<Est_En_Favoris>();
 
-    //relation avec la table Marque
-
-    public int IdMarque { get; set; }
-    [ForeignKey(nameof(IdMarque))]
-    public Marque Marque { get; set; }
+    
 
     //relation avec la table A_pour_photo
     [InverseProperty(nameof(A_Pour_Photo.ProduitAPhoto))]

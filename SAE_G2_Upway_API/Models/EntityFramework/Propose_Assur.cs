@@ -12,14 +12,14 @@ public partial class Propose_Assur
     public int IdAssurance { get; set; }
     [Column("idcommande")]
     public int IdCommande { get; set; }
-    
+
     //relation avec la table commande
     [ForeignKey(nameof(IdCommande))]
     [InverseProperty(nameof(Commande.AssurancesPropose))]
-    public virtual Commande Commande { get; set; }
+    public virtual Commande Commande { get; set; } = null!;
     
     //relation avec la table assurance
     [ForeignKey(nameof(IdAssurance))]
     [InverseProperty(nameof(Assurance.AssureCommande))]
-    public virtual Assurance Assurance { get; set; }
+    public virtual Assurance Assurance { get; set; } = null !;
 }
