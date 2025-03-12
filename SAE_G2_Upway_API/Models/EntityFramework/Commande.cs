@@ -25,7 +25,7 @@ public partial class Commande
     [Column("idadresse")]
     public int IdAdresse { get; set; }
     [Column("idboutique")]
-    public int IdBoutique { get; set; }
+    public int? IdBoutique { get; set; }
     [Column("idadressefactu")]
     public int IdAdresseFactu { get; set; }
     [Column("idmodepayement")]
@@ -54,7 +54,7 @@ public partial class Commande
     //relation avec la table boutique
     
     [ForeignKey(nameof(IdBoutique))]
-    public virtual Boutique Boutique { get; set; } = null!;
+    public virtual Boutique? Boutique { get; set; }
     
     //relation avec la table adresse (facturation)
     [ForeignKey(nameof(IdAdresseFactu))]
