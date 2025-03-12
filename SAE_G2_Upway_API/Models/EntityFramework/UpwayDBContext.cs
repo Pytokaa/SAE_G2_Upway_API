@@ -154,7 +154,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration de la relation avec la table Est_En_Favoris
                 entity.HasMany(d => d.LesFavoris)
-                    .WithOne(f => f.ClientFavoris
+                    .WithOne(f => f.ClientFavoris)
                     .HasForeignKey(f => f.IdClient)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Client_Est_En_Favoris");
@@ -325,17 +325,29 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
             modelBuilder.Entity<Alerte>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdAlerte).HasName("PK_Alerte");
+
+                // Configuration de la colonne Email
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                // Configuration de la colonne Budgetmax
+                entity.Property(e => e.Budgetmax)
+                    .HasColumnName("budgetmax")
+                    .IsRequired();
+
+                // Configuration de la relation avec la table Client
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Alertes)
                     .HasForeignKey(d => d.Idclient)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Alerte_Client");
+
+                // Configuration de la relation avec la table Taille
                 entity.HasOne(d => d.Taille)
-                    .WithMany()
+                    .WithMany(t => t.Alerte)
                     .HasForeignKey(d => d.IdTaille)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Alerte_Taille");
@@ -343,10 +355,18 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
             modelBuilder.Entity<Assurance>(entity =>
             {
+                // Définir la clé primaire
                 entity.HasKey(e => e.IdAssurance).HasName("PK_Assurance");
+
+                // Configuration de la colonne NomAssurance
                 entity.Property(e => e.NomAssurance)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                // Configuration de la colonne PrixAssurance
+                entity.Property(e => e.PrixAssurance)
+                    .HasColumnType("decimal(5,2)")
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Boutique>(entity =>
