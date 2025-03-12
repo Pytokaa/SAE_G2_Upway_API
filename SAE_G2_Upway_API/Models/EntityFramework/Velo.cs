@@ -26,8 +26,13 @@ public partial class Velo
     [StringLength(50)]
     public string Typecadre { get; set; }
 
-    //relation avec la table Rapport inspection
-    public RapportInspection? RapportInspection { get; set; }
+        //relation avec la table Produit
+        [ForeignKey("idproduit")]
+        public int ProduitId { get; set; }
+        public Produit Produit { get; set; }
+
+        //relation avec la table Rapport inspection
+        public RapportInspection? RapportInspection { get; set; }
         
     //relation avec la table taille (min)
     public int IdTailleMin { get; set; }
