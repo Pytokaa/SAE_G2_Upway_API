@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class Est_Mis_Panier_Velo
 {
     [Key]
-    [Column("idpaniervelo")]
+    [Column("idpaniervelo", TypeName="integer")]
     public int IdPanierVelo { get; set; }
     [Column("idvelo")]
     public int IdVelo { get; set; }

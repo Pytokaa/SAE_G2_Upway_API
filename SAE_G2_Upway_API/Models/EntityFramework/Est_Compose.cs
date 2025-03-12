@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     {
         // Colonnes
         [Key]
-        [Column("idcompose")]
+        [Column("idcompose", TypeName="integer")]
         public int IdCompose { get; set; }
         [Column("idvelo")]
         public int IdVelo { get; set; }

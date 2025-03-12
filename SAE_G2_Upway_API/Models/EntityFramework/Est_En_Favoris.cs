@@ -8,7 +8,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     {
         //Colonnes
         [Key]
-        [Column("idestenfavoris")]
+        [Column("idestenfavoris", TypeName="integer")]
         public int IdEstEnFavoris { get; set; }
         [Column("idclient")]
         public int IdClient { get; set; }

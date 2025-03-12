@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
     public partial class Est_Mis_Panier_Accessoire
     {
         [Key]
-        [Column("idpanieraccessoire")]
+        [Column("idpanieraccessoire", TypeName="integer")]
         public int IdEstProposeSimilaire { get; set; }
         [Column("idaccessoire")]
         public int IdAccessoire { get; set; }

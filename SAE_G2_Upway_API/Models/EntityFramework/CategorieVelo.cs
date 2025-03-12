@@ -7,7 +7,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 public partial class CategorieVelo
 {
     [Key]
-    [Column("idcat")]
+    [Column("idcat", TypeName="integer")]
     public int IdCat { get; set; }
     
     [Column("nomcat")]
