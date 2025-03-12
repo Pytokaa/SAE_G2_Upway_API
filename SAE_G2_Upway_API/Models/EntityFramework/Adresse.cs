@@ -28,20 +28,25 @@ public partial class Adresse
     
    
     //relation avec la table pays
-    
+    [Column("paysid")]
     public int PaysId { get; set; }
     
     [ForeignKey(nameof(PaysId))]
-    public Pays Pays { get; set; }
+    public virtual Pays Pays { get; set; }
     
     //relation avec la table Boutique
     
-    public Boutique? Boutique { get; set; }
+    public virtual Boutique? Boutique { get; set; }
     
     //relation avec la table commande (adresse simple)
     
-    public ICollection<Commande> Commandes { get; set; } = new List<Commande>();
+    public virtual ICollection<Commande> Commandes { get; set; } = new List<Commande>();
     
     //relation avec la table commande (factu)
-    public ICollection<Commande> CommandesFactu { get; set; } = new List<Commande>();
+    public virtual ICollection<Commande> CommandesFactu { get; set; } = new List<Commande>();
+    
+    
+    //relation avec la table habite
+    [InverseProperty(nameof(Habite.AdresseHabite))]
+    public virtual ICollection<Habite> AClients { get; set; } = new List<Habite>();
 }
