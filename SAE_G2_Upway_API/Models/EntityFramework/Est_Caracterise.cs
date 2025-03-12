@@ -21,4 +21,9 @@ public partial class Est_Caracterise
     [ForeignKey(nameof(IdVelo))]
     [InverseProperty(nameof(Velo.Caracteristiques))]
     public virtual Velo CaracteriseVelo { get; set; }
+    
+    //relation avec la table caracteristique oui
+    [ForeignKey(nameof(IdCaract))]
+    [InverseProperty(nameof(Caracteristique.CaracteriseVelo))]
+    public virtual Caracteristique Caracterise { get; set; }
 }
