@@ -41,6 +41,7 @@ public partial class Velo
 
     //relation avec la table Produit
     [ForeignKey(nameof(IdProduit))]
+    [InverseProperty(nameof(Produit.Velo))]
     public virtual Produit Produit { get; set; } = null!;
 
     //relation avec la table taille min et max
@@ -60,7 +61,7 @@ public partial class Velo
     //Relation avec la table CategorieVelo
 
     [ForeignKey(nameof(IdCat))]
-    public virtual CategorieVelo LaCategorie { get; set; }
+    public virtual CategorieVelo LaCategorie { get; set; } = null!;
 
     //relation avec la table etat
     [ForeignKey(nameof(IdEtat))]
@@ -70,7 +71,6 @@ public partial class Velo
     [InverseProperty(nameof(RapportInspection.LeVelo))]
     public virtual RapportInspection RapportInspection { get; set; }
         
-  
     //relation est compose
     [InverseProperty(nameof(Est_Compose.LeVelo))]
     public virtual ICollection<Est_Compose> LesMoteurs { get; set; } = new List<Est_Compose>();

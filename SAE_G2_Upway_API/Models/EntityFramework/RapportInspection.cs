@@ -31,13 +31,15 @@ public partial class RapportInspection
     [Column("commentaire")]
     [StringLength(500)]
     public string Commentaire { get; set; }
-    
+
     //relation avec la table Velo
-    
+
     [ForeignKey(nameof(IdVelo))]
     [InverseProperty(nameof(Velo.RapportInspection))]
-    public Velo LeVelo { get; set; }
+    public Velo LeVelo { get; set; } = null!;
 
+
+    //relation avec la table valide
     [InverseProperty(nameof(Valide.LeRapport))]
     public virtual ICollection<Valide> LesTypes { get; set; } = new List<Valide>();
 }
