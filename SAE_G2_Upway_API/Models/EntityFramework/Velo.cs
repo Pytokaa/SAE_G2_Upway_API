@@ -71,6 +71,10 @@ public partial class Velo
 
     [InverseProperty(nameof(Peut_Etre_Teste.LeVelo))]
     public virtual ICollection<Peut_Etre_Teste> LesBoutiques { get; set; } = new List<Peut_Etre_Teste>();
+    
+    //relation avec la table est_mis_panier_velo
+    [InverseProperty(nameof(Est_Mis_Panier_Velo.PanierVelo))]
+    public virtual ICollection<Est_Mis_Panier_Velo> ACommandes { get; set; } =  new List<Est_Mis_Panier_Velo>();
 
 
 }

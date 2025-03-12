@@ -28,4 +28,6 @@ public partial class Contient
     [ForeignKey(nameof(IdType))]
     [InverseProperty(nameof(Type.ASousTypes))]
     public virtual Type ContientType { get; set; }
+    
+     
 }
