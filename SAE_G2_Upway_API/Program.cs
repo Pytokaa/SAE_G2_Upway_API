@@ -16,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDataRepository<Velo>, VeloManager>();
+builder.Services.AddScoped<IDataRepository<Accessoire>, AccessoireManager>();
 
 
 var app = builder.Build();

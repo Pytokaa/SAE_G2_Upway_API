@@ -46,7 +46,7 @@ namespace SAE_G2_Upway_API.Controllers
         
         
         [HttpGet("{nom}")]
-        [ActionName("GetVeloByEmail")]
+        [ActionName("GetVeloByName")]
         public async Task<ActionResult<Velo>> GetVeloByName(string nom)
         {
             var velo = await dataRepository.GetByStringAsync(nom);
