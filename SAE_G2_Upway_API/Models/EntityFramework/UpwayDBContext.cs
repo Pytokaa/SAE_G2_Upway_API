@@ -150,7 +150,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasConstraintName("FK_Client_Fonction");
 
                 // Configuration de la contrainte de validation pour le format de l'email
-                entity.HasCheckConstraint("chk_mailclient_format", "mailclient ~* '^[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$'");
+                entity.HasCheckConstraint("chk_mailclient_format", "clt_mail ~* '^[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$'");
 
                 // Configuration de la relation avec la table Alerte
                 entity.HasMany(d => d.Alertes)
@@ -258,11 +258,11 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .IsRequired();
 
                 entity.Property(e => e.IdPhoto)
-                    .HasColumnName("idphoto")
+                    .HasColumnName("pto_id")
                     .IsRequired();
 
                 entity.Property(e => e.IdMarque)
-                    .HasColumnName("idmarque")
+                    .HasColumnName("mrq_id")
                     .IsRequired();
 
                 // Configuration de la relation avec la table Photo
@@ -1077,7 +1077,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                       .OnDelete(DeleteBehavior.Cascade);
 
                 entity.Property(e => e.NomModele)
-                    .HasColumnName("nommodele")
+                    .HasColumnName("mdl_nom")
                     .IsRequired();
             });
 

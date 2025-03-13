@@ -28,17 +28,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idapourphoto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idapourphoto");
+                        .HasColumnName("appto_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idapourphoto"));
 
                     b.Property<int>("IdPhoto")
                         .HasColumnType("integer")
-                        .HasColumnName("idphoto");
+                        .HasColumnName("pto_id");
 
                     b.Property<int>("IdProduit")
                         .HasColumnType("integer")
-                        .HasColumnName("idproduit");
+                        .HasColumnName("pdt_id");
 
                     b.HasKey("Idapourphoto");
 
@@ -47,7 +47,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdProduit");
 
-                    b.ToTable("a_pour_photo", "upway");
+                    b.ToTable("t_j_apourphoto_appto", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Accessoire", b =>
@@ -55,21 +55,21 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdAccessoire")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idaccessoire");
+                        .HasColumnName("acce_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAccessoire"));
 
                     b.Property<DateTime>("DateAccessoire")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dateaccessoire");
+                        .HasColumnName("acce_date");
 
                     b.Property<int>("IdCatA")
                         .HasColumnType("integer")
-                        .HasColumnName("idcata");
+                        .HasColumnName("cata_id");
 
                     b.Property<int>("IdProduit")
                         .HasColumnType("integer")
-                        .HasColumnName("idproduit");
+                        .HasColumnName("pdt_id");
 
                     b.HasKey("IdAccessoire")
                         .HasName("PK_Accessoire");
@@ -79,7 +79,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasIndex("IdProduit")
                         .IsUnique();
 
-                    b.ToTable("accessoire", "upway");
+                    b.ToTable("t_e_accessoire_acce", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Adresse", b =>
@@ -87,36 +87,36 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdAdresse")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idadresse");
+                        .HasColumnName("adr_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAdresse"));
 
                     b.Property<int>("Cp")
                         .HasColumnType("integer")
-                        .HasColumnName("cp");
+                        .HasColumnName("adr_cp");
 
                     b.Property<int>("PaysId")
                         .HasColumnType("integer")
-                        .HasColumnName("idpays");
+                        .HasColumnName("pays_id");
 
                     b.Property<string>("Rue")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)")
-                        .HasColumnName("rue");
+                        .HasColumnName("adr_rue");
 
                     b.Property<string>("Ville")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("ville");
+                        .HasColumnName("adr_ville");
 
                     b.HasKey("IdAdresse")
                         .HasName("PK_Adresse");
 
                     b.HasIndex("PaysId");
 
-                    b.ToTable("adresse", "upway");
+                    b.ToTable("t_e_adresse_adr", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Alerte", b =>
@@ -124,27 +124,27 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdAlerte")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idalerte");
+                        .HasColumnName("alt_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAlerte"));
 
                     b.Property<int>("Budgetmax")
                         .HasColumnType("integer")
-                        .HasColumnName("budgetmax");
+                        .HasColumnName("alt_budgetmax");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("email");
+                        .HasColumnName("alt_email");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("integer")
-                        .HasColumnName("idclient");
+                        .HasColumnName("clt_id");
 
                     b.Property<int>("IdTaille")
                         .HasColumnType("integer")
-                        .HasColumnName("idtaille");
+                        .HasColumnName("tle_id");
 
                     b.HasKey("IdAlerte")
                         .HasName("PK_Alerte");
@@ -153,7 +153,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdTaille");
 
-                    b.ToTable("alerte", "upway");
+                    b.ToTable("t_e_alerte_alt", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Assurance", b =>
@@ -161,7 +161,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdAssurance")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idassurance");
+                        .HasColumnName("assur_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAssurance"));
 
@@ -169,16 +169,16 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomassurance");
+                        .HasColumnName("assur_nom");
 
                     b.Property<decimal>("PrixAssurance")
                         .HasColumnType("decimal(5,2)")
-                        .HasColumnName("prixassurance");
+                        .HasColumnName("assur_prix");
 
                     b.HasKey("IdAssurance")
                         .HasName("PK_Assurance");
 
-                    b.ToTable("assurance", "upway");
+                    b.ToTable("t_e_assurance_assur", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Boutique", b =>
@@ -186,19 +186,19 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdBoutique")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idboutique");
+                        .HasColumnName("btq_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdBoutique"));
 
                     b.Property<int>("IdAdresse")
                         .HasColumnType("integer")
-                        .HasColumnName("idadresse");
+                        .HasColumnName("adr_id");
 
                     b.Property<string>("NomBoutique")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomboutique");
+                        .HasColumnName("btq_nom");
 
                     b.HasKey("IdBoutique")
                         .HasName("PK_Boutique");
@@ -206,7 +206,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasIndex("IdAdresse")
                         .IsUnique();
 
-                    b.ToTable("boutique", "upway");
+                    b.ToTable("t_e_boutique_btq", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Caracteristique", b =>
@@ -214,26 +214,26 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdCaract")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idcaract");
+                        .HasColumnName("caract_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCaract"));
 
                     b.Property<int>("IdSousCat")
                         .HasColumnType("integer")
-                        .HasColumnName("idsouscat");
+                        .HasColumnName("scat_id");
 
                     b.Property<string>("Typecaract")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)")
-                        .HasColumnName("typecaract");
+                        .HasColumnName("caract_type");
 
                     b.HasKey("IdCaract")
                         .HasName("PK_Caracteristique");
 
                     b.HasIndex("IdSousCat");
 
-                    b.ToTable("caracteristique", "upway");
+                    b.ToTable("t_e_caracteristique_caract", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.CategorieAccessoire", b =>
@@ -241,7 +241,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdCatA")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idcata");
+                        .HasColumnName("cata_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCatA"));
 
@@ -249,12 +249,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("nomcata");
+                        .HasColumnName("cata_nom");
 
                     b.HasKey("IdCatA")
                         .HasName("PK_CategorieAccessoire");
 
-                    b.ToTable("categorieaccessoire", "upway");
+                    b.ToTable("t_e_categorieaccessoire_cata", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.CategorieVelo", b =>
@@ -262,7 +262,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdCat")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idcat");
+                        .HasColumnName("catv_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCat"));
 
@@ -270,12 +270,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomcat");
+                        .HasColumnName("catv_nom");
 
                     b.HasKey("IdCat")
                         .HasName("PK_CategorieVelo");
 
-                    b.ToTable("categorievelo", "upway");
+                    b.ToTable("t_e_categorievelo_catv", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Client", b =>
@@ -283,52 +283,52 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idclient")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idclient");
+                        .HasColumnName("clt_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idclient"));
 
                     b.Property<int>("IdFonction")
                         .HasColumnType("integer")
-                        .HasColumnName("idfonction");
+                        .HasColumnName("fn_id");
 
                     b.Property<string>("Mailclient")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("mailclient");
+                        .HasColumnName("clt_mail");
 
                     b.Property<string>("Nomclient")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("nomclient");
+                        .HasColumnName("clt_nom");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("password");
+                        .HasColumnName("clt_password");
 
                     b.Property<string>("Prenomclient")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("prenomclient");
+                        .HasColumnName("clt_prenom");
 
                     b.Property<string>("Telephone")
                         .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("character varying(12)")
-                        .HasColumnName("telephone");
+                        .HasColumnName("clt_telephone");
 
                     b.HasKey("Idclient")
                         .HasName("PK_Client");
 
                     b.HasIndex("IdFonction");
 
-                    b.ToTable("client", "upway", t =>
+                    b.ToTable("t_e_client_clt", "upway", t =>
                         {
-                            t.HasCheckConstraint("chk_mailclient_format", "mailclient ~* '^[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$'");
+                            t.HasCheckConstraint("chk_mailclient_format", "clt_mail ~* '^[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$'");
                         });
                 });
 
@@ -337,7 +337,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idcode")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idcode");
+                        .HasColumnName("codred_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idcode"));
 
@@ -345,12 +345,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("libellecode");
+                        .HasColumnName("codred_libelle");
 
                     b.HasKey("Idcode")
                         .HasName("PK_CodeReduc");
 
-                    b.ToTable("codereduc", "upway");
+                    b.ToTable("t_e_codereduc_codred", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Commande", b =>
@@ -358,45 +358,45 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdCommande")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idcommande");
+                        .HasColumnName("comm_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCommande"));
 
                     b.Property<DateTime>("DateCommande")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("datecommande");
+                        .HasColumnName("comm_date");
 
                     b.Property<int>("IdAdresse")
                         .HasColumnType("integer")
-                        .HasColumnName("idadresse");
+                        .HasColumnName("adr_id");
 
                     b.Property<int?>("IdAdresseFactu")
                         .HasColumnType("integer")
-                        .HasColumnName("idadressefactu");
+                        .HasColumnName("adr_idfactu");
 
                     b.Property<int?>("IdBoutique")
                         .HasColumnType("integer")
-                        .HasColumnName("idboutique");
+                        .HasColumnName("btq_id");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("integer")
-                        .HasColumnName("idclient");
+                        .HasColumnName("clt_id");
 
                     b.Property<int?>("IdCode")
                         .HasColumnType("integer")
-                        .HasColumnName("idcode");
+                        .HasColumnName("codred_id");
 
                     b.Property<int>("IdModeExp")
                         .HasColumnType("integer")
-                        .HasColumnName("idmodeexp");
+                        .HasColumnName("modexpe_id");
 
                     b.Property<int>("IdModePayement")
                         .HasColumnType("integer")
-                        .HasColumnName("idmodepayement");
+                        .HasColumnName("mpay_id");
 
                     b.Property<int>("IdStatut")
                         .HasColumnType("integer")
-                        .HasColumnName("idstatut");
+                        .HasColumnName("stu_id");
 
                     b.HasKey("IdCommande")
                         .HasName("PK_Commande");
@@ -417,7 +417,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdStatut");
 
-                    b.ToTable("commande", "upway");
+                    b.ToTable("t_e_commande_comm", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Concerne", b =>
@@ -425,17 +425,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdConcerne")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idconcerne");
+                        .HasColumnName("crn_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdConcerne"));
 
                     b.Property<int?>("IdAlerte")
                         .HasColumnType("integer")
-                        .HasColumnName("idalerte");
+                        .HasColumnName("alt_id");
 
                     b.Property<int>("IdCat")
                         .HasColumnType("integer")
-                        .HasColumnName("idcat");
+                        .HasColumnName("catv_id");
 
                     b.HasKey("IdConcerne");
 
@@ -443,7 +443,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdCat");
 
-                    b.ToTable("concerne", "upway");
+                    b.ToTable("t_j_concerne_crn", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Contient", b =>
@@ -451,17 +451,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdContient")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idcontient");
+                        .HasColumnName("ctn_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdContient"));
 
                     b.Property<int>("IdSoustype")
                         .HasColumnType("integer")
-                        .HasColumnName("idsoustype");
+                        .HasColumnName("styp_id");
 
                     b.Property<int>("IdType")
                         .HasColumnType("integer")
-                        .HasColumnName("idtype");
+                        .HasColumnName("typ_id");
 
                     b.HasKey("IdContient");
 
@@ -469,7 +469,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdType");
 
-                    b.ToTable("contient", "upway");
+                    b.ToTable("t_j_contient_ctn", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_Caracterise", b =>
@@ -477,23 +477,23 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdestCaracterise")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idestcaracterise");
+                        .HasColumnName("estcaract_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdestCaracterise"));
 
                     b.Property<int>("IdCaract")
                         .HasColumnType("integer")
-                        .HasColumnName("idcaract");
+                        .HasColumnName("caract_id");
 
                     b.Property<int>("IdVelo")
                         .HasColumnType("integer")
-                        .HasColumnName("idvelo");
+                        .HasColumnName("vel_id");
 
                     b.Property<string>("ValeurCaracteristique")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
-                        .HasColumnName("valeurcaracteristique");
+                        .HasColumnName("estcaract_valeurcaracteristique");
 
                     b.HasKey("IdestCaracterise");
 
@@ -501,7 +501,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdVelo");
 
-                    b.ToTable("est_caracterise", "upway");
+                    b.ToTable("t_e_estcaracterise_estcaract", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_Compose", b =>
@@ -509,17 +509,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdCompose")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idcompose");
+                        .HasColumnName("estcomp_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCompose"));
 
                     b.Property<int>("IdMoteur")
                         .HasColumnType("integer")
-                        .HasColumnName("idmoteur");
+                        .HasColumnName("mtr_id");
 
                     b.Property<int>("IdVelo")
                         .HasColumnType("integer")
-                        .HasColumnName("idvelo");
+                        .HasColumnName("vel_id");
 
                     b.HasKey("IdCompose");
 
@@ -527,7 +527,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdVelo");
 
-                    b.ToTable("est_compose", "upway");
+                    b.ToTable("t_j_estcompose_estcomp", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_De_ModeleM", b =>
@@ -535,17 +535,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("EstDeModeleM")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idestdemodelem");
+                        .HasColumnName("edmdlm_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EstDeModeleM"));
 
                     b.Property<int>("IdModele")
                         .HasColumnType("integer")
-                        .HasColumnName("idmodele");
+                        .HasColumnName("mdl_id");
 
                     b.Property<int>("IdMoteur")
                         .HasColumnType("integer")
-                        .HasColumnName("idmoteur");
+                        .HasColumnName("mtr_id");
 
                     b.HasKey("EstDeModeleM");
 
@@ -553,7 +553,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdMoteur");
 
-                    b.ToTable("est_de_modelem", "upway");
+                    b.ToTable("t_j_estdemodelem_edmdlm", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_En_Favoris", b =>
@@ -561,17 +561,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdEstEnFavoris")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idestenfavoris");
+                        .HasColumnName("eefav_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdEstEnFavoris"));
 
                     b.Property<int>("IdClient")
                         .HasColumnType("integer")
-                        .HasColumnName("idclient");
+                        .HasColumnName("clt_id");
 
                     b.Property<int>("IdProduit")
                         .HasColumnType("integer")
-                        .HasColumnName("idproduit");
+                        .HasColumnName("pdt_id");
 
                     b.HasKey("IdEstEnFavoris");
 
@@ -579,7 +579,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdProduit");
 
-                    b.ToTable("est_en_favoris", "upway");
+                    b.ToTable("t_j_estenfavoris_eefav", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_Mis_Panier_Accessoire", b =>
@@ -587,21 +587,21 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdEstProposeSimilaire")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idpanieraccessoire");
+                        .HasColumnName("empanacc_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdEstProposeSimilaire"));
 
                     b.Property<int>("IdAccessoire")
                         .HasColumnType("integer")
-                        .HasColumnName("idaccessoire");
+                        .HasColumnName("acce_id");
 
                     b.Property<int>("IdCommande")
                         .HasColumnType("integer")
-                        .HasColumnName("idcommande");
+                        .HasColumnName("comm_id");
 
                     b.Property<int>("Quantite")
                         .HasColumnType("integer")
-                        .HasColumnName("quantite");
+                        .HasColumnName("empanacc_quantite");
 
                     b.HasKey("IdEstProposeSimilaire");
 
@@ -609,7 +609,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdCommande");
 
-                    b.ToTable("est_mis_panier_accessoire", "upway");
+                    b.ToTable("t_j_estmispanieraccessoire_empanacc", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_Mis_Panier_Velo", b =>
@@ -617,17 +617,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdPanierVelo")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idpaniervelo");
+                        .HasColumnName("empanvel_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPanierVelo"));
 
                     b.Property<int>("IdCommande")
                         .HasColumnType("integer")
-                        .HasColumnName("idcommande");
+                        .HasColumnName("comm_id");
 
                     b.Property<int>("IdVelo")
                         .HasColumnType("integer")
-                        .HasColumnName("idvelo");
+                        .HasColumnName("vel_id");
 
                     b.HasKey("IdPanierVelo");
 
@@ -635,7 +635,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdVelo");
 
-                    b.ToTable("est_mis_panier_velo", "upway");
+                    b.ToTable("t_j_estmispaniervelo_empanvel", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Est_Propose_Similaire", b =>
@@ -643,17 +643,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdEstProposeSimilaire")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idestproposesimilaire");
+                        .HasColumnName("estpropsim_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdEstProposeSimilaire"));
 
                     b.Property<int>("IdAccessoire")
                         .HasColumnType("integer")
-                        .HasColumnName("idaccessoire");
+                        .HasColumnName("acce_id");
 
                     b.Property<int>("IdCommande")
                         .HasColumnType("integer")
-                        .HasColumnName("idcommande");
+                        .HasColumnName("comm_id");
 
                     b.HasKey("IdEstProposeSimilaire");
 
@@ -661,7 +661,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdCommande");
 
-                    b.ToTable("est_propose_similaire", "upway");
+                    b.ToTable("t_j_estproposesimilaire_estpropsim", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Etat", b =>
@@ -669,7 +669,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdEtat")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idetat");
+                        .HasColumnName("eta_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdEtat"));
 
@@ -677,12 +677,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)")
-                        .HasColumnName("nometat");
+                        .HasColumnName("eta_nom");
 
                     b.HasKey("IdEtat")
                         .HasName("PK_Etat");
 
-                    b.ToTable("etat", "upway");
+                    b.ToTable("t_e_etat_eta", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Fonction", b =>
@@ -690,7 +690,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idfonction");
+                        .HasColumnName("fn_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
@@ -698,12 +698,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("character varying(80)")
-                        .HasColumnName("nomfonction");
+                        .HasColumnName("fn_nom");
 
                     b.HasKey("Id")
                         .HasName("PK_Fonction");
 
-                    b.ToTable("fonction", "upway");
+                    b.ToTable("t_e_fonction_fn", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Habite", b =>
@@ -711,17 +711,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idhabite")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idhabite");
+                        .HasColumnName("hab_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idhabite"));
 
                     b.Property<int>("Idadresse")
                         .HasColumnType("integer")
-                        .HasColumnName("idadresse");
+                        .HasColumnName("adr_id");
 
                     b.Property<int?>("Idclient")
                         .HasColumnType("integer")
-                        .HasColumnName("idclient");
+                        .HasColumnName("clt_id");
 
                     b.HasKey("Idhabite");
 
@@ -729,7 +729,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("Idclient");
 
-                    b.ToTable("habite", "upway");
+                    b.ToTable("t_j_habite_hab", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Marque", b =>
@@ -737,7 +737,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdMarque")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idmarque");
+                        .HasColumnName("mrq_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdMarque"));
 
@@ -745,12 +745,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("nommarque");
+                        .HasColumnName("mrq_nom");
 
                     b.HasKey("IdMarque")
                         .HasName("PK_Marque");
 
-                    b.ToTable("marque", "upway");
+                    b.ToTable("t_e_marque_mrq", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.ModeExpedition", b =>
@@ -758,7 +758,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdModeExp")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idmodeexp");
+                        .HasColumnName("modexpe_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdModeExp"));
 
@@ -766,12 +766,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("libellemodeexp");
+                        .HasColumnName("modexpe_libelle");
 
                     b.HasKey("IdModeExp")
                         .HasName("PK_ModeExpedition");
 
-                    b.ToTable("modeexpedition", "upway");
+                    b.ToTable("t_e_modeexpedition_modexpe", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.ModePayement", b =>
@@ -779,7 +779,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idmodepayement")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idmodepayement");
+                        .HasColumnName("mpay_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idmodepayement"));
 
@@ -787,12 +787,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nommodepayement");
+                        .HasColumnName("mpay_nom");
 
                     b.HasKey("Idmodepayement")
                         .HasName("PK_ModePayement");
 
-                    b.ToTable("modepayement", "upway");
+                    b.ToTable("t_e_modepayement_mpay", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Modele", b =>
@@ -800,13 +800,13 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdModele")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idmodele");
+                        .HasColumnName("mdl_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdModele"));
 
                     b.Property<int>("IdMarque")
                         .HasColumnType("integer")
-                        .HasColumnName("idmarque");
+                        .HasColumnName("mrq_id");
 
                     b.Property<int?>("MarqueIdMarque")
                         .HasColumnType("integer");
@@ -815,7 +815,7 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
-                        .HasColumnName("nommodele");
+                        .HasColumnName("mdl_nom");
 
                     b.HasKey("IdModele");
 
@@ -823,7 +823,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("MarqueIdMarque");
 
-                    b.ToTable("modele", "upway");
+                    b.ToTable("t_e_modele_mdl", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Moteur", b =>
@@ -831,28 +831,28 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdMoteur")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idmoteur");
+                        .HasColumnName("mtr_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdMoteur"));
 
                     b.Property<int>("CoupleMoteur")
                         .HasColumnType("integer")
-                        .HasColumnName("couplemoteur");
+                        .HasColumnName("mtr_couple");
 
                     b.Property<string>("Positionmoteur")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)")
-                        .HasColumnName("positionmoteur");
+                        .HasColumnName("mtr_position");
 
                     b.Property<int>("VitesseMax")
                         .HasColumnType("integer")
-                        .HasColumnName("vitessemax");
+                        .HasColumnName("mtr_vitessemax");
 
                     b.HasKey("IdMoteur")
                         .HasName("PK_Moteur");
 
-                    b.ToTable("moteur", "upway");
+                    b.ToTable("t_e_moteur_mtr", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Pays", b =>
@@ -860,7 +860,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdPays")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idpays");
+                        .HasColumnName("pays_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPays"));
 
@@ -868,12 +868,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nompays");
+                        .HasColumnName("pays_nom");
 
                     b.HasKey("IdPays")
                         .HasName("PK_Pays");
 
-                    b.ToTable("pays", "upway");
+                    b.ToTable("t_e_pays_pays", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Peut_Etre_Teste", b =>
@@ -881,17 +881,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdTest")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idtest");
+                        .HasColumnName("petest_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdTest"));
 
                     b.Property<int>("IdBoutique")
                         .HasColumnType("integer")
-                        .HasColumnName("idboutique");
+                        .HasColumnName("btq_id");
 
                     b.Property<int>("IdVelo")
                         .HasColumnType("integer")
-                        .HasColumnName("idvelo");
+                        .HasColumnName("vel_id");
 
                     b.HasKey("IdTest");
 
@@ -899,7 +899,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdVelo");
 
-                    b.ToTable("peut_etre_teste", "upway");
+                    b.ToTable("t_j_peutetreteste_petest", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Photo", b =>
@@ -907,7 +907,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdPhoto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idphoto");
+                        .HasColumnName("pto_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPhoto"));
 
@@ -915,18 +915,18 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
-                        .HasColumnName("description");
+                        .HasColumnName("pto_description");
 
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("character varying(300)")
-                        .HasColumnName("url");
+                        .HasColumnName("pto_url");
 
                     b.HasKey("IdPhoto")
                         .HasName("PK_Photo");
 
-                    b.ToTable("photo", "upway");
+                    b.ToTable("t_e_photo_pto", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Possede", b =>
@@ -934,17 +934,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdPossede")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idpossede");
+                        .HasColumnName("poss_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPossede"));
 
                     b.Property<int>("IdSousCat")
                         .HasColumnType("integer")
-                        .HasColumnName("idsouscat");
+                        .HasColumnName("scat_id");
 
                     b.Property<int>("IdVelo")
                         .HasColumnType("integer")
-                        .HasColumnName("idvelo");
+                        .HasColumnName("vel_id");
 
                     b.HasKey("IdPossede");
 
@@ -952,7 +952,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdVelo");
 
-                    b.ToTable("possede", "upway");
+                    b.ToTable("t_j_possede_poss", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Produit", b =>
@@ -960,7 +960,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idproduit")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idproduit");
+                        .HasColumnName("pdt_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idproduit"));
 
@@ -968,29 +968,29 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
-                        .HasColumnName("descriptionproduit");
+                        .HasColumnName("pdt_description");
 
                     b.Property<int>("IdMarque")
                         .HasColumnType("integer")
-                        .HasColumnName("idmarque");
+                        .HasColumnName("mrq_id");
 
                     b.Property<int>("IdPhoto")
                         .HasColumnType("integer")
-                        .HasColumnName("idphoto");
+                        .HasColumnName("pto_id");
 
                     b.Property<string>("NomProduit")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)")
-                        .HasColumnName("nomproduit");
+                        .HasColumnName("pdt_nom");
 
                     b.Property<double>("PrixProduit")
                         .HasColumnType("double precision")
-                        .HasColumnName("prixproduit");
+                        .HasColumnName("pdt_prix");
 
                     b.Property<int>("StockProduit")
                         .HasColumnType("integer")
-                        .HasColumnName("stockproduit");
+                        .HasColumnName("pdt_stock");
 
                     b.HasKey("Idproduit")
                         .HasName("PK_Produit");
@@ -1000,7 +1000,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.HasIndex("IdPhoto")
                         .IsUnique();
 
-                    b.ToTable("produit", "upway");
+                    b.ToTable("t_e_produit_pdt", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Propose_Assur", b =>
@@ -1008,17 +1008,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdProposeAssur")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idproposeassur");
+                        .HasColumnName("propassur_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdProposeAssur"));
 
                     b.Property<int>("IdAssurance")
                         .HasColumnType("integer")
-                        .HasColumnName("idassurance");
+                        .HasColumnName("assur_id");
 
                     b.Property<int>("IdCommande")
                         .HasColumnType("integer")
-                        .HasColumnName("idcommande");
+                        .HasColumnName("comm_id");
 
                     b.HasKey("IdProposeAssur");
 
@@ -1026,7 +1026,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdCommande");
 
-                    b.ToTable("propose_assur", "upway");
+                    b.ToTable("t_j_proposeassur_propassur", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.RapportInspection", b =>
@@ -1034,7 +1034,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdRapport")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idrapport");
+                        .HasColumnName("rapinsp_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdRapport"));
 
@@ -1042,34 +1042,34 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)")
-                        .HasColumnName("centre");
+                        .HasColumnName("rapinsp_centre");
 
                     b.Property<string>("Commentaire")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)")
-                        .HasColumnName("commentaire");
+                        .HasColumnName("rapinsp_commentaire");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("date");
+                        .HasColumnName("rapinsp_date");
 
                     b.Property<string>("Historique")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)")
-                        .HasColumnName("historique");
+                        .HasColumnName("rapinsp_historique");
 
                     b.Property<int>("IdVelo")
                         .HasColumnType("integer")
-                        .HasColumnName("idvelo");
+                        .HasColumnName("vel_id");
 
                     b.HasKey("IdRapport");
 
                     b.HasIndex("IdVelo")
                         .IsUnique();
 
-                    b.ToTable("rapportinspection", "upway");
+                    b.ToTable("t_e_rapportinspection_rapinsp", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.SousCategorie", b =>
@@ -1077,7 +1077,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdSousCat")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idsouscat");
+                        .HasColumnName("scat_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdSousCat"));
 
@@ -1085,11 +1085,11 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("typesouscat");
+                        .HasColumnName("scat_type");
 
                     b.HasKey("IdSousCat");
 
-                    b.ToTable("souscategorie", "upway");
+                    b.ToTable("t_e_souscategorie_scat", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.SousType", b =>
@@ -1097,7 +1097,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdSousType")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idsoustype");
+                        .HasColumnName("styp_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdSousType"));
 
@@ -1105,11 +1105,11 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("libellesoustype");
+                        .HasColumnName("styp_libelle");
 
                     b.HasKey("IdSousType");
 
-                    b.ToTable("soustype", "upway");
+                    b.ToTable("t_e_soustype_styp", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Statut", b =>
@@ -1117,7 +1117,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdStatut")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idstatut");
+                        .HasColumnName("stu_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdStatut"));
 
@@ -1125,12 +1125,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("nomstatut");
+                        .HasColumnName("stu_nom");
 
                     b.HasKey("IdStatut")
                         .HasName("PK_Statut");
 
-                    b.ToTable("statut", "upway");
+                    b.ToTable("t_e_statut_stu", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.SurType", b =>
@@ -1138,33 +1138,33 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdSurType")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idsurtype");
+                        .HasColumnName("srtyp_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdSurType"));
 
                     b.Property<bool>("Checke")
                         .HasColumnType("boolean")
-                        .HasColumnName("checke");
+                        .HasColumnName("srtyp_checke");
 
                     b.Property<int>("IdSousType")
                         .HasColumnType("integer")
-                        .HasColumnName("idsoustype");
+                        .HasColumnName("styp_id");
 
                     b.Property<string>("LibelleSurType")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)")
-                        .HasColumnName("libellesurtype");
+                        .HasColumnName("srtyp_libelle");
 
                     b.Property<bool>("Repare")
                         .HasColumnType("boolean")
-                        .HasColumnName("repare");
+                        .HasColumnName("srtyp_repare");
 
                     b.HasKey("IdSurType");
 
                     b.HasIndex("IdSousType");
 
-                    b.ToTable("surtype", "upway");
+                    b.ToTable("t_e_surtype_srtyp", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Taille", b =>
@@ -1172,18 +1172,18 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idtaille")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idtaille");
+                        .HasColumnName("tle_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idtaille"));
 
                     b.Property<int>("TailleCm")
                         .HasColumnType("integer")
-                        .HasColumnName("taillecm");
+                        .HasColumnName("tle_taillecm");
 
                     b.HasKey("Idtaille")
                         .HasName("PK_Taille");
 
-                    b.ToTable("taille", "upway");
+                    b.ToTable("t_e_taille_tle", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Type", b =>
@@ -1191,7 +1191,7 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("Idtype")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idtype");
+                        .HasColumnName("typ_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idtype"));
 
@@ -1199,12 +1199,12 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("nomtype");
+                        .HasColumnName("typ_nom");
 
                     b.HasKey("Idtype")
                         .HasName("PK_Type");
 
-                    b.ToTable("type", "upway");
+                    b.ToTable("t_e_type_typ", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Valide", b =>
@@ -1212,17 +1212,17 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdValide")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idvalide");
+                        .HasColumnName("val_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdValide"));
 
                     b.Property<int>("IdRapport")
                         .HasColumnType("integer")
-                        .HasColumnName("idrapport");
+                        .HasColumnName("rapinsp_id");
 
                     b.Property<int>("IdType")
                         .HasColumnType("integer")
-                        .HasColumnName("idtype");
+                        .HasColumnName("typ_id");
 
                     b.HasKey("IdValide");
 
@@ -1230,7 +1230,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdType");
 
-                    b.ToTable("valide", "upway");
+                    b.ToTable("t_j_valide_val", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Velo", b =>
@@ -1238,69 +1238,69 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Property<int>("IdVelo")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("idvelo");
+                        .HasColumnName("vel_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdVelo"));
 
                     b.Property<DateTime>("Annee")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("annee");
+                        .HasColumnName("vel_annee");
 
                     b.Property<bool>("BestSeller")
                         .HasColumnType("boolean")
-                        .HasColumnName("bestseller");
+                        .HasColumnName("vel_bestseller");
 
                     b.Property<int>("IdCat")
                         .HasColumnType("integer")
-                        .HasColumnName("idcat");
+                        .HasColumnName("catv_id");
 
                     b.Property<int>("IdEtat")
                         .HasColumnType("integer")
-                        .HasColumnName("idetat");
+                        .HasColumnName("eta_id");
 
                     b.Property<int>("IdModele")
                         .HasColumnType("integer")
-                        .HasColumnName("idmodele");
+                        .HasColumnName("mdl_id");
 
                     b.Property<int>("IdProduit")
                         .HasColumnType("integer")
-                        .HasColumnName("idproduit");
+                        .HasColumnName("pdt_id");
 
                     b.Property<int>("IdTailleMax")
                         .HasColumnType("integer")
-                        .HasColumnName("idtaillemax");
+                        .HasColumnName("tle_idtaillemax");
 
                     b.Property<int>("IdTailleMin")
                         .HasColumnType("integer")
-                        .HasColumnName("idtaillemin");
+                        .HasColumnName("tle_idtaillemin");
 
                     b.Property<int>("NbVente")
                         .HasColumnType("integer")
-                        .HasColumnName("nbvente");
+                        .HasColumnName("vel_nbvente");
 
                     b.Property<double>("Nbkms")
                         .HasColumnType("double precision")
-                        .HasColumnName("nbkms");
+                        .HasColumnName("vel_nbkms");
 
                     b.Property<double>("Poids")
                         .HasColumnType("double precision")
-                        .HasColumnName("poids");
+                        .HasColumnName("vel_poids");
 
                     b.Property<double>("Prixneuf")
                         .HasColumnType("double precision")
-                        .HasColumnName("prixneuf");
+                        .HasColumnName("vel_prixneuf");
 
                     b.Property<string>("QualiteVelo")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)")
-                        .HasColumnName("qualitevelo");
+                        .HasColumnName("vel_qualitevelo");
 
                     b.Property<string>("Typecadre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("typecadre");
+                        .HasColumnName("vel_typecadre");
 
                     b.HasKey("IdVelo")
                         .HasName("PK_Velo");
@@ -1318,7 +1318,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasIndex("IdTailleMin");
 
-                    b.ToTable("velo", "upway");
+                    b.ToTable("t_e_velo_vel", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.A_Pour_Photo", b =>

@@ -13,7 +13,7 @@ public partial class Velo
     [Column("vel_id")]
     public int IdVelo { get; set; }
 
-    [Column("vel_produit")]
+    [Column("pdt_id")]
     public int IdProduit { get; set; }
     [Column("tle_idtaillemin")]
     public int IdTailleMin { get; set; }
