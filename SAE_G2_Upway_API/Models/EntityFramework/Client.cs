@@ -5,34 +5,34 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("client")]
+[Table("t_e_client_clt")]
 public partial class Client
 {
     //Colonnes
     [Key]
-    [Column("idclient")]
+    [Column("clt_id")]
     public int Idclient { get; set; }
     
-    [Column("idfonction")]
+    [Column("fn_id")]
     public int IdFonction { get; set; }
     
-    [Column("nomclient")]
+    [Column("clt_nom")]
     [StringLength(30)]
     public string Nomclient { get; set; }
     
-    [Column("prenomclient")]
+    [Column("clt_prenom")]
     [StringLength(30)]
     public string Prenomclient { get; set; }
     
-    [Column("mailclient")]
+    [Column("clt_mail")]
     [StringLength(50)]
     public string Mailclient { get; set; }
     
-    [Column("telephone")]
+    [Column("clt_telephone")]
     [StringLength(12)]
     public string Telephone { get; set; }
     
-    [Column("password")]
+    [Column("clt_password")]
     [StringLength(100)]
     public string Password { get; set; }
     

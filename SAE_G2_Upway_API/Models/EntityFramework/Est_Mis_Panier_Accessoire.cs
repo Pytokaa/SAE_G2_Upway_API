@@ -3,17 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("est_mis_panier_accessoire")]
+    [Table("t_j_estmispanieraccessoire_empanacc")]
     public partial class Est_Mis_Panier_Accessoire
     {
         [Key]
-        [Column("idpanieraccessoire")]
+        [Column("empanacc_id")]
         public int IdEstProposeSimilaire { get; set; }
-        [Column("idaccessoire")]
+        [Column("acce_id")]
         public int IdAccessoire { get; set; }
-        [Column("idcommande")]
+        [Column("comm_id")]
         public int IdCommande { get; set; }
-        [Column("quantite")]
+        [Column("empanacc_quantite")]
         public int Quantite { get; set; }
 
         //foreign key

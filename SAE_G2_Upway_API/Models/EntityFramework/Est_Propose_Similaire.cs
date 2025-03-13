@@ -2,15 +2,15 @@
 using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("est_propose_similaire")]
+    [Table("t_j_estproposesimilaire_estpropsim")]
     public partial class Est_Propose_Similaire
     {
         [Key]
-        [Column("idestproposesimilaire")]
+        [Column("estpropsim_id")]
         public int IdEstProposeSimilaire { get; set; }
-        [Column("idaccessoire")]
+        [Column("acce_id")]
         public int IdAccessoire { get; set; }
-        [Column("idcommande")]
+        [Column("comm_id")]
         public int IdCommande { get; set; }
 
         //relation avec la table accessoire

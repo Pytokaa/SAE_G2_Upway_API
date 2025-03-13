@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("concerne")]
+[Table("t_j_concerne_crn")]
 public partial class Concerne
 {
     [Key]
-    [Column("idconcerne")]
+    [Column("crn_id")]
     public int IdConcerne { get; set; }
-    [Column("idalerte")]
+    [Column("alt_id")]
     public int? IdAlerte { get; set; }
-    [Column("idcat")]
+    [Column("catv_id")]
     public int IdCat { get; set; }
     
     //relation avec la table alerte

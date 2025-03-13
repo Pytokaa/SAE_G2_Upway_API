@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("valide")]
+    [Table("t_j_valide_val")]
     public partial class Valide
     {
         //Colonne
         [Key]
-        [Column("idvalide")]
+        [Column("val_id")]
         public int IdValide { get; set; }
-        [Column("idrapport")]
+        [Column("rapinsp_id")]
         public int IdRapport { get; set; }
-        [Column("idtype")]
+        [Column("typ_id")]
         public int IdType { get; set; }
 
         //Relation avec la table Rapport

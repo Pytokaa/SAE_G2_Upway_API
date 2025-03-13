@@ -4,16 +4,16 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("a_pour_photo")]
+[Table("t_j_apourphoto_appto")]
 public partial class A_Pour_Photo
 {
     [Key]
-    [Column("idapourphoto")]
+    [Column("appto_id")]
     public int Idapourphoto { get; set; }
     
-    [Column("idphoto")]
+    [Column("pto_id")]
     public int IdPhoto { get; set; }
-    [Column("idproduit")]
+    [Column("pdt_id")]
     public int IdProduit { get; set; }
     
     

@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("est_en_favoris")]
+    [Table("t_j_estenfavoris_eefav")]
     public partial class Est_En_Favoris
     {
         //Colonnes
         [Key]
-        [Column("idestenfavoris")]
+        [Column("eefav_id")]
         public int IdEstEnFavoris { get; set; }
-        [Column("idclient")]
+        [Column("clt_id")]
         public int IdClient { get; set; }
-        [Column("idproduit")]
+        [Column("pdt_id")]
         public int IdProduit { get; set; }
 
         //relation avec la table client

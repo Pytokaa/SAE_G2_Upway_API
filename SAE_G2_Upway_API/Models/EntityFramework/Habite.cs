@@ -3,15 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("habite")]
+[Table("t_j_habite_hab")]
 public partial class Habite
 {
     [Key]
-    [Column("idhabite")]
+    [Column("hab_id")]
     public int Idhabite { get; set; }
-    [Column("idclient")]
+    [Column("clt_id")]
     public int? Idclient { get; set; }
-    [Column("idadresse")]
+    [Column("adr_id")]
     public int Idadresse { get; set; }
     
     //relation avec la table client

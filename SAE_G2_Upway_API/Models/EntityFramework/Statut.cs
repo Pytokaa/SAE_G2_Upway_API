@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("statut")]
+[Table("t_e_statut_stu")]
 public partial class Statut
 {
     //Colonnes
     [Key]
-    [Column("idstatut")]
+    [Column("stu_id")]
     public int IdStatut { get; set; }
     
-    [Column("nomstatut")]
+    [Column("stu_nom")]
     [StringLength(30)]
     public string NomStatut { get; set; }
 

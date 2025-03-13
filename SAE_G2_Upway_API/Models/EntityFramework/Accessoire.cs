@@ -6,19 +6,19 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("accessoire")]
+[Table("t_e_accessoire_acce")]
 public partial class Accessoire
 {
     [Key]
-    [Column("idaccessoire")] 
+    [Column("acce_id")] 
     public int IdAccessoire { get; set; }
     
-    [Column("idproduit")]
+    [Column("pdt_id")]
     public int IdProduit { get; set; }
-    [Column("idcata")]
+    [Column("cata_id")]
     public int IdCatA { get; set; }
     
-    [Column("dateaccessoire")]
+    [Column("acce_date")]
     public DateTime DateAccessoire { get; set; }
 
     

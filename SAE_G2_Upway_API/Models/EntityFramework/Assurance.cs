@@ -4,18 +4,18 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("assurance")]
+[Table("t_e_assurance_assur")]
 public partial class Assurance
 {
     [Key]
-    [Column("idassurance")]
+    [Column("assur_id")]
     public int IdAssurance { get; set; }
     
-    [Column("nomassurance")]
+    [Column("assur_nom")]
     [StringLength(50)]
     public string NomAssurance { get; set; }
     
-    [Column("prixassurance",TypeName = "decimal(5,2)")]
+    [Column("assur_prix",TypeName = "decimal(5,2)")]
     public decimal PrixAssurance { get; set; }
     
     //relation avec la table propose_assur

@@ -2,15 +2,15 @@
 using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("possede")]
+    [Table("t_j_possede_poss")]
     public partial class Possede
     {
         [Key]
-        [Column("idpossede")]
+        [Column("poss_id")]
         public int IdPossede { get; set; }
-        [Column("idsouscat")]
+        [Column("scat_id")]
         public int IdSousCat { get; set; }
-        [Column("idvelo")]
+        [Column("vel_id")]
         public int IdVelo { get; set; }
 
         //Relation Sous categorie

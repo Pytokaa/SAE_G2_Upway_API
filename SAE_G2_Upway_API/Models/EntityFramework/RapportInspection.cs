@@ -6,29 +6,29 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("rapportinspection")]
+[Table("t_e_rapportinspection_rapinsp")]
 public partial class RapportInspection
 {
     [Key]
-    [Column("idrapport")] 
+    [Column("rapinsp_id")] 
     public int IdRapport { get; set; }
 
-    [Column("idvelo")]
+    [Column("vel_id")]
     public int IdVelo { get; set; }
 
-    [Column("date")]
+    [Column("rapinsp_date")]
     public DateTime Date { get; set; }
     
-    [Column("centre")]
+    [Column("rapinsp_centre")]
     [StringLength(250)]
     public string Centre { get; set; }
     
     
-    [Column("historique")]
+    [Column("rapinsp_historique")]
     [StringLength(500)]
     public string Historique { get; set; }
     
-    [Column("commentaire")]
+    [Column("rapinsp_commentaire")]
     [StringLength(500)]
     public string Commentaire { get; set; }
 

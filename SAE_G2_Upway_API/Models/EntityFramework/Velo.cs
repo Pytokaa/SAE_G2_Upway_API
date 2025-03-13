@@ -6,47 +6,47 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("velo")]
+[Table("t_e_velo_vel")]
 public partial class Velo
 {
     [Key]
-    [Column("idvelo")]
+    [Column("vel_id")]
     public int IdVelo { get; set; }
 
-    [Column("idproduit")]
+    [Column("vel_produit")]
     public int IdProduit { get; set; }
-    [Column("idtaillemin")]
+    [Column("tle_idtaillemin")]
     public int IdTailleMin { get; set; }
-    [Column("idtaillemax")]
+    [Column("tle_idtaillemax")]
     public int IdTailleMax { get; set; }
-    [Column("idmodele")]
+    [Column("mdl_id")]
     public int IdModele { get; set; }
-    [Column("idcat")]
+    [Column("catv_id")]
     public int IdCat { get; set; }
-    [Column("idetat")]
+    [Column("eta_id")]
     public int IdEtat { get; set; }
 
-    [Column("nbkms")]
+    [Column("vel_nbkms")]
     public double Nbkms { get; set; }
         
-    [Column("prixneuf")]
+    [Column("vel_prixneuf")]
     public double Prixneuf { get; set; }
         
-    [Column("poids")]
+    [Column("vel_poids")]
     public double Poids { get; set; }
         
-    [Column("typecadre")]
+    [Column("vel_typecadre")]
     [StringLength(50)]
     public string Typecadre { get; set; }
 
-    [Column("annee")]
+    [Column("vel_annee")]
     public DateTime Annee { get; set; }
 
-    [Column("bestseller")]
+    [Column("vel_bestseller")]
     public bool BestSeller { get; set; }
-    [Column("nbvente")]
+    [Column("vel_nbvente")]
     public int NbVente { get; set; }
-    [Column("qualitevelo")]
+    [Column("vel_qualitevelo")]
     [StringLength(250)]
     public string QualiteVelo { get; set; }
 

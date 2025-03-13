@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("codereduc")]
+[Table("t_e_codereduc_codred")]
 public partial class CodeReduc
 {
     [Key]
-    [Column("idcode")]
+    [Column("codred_id")]
     public int Idcode { get; set; }
     
-    [Column("libellecode")]
+    [Column("codred_libelle")]
     [StringLength(30)]
     public string Libellecode { get; set; }
     

@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("fonction")]
+[Table("t_e_fonction_fn")]
 public partial class Fonction
 {
     [Key]
-    [Column("idfonction")]
+    [Column("fn_id")]
     public int Id { get; set; }
     
-    [Column("nomfonction")]
+    [Column("fn_nom")]
     [StringLength(80)]
     public string NomFonction { get; set; }
     

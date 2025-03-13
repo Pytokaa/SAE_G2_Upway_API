@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("etat")]
+[Table("t_e_etat_eta")]
 public partial class Etat
 {
     [Key]
-    [Column("idetat")]
+    [Column("eta_id")]
     public int IdEtat { get; set; }
     
-    [Column("nometat")]
+    [Column("eta_nom")]
     public string NomEtat { get; set; }
     
     //relation avec la table Velo

@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("peut_etre_teste")]
+    [Table("t_j_peutetreteste_petest")]
     public partial class Peut_Etre_Teste
     {
         [Key]
-        [Column("idtest")]
+        [Column("petest_id")]
         public int IdTest { get; set; }
-        [Column("idvelo")]
+        [Column("vel_id")]
         public int IdVelo { get; set; }
-        [Column("idboutique")]
+        [Column("btq_id")]
         public int IdBoutique { get; set; }
 
         //relation avec la table boutique

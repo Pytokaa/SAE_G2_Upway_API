@@ -3,17 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("est_caracterise")]
+[Table("t_e_estcaracterise_estcaract")]
 public partial class Est_Caracterise
 {
     [Key]
-    [Column("idestcaracterise")]
+    [Column("estcaract_id")]
     public int IdestCaracterise { get; set; }
-    [Column("idcaract")]
+    [Column("caract_id")]
     public int IdCaract { get; set; }
-    [Column("idvelo")]
+    [Column("vel_id")]
     public int IdVelo { get; set; }
-    [Column("valeurcaracteristique")]
+    [Column("estcaract_valeurcaracteristique")]
     [StringLength(200)]
     public string ValeurCaracteristique { get; set; }
     

@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("soustype")]
+[Table("t_e_soustype_styp")]
 public partial class SousType
 {
     //Colonnes
     [Key]
-    [Column("idsoustype")]
+    [Column("styp_id")]
     public int IdSousType { get; set; }
     
-    [Column("libellesoustype")]
+    [Column("styp_libelle")]
     [StringLength(30)]
     public string LibelleSousType { get; set; }
 

@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("est_de_modelem")]
+    [Table("t_j_estdemodelem_edmdlm")]
     public partial class Est_De_ModeleM
     {
         //Les colonnes
         [Key]
-        [Column("idestdemodelem")]
+        [Column("edmdlm_id")]
         public int EstDeModeleM { get; set; }
-        [Column("idmoteur")]
+        [Column("mtr_id")]
         public int IdMoteur { get; set; }
-        [Column("idmodele")]
+        [Column("mdl_id")]
         public int IdModele { get; set; }
 
         //relation avec la table modele

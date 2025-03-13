@@ -8,32 +8,32 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
-[Table("produit")]
+[Table("t_e_produit_pdt")]
 public partial class Produit
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [Column("idproduit")]
+    [Column("pdt_id")]
     
     public int Idproduit { get; set; }
 
-    [Column("idphoto")]
+    [Column("pto_id")]
     public int IdPhoto { get; set; }
 
-    [Column("idmarque")]
+    [Column("mrq_id")]
     public int IdMarque { get; set; }
 
-    [Column("nomproduit")]
+    [Column("pdt_nom")]
     [StringLength(100)]
     public string NomProduit { get; set; }
 
-    [Column("prixproduit")]
+    [Column("pdt_prix")]
     public double PrixProduit { get; set; }
 
-    [Column("stockproduit")]
+    [Column("pdt_stock")]
     public int StockProduit { get; set; }
 
-    [Column("descriptionproduit")]
+    [Column("pdt_description")]
     [StringLength(200)]
     public string DescriptionProduit { get; set; }
 

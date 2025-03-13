@@ -3,15 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("type")]
+[Table("t_e_type_typ")]
 public partial class Type
 {
     //Colonne
     [Key]
-    [Column("idtype")]
+    [Column("typ_id")]
     public int Idtype { get; set; }
     
-    [Column("nomtype")]
+    [Column("typ_nom")]
     [StringLength(50)]
     public string NomType { get; set; }
     

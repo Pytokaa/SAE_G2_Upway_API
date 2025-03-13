@@ -6,15 +6,15 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("contient")]
+[Table("t_j_contient_ctn")]
 public partial class Contient
 {
     [Key]
-    [Column("idcontient")]
+    [Column("ctn_id")]
     public int IdContient { get; set; }
-    [Column("idsoustype")]
+    [Column("styp_id")]
     public int IdSoustype { get; set; }
-    [Column("idtype")]
+    [Column("typ_id")]
     public int IdType { get; set; }
     
     //relation avec la table SousType

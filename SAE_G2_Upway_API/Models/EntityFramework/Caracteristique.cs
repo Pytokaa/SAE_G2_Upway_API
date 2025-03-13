@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("caracteristique")]
+[Table("t_e_caracteristique_caract")]
 public partial class Caracteristique
 {
     [Key]
-    [Column("idcaract")]
+    [Column("caract_id")]
     public int IdCaract { get; set; }
-    [Column("idsouscat")]
+    [Column("scat_id")]
     public int IdSousCat  { get; set; }
     
     
-    [Column("typecaract")]
+    [Column("caract_type")]
     [StringLength(100)]
     public string Typecaract { get; set; }
     

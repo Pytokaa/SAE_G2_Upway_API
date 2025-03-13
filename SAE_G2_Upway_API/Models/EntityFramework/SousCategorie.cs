@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("souscategorie")]
+[Table("t_e_souscategorie_scat")]
 public partial class SousCategorie
 {
     [Key]
-    [Column("idsouscat")]
+    [Column("scat_id")]
     public int IdSousCat { get; set; }
     
-    [Column("typesouscat")]
+    [Column("scat_type")]
     [StringLength(50)]
     public string TypeSousCat { get; set; }
     

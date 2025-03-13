@@ -5,25 +5,25 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("surtype")]
+[Table("t_e_surtype_srtyp")]
 public partial class SurType
 {
     //Colonne
     [Key]
-    [Column("idsurtype")]
+    [Column("srtyp_id")]
     public int IdSurType { get; set; }
 
-    [Column("idsoustype")]
+    [Column("styp_id")]
     public int IdSousType { get; set; }
 
-    [Column("libellesurtype")]
+    [Column("srtyp_libelle")]
     [StringLength(250)]
     public string LibelleSurType { get; set; }
     
-    [Column("repare")]
+    [Column("srtyp_repare")]
     public bool Repare { get; set; }
     
-    [Column("checke")]
+    [Column("srtyp_checke")]
     public bool Checke { get; set; }
 
     //relation avec la table SousType

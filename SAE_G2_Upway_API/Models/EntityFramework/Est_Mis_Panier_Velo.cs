@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Connections.Features;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("est_mis_panier_velo")]
+[Table("t_j_estmispaniervelo_empanvel")]
 public partial class Est_Mis_Panier_Velo
 {
     [Key]
-    [Column("idpaniervelo")]
+    [Column("empanvel_id")]
     public int IdPanierVelo { get; set; }
-    [Column("idvelo")]
+    [Column("vel_id")]
     public int IdVelo { get; set; }
-    [Column("idcommande")]
+    [Column("comm_id")]
     public int IdCommande { get; set; }
     
     //relation avec la table velo

@@ -4,21 +4,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("moteur")]
+[Table("t_e_moteur_mtr")]
 public partial class Moteur
 {
     [Key]
-    [Column("idmoteur")]
+    [Column("mtr_id")]
     public int IdMoteur { get; set; }
     
-    [Column("positionmoteur")]
+    [Column("mtr_position")]
     [StringLength(20)]
     public string Positionmoteur { get; set; }
     
-    [Column("couplemoteur")]
+    [Column("mtr_couple")]
     public int CoupleMoteur { get; set; }
 
-    [Column("vitessemax")] 
+    [Column("mtr_vitessemax")] 
     public int VitesseMax { get; set; }
     
     //relation avec la table est_compose

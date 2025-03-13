@@ -2,16 +2,16 @@
 using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
-    [Table("est_compose")]
+    [Table("t_j_estcompose_estcomp")]
     public partial class Est_Compose
     {
         // Colonnes
         [Key]
-        [Column("idcompose")]
+        [Column("estcomp_id")]
         public int IdCompose { get; set; }
-        [Column("idvelo")]
+        [Column("vel_id")]
         public int IdVelo { get; set; }
-        [Column("idmoteur")]
+        [Column("mtr_id")]
         public int IdMoteur { get; set; }
 
         //relation avec la table velo

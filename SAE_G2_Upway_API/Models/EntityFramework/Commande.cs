@@ -3,35 +3,35 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("commande")]
+[Table("t_e_commande_comm")]
 public partial class Commande
 {
     [Key]
-    [Column("idcommande")]
+    [Column("comm_id")]
     public int IdCommande { get; set; }
     
-    [Column("datecommande")]
+    [Column("comm_date")]
     public DateTime DateCommande { get; set; }
     
-    [Column("idcode")]
+    [Column("codred_id")]
     public int? IdCode { get; set; }
     
-    [Column("idstatut")]
+    [Column("stu_id")]
     public int IdStatut { get; set; }
     
-    [Column("idmodeexp")]
+    [Column("modexpe_id")]
     public int IdModeExp { get; set; }
     
-    [Column("idadresse")]
+    [Column("adr_id")]
     public int IdAdresse { get; set; }
-    [Column("idboutique")]
+    [Column("btq_id")]
     public int? IdBoutique { get; set; }
-    [Column("idadressefactu")]
+    [Column("adr_idfactu")]
     public int? IdAdresseFactu { get; set; }
-    [Column("idmodepayement")]
+    [Column("mpay_id")]
     public int IdModePayement { get; set; }
     
-    [Column("idclient")]
+    [Column("clt_id")]
     public int IdClient { get; set; }
     
     //relation avec la table codereduc

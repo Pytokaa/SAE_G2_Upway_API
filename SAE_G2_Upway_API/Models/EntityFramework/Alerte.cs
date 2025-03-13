@@ -4,23 +4,23 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("alerte")]
+[Table("t_e_alerte_alt")]
 public partial class Alerte
 {
     [Key]
-    [Column("idalerte")]
+    [Column("alt_id")]
     public int IdAlerte { get; set; }
     
-    [Column("idclient")]
+    [Column("clt_id")]
     public int IdClient { get; set; }
     
-    [Column("idtaille")]
+    [Column("tle_id")]
     public int IdTaille { get; set; }
     
-    [Column("budgetmax")]
+    [Column("alt_budgetmax")]
     public int Budgetmax { get; set; }
     
-    [Column("email")]
+    [Column("alt_email")]
     [StringLength(50)]
     public string Email { get; set; }
     

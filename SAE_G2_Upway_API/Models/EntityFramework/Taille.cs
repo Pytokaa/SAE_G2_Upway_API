@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table("taille")]
+[Table("t_e_taille_tle")]
 public partial class Taille
 {
     [Key]
-    [Column("idtaille")]
+    [Column("tle_id")]
     public int Idtaille { get; set; }
     
-    [Column("taillecm")]
+    [Column("tle_taillecm")]
     public int TailleCm { get; set; }
     
     //relation avec la table Alerte

@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("categorievelo")]
+[Table("t_e_categorievelo_catv")]
 public partial class CategorieVelo
 {
     [Key]
-    [Column("idcat")]
+    [Column("catv_id")]
     public int IdCat { get; set; }
     
-    [Column("nomcat")]
+    [Column("catv_nom")]
     [StringLength(50)]
     public virtual string NomCategorie { get; set; }
     

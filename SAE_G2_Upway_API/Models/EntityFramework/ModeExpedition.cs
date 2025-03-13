@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("modeexpedition")]
+[Table("t_e_modeexpedition_modexpe")]
 public partial class ModeExpedition
 {
     [Key]
-    [Column("idmodeexp")]
+    [Column("modexpe_id")]
     public int IdModeExp { get; set; }
     
-    [Column("libellemodeexp")]
+    [Column("modexpe_libelle")]
     [StringLength(30)]
     public string LibellemodeExp { get; set; }  
     

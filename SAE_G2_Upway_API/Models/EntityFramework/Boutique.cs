@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("boutique")]
+[Table("t_e_boutique_btq")]
 public partial class Boutique
 {
     [Key]
-    [Column("idboutique")]
+    [Column("btq_id")]
     public int IdBoutique { get; set; }
     
-    [Column("nomboutique")]
+    [Column("btq_nom")]
     [StringLength(50)]
     public string NomBoutique { get; set; }
     
-    [Column("idadresse")]
+    [Column("adr_id")]
     public int IdAdresse { get; set; }
     
     

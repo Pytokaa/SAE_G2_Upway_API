@@ -2,15 +2,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("propose_assur")]
+[Table("t_j_proposeassur_propassur")]
 public partial class Propose_Assur
 {
     [Key]
-    [Column("idproposeassur")]
+    [Column("propassur_id")]
     public int IdProposeAssur { get; set; }
-    [Column("idassurance")]
+    [Column("assur_id")]
     public int IdAssurance { get; set; }
-    [Column("idcommande")]
+    [Column("comm_id")]
     public int IdCommande { get; set; }
 
     //relation avec la table commande

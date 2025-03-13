@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("pays")]
+[Table("t_e_pays_pays")]
 public partial class Pays
 {
     [Key]
-    [Column("idpays")]
+    [Column("pays_id")]
     public int IdPays { get; set; }
     
-    [Column("nompays")]
+    [Column("pays_nom")]
     [StringLength(50)]
     public string NomPays { get; set; }
     

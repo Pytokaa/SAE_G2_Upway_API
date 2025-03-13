@@ -7,24 +7,24 @@ using System.ComponentModel.DataAnnotations;
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 
-[Table(("adresse"))]
+[Table(("t_e_adresse_adr"))]
 public partial class Adresse
 {
     [Key]
-    [Column("idadresse")]
+    [Column("adr_id")]
     public int IdAdresse { get; set; }
     
-    [Column("idpays")]
+    [Column("pays_id")]
     public int PaysId { get; set; }
     
-    [Column("rue")]
+    [Column("adr_rue")]
     [StringLength(250)]
     public string Rue { get; set; }
     
-    [Column("cp")]
+    [Column("adr_cp")]
     public int Cp { get; set; }
     
-    [Column("ville")]
+    [Column("adr_ville")]
     [StringLength(50)]
     public string Ville { get; set; }
     

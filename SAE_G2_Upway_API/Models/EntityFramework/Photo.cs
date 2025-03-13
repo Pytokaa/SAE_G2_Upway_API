@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
-[Table("photo")]
+[Table("t_e_photo_pto")]
 public partial class Photo
 {
     [Key]
-    [Column("idphoto")]
+    [Column("pto_id")]
     public int IdPhoto { get; set; }
     
-    [Column("url")]
+    [Column("pto_url")]
     [StringLength(300)]
     public string Url { get; set; }
     
-    [Column("description")]
+    [Column("pto_description")]
     [StringLength(200)]
     public string Description { get; set; }
 
