@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
+using SAE_G2_Upway_API.Models.Repository;
 
 namespace SAE_G2_Upway_API.Controllers
 {
@@ -13,26 +14,42 @@ namespace SAE_G2_Upway_API.Controllers
     [ApiController]
     public class VelosController : ControllerBase
     {
-        private readonly UpwayDBContext _context;
+        private readonly IDataRepository<Velo>  dataRepository;
 
-        public VelosController(UpwayDBContext context)
+        public VelosController(IDataRepository<Velo> dataRepo)
         {
-            _context = context;
+            dataRepository = dataRepo;
         }
 
         // GET: api/Velos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Velo>>> GetVelos()
         {
-            return await _context.Velos.ToListAsync();
+            return dataRepository.GetAll();
         }
 
         // GET: api/Velos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Velo>> GetVelo(int id)
+        public async Task<ActionResult<Velo>> GetVeloById(int id)
         {
-            var velo = await _context.Velos.FindAsync(id);
+            var velo = dataRepository.GetByIdAsync(id);
 
+            if (velo == null)
+            {
+                return NotFound();
+            }
+
+            return velo.Result;
+        }
+
+        
+        
+        
+        [HttpGet("{nom}")]
+        [ActionName("GetVeloByEmail")]
+        public async Task<ActionResult<Velo>> GetVeloByName(string nom)
+        {
+            var velo = await dataRepository.GetByStringAsync(nom);
             if (velo == null)
             {
                 return NotFound();
@@ -40,7 +57,9 @@ namespace SAE_G2_Upway_API.Controllers
 
             return velo;
         }
-
+        
+        
+        
         // PUT: api/Velos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -51,23 +70,17 @@ namespace SAE_G2_Upway_API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(velo).State = EntityState.Modified;
+           var veloToUpdate = dataRepository.GetByIdAsync(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!VeloExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           if (veloToUpdate == null)
+           {
+               return NotFound();
+           }
+           else
+           {
+               dataRepository.UpdateAsync(veloToUpdate.Result.Value, velo);
+               return NoContent();
+           }
 
             return NoContent();
         }
@@ -77,31 +90,32 @@ namespace SAE_G2_Upway_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Velo>> PostVelo(Velo velo)
         {
-            _context.Velos.Add(velo);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetVelo", new { id = velo.IdVelo }, velo);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(velo);
+            return CreatedAtAction("GetVeloById", new { id = velo.IdVelo }, velo);
         }
 
         // DELETE: api/Velos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVelo(int id)
         {
-            var velo = await _context.Velos.FindAsync(id);
+            var velo = dataRepository.GetByIdAsync(id);
             if (velo == null)
             {
                 return NotFound();
             }
 
-            _context.Velos.Remove(velo);
-            await _context.SaveChangesAsync();
-
+            await dataRepository.DeleteAsync(velo.Result.Value);
             return NoContent();
         }
-
+        /*
         private bool VeloExists(int id)
         {
             return _context.Velos.Any(e => e.IdVelo == id);
         }
+        */
     }
 }
