@@ -35,31 +35,20 @@ public class VeloManager : IDataRepository<Velo>
     }
     
 
-    public async Task<ActionResult<Velo>> GetByIdAsync(int id)
-    {
-        var velo = await upwayDbContext.Velos
-            .Include(a => a.Produit)
-            .Include(a => a.TailleMin)
-            .Include(a => a.TailleMax)
-            .Include(a => a.LeModele)
-            .Include(a => a.LaCategorie)
-            .Include(a => a.Etat)
-            .Include(a => a.RapportInspection)
-            .Include(a => a.LesMoteurs)
-            .Include(a => a.LesSousCategories)
-            .Include(a => a.Caracteristiques)
-            .Include(a => a.LesBoutiques)
-            .Include(a => a.ACommandes)
-            .FirstOrDefaultAsync(u => u.IdVelo == id);
-
-        return velo;
-    }
     public async Task<ActionResult<IEnumerable<Velo>>> GetAllAsync()
     {
         return await GetVeloWithInclude().ToListAsync();
         
         
     }
+    public async Task<ActionResult<Velo>> GetByIdAsync(int id)
+    {
+        var velo = await GetVeloWithInclude()
+            .FirstOrDefaultAsync(u => u.IdVelo == id);
+
+        return velo;
+    }
+    
 
     public async Task<ActionResult<Velo>> GetByStringAsync(string nomvelo)
     {
@@ -109,12 +98,12 @@ public class VeloManager : IDataRepository<Velo>
         entityToUpdate.LesBoutiques = entity.LesBoutiques;
         entityToUpdate.ACommandes = entity.ACommandes;
 
-        upwayDbContext.SaveChangesAsync();
+        await upwayDbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Velo velo)
     {
         upwayDbContext.Velos.Remove(velo);
-        upwayDbContext.SaveChangesAsync();
+        await upwayDbContext.SaveChangesAsync();
     }
 }

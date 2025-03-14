@@ -29,7 +29,7 @@ namespace SAE_G2_Upway_API.Controllers
         }
 
         // GET: api/Velos/5
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public async Task<ActionResult<Velo>> GetVeloById(int id)
         {
             var velo = dataRepository.GetByIdAsync(id);
@@ -45,7 +45,7 @@ namespace SAE_G2_Upway_API.Controllers
         
         
         
-        [HttpGet("{nom}")]
+        [HttpGet("name/{nom}")]
         [ActionName("GetVeloByName")]
         public async Task<ActionResult<Velo>> GetVeloByName(string nom)
         {
