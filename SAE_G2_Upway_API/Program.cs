@@ -23,6 +23,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.AddScoped<IDataRepository<Velo>, VeloManager>();
 builder.Services.AddScoped<IDataRepository<Accessoire>, AccessoireManager>();
+builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
 
 
 var app = builder.Build();

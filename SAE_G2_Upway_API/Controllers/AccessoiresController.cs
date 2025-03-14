@@ -31,7 +31,7 @@ public class AccessoiresController : ControllerBase
         }
 
         // GET: api/Accessoires/5
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public async Task<ActionResult<Accessoire>> GetAccessoireById(int id)
         {
             var accessoire = dataRepository.GetByIdAsync(id);
@@ -104,13 +104,18 @@ public class AccessoiresController : ControllerBase
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAccessoire(int id)
         {
-            var accessoire = dataRepository.GetByIdAsync(id);
+            var accessoire = await dataRepository.GetByIdAsync(id);
             if (accessoire == null)
             {
                 return NotFound();
             }
 
-            await dataRepository.DeleteAsync(accessoire.Result.Value);
+
+            int idProduit = accessoire.Value.IdProduit;
+            
+            
+            
+            await dataRepository.DeleteAsync(accessoire.Value);
             return NoContent();
         }
         /*
