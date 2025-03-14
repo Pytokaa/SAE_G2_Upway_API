@@ -47,7 +47,7 @@ public class AccessoiresController : ControllerBase
         
         
         
-        [HttpGet("{nom}")]
+        [HttpGet("name/{nom}")]
         [ActionName("GetByAccessoireName")]
         public async Task<ActionResult<Accessoire>> GetAccessoireByName(string nom)
         {
@@ -64,7 +64,7 @@ public class AccessoiresController : ControllerBase
         
         // PUT: api/Velos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("id/{id}")]
         public async Task<IActionResult> PutAccessoire(int id, Accessoire accessoire)
         {
             if (id != accessoire.IdAccessoire)
