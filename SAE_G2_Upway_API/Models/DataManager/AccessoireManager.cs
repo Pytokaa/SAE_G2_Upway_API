@@ -16,9 +16,14 @@ public class AccessoireManager : IDataRepository<Accessoire>
         upwayDbContext = context;
     }
     
-    public ActionResult<IEnumerable<Accessoire>> GetAll()
+    public async Task<ActionResult<IEnumerable<Accessoire>>> GetAllAsync()
     {
-        return upwayDbContext.Accessoires.ToList();
+        return await upwayDbContext.Accessoires
+            .Include(a => a.Produit)
+            .Include(a => a.CategorieAccessoire)
+            .Include(a => a.LesCommandes)
+            .Include(a => a.LesCommandesAccessoire)
+            .ToListAsync();
     }
 
     public async Task<ActionResult<Accessoire>> GetByIdAsync(int id)

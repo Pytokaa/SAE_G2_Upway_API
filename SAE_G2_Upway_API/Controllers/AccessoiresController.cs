@@ -27,7 +27,7 @@ public class AccessoiresController : ControllerBase
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Accessoire>>> GetAccessoires()
         {
-            return dataRepository.GetAll();
+            return await dataRepository.GetAllAsync();
         }
 
         // GET: api/Accessoires/5

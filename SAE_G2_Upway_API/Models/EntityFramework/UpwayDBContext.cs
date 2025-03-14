@@ -77,6 +77,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                 entity.HasOne(d => d.Produit)
                     .WithOne(p => p.Accessoire)
                     .HasForeignKey<Accessoire>(d => d.IdProduit)
+                    .IsRequired()
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Accessoire_Produit");
 

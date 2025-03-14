@@ -25,7 +25,7 @@ namespace SAE_G2_Upway_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Velo>>> GetVelos()
         {
-            return dataRepository.GetAll();
+            return await dataRepository.GetAllAsync();
         }
 
         // GET: api/Velos/5
