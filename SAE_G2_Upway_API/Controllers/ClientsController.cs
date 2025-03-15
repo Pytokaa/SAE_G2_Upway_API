@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 namespace SAE_G2_Upway_API.Controllers;
-
-
+[Route("api/[controller]")]
+[ApiController]
 public class ClientsController : ControllerBase
 {
     private readonly IDataRepository<Client> dataRepository;
