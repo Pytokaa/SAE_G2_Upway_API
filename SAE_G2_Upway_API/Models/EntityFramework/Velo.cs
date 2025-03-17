@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 
 // il faut ajouter encore les liens vers les autres tables lorsqu'elle seront créées
@@ -84,21 +85,26 @@ public partial class Velo
         
     //relation est compose
     [InverseProperty(nameof(Est_Compose.LeVelo))]
+    
     public virtual ICollection<Est_Compose> LesMoteurs { get; set; } = new List<Est_Compose>();
 
     //relation possede
     [InverseProperty(nameof(Possede.LeVelo))]
+    
     public virtual ICollection<Possede> LesSousCategories { get; set; } = new List<Possede>();
     
     //relation avec la table est_caracterise
     [InverseProperty(nameof(Est_Caracterise.CaracteriseVelo))]
+    
     public virtual ICollection<Est_Caracterise> Caracteristiques { get; set; } = new List<Est_Caracterise>();
 
     [InverseProperty(nameof(Peut_Etre_Teste.LeVelo))]
+    
     public virtual ICollection<Peut_Etre_Teste> LesBoutiques { get; set; } = new List<Peut_Etre_Teste>();
     
     //relation avec la table est_mis_panier_velo
     [InverseProperty(nameof(Est_Mis_Panier_Velo.PanierVelo))]
+    
     public virtual ICollection<Est_Mis_Panier_Velo> ACommandes { get; set; } =  new List<Est_Mis_Panier_Velo>();
 
 
