@@ -1,3 +1,4 @@
+using System.Linq;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -37,6 +38,9 @@ public class AccessoiresControllerTests
     [TestMethod()]
     public void GetAccessoiresTest()
     {
-        
+        var accessoiresBase = dbContext.Accessoires.ToList();
+        var accessoiresGetAll = accessoiresController.GetAccessoires();
+
+        CollectionAssert.AreEquivalent(accessoiresBase, accessoiresGetAll.Result.Value.ToList());
     }
 }
