@@ -10,7 +10,7 @@ using SAE_G2_Upway_API.Models.Repository;
 namespace SAE_G2_Upway_API.Tests.Controllers;
 
 [TestClass]
-[TestSubject(typeof(AccessoiresController))]
+//[TestSubject(typeof(AccessoiresController))]
 public class AccessoiresControllerTests
 {
     private UpwayDBContext dbContext;
