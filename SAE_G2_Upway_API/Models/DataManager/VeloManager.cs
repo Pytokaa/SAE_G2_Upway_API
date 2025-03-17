@@ -21,6 +21,7 @@ public class VeloManager : IDataRepository<Velo>
         return upwayDbContext.Velos
             .AsNoTracking()
             .Include(a => a.Produit)
+            .ThenInclude(p=>p.Marque)
             .Include(a => a.TailleMin)
             .Include(a => a.TailleMax)
             .Include(a => a.LeModele)
