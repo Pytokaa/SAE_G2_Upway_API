@@ -20,6 +20,7 @@ public class AccessoireManager : IDataRepository<Accessoire>
     {
         return upwayDbContext.Accessoires
             .Include(a => a.Produit)
+            .ThenInclude(p=>p.Marque)
             .Include(a => a.CategorieAccessoire)
             .Include(a => a.LesCommandes)
             .Include(a => a.LesCommandesAccessoire);
