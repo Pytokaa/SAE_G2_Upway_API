@@ -10,7 +10,7 @@ namespace SAE_G2_Upway_API.Tests.Controllers;
 
 [TestClass]
 [TestSubject(typeof(AccessoiresController))]
-public class AccessoiresControllerTest
+public class AccessoiresControllerTests
 {
     private UpwayDBContext dbContext;
     private AccessoiresController accessoiresController;
@@ -25,12 +25,18 @@ public class AccessoiresControllerTest
         
         accessoiresController = new AccessoiresController(dataRepository);
     }
-    
+
     [TestMethod()]
-    public void AccessoiresController()
+    public void AccessoiresControllerTest()
     {
         var accessoireController = new AccessoiresController(dataRepository);
         Assert.IsNotNull(accessoireController);
         Assert.IsInstanceOfType(accessoireController, typeof(AccessoiresController));
+    }
+
+    [TestMethod()]
+    public void GetAccessoiresTest()
+    {
+        
     }
 }
