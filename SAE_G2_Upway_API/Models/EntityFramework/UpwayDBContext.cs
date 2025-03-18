@@ -60,8 +60,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseLoggerFactory(MyLoggerFactory)
-                .EnableSensitiveDataLogging()
-                .UseNpgsql("Server=localhost;port=5432;Database=SAE_G2_Upway; uid=postgres; password=postgres;");
+                .EnableSensitiveDataLogging();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -77,6 +76,7 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                 entity.HasOne(d => d.Produit)
                     .WithOne(p => p.Accessoire)
                     .HasForeignKey<Accessoire>(d => d.IdProduit)
+                    .IsRequired()
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Accessoire_Produit");
 
@@ -173,30 +173,20 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Client_Est_En_Favoris");
 
-                // Configuration des colonnes
-                //entity.Property(e => e.Mailclient)
-                //    .IsRequired()
-                //    .HasMaxLength(50);
+                entity.Property(e => e.Mailclient)
+                    .IsRequired();
 
-                //entity.Property(e => e.Nomclient)
-                //    .HasColumnName("nomclient")
-                //    .HasMaxLength(30)
-                //    .IsRequired();
+                entity.Property(e => e.Nomclient)
+                    .IsRequired();
 
-                //entity.Property(e => e.Prenomclient)
-                //    .HasColumnName("prenomclient")
-                //    .HasMaxLength(30)
-                //    .IsRequired();
+                entity.Property(e => e.Prenomclient)
+                    .IsRequired();
 
-                //entity.Property(e => e.Telephone)
-                //    .HasColumnName("telephone")
-                //    .HasMaxLength(12)
-                //    .IsRequired();
+                entity.Property(e => e.Telephone)
+                    .IsRequired();
 
-                //entity.Property(e => e.Password)
-                //    .HasColumnName("password")
-                //    .HasMaxLength(100)
-                //    .IsRequired();
+                entity.Property(e => e.Password)
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Commande>(entity =>

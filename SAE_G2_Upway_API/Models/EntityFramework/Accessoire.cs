@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 
 // il faut ajouter encore les liens vers les autres tables lorsqu'elle seront créées
@@ -25,6 +26,9 @@ public partial class Accessoire
     //relation avec la table Produit
     
     [ForeignKey(nameof(IdProduit))]
+    
+    [InverseProperty(nameof(Produit.Accessoire))]
+    
     public Produit Produit { get; set; } = null!;
     
     

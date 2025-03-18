@@ -16,19 +16,47 @@ public class VeloManager : IDataRepository<Velo>
         upwayDbContext = context;
     }
 
-    public ActionResult<IEnumerable<Velo>> GetAll()
+    private IQueryable<Velo> GetVeloWithInclude()
     {
-        return upwayDbContext.Velos.ToList();
+        return upwayDbContext.Velos
+            .AsNoTracking()
+            .Include(a => a.Produit)
+            .ThenInclude(p=>p.Marque)
+            .Include(a => a.TailleMin)
+            .Include(a => a.TailleMax)
+            .Include(a => a.LeModele)
+            .Include(a => a.LaCategorie)
+            .Include(a => a.Etat)
+            .Include(a => a.RapportInspection)
+            .Include(a => a.LesMoteurs)
+            .Include(a => a.LesSousCategories)
+            .Include(a => a.Caracteristiques)
+            .Include(a => a.LesBoutiques)
+            .Include(a => a.ACommandes);
     }
+    
 
+    public async Task<ActionResult<IEnumerable<Velo>>> GetAllAsync()
+    {
+        return await GetVeloWithInclude().ToListAsync();
+        
+        
+    }
     public async Task<ActionResult<Velo>> GetByIdAsync(int id)
     {
-        return upwayDbContext.Velos.FirstOrDefault(u => u.IdVelo == id);
+        var velo = await GetVeloWithInclude()
+            .FirstOrDefaultAsync(u => u.IdVelo == id);
+
+        return velo;
     }
+    
 
     public async Task<ActionResult<Velo>> GetByStringAsync(string nomvelo)
     {
-        return await upwayDbContext.Velos.FirstOrDefaultAsync(u => u.Produit.NomProduit == nomvelo);
+        var velo = await GetVeloWithInclude()
+            .FirstOrDefaultAsync(u => u.Produit.NomProduit == nomvelo);
+
+        return velo;
     }
     
     public async Task AddAsync(Velo entity)
@@ -71,12 +99,12 @@ public class VeloManager : IDataRepository<Velo>
         entityToUpdate.LesBoutiques = entity.LesBoutiques;
         entityToUpdate.ACommandes = entity.ACommandes;
 
-        upwayDbContext.SaveChangesAsync();
+        await upwayDbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Velo velo)
     {
         upwayDbContext.Velos.Remove(velo);
-        upwayDbContext.SaveChangesAsync();
+        await upwayDbContext.SaveChangesAsync();
     }
 }

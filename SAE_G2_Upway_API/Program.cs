@@ -15,9 +15,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+});
+
 builder.Services.AddScoped<IDataRepository<Velo>, VeloManager>();
 builder.Services.AddScoped<IDataRepository<Accessoire>, AccessoireManager>();
-
+builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
+builder.Services.AddScoped<IDataRepository<Produit>, ProduitManager>();
 
 var app = builder.Build();
 

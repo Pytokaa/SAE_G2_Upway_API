@@ -3,8 +3,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
+using System.Text.Json.Serialization;
 
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
@@ -51,6 +50,8 @@ public partial class Produit
     [InverseProperty(nameof(Accessoire.Produit))]
     public virtual Accessoire? Accessoire { get; set; }
 
+    
+    
     [InverseProperty(nameof(Velo.Produit))]
     public virtual Velo? Velo { get; set; }
 

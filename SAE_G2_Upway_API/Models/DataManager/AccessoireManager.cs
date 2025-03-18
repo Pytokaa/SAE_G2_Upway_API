@@ -15,20 +15,35 @@ public class AccessoireManager : IDataRepository<Accessoire>
     {
         upwayDbContext = context;
     }
-    
-    public ActionResult<IEnumerable<Accessoire>> GetAll()
+
+    private IQueryable<Accessoire> GetAccessoireWithInclude()
     {
-        return upwayDbContext.Accessoires.ToList();
+        return upwayDbContext.Accessoires
+            .Include(a => a.Produit)
+            .ThenInclude(p=>p.Marque)
+            .Include(a => a.CategorieAccessoire)
+            .Include(a => a.LesCommandes)
+            .Include(a => a.LesCommandesAccessoire);
+    }
+    
+    public async Task<ActionResult<IEnumerable<Accessoire>>> GetAllAsync()
+    {
+        return await GetAccessoireWithInclude().ToListAsync();
     }
 
     public async Task<ActionResult<Accessoire>> GetByIdAsync(int id)
     {
-        return upwayDbContext.Accessoires.FirstOrDefault(u => u.IdAccessoire == id);
+        var accessoire = await GetAccessoireWithInclude().FirstOrDefaultAsync(u => u.IdAccessoire == id);
+
+        return accessoire;
     }
 
-    public async Task<ActionResult<Accessoire>> GetByStringAsync(string nomvelo)
+    public async Task<ActionResult<Accessoire>> GetByStringAsync(string nomaccessoire)
     {
-        return await upwayDbContext.Accessoires.FirstOrDefaultAsync(u => u.Produit.NomProduit == nomvelo);
+        var accessoire = await GetAccessoireWithInclude()
+            .FirstOrDefaultAsync(u => u.Produit.NomProduit == nomaccessoire);
+
+        return accessoire;
     }
     
     public async Task AddAsync(Accessoire entity)
@@ -52,12 +67,12 @@ public class AccessoireManager : IDataRepository<Accessoire>
         entityToUpdate.LesCommandes = entity.LesCommandes;
         entityToUpdate.LesCommandesAccessoire = entity.LesCommandesAccessoire;
 
-        upwayDbContext.SaveChangesAsync();
+        await upwayDbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Accessoire accessoire)
     {
         upwayDbContext.Accessoires.Remove(accessoire);
-        upwayDbContext.SaveChangesAsync();
+        await upwayDbContext.SaveChangesAsync();
     }
 }
