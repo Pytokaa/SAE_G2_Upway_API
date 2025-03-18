@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
@@ -16,9 +17,13 @@ public partial class Marque
     public string NomMarque { get; set; }
     
     //relation avec la table modele
+    [JsonIgnore]
+    [ValidateNever]
     public virtual ICollection<Modele> Modeles { get; set; } = new List<Modele>();
 
     //relation avec la table Produit
     [InverseProperty(nameof(Produit.Marque))]
+    [JsonIgnore]
+    [ValidateNever]
     public virtual ICollection<Produit> Produits { get; set; } = new List<Produit>();
 }

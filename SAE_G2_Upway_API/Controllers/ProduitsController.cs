@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
+using SAE_G2_Upway_API.Controllers.DTO;
 
 namespace SAE_G2_Upway_API.Controllers
 {
@@ -24,10 +25,10 @@ namespace SAE_G2_Upway_API.Controllers
 
         // GET: api/Produits
         /// <summary>
-        /// Récupère la liste de tous les produits.
+        /// Rï¿½cupï¿½re la liste de tous les produits.
         /// </summary>
-        /// <returns>Une réponse HTTP contenant la liste des produits.</returns>
-        /// <response code="200">La requête a réussi, et la liste des produits est retournée.</response>
+        /// <returns>Une rï¿½ponse HTTP contenant la liste des produits.</returns>
+        /// <response code="200">La requï¿½te a rï¿½ussi, et la liste des produits est retournï¿½e.</response>
         /// <response code="500">Une erreur interne du serveur s'est produite.</response>
         [HttpGet]
         [ProducesResponseType(200)]
@@ -39,12 +40,12 @@ namespace SAE_G2_Upway_API.Controllers
 
         // GET: api/Produits/id/{id}
         /// <summary>
-        /// Récupère un produit spécifique par son identifiant.
+        /// Rï¿½cupï¿½re un produit spï¿½cifique par son identifiant.
         /// </summary>
-        /// <param name="id">L'identifiant du produit à récupérer.</param>
-        /// <returns>Une réponse HTTP contenant le produit correspondant à l'identifiant.</returns>
-        /// <response code="200">Le produit a été trouvé et est retourné.</response>
-        /// <response code="404">Aucun produit n'a été trouvé avec l'identifiant spécifié.</response>
+        /// <param name="id">L'identifiant du produit ï¿½ rï¿½cupï¿½rer.</param>
+        /// <returns>Une rï¿½ponse HTTP contenant le produit correspondant ï¿½ l'identifiant.</returns>
+        /// <response code="200">Le produit a ï¿½tï¿½ trouvï¿½ et est retournï¿½.</response>
+        /// <response code="404">Aucun produit n'a ï¿½tï¿½ trouvï¿½ avec l'identifiant spï¿½cifiï¿½.</response>
         /// <response code="500">Une erreur interne du serveur s'est produite.</response>
         [HttpGet("id/{id}")]
         [ProducesResponseType(200)]
@@ -62,12 +63,12 @@ namespace SAE_G2_Upway_API.Controllers
 
         // GET: api/Produits/name/{name}
         /// <summary>
-        /// Récupère un produit spécifique par son nom.
+        /// Rï¿½cupï¿½re un produit spï¿½cifique par son nom.
         /// </summary>
-        /// <param name="name">Le nom du produit à récupérer.</param>
-        /// <returns>Une réponse HTTP contenant le produit correspondant au nom.</returns>
-        /// <response code="200">Le produit a été trouvé et est retourné.</response>
-        /// <response code="404">Aucun produit n'a été trouvé avec le nom spécifié.</response>
+        /// <param name="name">Le nom du produit ï¿½ rï¿½cupï¿½rer.</param>
+        /// <returns>Une rï¿½ponse HTTP contenant le produit correspondant au nom.</returns>
+        /// <response code="200">Le produit a ï¿½tï¿½ trouvï¿½ et est retournï¿½.</response>
+        /// <response code="404">Aucun produit n'a ï¿½tï¿½ trouvï¿½ avec le nom spï¿½cifiï¿½.</response>
         /// <response code="500">Une erreur interne du serveur s'est produite.</response>
         [HttpGet("name/{name}")]
         [ProducesResponseType(200)]
@@ -85,45 +86,55 @@ namespace SAE_G2_Upway_API.Controllers
 
         // PUT: api/Produits/id/{id}
         /// <summary>
-        /// Met à jour un produit existant par son identifiant.
+        /// Met ï¿½ jour un produit existant par son identifiant.
         /// </summary>
-        /// <param name="id">L'identifiant du produit à mettre à jour.</param>
-        /// <param name="produit">Les nouvelles données du produit.</param>
-        /// <returns>Une réponse HTTP indiquant le résultat de l'opération.</returns>
-        /// <response code="204">Le produit a été mis à jour avec succès.</response>
-        /// <response code="400">Les données fournies sont invalides ou l'identifiant ne correspond pas à celui du produit.</response>
-        /// <response code="404">Aucun produit n'a été trouvé avec l'identifiant spécifié.</response>
+        /// <param name="id">L'identifiant du produit ï¿½ mettre ï¿½ jour.</param>
+        /// <param name="produit">Les nouvelles donnï¿½es du produit.</param>
+        /// <returns>Une rï¿½ponse HTTP indiquant le rï¿½sultat de l'opï¿½ration.</returns>
+        /// <response code="204">Le produit a ï¿½tï¿½ mis ï¿½ jour avec succï¿½s.</response>
+        /// <response code="400">Les donnï¿½es fournies sont invalides ou l'identifiant ne correspond pas ï¿½ celui du produit.</response>
+        /// <response code="404">Aucun produit n'a ï¿½tï¿½ trouvï¿½ avec l'identifiant spï¿½cifiï¿½.</response>
         /// <response code="500">Une erreur interne du serveur s'est produite.</response>
         [HttpPut("id/{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> PutProduit(int id, Produit produit)
+        public async Task<IActionResult> PutProduit(int id, ProduitDTO produitDto)
         {
-            if (id != produit.Idproduit)
+            if (id != produitDto.IdProduit)
             {
                 return BadRequest();
             }
 
-            var produitToUpdate = dataRepository.GetByIdAsync(id);
+            Produit produit = new Produit()
+            {
+                Idproduit = produitDto.IdProduit,
+                IdMarque = produitDto.IdMarque,
+                IdPhoto = produitDto.IdPhoto,
+                NomProduit = produitDto.NomProduit,
+                PrixProduit = produitDto.PrixProduit,
+                DescriptionProduit = produitDto.DescriptionProduit,
+            };
+            
+            var produitToUpdate = await dataRepository.GetByIdAsync(id);
             if (produitToUpdate == null)
             {
                 return NotFound();
             }
 
-            dataRepository.UpdateAsync(produitToUpdate.Result.Value, produit);
+            dataRepository.UpdateAsync(produitToUpdate.Value, produit);
             return NoContent();
         }
 
         // POST: api/Produits
         /// <summary>
-        /// Ajoute un nouveau produit à la base de données.
+        /// Ajoute un nouveau produit ï¿½ la base de donnï¿½es.
         /// </summary>
-        /// <param name="produit">Les données du produit à ajouter.</param>
-        /// <returns>Une réponse HTTP contenant le produit créé.</returns>
-        /// <response code="201">Le produit a été créé avec succès.</response>
-        /// <response code="400">Les données fournies sont invalides ou incomplètes.</response>
+        /// <param name="produit">Les donnï¿½es du produit ï¿½ ajouter.</param>
+        /// <returns>Une rï¿½ponse HTTP contenant le produit crï¿½ï¿½.</returns>
+        /// <response code="201">Le produit a ï¿½tï¿½ crï¿½ï¿½ avec succï¿½s.</response>
+        /// <response code="400">Les donnï¿½es fournies sont invalides ou incomplï¿½tes.</response>
         /// <response code="500">Une erreur interne du serveur s'est produite.</response>
         [HttpPost]
         [ProducesResponseType(201)]
@@ -143,10 +154,10 @@ namespace SAE_G2_Upway_API.Controllers
         /// <summary>
         /// Supprime un produit existant par son identifiant.
         /// </summary>
-        /// <param name="id">L'identifiant du produit à supprimer.</param>
-        /// <returns>Une réponse HTTP indiquant le résultat de l'opération.</returns>
-        /// <response code="204">Le produit a été supprimé avec succès.</response>
-        /// <response code="404">Aucun produit n'a été trouvé avec l'identifiant spécifié.</response>
+        /// <param name="id">L'identifiant du produit ï¿½ supprimer.</param>
+        /// <returns>Une rï¿½ponse HTTP indiquant le rï¿½sultat de l'opï¿½ration.</returns>
+        /// <response code="204">Le produit a ï¿½tï¿½ supprimï¿½ avec succï¿½s.</response>
+        /// <response code="404">Aucun produit n'a ï¿½tï¿½ trouvï¿½ avec l'identifiant spï¿½cifiï¿½.</response>
         /// <response code="500">Une erreur interne du serveur s'est produite.</response>
         [HttpDelete("id/{id}")]
         [ProducesResponseType(204)]
