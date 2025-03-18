@@ -33,8 +33,6 @@ namespace SAE_G2_Upway_API.Controllers
             appUsers = dataRepository.GetAllAsync().Result.Value.ToList();
         }
 
-
-
         [HttpPost]
         [AllowAnonymous]
         public IActionResult Login([FromBody] Client login)

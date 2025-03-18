@@ -187,6 +187,9 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 entity.Property(e => e.Password)
                     .IsRequired();
+                
+                entity.Property(e => e.UserRole)
+                    .HasDefaultValue("User");
             });
 
             modelBuilder.Entity<Commande>(entity =>
