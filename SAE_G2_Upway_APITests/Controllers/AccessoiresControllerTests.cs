@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Moq;
+using NuGet.Protocol.Core.Types;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
@@ -46,13 +49,50 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetAccessoireByIdTest_ReturnsOK_AvecMoq()
         {
-            Assert.Fail();
+            Accessoire accessoire = new Accessoire();
+
+            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(accessoire);
+            
+            var accessoireController = new AccessoiresController(mockRepository.Object);
+            
+            var actionResult = accessoireController.GetAccessoireById(1).Result;
+            
+            Assert.IsNotNull(actionResult);
+            Assert.IsNotNull(actionResult.Result);
+            Assert.AreEqual(accessoire, actionResult.Value as Accessoire);
         }
 
         [TestMethod()]
-        public void GetAccessoireByNameTest()
+        public void GetAccessoireByIdTest_ReturnsNotFound_AvecMoq()
         {
-            Assert.Fail();
+            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            
+            mockRepository.Setup(x => x.GetByIdAsync(345).Result).Returns((Accessoire)null);
+                
+            
+            var accessoireController = new AccessoiresController(mockRepository.Object);
+            
+            var actionResult = accessoireController.GetAccessoireById(345).Result;
+            Assert.IsNotNull(actionResult, "la reponse est null");
+            Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
+        }
+
+        [TestMethod()]
+        public void GetAccessoireByNameTest_ReturnsOK_AvecMoq()
+        {
+            Accessoire accessoire = new Accessoire();
+
+            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            mockRepository.Setup(x => x.GetByStringAsync("Casque Abus Viantor").Result).Returns(accessoire);
+            
+            var accessoireController = new AccessoiresController(mockRepository.Object);
+            
+            var actionResult = accessoireController.GetAccessoireByName("Casque Abus Viantor").Result;
+            
+            Assert.IsNotNull(actionResult);
+            Assert.IsNotNull(actionResult.Result);
+            Assert.AreEqual(accessoire, actionResult.Value as Accessoire);
         }
 
         [TestMethod()]

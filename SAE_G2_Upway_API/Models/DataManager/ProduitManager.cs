@@ -4,6 +4,7 @@ using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
 
+
 namespace SAE_G2_Upway_API.Models.DataManager;
 
 public class ProduitManager : IDataRepository<Produit>
@@ -18,7 +19,9 @@ public class ProduitManager : IDataRepository<Produit>
 
     private IQueryable<Produit> GetProduitWithInclude()
     {
-        return upwayDbContext.Produits
+        Console.WriteLine("Applying AsNoTracking to query...");
+        return upwayDbContext.Produits 
+            .AsTracking()
             .Include(a => a.Photo)
             .Include(a => a.Marque)
             .Include(a => a.Accessoire)
@@ -33,6 +36,7 @@ public class ProduitManager : IDataRepository<Produit>
 
     public async Task<ActionResult<Produit>> GetByIdAsync(int id)
     {
+        Console.WriteLine("GetById");
         var produit = await GetProduitWithInclude().FirstOrDefaultAsync(u => u.Idproduit == id);
         return produit;
     }
@@ -55,18 +59,21 @@ public class ProduitManager : IDataRepository<Produit>
         upwayDbContext.Entry(entityToUpdate).State = EntityState.Modified;
         
         entityToUpdate.Idproduit = entity.Idproduit;
-        entityToUpdate.IdPhoto = entity.IdPhoto;
         entityToUpdate.NomProduit = entity.NomProduit;
         entityToUpdate.PrixProduit = entity.PrixProduit;
-        entityToUpdate.StockProduit = entity.StockProduit;
         entityToUpdate.DescriptionProduit = entity.DescriptionProduit;
-        entityToUpdate.Photo = entity.Photo;
-        entityToUpdate.Marque = entity.Marque;
-        entityToUpdate.Accessoire = entity.Accessoire;
-        entityToUpdate.Velo = entity.Velo;
-        entityToUpdate.DansLesFavoris = entity.DansLesFavoris;
-        entityToUpdate.APhotos = entity.APhotos;
+        entityToUpdate.StockProduit = entity.StockProduit;
+        
+        //relations
+        
+        entityToUpdate.IdMarque = entity.IdMarque;
+        entityToUpdate.IdPhoto = entity.IdPhoto;
+        
+        await upwayDbContext.SaveChangesAsync();
     }
+
+
+
 
     public async Task DeleteAsync(Produit produit)
     {
