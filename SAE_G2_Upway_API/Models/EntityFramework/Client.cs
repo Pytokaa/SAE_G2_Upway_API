@@ -58,9 +58,8 @@ public partial class Client
     //relation avec la table habite
     [InverseProperty(nameof(Habite.ClientHabite))]
     public virtual ICollection<Habite> HabiteA { get; set; } = new List<Habite>();
-    
-    
-    
-    
-    
+
+    public Client()
+    {
+    }
 }
