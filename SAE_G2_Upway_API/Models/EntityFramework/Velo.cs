@@ -107,5 +107,7 @@ public partial class Velo
     
     public virtual ICollection<Est_Mis_Panier_Velo> ACommandes { get; set; } =  new List<Est_Mis_Panier_Velo>();
 
-
+    public Velo()
+    {
+    }
 }

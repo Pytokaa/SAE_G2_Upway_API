@@ -44,7 +44,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetAccessoireByIdTest()
+        public void GetAccessoireByIdTest_ReturnsOK_AvecMoq()
         {
             Assert.Fail();
         }

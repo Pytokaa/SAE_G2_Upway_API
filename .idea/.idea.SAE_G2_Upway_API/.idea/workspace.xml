@@ -9,9 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="">
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="les tests commencent de maniere okay">
+      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/AccessoirePart.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/ClientPart.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/ProduitPart.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/VeloPart.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/AccessoiresController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/AccessoiresController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/UpwayDBContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Accessoire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Accessoire.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Client.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Produit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Produit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Velo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Velo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +139,7 @@
       <workItem from="1742228894370" duration="754000" />
       <workItem from="1742243489283" duration="615000" />
       <workItem from="1742282008685" duration="66000" />
-      <workItem from="1742282469464" duration="1676000" />
+      <workItem from="1742282469464" duration="4600000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -181,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742282060557</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="les tests commencent de maniere okay">
+      <option name="closed" value="true" />
+      <created>1742284907368</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742284907368</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +205,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Debut des test unitaires" />
@@ -197,6 +224,7 @@
     <MESSAGE value="push pour voir" />
     <MESSAGE value="Baaaakaaaa" />
     <MESSAGE value="on efface les tests urinaires" />
-    <option name="LAST_COMMIT_MESSAGE" value="on efface les tests urinaires" />
+    <MESSAGE value="les tests commencent de maniere okay" />
+    <option name="LAST_COMMIT_MESSAGE" value="les tests commencent de maniere okay" />
   </component>
 </project>

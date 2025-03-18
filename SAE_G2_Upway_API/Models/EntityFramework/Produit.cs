@@ -65,4 +65,8 @@ public partial class Produit
     //relation avec la table A_pour_photo
     [InverseProperty(nameof(A_Pour_Photo.ProduitAPhoto))]
     public virtual ICollection<A_Pour_Photo> APhotos { get; set; } = new List<A_Pour_Photo>();
+
+    public Produit()
+    {
+    }
 }

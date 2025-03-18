@@ -22,7 +22,12 @@ public partial class Accessoire
     [Column("acce_date")]
     public DateTime DateAccessoire { get; set; }
 
-    
+    // Constructeur
+
+    public Accessoire()
+    {
+    }
+
     //relation avec la table Produit
     
     [ForeignKey(nameof(IdProduit))]
