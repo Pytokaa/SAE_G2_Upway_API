@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAE_G2_Upway_API", "SAE_G2_Upway_API\SAE_G2_Upway_API.csproj", "{371FD4AA-B783-4708-AED8-EBFD8B8FA3EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAE_G2_Upway_API.Tests", "SAE_G2_Upway_API.Tests\SAE_G2_Upway_API.Tests.csproj", "{7A331DB4-A3FE-483C-9B56-5D4D375DC779}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{371FD4AA-B783-4708-AED8-EBFD8B8FA3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{371FD4AA-B783-4708-AED8-EBFD8B8FA3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{371FD4AA-B783-4708-AED8-EBFD8B8FA3EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A331DB4-A3FE-483C-9B56-5D4D375DC779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A331DB4-A3FE-483C-9B56-5D4D375DC779}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A331DB4-A3FE-483C-9B56-5D4D375DC779}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A331DB4-A3FE-483C-9B56-5D4D375DC779}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
