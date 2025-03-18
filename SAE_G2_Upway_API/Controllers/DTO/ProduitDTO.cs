@@ -1,5 +1,6 @@
 namespace SAE_G2_Upway_API.Controllers.DTO;
 
+
 public class ProduitDTO
 {
     public int  IdProduit { get; set; }
