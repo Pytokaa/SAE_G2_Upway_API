@@ -35,7 +35,10 @@ public partial class Client
     [Column("clt_password")]
     [StringLength(100)]
     public string Password { get; set; }
-    
+
+    [Column("clt_userrole")]
+    [StringLength(100)]
+    public string? UserRole { get; set; }
     
     //relation avec la table fonction
     [ForeignKey(nameof(IdFonction))]
