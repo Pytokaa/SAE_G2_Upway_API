@@ -41,6 +41,7 @@ public partial class Produit
     [StringLength(200)]
     public string DescriptionProduit { get; set; }
 
+    
     //relation avec la table photo
     [ForeignKey(nameof(IdPhoto))]
     [InverseProperty(nameof(Photo.Produit))]
