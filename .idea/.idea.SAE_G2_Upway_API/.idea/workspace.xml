@@ -9,18 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="les tests commencent de maniere okay">
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/AccessoirePart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/ClientPart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/ProduitPart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/VeloPart.cs" afterDir="false" />
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/UpwayDBContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Accessoire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Accessoire.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Client.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Produit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Produit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Velo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/EntityFramework/Velo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +129,7 @@
       <workItem from="1742228894370" duration="754000" />
       <workItem from="1742243489283" duration="615000" />
       <workItem from="1742282008685" duration="66000" />
-      <workItem from="1742282469464" duration="4600000" />
+      <workItem from="1742282469464" duration="5603000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -197,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742284907368</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests">
+      <option name="closed" value="true" />
+      <created>1742287196817</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742287196817</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +223,8 @@
     <MESSAGE value="Baaaakaaaa" />
     <MESSAGE value="on efface les tests urinaires" />
     <MESSAGE value="les tests commencent de maniere okay" />
-    <option name="LAST_COMMIT_MESSAGE" value="les tests commencent de maniere okay" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests" />
   </component>
 </project>
