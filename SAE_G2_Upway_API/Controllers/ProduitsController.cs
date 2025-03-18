@@ -54,7 +54,7 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(500)]
         public async Task<ActionResult<Produit>> GetProduitById(int id)
         {
-            var produit = dataRepository.GetByIdAsync(id);
+            var produit = await dataRepository.GetByIdAsync(id);
             if (produit == null)
             {
                 return NotFound();

@@ -5,22 +5,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using SAE_G2_Upway_API.Models.EntityFramework;
+using SAE_G2_Upway_API.Models.Repository;
 
 namespace SAE_G2_Upway_API.Controllers.Tests
 {
     [TestClass()]
     public class ProduitsControllerTests
     {
+        private UpwayDBContext dbContext;
+        private ProduitsController produitsController;
+        private IDataRepository<Produit> dataRepository;
+
+        [TestInitialize]
+        public void Init()
+        {
+            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("UpwayDBContext");
+            dbContext = new UpwayDBContext(builder.Options);
+            produitsController = new ProduitsController(dataRepository);
+
+        }
+        
         [TestMethod()]
         public void ProduitsControllerTest()
         {
-            
+            var produitsController = new ProduitsController(dataRepository);
+            Assert.IsNotNull(produitsController);
+            Assert.IsInstanceOfType(produitsController, typeof(ProduitsController));
         }
 
         [TestMethod()]
-        public void GetProduitsTest()
+        public void GetProduitsTest_ReturnsOK()
         {
-            Assert.Fail();
+            produitsController = new ProduitsController(dataRepository);
+
+            var produitsBase = dbContext.Produits.ToList();
+            var produitsGetAll = produitsController.GetProduits();
+            CollectionAssert.AreEquivalent(produitsBase, produitsGetAll.Result.Value.ToList(), "Get all produits ne fonctionne pas correctement");
         }
 
         [TestMethod()]

@@ -11,6 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/ProduitsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/ProduitsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ClientsControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ClientsControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +41,23 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c8cadc4ab2b64ff39a23ebdc9f09214bc3d8/3f/85792b07/Executor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/22e6322dd7823a39098802c5f71f896aafe57afc6d26f90afece9124ab4cd7/TestExecutionManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2e49d132ea68ff47071c64476ae29138fa965dc555ef7c3f4991586431de241/Task.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/683aae75939c44f3f8cf835105c38c5db2c5e55ebe54b7ee5f8a6efe9db4fe/TestMethodAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7b3b6985aad11c5d633d75b545f5f5f4fc7e50918ad1cb9f6b615682f5bfb76d/SingleQueryingEnumerable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98c377d82be4c36912d3e59d6d7e2a55a14898ee9757311a192711c5f4115e7/TestMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9eda537f15ea23cdfae523c19e87eb303a3ded88937ae7e55919387a43f70/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ac24a7c2e0f296e231c484b3fd930268f76c06dc75f4aad1df7aaf09f2c1227/ThreadPoolWorkQueue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b2f4589284646ab9996d47fd75aa21c1dea89ca295185ad3f61ae8d4ea2763/TestContextImplementation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/be6b859364daff8581e1f49019d6978a84eb50ed71519d8dcebb356bfc6c6c/UnitTestRunner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e0d5392bf49a3d11b141cdf7f7f236c69e022377efe1bf19d859b85ec54cff6/MSTestExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e4a485c0778dd287487c6dfe10d4eee9db6c77ed8a6c9fc7d112cf4b4d5635/TestMethodRunner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/AccessoiresControllerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/ClientsControllerTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -134,6 +154,7 @@
       <workItem from="1742282008685" duration="66000" />
       <workItem from="1742282469464" duration="9571000" />
       <workItem from="1742294589319" duration="43000" />
+      <workItem from="1742334782307" duration="2111000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -264,6 +285,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs</url>
+          <line>48</line>
+          <properties documentPath="C:\Users\bojod\RiderProjects\SAE_G2_Upway_API\SAE_G2_Upway_APITests\Controllers\ProduitsControllerTests.cs" containingFunctionPresentation="Method 'GetProduitsTest_ReturnsOK'">
+            <startOffsets>
+              <option value="1655" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1702" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

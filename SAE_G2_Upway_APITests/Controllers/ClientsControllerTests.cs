@@ -39,8 +39,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             CollectionAssert.AreEqual(actual_users.Value.ToList(), expected_users, "Les listes ne corrrespondent pas");
         }
 
-        [TestMethod()]
-        public void 
+        
 
         [TestCleanup]
         public void Clean()
