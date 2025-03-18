@@ -24,14 +24,32 @@ public class AccessoiresController : ControllerBase
         }
 
         // GET: api/Accessoires
+        /// <summary>
+        /// Avoir la liste de tous les accessoires
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Http response</returns>
+        /// <response code=200>L'api renvoie tous</response>
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<Accessoire>>> GetAccessoires()
         {
             return await dataRepository.GetAllAsync();
         }
-
+        
         // GET: api/Accessoires/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Recuperer un accessoire a partir de son id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="accessoire"></param>
+        /// <returns>Http response</returns>
+        /// <response code=200>L'id de l'accessoire existe</response>
+        /// <response code=404>L'id de l'accessoire n'existe pas</response>
         [HttpGet("id/{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<Accessoire>> GetAccessoireById(int id)
         {
             var accessoire = dataRepository.GetByIdAsync(id);
@@ -44,11 +62,18 @@ public class AccessoiresController : ControllerBase
             return accessoire.Result;
         }
 
-        
-        
-        
+        /// <summary>
+        /// Recuperer un accessoire a partir de son  nom
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="accessoire"></param>
+        /// <returns>Http response</returns>
+        /// <response code=200>Le nom de l'accessoire existe</response>
+        /// <response code=404>Le nom de l'accessoire n'existe pas</response>
         [HttpGet("name/{nom}")]
         [ActionName("GetByAccessoireName")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<Accessoire>> GetAccessoireByName(string nom)
         {
             var accessoire = await dataRepository.GetByStringAsync(nom);
@@ -62,9 +87,22 @@ public class AccessoiresController : ControllerBase
         
         
         
+        
         // PUT: api/Velos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
+        /// <summary>
+        /// Modifier un accessoire a partir de son id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="accessoire"></param>
+        /// <returns>Http response</returns>
+        /// <response code=200>L'id de l'accessoire existe</response>
+        /// <response code=404>L'id de l'accessoire n'existe pas</response>
+        /// <response code=400>Il y a un element null ou interdit dans le changement</response>
         [HttpPut("id/{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> PutAccessoire(int id, Accessoire accessoire)
         {
             if (id != accessoire.IdAccessoire)
@@ -89,7 +127,18 @@ public class AccessoiresController : ControllerBase
 
         // POST: api/Velos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
+        /// <summary>
+        /// Poster un nouvel accessoire dans la base de donnees
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="accessoire"></param>
+        /// <returns>Http response</returns>
+        /// <response code=201>L'ajout a bien ete effectue</response>
+        /// <response code=400>L'ajout de l'accessoire a echoue</response>
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<Accessoire>> PostAccessoire(Accessoire accessoire)
         {
             if (!ModelState.IsValid)
@@ -101,7 +150,17 @@ public class AccessoiresController : ControllerBase
         }
 
         // DELETE: api/Velos/5
+        /// <summary>
+        /// Suppromer un accessoire a partir de son id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="accessoire"></param>
+        /// <returns>Http response</returns>
+        /// <response code=204>L'accessoire a ete supprimer avec succes</response>
+        /// <response code=404>La supression de l'accessoire a echoue</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> DeleteAccessoire(int id)
         {
             var accessoire = await dataRepository.GetByIdAsync(id);
