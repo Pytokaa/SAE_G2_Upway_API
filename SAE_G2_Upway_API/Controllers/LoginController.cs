@@ -15,12 +15,25 @@ namespace SAE_G2_Upway_API.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private readonly IConfiguration _config;
         private readonly IDataRepository<Client> dataRepository;
+        private List<Client>? appUsers;
 
+        public LoginController(IConfiguration config)
+        {
+            _config = config;
+        }
         public LoginController(IDataRepository<Client> dataRepo)
         {
             dataRepository = dataRepo;
         }
+
+        private void GetClients()
+        {
+            appUsers = dataRepository.GetAllAsync().Result.Value.ToList();
+        }
+
+
 
         [HttpPost]
         [AllowAnonymous]
