@@ -110,7 +110,7 @@ namespace SAE_G2_Upway_API.Controllers
 
             Produit produit = new Produit()
             {
-                Idproduit = produitDto.IdProduit,
+                Idproduit = produitDto.IdProduit ?? 0,
                 IdMarque = produitDto.IdMarque,
                 IdPhoto = produitDto.IdPhoto,
                 NomProduit = produitDto.NomProduit,
@@ -141,12 +141,20 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<Produit>> PostProduit(Produit produit)
+        public async Task<ActionResult<Produit>> PostProduit(ProduitDTO produitDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            Produit produit = new Produit()
+            {
+                IdMarque = produitDto.IdMarque,
+                IdPhoto = produitDto.IdPhoto,
+                NomProduit = produitDto.NomProduit,
+                PrixProduit = produitDto.PrixProduit,
+                DescriptionProduit = produitDto.DescriptionProduit,
+            };
             await dataRepository.AddAsync(produit);
             return CreatedAtAction("GetProduitById", new { id = produit.Idproduit }, produit);
         }
