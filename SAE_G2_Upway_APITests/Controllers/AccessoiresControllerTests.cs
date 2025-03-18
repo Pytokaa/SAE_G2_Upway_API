@@ -79,9 +79,20 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetAccessoireByNameTest()
+        public void GetAccessoireByNameTest_ReturnsOK_AvecMoq()
         {
-            Assert.Fail();
+            Accessoire accessoire = new Accessoire();
+
+            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            mockRepository.Setup(x => x.GetByStringAsync("Casque Abus Viantor").Result).Returns(accessoire);
+            
+            var accessoireController = new AccessoiresController(mockRepository.Object);
+            
+            var actionResult = accessoireController.GetAccessoireByName("Casque Abus Viantor").Result;
+            
+            Assert.IsNotNull(actionResult);
+            Assert.IsNotNull(actionResult.Result);
+            Assert.AreEqual(accessoire, actionResult.Value as Accessoire);
         }
 
         [TestMethod()]
