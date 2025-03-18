@@ -37,7 +37,7 @@ public class ClientsController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<ActionResult<Client>> GetClientById(int id)
     {
-        var client = dataRepository.GetByIdAsync(id);
+        var client = await dataRepository.GetByIdAsync(id);
 
         if (client == null)
         {
