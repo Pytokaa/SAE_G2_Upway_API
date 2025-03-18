@@ -23,10 +23,10 @@ public class AccessoiresController : ControllerBase
 
     // GET: api/Accessoires
     /// <summary>
-    /// Récupère la liste de tous les accessoires.
+    /// Rï¿½cupï¿½re la liste de tous les accessoires.
     /// </summary>
-    /// <returns>Une réponse HTTP contenant la liste des accessoires.</returns>
-    /// <response code="200">La requête a réussi, et la liste des accessoires est retournée.</response>
+    /// <returns>Une rï¿½ponse HTTP contenant la liste des accessoires.</returns>
+    /// <response code="200">La requï¿½te a rï¿½ussi, et la liste des accessoires est retournï¿½e.</response>
     /// <response code="500">Une erreur interne du serveur s'est produite.</response>
     [HttpGet]
     [ProducesResponseType(200)]
@@ -38,12 +38,12 @@ public class AccessoiresController : ControllerBase
 
     // GET: api/Accessoires/5
     /// <summary>
-    /// Récupère un accessoire spécifique par son identifiant.
+    /// Rï¿½cupï¿½re un accessoire spï¿½cifique par son identifiant.
     /// </summary>
-    /// <param name="id">L'identifiant de l'accessoire à récupérer.</param>
-    /// <returns>Une réponse HTTP contenant l'accessoire correspondant à l'identifiant.</returns>
-    /// <response code="200">L'accessoire a été trouvé et est retourné.</response>
-    /// <response code="404">Aucun accessoire n'a été trouvé avec l'identifiant spécifié.</response>
+    /// <param name="id">L'identifiant de l'accessoire ï¿½ rï¿½cupï¿½rer.</param>
+    /// <returns>Une rï¿½ponse HTTP contenant l'accessoire correspondant ï¿½ l'identifiant.</returns>
+    /// <response code="200">L'accessoire a ï¿½tï¿½ trouvï¿½ et est retournï¿½.</response>
+    /// <response code="404">Aucun accessoire n'a ï¿½tï¿½ trouvï¿½ avec l'identifiant spï¿½cifiï¿½.</response>
     /// <response code="500">Une erreur interne du serveur s'est produite.</response>
     [HttpGet("id/{id}")]
     [ProducesResponseType(200)]
@@ -51,9 +51,9 @@ public class AccessoiresController : ControllerBase
     [ProducesResponseType(500)]
     public async Task<ActionResult<Accessoire>> GetAccessoireById(int id)
     {
-        var accessoire = dataRepository.GetByIdAsync(id);
-
-        if (accessoire == null)
+        var accessoire = await dataRepository.GetByIdAsync(id);
+        
+        if (accessoire.Result == null)
         {
             return NotFound();
         }
@@ -63,12 +63,12 @@ public class AccessoiresController : ControllerBase
 
     // GET: api/Accessoires/name/{nom}
     /// <summary>
-    /// Récupère un accessoire spécifique par son nom.
+    /// Rï¿½cupï¿½re un accessoire spï¿½cifique par son nom.
     /// </summary>
-    /// <param name="nom">Le nom de l'accessoire à récupérer.</param>
-    /// <returns>Une réponse HTTP contenant l'accessoire correspondant au nom.</returns>
-    /// <response code="200">L'accessoire a été trouvé et est retourné.</response>
-    /// <response code="404">Aucun accessoire n'a été trouvé avec le nom spécifié.</response>
+    /// <param name="nom">Le nom de l'accessoire ï¿½ rï¿½cupï¿½rer.</param>
+    /// <returns>Une rï¿½ponse HTTP contenant l'accessoire correspondant au nom.</returns>
+    /// <response code="200">L'accessoire a ï¿½tï¿½ trouvï¿½ et est retournï¿½.</response>
+    /// <response code="404">Aucun accessoire n'a ï¿½tï¿½ trouvï¿½ avec le nom spï¿½cifiï¿½.</response>
     /// <response code="500">Une erreur interne du serveur s'est produite.</response>
     [HttpGet("name/{nom}")]
     [ActionName("GetByAccessoireName")]
@@ -88,14 +88,14 @@ public class AccessoiresController : ControllerBase
 
     // PUT: api/Accessoires/id/{id}
     /// <summary>
-    /// Met à jour un accessoire existant par son identifiant.
+    /// Met ï¿½ jour un accessoire existant par son identifiant.
     /// </summary>
-    /// <param name="id">L'identifiant de l'accessoire à mettre à jour.</param>
-    /// <param name="accessoire">Les nouvelles données de l'accessoire.</param>
-    /// <returns>Une réponse HTTP indiquant le résultat de l'opération.</returns>
-    /// <response code="204">L'accessoire a été mis à jour avec succès.</response>
-    /// <response code="400">Les données fournies sont invalides ou l'identifiant ne correspond pas à celui de l'accessoire.</response>
-    /// <response code="404">Aucun accessoire n'a été trouvé avec l'identifiant spécifié.</response>
+    /// <param name="id">L'identifiant de l'accessoire ï¿½ mettre ï¿½ jour.</param>
+    /// <param name="accessoire">Les nouvelles donnï¿½es de l'accessoire.</param>
+    /// <returns>Une rï¿½ponse HTTP indiquant le rï¿½sultat de l'opï¿½ration.</returns>
+    /// <response code="204">L'accessoire a ï¿½tï¿½ mis ï¿½ jour avec succï¿½s.</response>
+    /// <response code="400">Les donnï¿½es fournies sont invalides ou l'identifiant ne correspond pas ï¿½ celui de l'accessoire.</response>
+    /// <response code="404">Aucun accessoire n'a ï¿½tï¿½ trouvï¿½ avec l'identifiant spï¿½cifiï¿½.</response>
     /// <response code="500">Une erreur interne du serveur s'est produite.</response>
     [HttpPut("id/{id}")]
     [ProducesResponseType(204)]
@@ -126,12 +126,12 @@ public class AccessoiresController : ControllerBase
 
     // POST: api/Accessoires
     /// <summary>
-    /// Ajoute un nouvel accessoire à la base de données.
+    /// Ajoute un nouvel accessoire ï¿½ la base de donnï¿½es.
     /// </summary>
-    /// <param name="accessoire">Les données de l'accessoire à ajouter.</param>
-    /// <returns>Une réponse HTTP contenant l'accessoire créé.</returns>
-    /// <response code="201">L'accessoire a été créé avec succès.</response>
-    /// <response code="400">Les données fournies sont invalides ou incomplètes.</response>
+    /// <param name="accessoire">Les donnï¿½es de l'accessoire ï¿½ ajouter.</param>
+    /// <returns>Une rï¿½ponse HTTP contenant l'accessoire crï¿½ï¿½.</returns>
+    /// <response code="201">L'accessoire a ï¿½tï¿½ crï¿½ï¿½ avec succï¿½s.</response>
+    /// <response code="400">Les donnï¿½es fournies sont invalides ou incomplï¿½tes.</response>
     /// <response code="500">Une erreur interne du serveur s'est produite.</response>
     [HttpPost]
     [ProducesResponseType(201)]
@@ -151,10 +151,10 @@ public class AccessoiresController : ControllerBase
     /// <summary>
     /// Supprime un accessoire existant par son identifiant.
     /// </summary>
-    /// <param name="id">L'identifiant de l'accessoire à supprimer.</param>
-    /// <returns>Une réponse HTTP indiquant le résultat de l'opération.</returns>
-    /// <response code="204">L'accessoire a été supprimé avec succès.</response>
-    /// <response code="404">Aucun accessoire n'a été trouvé avec l'identifiant spécifié.</response>
+    /// <param name="id">L'identifiant de l'accessoire ï¿½ supprimer.</param>
+    /// <returns>Une rï¿½ponse HTTP indiquant le rï¿½sultat de l'opï¿½ration.</returns>
+    /// <response code="204">L'accessoire a ï¿½tï¿½ supprimï¿½ avec succï¿½s.</response>
+    /// <response code="404">Aucun accessoire n'a ï¿½tï¿½ trouvï¿½ avec l'identifiant spï¿½cifiï¿½.</response>
     /// <response code="500">Une erreur interne du serveur s'est produite.</response>
     [HttpDelete("{id}")]
     [ProducesResponseType(204)]

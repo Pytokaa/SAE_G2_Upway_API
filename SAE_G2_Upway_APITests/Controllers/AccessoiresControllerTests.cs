@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Moq;
+using NuGet.Protocol.Core.Types;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
@@ -46,7 +49,29 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetAccessoireByIdTest_ReturnsOK_AvecMoq()
         {
-            Assert.Fail();
+            Accessoire accessoire = new Accessoire();
+
+            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(accessoire);
+            
+            var accessoireController = new AccessoiresController(mockRepository.Object);
+            
+            var actionResult = accessoireController.GetAccessoireById(1).Result;
+            
+            Assert.IsNotNull(actionResult);
+            Assert.IsNotNull(actionResult.Result);
+            Assert.AreEqual(accessoire, actionResult.Value as Accessoire);
+        }
+
+        [TestMethod()]
+        public void GetAccessoireByIdTest_ReturnsNotFound_AvecMoq()
+        {
+            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            var accessoireController = new AccessoiresController(mockRepository.Object);
+            
+            var actionResult = accessoireController.GetAccessoireById(345).Result;
+            
+            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }
 
         [TestMethod()]
