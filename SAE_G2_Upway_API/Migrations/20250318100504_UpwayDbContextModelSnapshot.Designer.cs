@@ -12,8 +12,8 @@ using SAE_G2_Upway_API.Models.EntityFramework;
 namespace SAE_G2_Upway_API.Migrations
 {
     [DbContext(typeof(UpwayDBContext))]
-    [Migration("20250318075911_UpwayDBContextModelSnapshot")]
-    partial class UpwayDBContextModelSnapshot
+    [Migration("20250318100504_UpwayDbContextModelSnapshot")]
+    partial class UpwayDbContextModelSnapshot
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -323,6 +323,13 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("character varying(12)")
                         .HasColumnName("clt_telephone");
+
+                    b.Property<string>("UserRole")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasDefaultValue("User")
+                        .HasColumnName("clt_userrole");
 
                     b.HasKey("Idclient")
                         .HasName("PK_Client");

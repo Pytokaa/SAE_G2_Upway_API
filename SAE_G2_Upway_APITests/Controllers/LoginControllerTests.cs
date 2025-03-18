@@ -30,8 +30,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         public void Login_ValidUserPassed_OKReturned()
         {
             //Arrange
-            Client client = new Client { };
-
+            Client client = new Client { Nomclient = "Durand", Prenomclient = "Pierre", Mailclient = "pierre.durand@gmail.com", Telephone = "0601020304", Password = "4083385F88700370B79A4B140347746E", IdFonction = 1 };
             //Act
 
             //Assert
