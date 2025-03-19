@@ -59,7 +59,7 @@ namespace SAE_G2_Upway_API.Controllers
             {
                 return NotFound();
             }
-            return produit.Result;
+            return produit;
         }
 
         // GET: api/Produits/name/{name}
