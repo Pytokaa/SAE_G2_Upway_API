@@ -103,14 +103,10 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> PutProduit(int id, ProduitDTO produitDto)
         {
-            if (id != produitDto.IdProduit)
-            {
-                return BadRequest();
-            }
 
             Produit produit = new Produit()
             {
-                Idproduit = produitDto.IdProduit ?? 0,
+                Idproduit = id,
                 IdMarque = produitDto.IdMarque,
                 IdPhoto = produitDto.IdPhoto,
                 NomProduit = produitDto.NomProduit,
