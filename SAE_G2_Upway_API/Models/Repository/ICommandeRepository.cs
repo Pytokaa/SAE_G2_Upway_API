@@ -1,15 +1,8 @@
-namespace SAE_G2_Upway_API.Controllers.DTO;
+using Microsoft.AspNetCore.Mvc;
+using SAE_G2_Upway_API.Models.EntityFramework;
+using SAE_G2_Upway_API.Models.Repository;
 
-public class CommandeDTO
+public interface ICommandeRepository : IDataRepository<Commande>
 {
-    public DateTime DateCommande { get; set; }
-    public int? IdCode { get; set; }
-    public int IdStatut { get; set; }
-    public int IdModeExp { get; set; }
-    public int IdAdresse { get; set; }
-    public int? IdBoutique { get; set; }
-    public int? IdAdresseFactu { get; set; }
-    public int IdModePayement { get; set; }
-    public int IdClient { get; set; }
-    
+    Task<ActionResult<IEnumerable<Commande>>> GetCommandesByIdClientAsync(int clientId);
 }
