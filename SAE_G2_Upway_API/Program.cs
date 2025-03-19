@@ -29,6 +29,7 @@ builder.Services.AddScoped<IDataRepository<Velo>, VeloManager>();
 builder.Services.AddScoped<IDataRepository<Accessoire>, AccessoireManager>();
 builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
 builder.Services.AddScoped<IDataRepository<Produit>, ProduitManager>();
+builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
 
 var app = builder.Build();
 

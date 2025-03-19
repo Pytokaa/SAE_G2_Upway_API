@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
@@ -16,7 +17,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
     public class ProduitsControllerTests
     {
         private UpwayDBContext dbContext;
-        private ProduitsController produitsController;
+        private ProduitsController produitController;
         private IDataRepository<Produit> dataRepository;
 
         [TestInitialize]
@@ -24,8 +25,8 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("UpwayDBContext");
             dbContext = new UpwayDBContext(builder.Options);
-            produitsController = new ProduitsController(dataRepository);
-
+            dataRepository = new ProduitManager(dbContext);
+            produitController = new ProduitsController(dataRepository);
         }
         
         [TestMethod()]
@@ -36,20 +37,64 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             Assert.IsInstanceOfType(produitsController, typeof(ProduitsController));
         }
 
-        [TestMethod()]
-        public void GetProduitsTest_ReturnsOK()
+        [TestMethod]
+        public void GetProduits_ReturnsAllProduits()
         {
-            produitsController = new ProduitsController(dataRepository);
+            var result = produitController.GetProduits().Result;
+            
+            List<Produit> resultList = [];
 
-            var produitsBase = dbContext.Produits.ToList();
-            var produitsGetAll = produitsController.GetProduits();
-            CollectionAssert.AreEquivalent(produitsBase, produitsGetAll.Result.Value.ToList(), "Get all produits ne fonctionne pas correctement");
+            foreach (var item in result.Value)
+            {
+                Produit produit = new Produit(
+                    item.Idproduit,
+                    item.IdPhoto,
+                    item.IdMarque,
+                    item.NomProduit,
+                    item.PrixProduit,
+                    item.StockProduit,
+                    item.DescriptionProduit
+                    );
+                resultList.Add(produit);
+            }
+            
+            List<Produit> produitsBase = dbContext.Produits.ToList();
+            
+            CollectionAssert.AreEquivalent(produitsBase, resultList, "Get all produits ne fonctionne pas correctement");
         }
 
         [TestMethod()]
-        public void GetProduitByIdTest()
+        public void GetProduitByIdTest_ReturnsOK_avecMoq()
         {
-            Assert.Fail();
+            Produit produitTest = new Produit(
+                5,
+                5,
+                5,
+                "Vélo de ville Nakamura E-City",
+                1300,
+                10,
+                "Vélo de ville électrique idéal pour les trajets quotidiens."
+                );
+            
+            var mockRepository = new Mock<IDataRepository<Produit>>();
+            mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitTest);
+            
+            var produitController = new ProduitsController(mockRepository.Object);
+            
+            var actionResult = produitController.GetProduitById(5).Result;
+            Produit result = new Produit(
+                actionResult.Value.Idproduit,
+                actionResult.Value.IdPhoto,
+                actionResult.Value.IdMarque,
+                actionResult.Value.NomProduit,
+                actionResult.Value.PrixProduit,
+                actionResult.Value.StockProduit,
+                actionResult.Value.DescriptionProduit
+                );
+            
+            Assert.IsNotNull(actionResult);
+            Assert.IsNotNull(actionResult.Result);
+            Assert.AreEqual(produitTest, result,"Get all produits ne fonctionne pas correctement");
         }
 
         [TestMethod()]

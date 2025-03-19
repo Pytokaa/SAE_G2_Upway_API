@@ -11,9 +11,7 @@ public partial class Produit
                NomProduit == produit.NomProduit &&
                PrixProduit == produit.PrixProduit &&
                StockProduit == produit.StockProduit &&
-               DescriptionProduit == produit.DescriptionProduit &&
-               EqualityComparer<ICollection<Est_En_Favoris>>.Default.Equals(DansLesFavoris, produit.DansLesFavoris) &&
-               EqualityComparer<ICollection<A_Pour_Photo>>.Default.Equals(APhotos, produit.APhotos);
+               DescriptionProduit == produit.DescriptionProduit;
     }
 
     public override int GetHashCode()
@@ -44,5 +42,16 @@ public partial class Produit
         DescriptionProduit = descriptionProduit;
         DansLesFavoris = dansLesFavoris;
         APhotos = aPhotos;
+    }
+
+    public Produit(int idproduit, int idPhoto, int idMarque, string nomProduit, double prixProduit, int stockProduit, string descriptionProduit)
+    {
+        Idproduit = idproduit;
+        IdPhoto = idPhoto;
+        IdMarque = idMarque;
+        NomProduit = nomProduit;
+        PrixProduit = prixProduit;
+        StockProduit = stockProduit;
+        DescriptionProduit = descriptionProduit;
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using NuGet.Protocol.Core.Types;
+using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
@@ -26,6 +27,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("UpwayDBContext");
             dbContext = new UpwayDBContext(builder.Options);
+            dataRepository = new AccessoireManager(dbContext);
             accessoiresController = new AccessoiresController(dataRepository);
         }
         
