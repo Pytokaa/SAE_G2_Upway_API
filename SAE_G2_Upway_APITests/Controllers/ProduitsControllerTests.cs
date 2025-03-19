@@ -53,9 +53,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                     item.NomProduit,
                     item.PrixProduit,
                     item.StockProduit,
-                    item.DescriptionProduit,
-                    item.DansLesFavoris,
-                    item.APhotos
+                    item.DescriptionProduit
                     );
                 resultList.Add(produit);
             }
@@ -72,12 +70,10 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                 5,
                 5,
                 5,
-                "Casque Abus Viantor",
-                30,
-                5,
-                "description",
-                new List<Est_En_Favoris>(),
-                new List<A_Pour_Photo>()
+                "Vélo de ville Nakamura E-City",
+                1300,
+                10,
+                "Vélo de ville électrique idéal pour les trajets quotidiens."
                 );
             
             var mockRepository = new Mock<IDataRepository<Produit>>();
@@ -86,7 +82,15 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             var produitController = new ProduitsController(mockRepository.Object);
             
             var actionResult = produitController.GetProduitById(5).Result;
-            Produit result = actionResult.Value as Produit;
+            Produit result = new Produit(
+                actionResult.Value.Idproduit,
+                actionResult.Value.IdPhoto,
+                actionResult.Value.IdMarque,
+                actionResult.Value.NomProduit,
+                actionResult.Value.PrixProduit,
+                actionResult.Value.StockProduit,
+                actionResult.Value.DescriptionProduit
+                );
             
             Assert.IsNotNull(actionResult);
             Assert.IsNotNull(actionResult.Result);
