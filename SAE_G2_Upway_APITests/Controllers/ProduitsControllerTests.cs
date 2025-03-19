@@ -43,6 +43,10 @@ namespace SAE_G2_Upway_API.Controllers.Tests
 
             var produitsBase = dbContext.Produits.ToList();
             var produitsGetAll = produitsController.GetProduits();
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("J'adore la bite");
+            Console.WriteLine(produitsGetAll.Result.Value.ToList());
+            Console.WriteLine("-----------------------------------------");
             CollectionAssert.AreEquivalent(produitsBase, produitsGetAll.Result.Value.ToList(), "Get all produits ne fonctionne pas correctement");
         }
 
