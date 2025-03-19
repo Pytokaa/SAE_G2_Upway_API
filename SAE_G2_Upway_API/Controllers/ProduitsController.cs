@@ -108,12 +108,14 @@ namespace SAE_G2_Upway_API.Controllers
             
             if (!await dataRepository.ExistsAsync(id))
             {
-                return BadRequest();
+                return NotFound();
             }
             
-            if (produitToUpdate.Value == null)
+            if (produitDto.IdMarque<0 || produitDto.IdMarque == null || produitDto.IdPhoto == null || produitDto.IdPhoto<0 
+                || produitDto.PrixProduit<0 || produitDto.PrixProduit == null || produitDto.StockProduit<0 || produitDto.StockProduit == null ||
+                produitDto.NomProduit == null )
             {
-                return NotFound();
+                return BadRequest();
             }
             
             Produit produit = new Produit()

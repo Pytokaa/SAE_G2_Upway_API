@@ -187,7 +187,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         }
         
         [TestMethod()]
-        public void PutProduitTest_InvalidId_ReturnsNotFound_avecMoq()
+        public void PutProduitTest_InvalidId_ReturnsBadRequest_avecMoq()
         {
             ProduitDTO produitModif = new ProduitDTO();
             produitModif.IdMarque = 5;
@@ -203,27 +203,29 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             
             var actionResult = produitController.PutProduit(0, produitModif).Result;
             
-            Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "la reponse n'est pas de type NotFounedResult");
+            Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "la reponse n'est pas de type BadRequestResult");
         }
         
         [TestMethod()]
-        public void PutProduitTest_InvalidInput_ReturnsBadRequest_avecMoq()
+        public void PutProduitTest_InvalidInput_ReturnsNotFound_avecMoq()
         {
             ProduitDTO produitModif = new ProduitDTO();
             produitModif.IdMarque = 5;
-            produitModif.IdPhoto = 0;
-            produitModif.NomProduit = "Vélo de ville Nakamura E-City";
+            produitModif.IdPhoto = 5;
+            produitModif.NomProduit = null;
             produitModif.PrixProduit = 1300;
             produitModif.StockProduit = 10;
             produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
 
             var mockRepository = new Mock<IProduitRepository>();
-            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns((Produit)null);
+            var produitBase = new Produit(5, 5, 5, "Vélo", 1300, 10, "Description");
+            mockRepository.Setup(x => x.GetByIdAsync(5)).ReturnsAsync(produitBase);
+            
             var produitController = new ProduitsController(mockRepository.Object);
             
-            var actionResult = produitController.PutProduit(0, produitModif).Result;
+            var actionResult = produitController.PutProduit(5, produitModif).Result;
             
-            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "la reponse n'est pas de type NotFounedResult");
+            Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "la reponse n'est pas de type BadRequestResult");
         }
 
         [TestMethod()]
