@@ -44,7 +44,7 @@ public class ClientsController : ControllerBase
             return NotFound();
         }
 
-        return client.Result;
+        return client;
     }
     /// <summary>
     /// Récupérer un client par son nom.
