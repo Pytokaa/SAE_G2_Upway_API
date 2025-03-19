@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
+using SAE_G2_Upway_API.Controllers.DTO;
 
 namespace SAE_G2_Upway_API.Controllers
 {
@@ -102,12 +103,27 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> PutVelo(int id, Velo velo)
+        public async Task<IActionResult> PutVelo(int id, VeloDTO veloDTO)
         {
-            if (id != velo.IdVelo)
+            Velo velo = new Velo()
             {
-                return BadRequest();
-            }
+                IdVelo = id,
+                IdProduit = veloDTO.IdProduit,
+                IdTailleMin = veloDTO.IdTailleMin,
+                IdTailleMax = veloDTO.IdTailleMax,
+                IdModele = veloDTO.IdModele,
+                IdCat = veloDTO.IdCat,
+                IdEtat = veloDTO.IdEtat,
+                Nbkms = veloDTO.Nbkms,
+                Prixneuf = veloDTO.PrixNeuf,
+                Poids = veloDTO.Poids,
+                Typecadre = veloDTO.TypeCadre,
+                Annee = veloDTO.Annee,
+                BestSeller = veloDTO.BestSeller,
+                NbVente = veloDTO.NbVente,
+                QualiteVelo = veloDTO.QualiteVelo
+
+            };
 
             var veloToUpdate = dataRepository.GetByIdAsync(id);
 
@@ -115,13 +131,11 @@ namespace SAE_G2_Upway_API.Controllers
             {
                 return NotFound();
             }
-            else
-            {
-                dataRepository.UpdateAsync(veloToUpdate.Result.Value, velo);
-                return NoContent();
-            }
-
+            dataRepository.UpdateAsync(veloToUpdate.Result.Value, velo);
             return NoContent();
+            
+
+            
         }
 
         // POST: api/Velos
@@ -137,12 +151,32 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<Velo>> PostVelo(Velo velo)
+        public async Task<ActionResult<Velo>> PostVelo(VeloDTO veloDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            
+            Velo velo = new Velo()
+            {
+                IdProduit = veloDTO.IdProduit,
+                IdTailleMin = veloDTO.IdTailleMin,
+                IdTailleMax = veloDTO.IdTailleMax,
+                IdModele = veloDTO.IdModele,
+                IdCat = veloDTO.IdCat,
+                IdEtat = veloDTO.IdEtat,
+                Nbkms = veloDTO.Nbkms,
+                Prixneuf = veloDTO.PrixNeuf,
+                Poids = veloDTO.Poids,
+                Typecadre = veloDTO.TypeCadre,
+                Annee = veloDTO.Annee,
+                BestSeller = veloDTO.BestSeller,
+                NbVente = veloDTO.NbVente,
+                QualiteVelo = veloDTO.QualiteVelo
+            };
+            
+            
             await dataRepository.AddAsync(velo);
             return CreatedAtAction("GetVeloById", new { id = velo.IdVelo }, velo);
         }
@@ -175,6 +209,7 @@ namespace SAE_G2_Upway_API.Controllers
         /*
         private bool VeloExists(int id)
         {
+        
             return _context.Velos.Any(e => e.IdVelo == id);
         }
         */

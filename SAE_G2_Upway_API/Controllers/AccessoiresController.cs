@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
+using SAE_G2_Upway_API.Controllers.DTO;
 
 namespace SAE_G2_Upway_API.Controllers;
 
@@ -104,12 +105,15 @@ public class AccessoiresController : ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
     [ProducesResponseType(500)]
-    public async Task<IActionResult> PutAccessoire(int id, Accessoire accessoire)
+    public async Task<IActionResult> PutAccessoire(int id, AccessoireDTO accessoireDTO)
     {
-        if (id != accessoire.IdAccessoire)
+        Accessoire accessoire = new Accessoire()
         {
-            return BadRequest();
-        }
+            IdAccessoire = id,
+            IdProduit = accessoireDTO.IdCatA,
+            DateAccessoire = accessoireDTO.DateAccessoire,
+            
+        };
 
         var accessoireToUpdate = dataRepository.GetByIdAsync(id);
 
@@ -117,13 +121,11 @@ public class AccessoiresController : ControllerBase
         {
             return NotFound();
         }
-        else
-        {
-            dataRepository.UpdateAsync(accessoireToUpdate.Result.Value, accessoire);
-            return NoContent();
-        }
-
+        dataRepository.UpdateAsync(accessoireToUpdate.Result.Value, accessoire);
         return NoContent();
+        
+
+        
     }
 
     // POST: api/Accessoires
@@ -139,12 +141,19 @@ public class AccessoiresController : ControllerBase
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
-    public async Task<ActionResult<Accessoire>> PostAccessoire(Accessoire accessoire)
+    public async Task<ActionResult<Accessoire>> PostAccessoire(AccessoireDTO accessoireDTO)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
+        Accessoire accessoire = new Accessoire()
+        {
+            IdProduit = accessoireDTO.IdProduit,
+            IdCatA = accessoireDTO.IdCatA,
+            DateAccessoire = accessoireDTO.DateAccessoire,
+            
+        };
         await dataRepository.AddAsync(accessoire);
         return CreatedAtAction("GetAccessoireById", new { id = accessoire.IdAccessoire }, accessoire);
     }
