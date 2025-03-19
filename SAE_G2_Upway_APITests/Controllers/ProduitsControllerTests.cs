@@ -41,6 +41,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             produitsController = new ProduitsController(dataRepository);
 
+            
             var produitsBase = dbContext.Produits.ToList();
             var produitsGetAll = produitsController.GetProduits();
             Console.WriteLine("-----------------------------------------");
