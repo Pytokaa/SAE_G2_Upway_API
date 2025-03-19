@@ -56,12 +56,12 @@ public class AccessoiresController : ControllerBase
         
         
         
-        if (accessoire.Result == null)
+        if (accessoire == null)
         {
             return NotFound();
         }
 
-        return accessoire.Result;
+        return accessoire;
     }
 
     // GET: api/Accessoires/name/{nom}
