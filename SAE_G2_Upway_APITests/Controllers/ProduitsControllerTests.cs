@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using SAE_G2_Upway_API.Controllers.DTO;
 using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
@@ -92,21 +94,96 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                 actionResult.Value.DescriptionProduit
                 );
             
-            Assert.IsNotNull(actionResult);
-            Assert.IsNotNull(actionResult.Result);
+            Assert.IsNotNull(actionResult,"is not null premier ne marche pas");
+            Assert.IsNotNull(actionResult.Value, "is not null second ne marche pas");
             Assert.AreEqual(produitTest, result,"Get all produits ne fonctionne pas correctement");
         }
 
         [TestMethod()]
-        public void GetProduitByNameTest()
+        public void GetProduitByIdTest_ReturnsNotFound_avecMoq()
         {
-            Assert.Fail();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
+            
+            var produitController = new ProduitsController(mockRepository.Object);
+            
+            
+            var actionResult = produitController.GetProduitById(0).Result;
+            Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
         }
 
         [TestMethod()]
-        public void PutProduitTest()
+        public void GetProduitByNameTest_ReturnsOK_avecMoq()
         {
-            Assert.Fail();
+            Produit produitTest = new Produit(
+                5,
+                5,
+                5,
+                "Vélo de ville Nakamura E-City",
+                1300,
+                10,
+                "Vélo de ville électrique idéal pour les trajets quotidiens."
+            );
+            
+            var mockRepository = new Mock<IDataRepository<Produit>>();
+            mockRepository.Setup(x => x.GetByStringAsync("Vélo de ville Nakamura E-City").Result).Returns(produitTest);
+            
+            var produitController = new ProduitsController(mockRepository.Object);
+            
+            var actionResult = produitController.GetProduitByName("Vélo de ville Nakamura E-City").Result;
+            Produit result = new Produit(
+                actionResult.Value.Idproduit,
+                actionResult.Value.IdPhoto,
+                actionResult.Value.IdMarque,
+                actionResult.Value.NomProduit,
+                actionResult.Value.PrixProduit,
+                actionResult.Value.StockProduit,
+                actionResult.Value.DescriptionProduit
+            );
+            
+            Assert.IsNotNull(actionResult,"is not null premier ne marche pas");
+            Assert.IsNotNull(actionResult.Value, "is not null second ne marche pas");
+            Assert.AreEqual(produitTest, result,"Get all produits ne fonctionne pas correctement");
+        }
+        
+        [TestMethod()]
+        public void GetProduitByNameTest_ReturnsNotFound_avecMoq()
+        {
+            var mockRepository = new Mock<IDataRepository<Produit>>();
+            
+            var produitController = new ProduitsController(mockRepository.Object);
+            
+            
+            var actionResult = produitController.GetProduitByName("").Result;
+            Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
+        }
+
+        [TestMethod()]
+        public void PutProduitTest_AvecMoq()
+        {
+            Produit produitBase = new Produit(
+                5,
+                5,
+                5,
+                "Vélo de ville Nakamura E-City",
+                1300,
+                10,
+                "Vélo de ville électrique idéal pour les trajets quotidiens."
+            );
+            ProduitDTO produitModif = new ProduitDTO();
+            produitModif.IdMarque = 5;
+            produitModif.IdPhoto = 5;
+            produitModif.NomProduit = "Vélo de ville Nakamura E-City";
+            produitModif.PrixProduit = 1300;
+            produitModif.StockProduit = 10;
+            produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
+
+            var mockRepository = new Mock<IDataRepository<Produit>>();
+            mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitBase);
+            var userController = new ProduitsController(mockRepository.Object);
+            
+            var actionResult = produitController.PutProduit(5, produitModif).Result;
+            
+            Assert.IsInstanceOfType(actionResult, typeof(NoContentResult), "la reponse n'est pas de type NoContentResult");
         }
 
         [TestMethod()]

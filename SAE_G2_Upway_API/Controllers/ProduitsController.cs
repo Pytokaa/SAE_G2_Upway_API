@@ -111,6 +111,7 @@ namespace SAE_G2_Upway_API.Controllers
                 IdPhoto = produitDto.IdPhoto,
                 NomProduit = produitDto.NomProduit,
                 PrixProduit = produitDto.PrixProduit,
+                StockProduit = produitDto.StockProduit,
                 DescriptionProduit = produitDto.DescriptionProduit,
             };
             
