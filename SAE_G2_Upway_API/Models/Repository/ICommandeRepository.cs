@@ -11,4 +11,5 @@ public class CommandeDTO
     public int? IdAdresseFactu { get; set; }
     public int IdModePayement { get; set; }
     public int IdClient { get; set; }
+    
 }
