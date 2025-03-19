@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +18,9 @@ namespace SAE_G2_Upway_API.Controllers
     [ApiController]
     public class ProduitsController : ControllerBase
     {
-        private readonly IDataRepository<Produit> dataRepository;
+        private readonly IProduitRepository dataRepository;
 
-        public ProduitsController(IDataRepository<Produit> dataRepo)
+        public ProduitsController(IProduitRepository dataRepo)
         {
             dataRepository = dataRepo;
         }
@@ -103,7 +104,18 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> PutProduit(int id, ProduitDTO produitDto)
         {
-
+            var produitToUpdate = await dataRepository.GetByIdAsync(id);
+            
+            if (!await dataRepository.ExistsAsync(id))
+            {
+                return BadRequest();
+            }
+            
+            if (produitToUpdate.Value == null)
+            {
+                return NotFound();
+            }
+            
             Produit produit = new Produit()
             {
                 Idproduit = id,
@@ -114,12 +126,6 @@ namespace SAE_G2_Upway_API.Controllers
                 StockProduit = produitDto.StockProduit,
                 DescriptionProduit = produitDto.DescriptionProduit,
             };
-            
-            var produitToUpdate = await dataRepository.GetByIdAsync(id);
-            if (produitToUpdate == null)
-            {
-                return NotFound();
-            }
 
             dataRepository.UpdateAsync(produitToUpdate.Value, produit);
             return NoContent();

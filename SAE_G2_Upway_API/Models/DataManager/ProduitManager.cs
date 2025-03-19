@@ -7,7 +7,7 @@ using SAE_G2_Upway_API.Models.Repository;
 
 namespace SAE_G2_Upway_API.Models.DataManager;
 
-public class ProduitManager : IDataRepository<Produit>
+public class ProduitManager : IProduitRepository
 {
     private readonly UpwayDBContext? upwayDbContext;
     public ProduitManager(){}
@@ -81,4 +81,8 @@ public class ProduitManager : IDataRepository<Produit>
         await upwayDbContext.SaveChangesAsync();
     }
     
+    public async Task<bool> ExistsAsync(int id)
+    {
+        return await upwayDbContext.Produits.AnyAsync(p => p.Idproduit == id);
+    }
 }
