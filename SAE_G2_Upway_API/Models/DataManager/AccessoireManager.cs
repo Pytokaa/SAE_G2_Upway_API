@@ -77,15 +77,11 @@ public class AccessoireManager : IDataRepository<Accessoire, AccessoireDtoGet>
         upwayDbContext.Entry(entityToUpdate).State = EntityState.Modified;
         
         entityToUpdate.IdAccessoire = entity.IdAccessoire;
-        entityToUpdate.IdProduit = entity.IdProduit;
         entityToUpdate.IdCatA = entity.IdCatA;
         entityToUpdate.DateAccessoire = entity.DateAccessoire;
         
         //relations
-        entityToUpdate.Produit = entity.Produit;
-        entityToUpdate.CategorieAccessoire = entity.CategorieAccessoire;
-        entityToUpdate.LesCommandes = entity.LesCommandes;
-        entityToUpdate.LesCommandesAccessoire = entity.LesCommandesAccessoire;
+        entityToUpdate.IdProduit = entity.IdProduit;        
 
         await upwayDbContext.SaveChangesAsync();
     }

@@ -94,17 +94,8 @@ public class ClientsController : ControllerBase
             return BadRequest();
         }
 
-        Client client = new Client()
-        {
-            Nomclient = clientDto.Nom,
-            Prenomclient = clientDto.Prenom,
-            Mailclient = clientDto.Mail,
-            Telephone = clientDto.Telephone,
-            IdFonction = clientDto.IdFonction,
-            Password = clientDto.Password,
-            UserRole = clientDto.UserRole
-        };
-    
+        Client client = new Client(clientDto);
+
         dataRepository.UpdateAsync(clientToUpdate.Value, client);
         return NoContent();
     }
