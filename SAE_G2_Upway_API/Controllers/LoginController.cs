@@ -16,14 +16,14 @@ namespace SAE_G2_Upway_API.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _config;
-        private readonly IDataRepository<Client> dataRepository;
+        private readonly IDataRepository<Client, Client> dataRepository;
         private List<Client>? appUsers;
 
         public LoginController(IConfiguration config)
         {
             _config = config;
         }
-        public LoginController(IDataRepository<Client> dataRepo)
+        public LoginController(IDataRepository<Client, Client> dataRepo)
         {
             dataRepository = dataRepo;
         }

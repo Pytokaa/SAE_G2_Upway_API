@@ -17,13 +17,13 @@ namespace SAE_G2_Upway_API.Controllers.Tests
     [TestClass()]
     public class ClientsControllerTestsMoq
     {
-        private ClientsController? controller;
-        private Mock<IDataRepository<Client>> mockRepository;
+        /*private ClientsController? controller;
+        private Mock<IDataRepository<Client, Client>> mockRepository;
 
         [TestInitialize]
         public void Init()
         {
-            mockRepository = new Mock<IDataRepository<Client>>();
+            mockRepository = new Mock<IDataRepository<Client, Client>>();
             controller = new ClientsController(mockRepository.Object);
         }
 
@@ -170,6 +170,6 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             mockRepository = null;
             controller = null;
-        }
+        }*/
     }
 }

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using NuGet.Protocol.Core.Types;
+using SAE_G2_Upway_API.Controllers.DTO;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
@@ -20,7 +22,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
     {
         private UpwayDBContext dbContext;
         private AccessoiresController accessoiresController;
-        private IDataRepository<Accessoire> dataRepository;
+        private IDataRepository<Accessoire, AccessoireDtoGet> dataRepository;
 
         [TestInitialize]
         public void Init()
@@ -53,7 +55,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             Accessoire accessoire = new Accessoire();
 
-            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(accessoire);
             
             var accessoireController = new AccessoiresController(mockRepository.Object);
@@ -68,7 +70,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetAccessoireByIdTest_ReturnsNotFound_AvecMoq()
         {
-            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
             
             mockRepository.Setup(x => x.GetByIdAsync(345).Result).Returns((Accessoire)null);
                 
@@ -85,7 +87,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             Accessoire accessoire = new Accessoire();
 
-            var mockRepository = new Mock<IDataRepository<Accessoire>>();
+            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
             mockRepository.Setup(x => x.GetByStringAsync("Casque Abus Viantor").Result).Returns(accessoire);
             
             var accessoireController = new AccessoiresController(mockRepository.Object);

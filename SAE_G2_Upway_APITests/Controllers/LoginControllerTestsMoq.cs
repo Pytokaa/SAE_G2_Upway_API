@@ -16,12 +16,12 @@ namespace SAE_G2_Upway_API.Controllers.Tests
     public class LoginControllerTestsMoq
     {
         private LoginController? controller;
-        private Mock<IDataRepository<Client>> mockRepository;
+        private Mock<IDataRepository<Client, Client>> mockRepository;
 
         [TestInitialize]
         public void Init()
         {
-            mockRepository = new Mock<IDataRepository<Client>>();
+            mockRepository = new Mock<IDataRepository<Client, Client>>();
             controller = new LoginController(mockRepository.Object);
         }
 
