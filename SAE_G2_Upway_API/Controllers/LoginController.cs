@@ -19,18 +19,16 @@ namespace SAE_G2_Upway_API.Controllers
         private readonly IDataRepository<Client, Client> dataRepository;
         private List<Client>? appUsers;
 
-        public LoginController(IConfiguration config)
+        public LoginController(IConfiguration config, IDataRepository<Client, Client> dataRepo)
         {
             _config = config;
-        }
-        public LoginController(IDataRepository<Client, Client> dataRepo)
-        {
             dataRepository = dataRepo;
         }
 
-        private void GetClients()
+        public async void GetClients()
         {
-            appUsers = dataRepository.GetAllAsync().Result.Value.ToList();
+            var action_result = await dataRepository.GetAllAsync();
+            appUsers = action_result.Value.ToList();
         }
 
         [HttpPost]

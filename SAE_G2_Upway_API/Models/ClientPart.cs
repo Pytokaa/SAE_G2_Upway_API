@@ -47,6 +47,7 @@ public partial class Client
         Commandes = commandes;
         LesFavoris = lesFavoris;
         HabiteA = habiteA;
+        UserRole = "User";
     }
     public Client(int idclient, int idFonction, string nomclient, string prenomclient, string mailclient,
                       string telephone, string password )
@@ -58,6 +59,7 @@ public partial class Client
         Mailclient = mailclient;
         Telephone = telephone;
         Password = password;
+        UserRole = "User";
     }
     public Client(ClientDTO clientDto)
     {
