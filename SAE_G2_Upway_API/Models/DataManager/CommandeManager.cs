@@ -68,20 +68,7 @@ public class CommandeManager : ICommandeRepository
         entityToUpdate.IdModePayement = entity.IdModePayement;
         entityToUpdate.IdClient = entity.IdClient;
     
-        // Relations
-        entityToUpdate.Code = entity.Code;
-        entityToUpdate.Statut = entity.Statut;
-        entityToUpdate.ModeExpedition = entity.ModeExpedition;
-        entityToUpdate.Adresse = entity.Adresse;
-        entityToUpdate.Boutique = entity.Boutique;
-        entityToUpdate.AdresseFactu = entity.AdresseFactu;
-        entityToUpdate.ModePayement = entity.ModePayement;
-        entityToUpdate.Client = entity.Client;
-    
-        entityToUpdate.AssurancesPropose = entity.AssurancesPropose;
-        entityToUpdate.LesSimilaires = entity.LesSimilaires;
-        entityToUpdate.LesAccessoires = entity.LesAccessoires;
-        entityToUpdate.PanierVelo = entity.PanierVelo;
+       
 
         await upwayDbContext.SaveChangesAsync();
     }
