@@ -18,9 +18,9 @@ namespace SAE_G2_Upway_API.Controllers
     [ApiController]
     public class ProduitsController : ControllerBase
     {
-        private readonly IProduitRepository dataRepository;
+        private readonly IDataRepository<Produit> dataRepository;
 
-        public ProduitsController(IProduitRepository dataRepo)
+        public ProduitsController(IDataRepository<Produit> dataRepo)
         {
             dataRepository = dataRepo;
         }
@@ -105,12 +105,10 @@ namespace SAE_G2_Upway_API.Controllers
         public async Task<IActionResult> PutProduit(int id, ProduitDTO produitDto)
         {
             var produitToUpdate = await dataRepository.GetByIdAsync(id);
-            
-            if (!await dataRepository.ExistsAsync(id))
+            if (produitToUpdate.Value == null)
             {
                 return NotFound();
             }
-            
             if (produitDto.IdMarque<0 || produitDto.IdMarque == null || produitDto.IdPhoto == null || produitDto.IdPhoto<0 
                 || produitDto.PrixProduit<0 || produitDto.PrixProduit == null || produitDto.StockProduit<0 || produitDto.StockProduit == null ||
                 produitDto.NomProduit == null )

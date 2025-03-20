@@ -20,7 +20,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
     {
         private UpwayDBContext dbContext;
         private ProduitsController produitController;
-        private IProduitRepository dataRepository;
+        private IDataRepository<Produit> dataRepository;
 
         [TestInitialize]
         public void Init()
@@ -78,7 +78,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                 "Vélo de ville électrique idéal pour les trajets quotidiens."
                 );
             
-            var mockRepository = new Mock<IProduitRepository>();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitTest);
             
             var produitController = new ProduitsController(mockRepository.Object);
@@ -102,7 +102,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetProduitByIdTest_ReturnsNotFound_avecMoq()
         {
-            var mockRepository = new Mock<IProduitRepository>();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
             
             var produitController = new ProduitsController(mockRepository.Object);
             
@@ -124,7 +124,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                 "Vélo de ville électrique idéal pour les trajets quotidiens."
             );
             
-            var mockRepository = new Mock<IProduitRepository>();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
             mockRepository.Setup(x => x.GetByStringAsync("Vélo de ville Nakamura E-City").Result).Returns(produitTest);
             
             var produitController = new ProduitsController(mockRepository.Object);
@@ -148,7 +148,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetProduitByNameTest_ReturnsNotFound_avecMoq()
         {
-            var mockRepository = new Mock<IProduitRepository>();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
             
             var produitController = new ProduitsController(mockRepository.Object);
             
@@ -164,7 +164,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                 5,
                 5,
                 5,
-                "Test",
+                "Vélo de ville Nakamura E-City",
                 1300,
                 10,
                 "Vélo de ville électrique idéal pour les trajets quotidiens."
@@ -172,12 +172,12 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             ProduitDTO produitModif = new ProduitDTO();
             produitModif.IdMarque = 5;
             produitModif.IdPhoto = 5;
-            produitModif.NomProduit = "Vélo de ville Nakamura E-City";
+            produitModif.NomProduit = "Test";
             produitModif.PrixProduit = 1300;
             produitModif.StockProduit = 10;
             produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
 
-            var mockRepository = new Mock<IProduitRepository>();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitBase);
             var produitController = new ProduitsController(mockRepository.Object);
             
@@ -187,7 +187,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         }
         
         [TestMethod()]
-        public void PutProduitTest_InvalidId_ReturnsBadRequest_avecMoq()
+        public void PutProduitTest_InvalidId_ReturnsNotFound_avecMoq()
         {
             ProduitDTO produitModif = new ProduitDTO();
             produitModif.IdMarque = 5;
@@ -197,13 +197,13 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             produitModif.StockProduit = 10;
             produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
 
-            var mockRepository = new Mock<IProduitRepository>();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
             mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns((Produit)null);
             var produitController = new ProduitsController(mockRepository.Object);
             
             var actionResult = produitController.PutProduit(0, produitModif).Result;
             
-            Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "la reponse n'est pas de type BadRequestResult");
+            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "la reponse n'est pas de type BadRequestResult");
         }
         
         [TestMethod()]
@@ -217,7 +217,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             produitModif.StockProduit = 10;
             produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
 
-            var mockRepository = new Mock<IProduitRepository>();
+            var mockRepository = new Mock<IDataRepository<Produit>>();
             var produitBase = new Produit(5, 5, 5, "Vélo", 1300, 10, "Description");
             mockRepository.Setup(x => x.GetByIdAsync(5)).ReturnsAsync(produitBase);
             
