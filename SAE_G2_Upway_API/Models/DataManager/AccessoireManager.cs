@@ -2,11 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 
 namespace SAE_G2_Upway_API.Models.DataManager;
 
-public class AccessoireManager : IDataRepository<Accessoire>
+public class AccessoireManager : IDataRepository<Accessoire, Accessoire>
 {
     private readonly UpwayDBContext? upwayDbContext;
     public AccessoireManager(){}

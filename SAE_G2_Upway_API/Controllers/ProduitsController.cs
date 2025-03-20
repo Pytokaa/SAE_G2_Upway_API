@@ -18,9 +18,9 @@ namespace SAE_G2_Upway_API.Controllers
     [ApiController]
     public class ProduitsController : ControllerBase
     {
-        private readonly IDataRepository<Produit> dataRepository;
+        private readonly IDataRepository<Produit, Produit> dataRepository;
 
-        public ProduitsController(IDataRepository<Produit> dataRepo)
+        public ProduitsController(IDataRepository<Produit, Produit> dataRepo)
         {
             dataRepository = dataRepo;
         }

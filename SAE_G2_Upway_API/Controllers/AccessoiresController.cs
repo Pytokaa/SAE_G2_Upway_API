@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 using SAE_G2_Upway_API.Controllers.DTO;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 namespace SAE_G2_Upway_API.Controllers;
 
@@ -15,9 +16,9 @@ namespace SAE_G2_Upway_API.Controllers;
 [ApiController]
 public class AccessoiresController : ControllerBase
 {
-    private readonly IDataRepository<Accessoire> dataRepository;
+    private readonly IDataRepository<Accessoire, Accessoire> dataRepository;
 
-    public AccessoiresController(IDataRepository<Accessoire> dataRepo)
+    public AccessoiresController(IDataRepository<Accessoire, Accessoire> dataRepo)
     {
         dataRepository = dataRepo;
     }

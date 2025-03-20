@@ -2,11 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 
 namespace SAE_G2_Upway_API.Models.DataManager;
 
-public class VeloManager : IDataRepository<Velo>
+public class VeloManager : IDataRepository<Velo, VeloDtoGet>
 {
     private readonly UpwayDBContext? upwayDbContext;
     public VeloManager(){}
@@ -22,6 +23,8 @@ public class VeloManager : IDataRepository<Velo>
             .AsNoTracking()
             .Include(a => a.Produit)
             .ThenInclude(p=>p.Marque)
+            .Include(a => a.Produit)
+            .ThenInclude(p => p.Photo)
             .Include(a => a.TailleMin)
             .Include(a => a.TailleMax)
             .Include(a => a.LeModele)
@@ -36,11 +39,40 @@ public class VeloManager : IDataRepository<Velo>
     }
     
 
-    public async Task<ActionResult<IEnumerable<Velo>>> GetAllAsync()
+    public async Task<ActionResult<IEnumerable<VeloDtoGet>>> GetAllAsync()
     {
-        return await GetVeloWithInclude().ToListAsync();
-        
-        
+        List<VeloDtoGet> velos = new List<VeloDtoGet>();
+
+        var veloList = await GetVeloWithInclude().ToListAsync(); // Exécution ici
+
+        foreach (var velo in veloList) // Maintenant, c'est une liste en mémoire
+        {
+            if (velo.Produit?.Photo == null)
+            {
+                Console.WriteLine($"⚠️ Photo est NULL pour le vélo ID ");
+            }
+            velos.Add(new VeloDtoGet()
+            {
+                Nom = velo.Produit.NomProduit,
+                UrlPhoto = velo.Produit.Photo.Url,
+                NomMarque = velo.Produit.Marque.NomMarque,
+                PrixVelo = velo.Produit.PrixProduit,
+                PrixNeuf = velo.Prixneuf,
+                TailleMax = velo.TailleMax.TailleCm,
+                TailleMin = velo.TailleMin.TailleCm,
+                NomModele = velo.LeModele.NomModele,
+                Categorie = velo.LaCategorie.NomCategorie,
+                Etat = velo.Etat.NomEtat,
+                Nbkms = velo.Nbkms,
+                Poids = velo.Poids,
+                TypeCadre = velo.Typecadre,
+                Annee = velo.Annee,
+                BestSeller = velo.BestSeller,
+            });
+        }
+    
+        return velos;
+        //return await GetVeloWithInclude().ToListAsync();
     }
     public async Task<ActionResult<Velo>> GetByIdAsync(int id)
     {
