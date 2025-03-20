@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="merci mael ca remarche">
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Tous les tests de putproduit sont finis">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/ProduitDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/ProduitDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/ProduitsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/ProduitsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/ProduitManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/ProduitManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/Repository/IProduitRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +39,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc5db45973834e0395821fdfb9e6ad5035f220/43/b180e3c3/DbConnectionOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2e49d132ea68ff47071c64476ae29138fa965dc555ef7c3f4991586431de241/Task.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7b3b6985aad11c5d633d75b545f5f5f4fc7e50918ad1cb9f6b615682f5bfb76d/SingleQueryingEnumerable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/91cd9ea146b0b01ac23f87423d971d6bcb1120836a59d9b6bdb9873af8e/ArgumentException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/AccessoiresControllerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/ClientsControllerTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -141,7 +141,7 @@
       <workItem from="1742294589319" duration="43000" />
       <workItem from="1742419747780" duration="304000" />
       <workItem from="1742420471905" duration="6926000" />
-      <workItem from="1742454362355" duration="3223000" />
+      <workItem from="1742454362355" duration="12425000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -279,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742455239104</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Tous les tests de putproduit sont finis">
+      <option name="closed" value="true" />
+      <created>1742457702660</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1742457702660</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,6 +337,31 @@
     <MESSAGE value="les tests marchent mais plus l'api c'est bizarre" />
     <MESSAGE value="Changement mais j'ai du faire des betise parce que ca marche plus" />
     <MESSAGE value="merci mael ca remarche" />
-    <option name="LAST_COMMIT_MESSAGE" value="merci mael ca remarche" />
+    <MESSAGE value="Tous les tests de putproduit sont finis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tous les tests de putproduit sont finis" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs</url>
+          <line>45</line>
+          <properties documentPath="C:\Users\bojod\RiderProjects\SAE_G2_Upway_API\SAE_G2_Upway_APITests\Controllers\ProduitsControllerTests.cs" containingFunctionPresentation="Method 'GetProduits_ReturnsAllProduits'">
+            <startOffsets>
+              <option value="1513" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1565" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Frame#SAE_G2_Upway_API.Controllers.Tests.ProduitsControllerTests.GetProduits_ReturnsAllProduits" memberName="result" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

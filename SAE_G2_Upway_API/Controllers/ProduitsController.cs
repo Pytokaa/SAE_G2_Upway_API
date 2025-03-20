@@ -109,9 +109,7 @@ namespace SAE_G2_Upway_API.Controllers
             {
                 return NotFound();
             }
-            if (produitDto.IdMarque<0 || produitDto.IdMarque == null || produitDto.IdPhoto == null || produitDto.IdPhoto<0 
-                || produitDto.PrixProduit<0 || produitDto.PrixProduit == null || produitDto.StockProduit<0 || produitDto.StockProduit == null ||
-                produitDto.NomProduit == null )
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -178,7 +176,7 @@ namespace SAE_G2_Upway_API.Controllers
         public async Task<ActionResult<Produit>> DeleteProduit(int id)
         {
             var produit = await dataRepository.GetByIdAsync(id);
-            if (produit == null)
+            if (produit.Value == null)
             {
                 return NotFound();
             }

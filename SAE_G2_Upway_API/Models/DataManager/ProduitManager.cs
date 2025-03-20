@@ -31,6 +31,7 @@ public class ProduitManager : IDataRepository<Produit>
     }
     public async Task<ActionResult<IEnumerable<Produit>>> GetAllAsync()
     {
+        //return await upwayDbContext.Produits.ToListAsync();
         return await GetProduitWithInclude().ToListAsync();
     }
 
