@@ -5,7 +5,7 @@ using SAE_G2_Upway_API.Models.Repository;
 
 namespace SAE_G2_Upway_API.Models.DataManager;
 
-public class ClientManager : IDataRepository<Client>
+public class ClientManager : IDataRepository<Client, Client>
 {
     private readonly UpwayDBContext upwayDbContext;
     public ClientManager(){}
