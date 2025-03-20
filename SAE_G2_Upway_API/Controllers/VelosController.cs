@@ -106,6 +106,12 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> PutVelo(int id, VeloDTO veloDTO)
         {
+            var veloToUpdate = await dataRepository.GetByIdAsync(id);
+
+            if (veloToUpdate == null)
+            {
+                return NotFound();
+            }
             Velo velo = new Velo()
             {
                 IdVelo = id,
@@ -126,13 +132,8 @@ namespace SAE_G2_Upway_API.Controllers
 
             };
 
-            var veloToUpdate = dataRepository.GetByIdAsync(id);
-
-            if (veloToUpdate == null)
-            {
-                return NotFound();
-            }
-            dataRepository.UpdateAsync(veloToUpdate.Result.Value, velo);
+            
+            dataRepository.UpdateAsync(veloToUpdate.Value, velo);
             return NoContent();
             
 

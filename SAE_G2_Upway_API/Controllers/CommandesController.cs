@@ -38,12 +38,12 @@ public class CommandesController : ControllerBase
         
         
         
-        if (commande.Result == null)
+        if (commande == null)
         {
             return NotFound();
         }
 
-        return commande.Result;
+        return commande;
     }
     
     [HttpPut("id/{id}")]
@@ -53,8 +53,15 @@ public class CommandesController : ControllerBase
     [ProducesResponseType(500)]
     public async Task<IActionResult> PutCommande(int id, CommandeDTO commandeDTO)
     {
+        var commandeToUpdate = await dataRepository.GetByIdAsync(id);
+
+        if (commandeToUpdate == null)
+        {
+            return NotFound();
+        }
         Commande commande = new Commande()
         {
+            IdCommande = id,
             DateCommande = commandeDTO.DateCommande,
             IdCode = commandeDTO.IdCode,
             IdStatut = commandeDTO.IdStatut,
@@ -66,13 +73,8 @@ public class CommandesController : ControllerBase
             IdClient = commandeDTO.IdClient,
         };
 
-        var commandeToUpdate = dataRepository.GetByIdAsync(id);
-
-        if (commandeToUpdate == null)
-        {
-            return NotFound();
-        }
-        dataRepository.UpdateAsync(commandeToUpdate.Result.Value, commande);
+        
+        dataRepository.UpdateAsync(commandeToUpdate.Value, commande);
         return NoContent();
     }
     
