@@ -9,8 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="" />
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Client Dto Put et Post" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,10 +34,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/af546368cf97cc782ee9be2f38d5dbfa573ce241d5306c2c8430a5f6d4b786/SelectExpressionPruningExpressionVisitor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/AccessoiresControllerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/ClientsControllerTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/elioth/Documents/Repository Git/Upway_SAE/API3/SAE_G2_Upway_API/Controllers/ClientsController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/elioth/Documents/Repository Git/Upway_SAE/API3/SAE_G2_Upway_API/Controllers/ClientsController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -50,27 +50,30 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2uRwvH8Y4W4xwm2scOuDomzv4Zg" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.SAE_G2_Upway_API: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor": "Debug",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "HotReloadSettingsPage",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.SAE_G2_Upway_API: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SAE_G2_Upway_API: http">
     <configuration name="SAE_G2_Upway_API: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SAE_G2_Upway_API/SAE_G2_Upway_API.csproj" />
@@ -264,7 +267,31 @@
       <option name="project" value="LOCAL" />
       <updated>1742428337953</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="DTOGET de Velo, restez connectés accessoire arrive la team">
+      <option name="closed" value="true" />
+      <created>1742462770655</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1742462770655</updated>
+    </task>
+    <task id="LOCAL-00018" summary="GetAll Accessoires avec dtoget">
+      <option name="closed" value="true" />
+      <created>1742463711616</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1742463711616</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Client Dto Put et Post">
+      <option name="closed" value="true" />
+      <created>1742466115312</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1742466115312</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,25 +340,9 @@
     <MESSAGE value="Les tests unitaires avancent grandement" />
     <MESSAGE value="les tests marchent mais plus l'api c'est bizarre" />
     <MESSAGE value="Changement mais j'ai du faire des betise parce que ca marche plus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changement mais j'ai du faire des betise parce que ca marche plus" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/ProduitsController.cs</url>
-          <line>108</line>
-          <properties documentPath="C:\Users\bojod\RiderProjects\SAE_G2_Upway_API\SAE_G2_Upway_API\Controllers\ProduitsController.cs" containingFunctionPresentation="Method 'PutProduit'">
-            <startOffsets>
-              <option value="4581" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4623" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="DTOGET de Velo, restez connectés accessoire arrive la team" />
+    <MESSAGE value="GetAll Accessoires avec dtoget" />
+    <MESSAGE value="Client Dto Put et Post" />
+    <option name="LAST_COMMIT_MESSAGE" value="Client Dto Put et Post" />
   </component>
 </project>
