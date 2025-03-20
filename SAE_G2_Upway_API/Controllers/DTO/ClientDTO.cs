@@ -1,3 +1,6 @@
+using SAE_G2_Upway_API.Models;
+using SAE_G2_Upway_API.Models.EntityFramework;
+
 namespace SAE_G2_Upway_API.Controllers.DTO;
 
 public class ClientDTO
@@ -10,5 +13,14 @@ public class ClientDTO
     public int IdFonction { get; set; }
     public string? UserRole { get; set; }
     
-    
+    public ClientDTO(Client client)
+    {
+        this.Nom = client.Nomclient;
+        this.Prenom = client.Prenomclient;
+        this.Mail = client.Mailclient;
+        this.Telephone = client.Telephone;
+        this.Password = client.Password;
+        this.IdFonction = client.IdFonction;
+        this.UserRole = client.UserRole;
+    }
 }
