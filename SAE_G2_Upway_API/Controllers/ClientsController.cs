@@ -87,7 +87,7 @@ public class ClientsController : ControllerBase
             return BadRequest();
         }
 
-        var clientToUpdate = dataRepository.GetByIdAsync(id);
+        var clientToUpdate = await dataRepository.GetByIdAsync(id);
 
         if (clientToUpdate == null)
         {
@@ -95,11 +95,9 @@ public class ClientsController : ControllerBase
         }
         else
         {
-            dataRepository.UpdateAsync(clientToUpdate.Result.Value, client);
+            await dataRepository.UpdateAsync(clientToUpdate.Value, client);
             return NoContent();
         }
-
-        return NoContent();
     }
 
     // POST: api/Client
@@ -120,7 +118,7 @@ public class ClientsController : ControllerBase
             return BadRequest(ModelState);
         }
         await dataRepository.AddAsync(client);
-        return CreatedAtAction("GetAccessoireById", new { id = client.Idclient },client);
+        return CreatedAtAction("GetClientById", new { id = client.Idclient },client);
     }
 
 
