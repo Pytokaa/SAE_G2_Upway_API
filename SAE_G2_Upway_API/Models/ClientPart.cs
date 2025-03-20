@@ -1,3 +1,5 @@
+using SAE_G2_Upway_API.Controllers.DTO;
+
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 public partial class Client
@@ -57,4 +59,15 @@ public partial class Client
         Telephone = telephone;
         Password = password;
     }
+    public Client(ClientDTO clientDto)
+    {
+        Nomclient = clientDto.Nom;
+        Prenomclient = clientDto.Prenom;
+        Mailclient = clientDto.Mail;
+        Telephone = clientDto.Telephone;
+        IdFonction = clientDto.IdFonction;
+        Password = clientDto.Password;
+        UserRole = clientDto.UserRole;
+    }
+
 }

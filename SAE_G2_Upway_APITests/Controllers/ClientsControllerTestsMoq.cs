@@ -11,13 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
+using SAE_G2_Upway_API.Controllers.DTO;
 
 namespace SAE_G2_Upway_API.Controllers.Tests
 {
     [TestClass()]
     public class ClientsControllerTestsMoq
     {
-        /*private ClientsController? controller;
+        private ClientsController? controller;
         private Mock<IDataRepository<Client, Client>> mockRepository;
 
         [TestInitialize]
@@ -92,7 +93,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             //Arrange
             Client client = new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(client);
-            Client modified_client = new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0123456789", "K@@mel011");
+            ClientDTO modified_client = new ClientDTO(new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0123456789", "K@@mel011"));
             //Act
             var action_result = controller.PutClient(1, modified_client).Result;
             //Assert
@@ -105,18 +106,19 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             //Arrange
             Client client = new Client(0, 0, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
             //Act
-            var actual_result = controller.PutClient(0, client).Result;
+            var actual_result = controller.PutClient(0, new ClientDTO(client)).Result;
             //Assert
             Assert.IsInstanceOfType(actual_result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestMethod()]
-        public void PutClientMoq_MismatchedIdPassed_BadRequestReturned()
+        public void PutClientMoq_InvalidIdFonctionPassed_BadRequestReturned()
         {
             //Arrange
-            Client client = new Client(0, 0, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
+            Client client = new Client(1, -1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(client);
             //Act
-            var actual_result = controller.PutClient(1, client).Result;
+            var actual_result = controller.PutClient(1, new ClientDTO(client)).Result;
             //Assert
             Assert.IsInstanceOfType(actual_result, typeof(BadRequestResult), "Pas un BadRequest");
         }
@@ -127,7 +129,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             //Arrange
             Client new_client = new Client(4, 4, "Lenchanteur", "Merlin", "merlin.lenchanteur@demonpucelle.uk", "0661626364", "Pet1tEtM@rr0n");
             //Act
-            var action_result = controller.PostClient(new_client).Result;
+            var action_result = controller.PostClient(new ClientDTO(new_client)).Result;
             //Assert
             Assert.IsInstanceOfType(action_result.Result, typeof(CreatedAtActionResult), "Pas un CreatedAtAction");
         }
@@ -139,7 +141,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             Client new_client = new Client();
             controller.ModelState.AddModelError("Password", "Aucun mot de passe n'a été renseigné");
             //Act
-            var action_result = controller.PostClient(new_client).Result;
+            var action_result = controller.PostClient(new ClientDTO(new_client)).Result;
             //Assert
             Assert.IsInstanceOfType(action_result.Result, typeof(BadRequestObjectResult), "Pas un BadRequest");
         }
@@ -170,6 +172,6 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             mockRepository = null;
             controller = null;
-        }*/
+        }
     }
 }
