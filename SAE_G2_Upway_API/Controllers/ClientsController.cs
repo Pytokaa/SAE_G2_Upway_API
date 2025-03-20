@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
+using SAE_G2_Upway_API.Controllers.DTO;
+
+
 namespace SAE_G2_Upway_API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
@@ -80,25 +83,32 @@ public class ClientsController : ControllerBase
     /// <response code="404">Le client avec l'identifiant sp�cifi� n'a pas �t� trouv�.</response>
     /// <response code="500">Erreur interne du serveur lors de la mise � jour du client.</response>
     [HttpPut("id/{id}")]
-    public async Task<IActionResult> PutClient(int id, Client client)
+    public async Task<IActionResult> PutClient(int id, ClientDTO clientDto)
     {
-        if (id != client.Idclient)
-        {
-            return BadRequest();
-        }
-
-        var clientToUpdate = dataRepository.GetByIdAsync(id);
-
-        if (clientToUpdate == null)
+        var clientToUpdate = await dataRepository.GetByIdAsync(id);
+        if (clientToUpdate.Value == null)
         {
             return NotFound();
         }
-        else
+        Console.WriteLine(clientToUpdate.Value.Nomclient);
+        if (clientToUpdate.Value.IdFonction < 1 || clientToUpdate.Value.IdFonction == null || clientToUpdate.Value.Nomclient == null || clientToUpdate.Value.Nomclient == "" || clientToUpdate.Value.Prenomclient == null || clientToUpdate.Value.Prenomclient == "" || clientToUpdate.Value.Mailclient == "" || clientToUpdate.Value.Mailclient == null || clientToUpdate.Value.Telephone == null || clientToUpdate.Value.Telephone == "" || clientToUpdate.Value.Password == "" || clientToUpdate.Value.Password == null)
         {
-            dataRepository.UpdateAsync(clientToUpdate.Result.Value, client);
-            return NoContent();
+            return BadRequest();
         }
+            
+        Client client = new Client()
+        {
+            Nomclient = clientDto.Nom,
+            Prenomclient = clientDto.Prenom,
+            Mailclient = clientDto.Mail,
+            Telephone = clientDto.Telephone,
+            Password = clientDto.Password,
+            IdFonction = clientDto.IdFonction,
+            UserRole = clientDto.UserRole,
+        };
 
+        dataRepository.UpdateAsync(clientToUpdate.Value, client);
+        Console.WriteLine("CLIENT UPDATE");
         return NoContent();
     }
 
@@ -113,14 +123,23 @@ public class ClientsController : ControllerBase
     /// <response code="400">Les donn�es envoy�es ne sont pas valides.</response>
     /// <response code="500">Erreur interne du serveur lors de l'ajout du client.</response>
     [HttpPost]
-    public async Task<ActionResult<Client>> PostClient(Client client)
+    public async Task<ActionResult<Client>> PostClient(ClientDTO clientDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
+        Client client = new Client()
+        {
+            Nomclient = clientDto.Nom,
+            Prenomclient = clientDto.Prenom,
+            Mailclient = clientDto.Mail,
+            Telephone = clientDto.Telephone,
+            Password = clientDto.Password,
+            IdFonction = clientDto.IdFonction,
+        };
         await dataRepository.AddAsync(client);
-        return CreatedAtAction("GetAccessoireById", new { id = client.Idclient },client);
+        return CreatedAtAction("GetClientById", new { id = client.Idclient },client);
     }
 
 

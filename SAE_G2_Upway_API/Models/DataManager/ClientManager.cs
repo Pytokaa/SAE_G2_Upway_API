@@ -52,20 +52,18 @@ public class ClientManager : IDataRepository<Client, Client>
         upwayDbContext.Entry(entityToUpdate).State = EntityState.Modified;
         
         
-        entityToUpdate.Idclient = client.Idclient;
-        entityToUpdate.IdFonction = client.IdFonction;
         entityToUpdate.Nomclient = client.Nomclient;
         entityToUpdate.Prenomclient = client.Prenomclient;
         entityToUpdate.Mailclient = client.Mailclient;
         entityToUpdate.Telephone = client.Telephone;
         entityToUpdate.Password = client.Password;
+        entityToUpdate.UserRole = client.UserRole;
         
-        //relations
+        //relation 
         
-        entityToUpdate.Fonction = client.Fonction;
-        entityToUpdate.Commandes = client.Commandes;
-        entityToUpdate.LesFavoris = client.LesFavoris;
-        entityToUpdate.HabiteA = client.HabiteA;
+        entityToUpdate.IdFonction = client.IdFonction;
+        
+        
 
         await upwayDbContext.SaveChangesAsync();
     }
