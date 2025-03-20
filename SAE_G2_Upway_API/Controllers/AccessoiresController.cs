@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 using SAE_G2_Upway_API.Controllers.DTO;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 namespace SAE_G2_Upway_API.Controllers;
 
@@ -15,9 +16,9 @@ namespace SAE_G2_Upway_API.Controllers;
 [ApiController]
 public class AccessoiresController : ControllerBase
 {
-    private readonly IDataRepository<Accessoire> dataRepository;
+    private readonly IDataRepository<Accessoire, AccessoireDtoGet> dataRepository;
 
-    public AccessoiresController(IDataRepository<Accessoire> dataRepo)
+    public AccessoiresController(IDataRepository<Accessoire, AccessoireDtoGet> dataRepo)
     {
         dataRepository = dataRepo;
     }
@@ -32,7 +33,7 @@ public class AccessoiresController : ControllerBase
     [HttpGet]
     [ProducesResponseType(200)]
     [ProducesResponseType(500)]
-    public async Task<ActionResult<IEnumerable<Accessoire>>> GetAccessoires()
+    public async Task<ActionResult<IEnumerable<AccessoireDtoGet>>> GetAccessoires()
     {
         return await dataRepository.GetAllAsync();
     }

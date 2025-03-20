@@ -58,9 +58,6 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetClientByIdMoq_InvalidIdPassed_NotFoundReturned()
         {
-            //Arrange
-            ActionResult<Client> actionresult = new NotFoundResult();
-            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns(actionresult);
             //Act
             var actual_client = controller.GetClientById(0).Result;
             //Assert
@@ -82,13 +79,90 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetClientByNameMoq_InvalidNamePassed_NotFoundReturned()
         {
-            //Arrange
-            ActionResult<Client> actionresult = new NotFoundResult();
-            mockRepository.Setup(x => x.GetByStringAsync("Uther").Result).Returns(actionresult);
+
             //Act
             var actual_client = controller.GetClientByName("Uther").Result;
             //Assert
             Assert.IsInstanceOfType(actual_client.Result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+
+        [TestMethod()]
+        public void PutClientMoq_ValidIdPassed_NoContentReturned()
+        {
+            //Arrange
+            Client client = new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(client);
+            Client modified_client = new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0123456789", "K@@mel011");
+            //Act
+            var action_result = controller.PutClient(1, modified_client).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
+        }
+
+        [TestMethod()]
+        public void PutClientMoq_InvalidIdPassed_NotFoundReturned()
+        {
+            //Arrange
+            Client client = new Client(0, 0, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
+            //Act
+            var actual_result = controller.PutClient(0, client).Result;
+            //Assert
+            Assert.IsInstanceOfType(actual_result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+
+        [TestMethod()]
+        public void PutClientMoq_MismatchedIdPassed_BadRequestReturned()
+        {
+            //Arrange
+            Client client = new Client(0, 0, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
+            //Act
+            var actual_result = controller.PutClient(1, client).Result;
+            //Assert
+            Assert.IsInstanceOfType(actual_result, typeof(BadRequestResult), "Pas un BadRequest");
+        }
+
+        [TestMethod()]
+        public void PostClientMoq_ValidClientPassed_CreatedAtActionReturned()
+        {
+            //Arrange
+            Client new_client = new Client(4, 4, "Lenchanteur", "Merlin", "merlin.lenchanteur@demonpucelle.uk", "0661626364", "Pet1tEtM@rr0n");
+            //Act
+            var action_result = controller.PostClient(new_client).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(CreatedAtActionResult), "Pas un CreatedAtAction");
+        }
+
+        [TestMethod()]
+        public void PostClientMoq_InvalidClientPassed_BadRequestReturned()
+        {
+            //Arrange
+            Client new_client = new Client();
+            controller.ModelState.AddModelError("Password", "Aucun mot de passe n'a été renseigné");
+            //Act
+            var action_result = controller.PostClient(new_client).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(BadRequestObjectResult), "Pas un BadRequest");
+        }
+
+        [TestMethod()]
+        public void DeleteClient_ValidIdPassed_NoContentReturned()
+        {
+            //Arrange
+            Client client = new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(client);
+            //Act
+            var action_result = controller.DeleteClient(1).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
+        }
+
+        [TestMethod()]
+        public void DeleteClient_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.DeleteClient(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestCleanup]

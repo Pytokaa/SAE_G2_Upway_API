@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 using SAE_G2_Upway_API.Controllers.DTO;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 namespace SAE_G2_Upway_API.Controllers
 {
@@ -15,9 +16,9 @@ namespace SAE_G2_Upway_API.Controllers
     [ApiController]
     public class VelosController : ControllerBase
     {
-        private readonly IDataRepository<Velo> dataRepository;
+        private readonly IDataRepository<Velo, VeloDtoGet> dataRepository;
 
-        public VelosController(IDataRepository<Velo> dataRepo)
+        public VelosController(IDataRepository<Velo, VeloDtoGet> dataRepo)
         {
             dataRepository = dataRepo;
         }
@@ -32,7 +33,7 @@ namespace SAE_G2_Upway_API.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<IEnumerable<Velo>>> GetVelos()
+        public async Task<ActionResult<IEnumerable<VeloDtoGet>>> GetVelos()
         {
             return await dataRepository.GetAllAsync();
         }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,10 +26,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 
-builder.Services.AddScoped<IDataRepository<Velo>, VeloManager>();
-builder.Services.AddScoped<IDataRepository<Accessoire>, AccessoireManager>();
-builder.Services.AddScoped<IDataRepository<Client>, ClientManager>();
-builder.Services.AddScoped<IDataRepository<Produit>, ProduitManager>();
+builder.Services.AddScoped<IDataRepository<Velo, VeloDtoGet>, VeloManager>();
+builder.Services.AddScoped<IDataRepository<Accessoire, AccessoireDtoGet>, AccessoireManager>();
+builder.Services.AddScoped<IDataRepository<Client, Client>, ClientManager>();
+builder.Services.AddScoped<IDataRepository<Produit, Produit>, ProduitManager>();
 builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
 
 var app = builder.Build();

@@ -7,7 +7,7 @@ using SAE_G2_Upway_API.Models.Repository;
 
 namespace SAE_G2_Upway_API.Models.DataManager;
 
-public class ProduitManager : IDataRepository<Produit>
+public class ProduitManager : IDataRepository<Produit, Produit>
 {
     private readonly UpwayDBContext? upwayDbContext;
     public ProduitManager(){}
