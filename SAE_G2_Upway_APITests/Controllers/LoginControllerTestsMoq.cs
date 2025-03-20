@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using SAE_G2_Upway_API.Controllers;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
@@ -12,25 +13,23 @@ using System.Threading.Tasks;
 namespace SAE_G2_Upway_API.Controllers.Tests
 {
     [TestClass()]
-    public class LoginControllerTests
+    public class LoginControllerTestsMoq
     {
-        private UpwayDBContext dbContext;
-        private LoginController controller;
-        private IDataRepository<Client> dataRepository;
+        private LoginController? controller;
+        private Mock<IDataRepository<Client>> mockRepository;
 
         [TestInitialize]
         public void Init()
         {
-            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("UpwayDBContext");
-            dbContext = new UpwayDBContext(builder.Options);
-            controller = new LoginController(dataRepository);
+            mockRepository = new Mock<IDataRepository<Client>>();
+            controller = new LoginController(mockRepository.Object);
         }
 
         [TestMethod]
         public void Login_ValidUserPassed_OKReturned()
         {
             //Arrange
-            Client client = new Client { Nomclient = "Durand", Prenomclient = "Pierre", Mailclient = "pierre.durand@gmail.com", Telephone = "0601020304", Password = "4083385F88700370B79A4B140347746E", IdFonction = 1 };
+            Client client = new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
             //Act
 
             //Assert
@@ -40,7 +39,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestCleanup]
         public void Clean()
         {
-            dbContext = null;
+            mockRepository = null;
             controller = null;
         }
     }
