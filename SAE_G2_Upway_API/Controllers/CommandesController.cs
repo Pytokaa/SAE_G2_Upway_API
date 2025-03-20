@@ -38,12 +38,12 @@ public class CommandesController : ControllerBase
         
         
         
-        if (commande.Result == null)
+        if (commande == null)
         {
             return NotFound();
         }
 
-        return commande.Result;
+        return commande;
     }
     
     [HttpPut("id/{id}")]

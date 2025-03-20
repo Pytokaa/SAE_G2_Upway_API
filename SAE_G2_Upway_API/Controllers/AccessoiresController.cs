@@ -108,21 +108,27 @@ public class AccessoiresController : ControllerBase
     [ProducesResponseType(500)]
     public async Task<IActionResult> PutAccessoire(int id, AccessoireDTO accessoireDTO)
     {
-        Accessoire accessoire = new Accessoire()
-        {
-            IdAccessoire = id,
-            IdProduit = accessoireDTO.IdCatA,
-            DateAccessoire = accessoireDTO.DateAccessoire,
-            
-        };
-
-        var accessoireToUpdate = dataRepository.GetByIdAsync(id);
-
+        var accessoireToUpdate = await dataRepository.GetByIdAsync(id);
+        Console.WriteLine(accessoireToUpdate.Value.IdProduit);
         if (accessoireToUpdate == null)
         {
             return NotFound();
         }
-        dataRepository.UpdateAsync(accessoireToUpdate.Result.Value, accessoire);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+        Accessoire accessoire = new Accessoire()
+        {
+            IdAccessoire = id,
+            IdProduit = accessoireDTO.IdProduit,
+            IdCatA = accessoireDTO.IdCatA,
+            DateAccessoire = accessoireDTO.DateAccessoire,
+            
+        };
+
+        
+        dataRepository.UpdateAsync(accessoireToUpdate.Value, accessoire);
         return NoContent();
         
 

@@ -22,7 +22,7 @@ public class CommandeManager : ICommandeRepository
     public IQueryable<Commande> GetCommandesWithInclude()
     {
         return upwayDbContext.Commandes
-            .Include(a => a.Code)
+                .Include(a => a.Code)
             .Include(a => a.Statut)
             .Include(a => a.ModeExpedition)
             .Include(a => a.Adresse)
@@ -32,13 +32,14 @@ public class CommandeManager : ICommandeRepository
             .Include(a => a.AssurancesPropose)
             .Include(a => a.LesSimilaires)
             .Include(a => a.LesAccessoires)
-            .Include(a => a.PanierVelo);
+            .Include(a => a.PanierVelo)
+            ;
     }
 
 
     public async Task<ActionResult<IEnumerable<Commande>>> GetAllAsync()
     {
-        var commandes = await GetCommandesWithInclude().ToListAsync();
+        var commandes = await GetCommandesWithInclude().AsNoTracking().ToListAsync();
         return commandes;
     }
     public async Task<ActionResult<Commande>> GetByIdAsync(int id)

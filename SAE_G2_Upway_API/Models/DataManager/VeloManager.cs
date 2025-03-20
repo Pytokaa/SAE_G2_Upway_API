@@ -112,20 +112,8 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
         entityToUpdate.NbVente = entity.NbVente;
         entityToUpdate.QualiteVelo = entity.QualiteVelo;
         
-        //relations
         
-        entityToUpdate.Produit = entity.Produit;
-        entityToUpdate.TailleMin = entity.TailleMin;
-        entityToUpdate.TailleMax = entity.TailleMax;
-        entityToUpdate.LeModele  = entity.LeModele;
-        entityToUpdate.LaCategorie = entity.LaCategorie;
-        entityToUpdate.Etat = entity.Etat;
-        entityToUpdate.RapportInspection = entity.RapportInspection;
-        entityToUpdate.LesMoteurs = entity.LesMoteurs;
-        entityToUpdate.LesSousCategories = entity.LesSousCategories;
-        entityToUpdate.Caracteristiques = entity.Caracteristiques;
-        entityToUpdate.LesBoutiques = entity.LesBoutiques;
-        entityToUpdate.ACommandes = entity.ACommandes;
+        
 
         await upwayDbContext.SaveChangesAsync();
     }
