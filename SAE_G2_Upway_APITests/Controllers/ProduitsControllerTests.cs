@@ -31,13 +31,30 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             produitController = new ProduitsController(dataRepository);
             
         }
-        
+
         [TestMethod()]
         public void ProduitsControllerTest()
         {
-            var produitsController = new ProduitsController(dataRepository);
-            Assert.IsNotNull(produitsController);
-            Assert.IsInstanceOfType(produitsController, typeof(ProduitsController));
+            var produitsMock = new List<Produit>
+            {
+                new Produit(1, 1, 1, "Produit A", 100, 10, "Description A"),
+                new Produit(2, 2, 2, "Produit B", 200, 20, "Description B")
+            };
+
+            // 2. Création du mock du repository
+            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
+            mockRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(produitsMock);
+
+            // 3. Création du contrôleur avec le mock
+            var produitController = new ProduitsController(mockRepository.Object);
+
+            // 4. Exécution de la méthode
+            var result = produitController.GetProduits().Result;
+
+            // 5. Vérifications
+            Assert.IsNotNull(result.Value, "La liste des produits ne doit pas être null");
+            Assert.AreEqual(2, result.Value.Count(), "Le nombre de produits est incorrect");
+            CollectionAssert.AreEquivalent(produitsMock, result.Value.ToList(), "Les produits ne correspondent pas.");
         }
 
         [TestMethod]
@@ -45,7 +62,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         {
             var result = produitController.GetProduits().Result;
  
-            List<Produit> resultList = [];
+            List<Produit> resultList = new List<Produit>();
  
             foreach (var item in result.Value)
             {
@@ -63,7 +80,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
  
             List<Produit> produitsBase = dbContext.Produits.ToList();
  
-            CollectionAssert.AreEquivalent(produitsBase, resultList, "Get all produits ne fonctionne pas correctement");
+            CollectionAssert.AreEqual(produitsBase, resultList, "Get all produits ne fonctionne pas correctement");
          }
 
         [TestMethod()]
