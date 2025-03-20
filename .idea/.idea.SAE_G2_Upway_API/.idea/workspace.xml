@@ -9,11 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="les tests marchent mais plus l'api c'est bizarre">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/ProduitsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/ProduitsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,7 +133,7 @@
       <workItem from="1742282469464" duration="9571000" />
       <workItem from="1742294589319" duration="43000" />
       <workItem from="1742419747780" duration="304000" />
-      <workItem from="1742420471905" duration="6561000" />
+      <workItem from="1742420471905" duration="6926000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -259,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742425304702</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Changement mais j'ai du faire des betise parce que ca marche plus">
+      <option name="closed" value="true" />
+      <created>1742428337953</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1742428337953</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +311,8 @@
     <MESSAGE value="gnaaaa" />
     <MESSAGE value="Les tests unitaires avancent grandement" />
     <MESSAGE value="les tests marchent mais plus l'api c'est bizarre" />
-    <option name="LAST_COMMIT_MESSAGE" value="les tests marchent mais plus l'api c'est bizarre" />
+    <MESSAGE value="Changement mais j'ai du faire des betise parce que ca marche plus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changement mais j'ai du faire des betise parce que ca marche plus" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
