@@ -42,16 +42,28 @@ namespace SAE_G2_Upway_API.Controllers.Tests
 
         [TestMethod]
         public void GetProduits_ReturnsAllProduits()
-         {
-             Console.WriteLine("---------------------0--------------------------");
-             Console.WriteLine(dbContext.Produits.Count());
-             //act
-             var result = produitController.GetProduits().Result;
-             var produitsBase = dbContext.Produits.ToList();
-             
-             
-             //Assert
-             CollectionAssert.AreEquivalent(produitsBase, result.Value.ToList(), "Get all produits ne fonctionne pas correctement");
+        {
+            var result = produitController.GetProduits().Result;
+ 
+            List<Produit> resultList = [];
+ 
+            foreach (var item in result.Value)
+            {
+                Produit produit = new Produit(
+                    item.Idproduit,
+                    item.IdPhoto,
+                    item.IdMarque,
+                    item.NomProduit,
+                    item.PrixProduit,
+                    item.StockProduit,
+                    item.DescriptionProduit
+                );
+                resultList.Add(produit);
+            }
+ 
+            List<Produit> produitsBase = dbContext.Produits.ToList();
+ 
+            CollectionAssert.AreEquivalent(produitsBase, resultList, "Get all produits ne fonctionne pas correctement");
          }
 
         [TestMethod()]

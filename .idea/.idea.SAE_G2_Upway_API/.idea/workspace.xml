@@ -9,12 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="">
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="changement">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/LoginController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/LoginController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ClientsControllerTestsMoq.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ClientsControllerTestsMoq.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/LoginControllerTestsMoq.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/LoginControllerTestsMoq.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +42,8 @@
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2e49d132ea68ff47071c64476ae29138fa965dc555ef7c3f4991586431de241/Task.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/683aae75939c44f3f8cf835105c38c5db2c5e55ebe54b7ee5f8a6efe9db4fe/TestMethodAttribute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98c377d82be4c36912d3e59d6d7e2a55a14898ee9757311a192711c5f4115e7/TestMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
@@ -58,7 +56,7 @@
 }</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -153,7 +151,7 @@
       <workItem from="1742419747780" duration="304000" />
       <workItem from="1742420471905" duration="6926000" />
       <workItem from="1742454362355" duration="3223000" />
-      <workItem from="1742471889540" duration="2719000" />
+      <workItem from="1742471889540" duration="5529000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -291,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742455239104</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="changement">
+      <option name="closed" value="true" />
+      <created>1742474968523</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1742474968523</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,7 +347,8 @@
     <MESSAGE value="les tests marchent mais plus l'api c'est bizarre" />
     <MESSAGE value="Changement mais j'ai du faire des betise parce que ca marche plus" />
     <MESSAGE value="merci mael ca remarche" />
-    <option name="LAST_COMMIT_MESSAGE" value="merci mael ca remarche" />
+    <MESSAGE value="changement" />
+    <option name="LAST_COMMIT_MESSAGE" value="changement" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
