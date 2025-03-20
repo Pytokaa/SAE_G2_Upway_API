@@ -47,10 +47,6 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
 
         foreach (var velo in veloList) // Maintenant, c'est une liste en mémoire
         {
-            if (velo.Produit?.Photo == null)
-            {
-                Console.WriteLine($"⚠️ Photo est NULL pour le vélo ID ");
-            }
             velos.Add(new VeloDtoGet()
             {
                 Nom = velo.Produit.NomProduit,

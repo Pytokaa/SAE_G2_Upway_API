@@ -7,7 +7,7 @@ using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 namespace SAE_G2_Upway_API.Models.DataManager;
 
-public class AccessoireManager : IDataRepository<Accessoire, Accessoire>
+public class AccessoireManager : IDataRepository<Accessoire, AccessoireDtoGet>
 {
     private readonly UpwayDBContext? upwayDbContext;
     public AccessoireManager(){}
@@ -22,14 +22,33 @@ public class AccessoireManager : IDataRepository<Accessoire, Accessoire>
         return upwayDbContext.Accessoires
             .Include(a => a.Produit)
             .ThenInclude(p=>p.Marque)
+            .Include(a => a.Produit)
+            .ThenInclude(p=>p.Photo)
             .Include(a => a.CategorieAccessoire)
             .Include(a => a.LesCommandes)
             .Include(a => a.LesCommandesAccessoire);
     }
     
-    public async Task<ActionResult<IEnumerable<Accessoire>>> GetAllAsync()
+    public async Task<ActionResult<IEnumerable<AccessoireDtoGet>>> GetAllAsync()
     {
-        return await GetAccessoireWithInclude().ToListAsync();
+        List<AccessoireDtoGet> accessoires = new List<AccessoireDtoGet>();
+
+        var accessoiresList = await GetAccessoireWithInclude().ToListAsync(); // Exécution ici
+
+        foreach (var acc in accessoiresList) // Maintenant, c'est une liste en mémoire
+        {
+            accessoires.Add(new AccessoireDtoGet()
+            {
+                Nom = acc.Produit.NomProduit,
+                Prix = acc.Produit.PrixProduit,
+                Url = acc.Produit.Photo.Url,
+                Marque = acc.Produit.Marque.NomMarque,
+                Categorie = acc.CategorieAccessoire.NomCatA,
+                DateAccessoire = acc.DateAccessoire,
+            });
+        }
+    
+        return accessoires;
     }
 
     public async Task<ActionResult<Accessoire>> GetByIdAsync(int id)

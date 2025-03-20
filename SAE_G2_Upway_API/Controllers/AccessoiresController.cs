@@ -16,9 +16,9 @@ namespace SAE_G2_Upway_API.Controllers;
 [ApiController]
 public class AccessoiresController : ControllerBase
 {
-    private readonly IDataRepository<Accessoire, Accessoire> dataRepository;
+    private readonly IDataRepository<Accessoire, AccessoireDtoGet> dataRepository;
 
-    public AccessoiresController(IDataRepository<Accessoire, Accessoire> dataRepo)
+    public AccessoiresController(IDataRepository<Accessoire, AccessoireDtoGet> dataRepo)
     {
         dataRepository = dataRepo;
     }
@@ -33,7 +33,7 @@ public class AccessoiresController : ControllerBase
     [HttpGet]
     [ProducesResponseType(200)]
     [ProducesResponseType(500)]
-    public async Task<ActionResult<IEnumerable<Accessoire>>> GetAccessoires()
+    public async Task<ActionResult<IEnumerable<AccessoireDtoGet>>> GetAccessoires()
     {
         return await dataRepository.GetAllAsync();
     }

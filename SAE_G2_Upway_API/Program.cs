@@ -27,7 +27,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 
 builder.Services.AddScoped<IDataRepository<Velo, VeloDtoGet>, VeloManager>();
-builder.Services.AddScoped<IDataRepository<Accessoire, Accessoire>, AccessoireManager>();
+builder.Services.AddScoped<IDataRepository<Accessoire, AccessoireDtoGet>, AccessoireManager>();
 builder.Services.AddScoped<IDataRepository<Client, Client>, ClientManager>();
 builder.Services.AddScoped<IDataRepository<Produit, Produit>, ProduitManager>();
 builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
