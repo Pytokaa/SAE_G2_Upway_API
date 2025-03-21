@@ -25,6 +25,7 @@ namespace SAE_G2_Upway_API.Controllers
             dataRepository = dataRepo;
         }
 
+        [HttpGet]
         public async void GetClients()
         {
             var action_result = await dataRepository.GetAllAsync();
