@@ -63,30 +63,7 @@ namespace SAE_G2_Upway_API.Controllers
             return velo.Result;
         }
 
-        // GET: api/Velos/name/{nom}
-        /// <summary>
-        /// Récupère un vélo spécifique par son nom.
-        /// </summary>
-        /// <param name="nom">Le nom du vélo à récupérer.</param>
-        /// <returns>Une réponse HTTP contenant le vélo correspondant au nom.</returns>
-        /// <response code="200">Le vélo a été trouvé et est retourné.</response>
-        /// <response code="404">Aucun vélo n'a été trouvé avec le nom spécifié.</response>
-        /// <response code="500">Une erreur interne du serveur s'est produite.</response>
-        [HttpGet("name/{nom}")]
-        [ActionName("GetVeloByName")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(500)]
-        public async Task<ActionResult<Velo>> GetVeloByName(string nom)
-        {
-            var velo = await dataRepository.GetByStringAsync(nom);
-            if (velo == null)
-            {
-                return NotFound();
-            }
-
-            return velo;
-        }
+        
 
         // PUT: api/Velos/5
         /// <summary>

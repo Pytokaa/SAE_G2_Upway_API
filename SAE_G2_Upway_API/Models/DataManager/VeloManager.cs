@@ -79,13 +79,7 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
     }
     
 
-    public async Task<ActionResult<Velo>> GetByStringAsync(string nomvelo)
-    {
-        var velo = await GetVeloWithInclude()
-            .FirstOrDefaultAsync(u => u.Produit.NomProduit == nomvelo);
-
-        return velo;
-    }
+   
     
     public async Task AddAsync(Velo entity)
     {

@@ -65,30 +65,7 @@ public class AccessoiresController : ControllerBase
         return accessoire;
     }
 
-    // GET: api/Accessoires/name/{nom}
-    /// <summary>
-    /// R�cup�re un accessoire sp�cifique par son nom.
-    /// </summary>
-    /// <param name="nom">Le nom de l'accessoire � r�cup�rer.</param>
-    /// <returns>Une r�ponse HTTP contenant l'accessoire correspondant au nom.</returns>
-    /// <response code="200">L'accessoire a �t� trouv� et est retourn�.</response>
-    /// <response code="404">Aucun accessoire n'a �t� trouv� avec le nom sp�cifi�.</response>
-    /// <response code="500">Une erreur interne du serveur s'est produite.</response>
-    [HttpGet("name/{nom}")]
-    [ActionName("GetByAccessoireName")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
-    [ProducesResponseType(500)]
-    public async Task<ActionResult<Accessoire>> GetAccessoireByName(string nom)
-    {
-        var accessoire = await dataRepository.GetByStringAsync(nom);
-        if (accessoire == null)
-        {
-            return NotFound();
-        }
-
-        return accessoire;
-    }
+    
 
     // PUT: api/Accessoires/id/{id}
     /// <summary>
