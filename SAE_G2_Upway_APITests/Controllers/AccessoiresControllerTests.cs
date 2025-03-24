@@ -54,11 +54,22 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                 accessoiresDto.Add(accessoireDtoGet);
             }
             
-            List<Accessoire>  accessoiresBase = dbContext.Accessoires.ToList();
+            List<Accessoire> accessoiresBase = dbContext.Accessoires.ToList();
+            
+            List<AccessoireDtoGet> lesAccessoires = new List<AccessoireDtoGet>();
             foreach (var acc in accessoiresBase) // Maintenant, c'est une liste en mémoire
             {
-                
+                lesAccessoires.Add(new AccessoireDtoGet()
+                {
+                    Nom = acc.Produit.NomProduit,
+                    Prix = acc.Produit.PrixProduit,
+                    Url = acc.Produit.Photo.Url,
+                    Marque = acc.Produit.Marque.NomMarque,
+                    Categorie = acc.CategorieAccessoire.NomCatA,
+                    DateAccessoire = acc.DateAccessoire,
+                });
             }
+            CollectionAssert.AreEqual(lesAccessoires, accessoiresDto, "Les 2 lists ne sont pas du egals");
         }
 
         [TestMethod()]

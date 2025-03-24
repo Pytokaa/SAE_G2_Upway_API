@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Remove des method string car osef en vrai de vrai" />
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Remove des method string car osef en vrai de vrai">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/Moq/CommandesControllerTestsMoq.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/Moq/CommandesControllerTestsMoq.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,15 +31,16 @@
     &quot;assignee&quot;: &quot;AlexiStapleton&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Pytokaa/SAE_G2_Upway_API.git",
-    "accountId": "14cc1eca-28e0-47fd-a52a-406545815808"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Pytokaa/SAE_G2_Upway_API.git&quot;,
+    &quot;accountId&quot;: &quot;14cc1eca-28e0-47fd-a52a-406545815808&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/502bb580f1844bd9a57c7182b3d3890f17198/03/33659572/Assert.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cad9a9e3e5b441ad9c42fd342ae45ee5848a0/53/15f621ae/Enumerable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98c377d82be4c36912d3e59d6d7e2a55a14898ee9757311a192711c5f4115e7/TestMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/AccessoiresControllerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/ClientsControllerTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -61,6 +66,7 @@
     ".NET Launch Settings Profile.SAE_G2_Upway_API: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "c849631d-643b-429d-9c2c-86dc6b2a45bc.executor": "Debug",
     "dart.analysis.tool.window.visible": "false",
     "f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor": "Debug",
     "git-widget-placeholder": "master",
@@ -350,5 +356,29 @@
     <MESSAGE value="Controller des categories accessoire et velo + marque" />
     <MESSAGE value="Remove des method string car osef en vrai de vrai" />
     <option name="LAST_COMMIT_MESSAGE" value="Remove des method string car osef en vrai de vrai" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs</url>
+          <line>56</line>
+          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'">
+            <startOffsets>
+              <option value="2070" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2136" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Frame#SAE_G2_Upway_API.Controllers.Tests.ProduitsControllerTests.GetProduits_ReturnsAllProduits" memberName="result" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

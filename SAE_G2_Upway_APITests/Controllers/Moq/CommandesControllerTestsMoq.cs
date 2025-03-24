@@ -94,7 +94,7 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             //Act
             var action_result = controller.PostCommande(commandeDto).Result;
             //Assert
-            Assert.IsInstanceOfType(action_result, typeof(CreatedAtActionObjectResult), "Pas un CreatedAtAction");
+            Assert.IsInstanceOfType(action_result, typeof(CreatedAtActionResult), "Pas un CreatedAtAction");
         }
 
         [TestCleanup]

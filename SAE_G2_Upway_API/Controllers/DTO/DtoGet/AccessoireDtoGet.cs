@@ -19,4 +19,22 @@ public class AccessoireDtoGet
         DateAccessoire = dateAccessoire;
     }
     public AccessoireDtoGet(){}
+
+    protected bool Equals(AccessoireDtoGet other)
+    {
+        return Nom == other.Nom && Prix.Equals(other.Prix) && Url == other.Url && Marque == other.Marque && Categorie == other.Categorie && DateAccessoire.Equals(other.DateAccessoire);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != GetType()) return false;
+        return Equals((AccessoireDtoGet)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Nom, Prix, Url, Marque, Categorie, DateAccessoire);
+    }
 }
