@@ -35,13 +35,7 @@ public class ClientManager : IDataRepository<Client, Client>
         var client = await GetClientWithInclude().FirstOrDefaultAsync(u => u.Idclient == id);
         return client;
     }
-    public async Task<ActionResult<Client>> GetByStringAsync(string nomclient)
-    {
-        var client = await GetClientWithInclude()
-            .FirstOrDefaultAsync(u => u.Nomclient == nomclient);
-
-        return client;
-    }
+   
     public async Task AddAsync(Client entity)
     {
         await upwayDbContext.Clients.AddAsync(entity);

@@ -58,14 +58,7 @@ public class AccessoireManager : IDataRepository<Accessoire, AccessoireDtoGet>
         return accessoire;
     }
 
-    public async Task<ActionResult<Accessoire>> GetByStringAsync(string nomaccessoire)
-    {
-        var accessoire = await GetAccessoireWithInclude()
-            .FirstOrDefaultAsync(u => u.Produit.NomProduit == nomaccessoire);
-
-        return accessoire;
-    }
-    
+   
     public async Task AddAsync(Accessoire entity)
     {
         await upwayDbContext.Accessoires.AddAsync(entity);

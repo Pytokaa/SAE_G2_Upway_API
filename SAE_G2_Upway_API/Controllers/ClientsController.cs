@@ -47,27 +47,7 @@ public class ClientsController : ControllerBase
 
         return client;
     }
-    /// <summary>
-    /// R�cup�rer un client par son nom.
-    /// </summary>
-    /// <param name="nom">Le nom du client.</param>
-    /// <returns>Une r�ponse HTTP avec le client trouv� ou une erreur si non trouv�.</returns>
-    /// <response code="200">Le client a �t� trouv� et renvoy� avec succ�s.</response>
-    /// <response code="404">Aucun client avec le nom sp�cifi� n'a �t� trouv�.</response>
-    /// <response code="500">Erreur interne du serveur lors de la r�cup�ration du client.</response>
-    [HttpGet("name/{nom}")]
-    [ActionName("GetByClientName")]
-    public async Task<ActionResult<Client>> GetClientByName(string nom)
-    {
-        var client = await dataRepository.GetByStringAsync(nom);
-        if (client == null)
-        {
-            return NotFound();
-        }
-
-        return client;
-    }
-
+ 
     // PUT: api/Client/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     /// <summary>
