@@ -42,12 +42,6 @@ public class ProduitManager : IDataRepository<Produit, Produit>
         return produit;
     }
 
-    public async Task<ActionResult<Produit>> GetByStringAsync(string name)
-    {
-        var produit = await GetProduitWithInclude()
-            .FirstOrDefaultAsync(u => u.NomProduit == name);
-        return produit;
-    }
 
     public async Task AddAsync(Produit entity)
     {

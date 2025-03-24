@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAE_G2_Upway_API.Controllers.Tests
+namespace SAE_G2_Upway_APITests.Controllers.Moq
 {
     [TestClass()]
     public class LoginControllerTestsMoq
@@ -48,7 +48,8 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Login_InvalidUserPassed_UnauthorizedReturned(){
+        public void Login_InvalidUserPassed_UnauthorizedReturned()
+        {
             //Arrange
             Client client = new Client(4, 4, "Lenchanteur", "Merlin", "merlin.lenchanteur@demonpucelle.uk", "0661626364", "Pet1tEtM@rr0n");
             //Act

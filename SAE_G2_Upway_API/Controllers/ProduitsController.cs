@@ -63,29 +63,7 @@ namespace SAE_G2_Upway_API.Controllers
             return produit;
         }
 
-        // GET: api/Produits/name/{name}
-        /// <summary>
-        /// R�cup�re un produit sp�cifique par son nom.
-        /// </summary>
-        /// <param name="name">Le nom du produit � r�cup�rer.</param>
-        /// <returns>Une r�ponse HTTP contenant le produit correspondant au nom.</returns>
-        /// <response code="200">Le produit a �t� trouv� et est retourn�.</response>
-        /// <response code="404">Aucun produit n'a �t� trouv� avec le nom sp�cifi�.</response>
-        /// <response code="500">Une erreur interne du serveur s'est produite.</response>
-        [HttpGet("name/{name}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(500)]
-        public async Task<ActionResult<Produit>> GetProduitByName(string name)
-        {
-            var produit = await dataRepository.GetByStringAsync(name);
-            if (produit == null)
-            {
-                return NotFound();
-            }
-            return produit;
-        }
-
+        
         // PUT: api/Produits/id/{id}
         /// <summary>
         /// Met � jour un produit existant par son identifiant.
