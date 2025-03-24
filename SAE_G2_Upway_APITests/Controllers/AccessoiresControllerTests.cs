@@ -27,7 +27,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestInitialize]
         public void Init()
         {
-            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("UpwayDBContext");
+            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("Server=localhost;port=5432;Database=SAE_G2_Upway; uid=postgres; password=postgres;");
             dbContext = new UpwayDBContext(builder.Options);
             dataRepository = new AccessoireManager(dbContext);
             accessoiresController = new AccessoiresController(dataRepository);
