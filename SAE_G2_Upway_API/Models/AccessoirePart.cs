@@ -8,9 +8,7 @@ public partial class Accessoire
                IdAccessoire == accessoire.IdAccessoire &&
                IdProduit == accessoire.IdProduit &&
                IdCatA == accessoire.IdCatA &&
-               DateAccessoire == accessoire.DateAccessoire &&
-               EqualityComparer<ICollection<Est_Propose_Similaire>>.Default.Equals(LesCommandes, accessoire.LesCommandes) &&
-               EqualityComparer<ICollection<Est_Mis_Panier_Accessoire>>.Default.Equals(LesCommandesAccessoire, accessoire.LesCommandesAccessoire);
+               DateAccessoire == accessoire.DateAccessoire;
     }
 
     public override int GetHashCode()
@@ -35,5 +33,13 @@ public partial class Accessoire
         DateAccessoire = dateAccessoire;
         LesCommandes = lesCommandes;
         LesCommandesAccessoire = lesCommandesAccessoire;
+    }
+
+    public Accessoire(int idAccessoire, int idProduit, int idCatA, DateTime dateAccessoire)
+    {
+        IdAccessoire = idAccessoire;
+        IdProduit = idProduit;
+        IdCatA = idCatA;
+        DateAccessoire = dateAccessoire;
     }
 }

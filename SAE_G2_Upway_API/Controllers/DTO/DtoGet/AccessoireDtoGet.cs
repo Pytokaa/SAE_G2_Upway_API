@@ -8,4 +8,15 @@ public class AccessoireDtoGet
     public string Marque { get; set; }
     public string Categorie { get; set; }
     public DateTime DateAccessoire { get; set; }
+
+    public AccessoireDtoGet(string nom, double prix, string url, string marque, string categorie, DateTime dateAccessoire)
+    {
+        Nom = nom;
+        Prix = prix;
+        Url = url;
+        Marque = marque;
+        Categorie = categorie;
+        DateAccessoire = dateAccessoire;
+    }
+    public AccessoireDtoGet(){}
 }

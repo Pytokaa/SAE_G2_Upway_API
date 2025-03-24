@@ -55,8 +55,6 @@ public class AccessoiresController : ControllerBase
     {
         var accessoire = await dataRepository.GetByIdAsync(id);
         
-        
-        
         if (accessoire == null)
         {
             return NotFound();
@@ -86,8 +84,7 @@ public class AccessoiresController : ControllerBase
     public async Task<IActionResult> PutAccessoire(int id, AccessoireDTO accessoireDTO)
     {
         var accessoireToUpdate = await dataRepository.GetByIdAsync(id);
-        Console.WriteLine(accessoireToUpdate.Value.IdProduit);
-        if (accessoireToUpdate == null)
+        if (accessoireToUpdate.Value == null)
         {
             return NotFound();
         }
@@ -158,12 +155,10 @@ public class AccessoiresController : ControllerBase
     public async Task<IActionResult> DeleteAccessoire(int id)
     {
         var accessoire = await dataRepository.GetByIdAsync(id);
-        if (accessoire == null)
+        if (accessoire.Value == null)
         {
             return NotFound();
         }
-
-        int idProduit = accessoire.Value.IdProduit;
 
         await dataRepository.DeleteAsync(accessoire.Value);
         return NoContent();
