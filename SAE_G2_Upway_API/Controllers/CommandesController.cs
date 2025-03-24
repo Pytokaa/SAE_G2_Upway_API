@@ -24,7 +24,7 @@ public class CommandesController : ControllerBase
     [HttpGet]
     [ProducesResponseType(200)]
     [ProducesResponseType(500)]
-    public async Task<ActionResult<IEnumerable<Commande>>> GetAccessoires()
+    public async Task<ActionResult<IEnumerable<Commande>>> GetCommandes()
     {
         return await dataRepository.GetAllAsync();
     }
@@ -32,7 +32,7 @@ public class CommandesController : ControllerBase
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     [ProducesResponseType(500)]
-    public async Task<ActionResult<Commande>> GetAccessoireById(int id)
+    public async Task<ActionResult<Commande>> GetCommandeById(int id)
     {
         var commande = await dataRepository.GetByIdAsync(id);
         
@@ -59,19 +59,7 @@ public class CommandesController : ControllerBase
         {
             return NotFound();
         }
-        Commande commande = new Commande()
-        {
-            IdCommande = id,
-            DateCommande = commandeDTO.DateCommande,
-            IdCode = commandeDTO.IdCode,
-            IdStatut = commandeDTO.IdStatut,
-            IdModeExp = commandeDTO.IdModeExp,
-            IdAdresse = commandeDTO.IdAdresse,
-            IdBoutique = commandeDTO.IdBoutique,
-            IdAdresseFactu = commandeDTO.IdAdresseFactu,
-            IdModePayement = commandeDTO.IdModePayement,
-            IdClient = commandeDTO.IdClient,
-        };
+        Commande commande = new Commande(commandeDTO);
 
         
         dataRepository.UpdateAsync(commandeToUpdate.Value, commande);
@@ -88,18 +76,7 @@ public class CommandesController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-        Commande commande = new Commande()
-        {
-            DateCommande = commandeDTO.DateCommande,
-            IdCode = commandeDTO.IdCode,
-            IdStatut = commandeDTO.IdStatut,
-            IdModeExp = commandeDTO.IdModeExp,
-            IdAdresse = commandeDTO.IdAdresse,
-            IdBoutique = commandeDTO.IdBoutique,
-            IdAdresseFactu = commandeDTO.IdAdresseFactu,
-            IdModePayement = commandeDTO.IdModePayement,
-            IdClient = commandeDTO.IdClient,
-        };
+        Commande commande = new Commande(commandeDTO);
         await dataRepository.AddAsync(commande);
         return CreatedAtAction("GetAccessoireById", new { id = commande.IdCommande }, commande);
     }

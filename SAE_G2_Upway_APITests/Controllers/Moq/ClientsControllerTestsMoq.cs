@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Moq;
 using SAE_G2_Upway_API.Controllers.DTO;
 
-namespace SAE_G2_Upway_API.Controllers.Tests
+namespace SAE_G2_Upway_APITests.Controllers.Moq
 {
     [TestClass()]
     public class ClientsControllerTestsMoq
