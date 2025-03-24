@@ -32,7 +32,9 @@ builder.Services.AddScoped<IDataRepository<Accessoire, AccessoireDtoGet>, Access
 builder.Services.AddScoped<IDataRepository<Client, Client>, ClientManager>();
 builder.Services.AddScoped<IDataRepository<Produit, Produit>, ProduitManager>();
 builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
-
+builder.Services.AddScoped<IDataRepository<Marque, Marque>, MarqueManager>();
+builder.Services.AddScoped<IDataRepository<CategorieVelo, CategorieVelo>, CategorieVeloManager>();
+builder.Services.AddScoped<IDataRepository<CategorieAccessoire, CategorieAccessoire>, CategorieAccessoireManager>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
