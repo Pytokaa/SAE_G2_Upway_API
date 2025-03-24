@@ -130,52 +130,6 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetProduitByNameTest_ReturnsOK_avecMoq()
-        {
-            Produit produitTest = new Produit(
-                5,
-                5,
-                5,
-                "Vélo de ville Nakamura E-City",
-                1300,
-                10,
-                "Vélo de ville électrique idéal pour les trajets quotidiens."
-            );
-            
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            mockRepository.Setup(x => x.GetByStringAsync("Vélo de ville Nakamura E-City").Result).Returns(produitTest);
-            
-            var produitController = new ProduitsController(mockRepository.Object);
-            
-            var actionResult = produitController.GetProduitByName("Vélo de ville Nakamura E-City").Result;
-            Produit result = new Produit(
-                actionResult.Value.Idproduit,
-                actionResult.Value.IdPhoto,
-                actionResult.Value.IdMarque,
-                actionResult.Value.NomProduit,
-                actionResult.Value.PrixProduit,
-                actionResult.Value.StockProduit,
-                actionResult.Value.DescriptionProduit
-            );
-            
-            Assert.IsNotNull(actionResult,"is not null premier ne marche pas");
-            Assert.IsNotNull(actionResult.Value, "is not null second ne marche pas");
-            Assert.AreEqual(produitTest, result,"Get all produits ne fonctionne pas correctement");
-        }
-        
-        [TestMethod()]
-        public void GetProduitByNameTest_ReturnsNotFound_avecMoq()
-        {
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            
-            var produitController = new ProduitsController(mockRepository.Object);
-            
-            
-            var actionResult = produitController.GetProduitByName("").Result;
-            Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
-        }
-
-        [TestMethod()]
         public void PutProduitTest_AvecMoq()
         {
             Produit produitBase = new Produit(

@@ -86,6 +86,17 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
+        [TestMethod()]
+        public void PostCommandeMoq_ValidCommandePassed_CreatedAtActionObjectReturned()
+        {
+            //Arrange
+            CommandeDTO commandeDto = new CommandeDTO(new Commande(1));
+            //Act
+            var action_result = controller.PostCommande(commandeDto).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(CreatedAtActionObjectResult), "Pas un CreatedAtAction");
+        }
+
         [TestCleanup]
         public void Cleanup()
         {

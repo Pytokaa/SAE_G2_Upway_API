@@ -66,28 +66,6 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         }
 
         [TestMethod()]
-        public void GetClientByNameMoq_ValidNamePassed_ClientReturned()
-        {
-            //Arrange
-            Client client = new Client(1, 1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
-            mockRepository.Setup(x => x.GetByStringAsync("Pendragon").Result).Returns(client);
-            //Act
-            var actual_client = controller.GetClientByName("Pendragon").Result;
-            //Arrange
-            Assert.AreEqual(actual_client.Value, client, "Les clients ne correspondent pas");
-        }
-
-        [TestMethod()]
-        public void GetClientByNameMoq_InvalidNamePassed_NotFoundReturned()
-        {
-
-            //Act
-            var actual_client = controller.GetClientByName("Uther").Result;
-            //Assert
-            Assert.IsInstanceOfType(actual_client.Result, typeof(NotFoundResult), "Pas un NotFound");
-        }
-
-        [TestMethod()]
         public void PutClientMoq_ValidIdPassed_NoContentReturned()
         {
             //Arrange
