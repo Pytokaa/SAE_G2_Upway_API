@@ -33,19 +33,24 @@ builder.Services.AddScoped<IDataRepository<Client, Client>, ClientManager>();
 builder.Services.AddScoped<IDataRepository<Produit, Produit>, ProduitManager>();
 builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowLocalhost", policy =>
-    {
-        policy.WithOrigins("http://localhost:5181")
-        .AllowAnyMethod()
-        .AllowAnyHeader();
-    });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowLocalhost", policy =>
+//    {
+//        policy.WithOrigins("http://localhost:5181")
+//        .AllowAnyMethod()
+//        .AllowAnyHeader();
+//    });
+//});
 
 var app = builder.Build();
 
-app.UseCors("AllowLocalhost");
+app.UseCors(policy =>
+    policy.WithOrigins("https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
