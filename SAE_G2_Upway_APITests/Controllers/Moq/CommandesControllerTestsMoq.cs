@@ -94,7 +94,55 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             //Act
             var action_result = controller.PostCommande(commandeDto).Result;
             //Assert
-            Assert.IsInstanceOfType(action_result, typeof(CreatedAtActionResult), "Pas un CreatedAtAction");
+            Assert.IsInstanceOfType(action_result.Result, typeof(CreatedAtActionResult), "Pas un CreatedAtAction");
+        }
+
+        [TestMethod()]
+        public void PostCommandeMoq_InvalidCommandePassed_BadRequestReturned()
+        {
+            //Arrange
+            Commande new_commande = new Commande();
+            controller.ModelState.AddModelError("ID", "Aucun id n'a été renseigné");
+            //Act
+            var action_result = controller.PostCommande(new CommandeDTO(new_commande)).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(BadRequestObjectResult), "Pas un BadRequest");
+        }
+
+        [TestMethod()]
+        public void DeleteCommandeMoq_ValidIdPassed_NoContentReturned()
+        {
+            //Arrange
+            Commande commande = new Commande(1);
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(commande);
+            //Act
+            var action_result = controller.DeleteCommande(1).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
+        }
+
+        [TestMethod()]
+        public void DeleteCommandeMoq_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.DeleteCommande(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+
+        [TestMethod()]
+        public void GetCommandeByIdClientMoq_IdPassed_ListReturned()
+        {
+            //Arrange
+            List<Commande> commandes = new List<Commande>([
+                new Commande(1), 
+                new Commande(2, DateTime.Parse("13/03/2003"), 1,1,1,1,1,1,1,1)
+                ]);
+            mockRepository.Setup(x => x.GetCommandesByIdClientAsync(1).Result).Returns(commandes);
+            //Act
+            var actual_commandes = controller.GetCommandesByClientId(1).Result;
+            //Assert
+            CollectionAssert.AreEqual(actual_commandes.Value.ToList(), commandes, "Les listes ne correspondent pas");
         }
 
         [TestCleanup]
