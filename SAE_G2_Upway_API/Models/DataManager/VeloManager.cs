@@ -47,24 +47,7 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
 
         foreach (var velo in veloList) // Maintenant, c'est une liste en mémoire
         {
-            velos.Add(new VeloDtoGet()
-            {
-                Nom = velo.Produit.NomProduit,
-                UrlPhoto = velo.Produit.Photo.Url,
-                NomMarque = velo.Produit.Marque.NomMarque,
-                PrixVelo = velo.Produit.PrixProduit,
-                PrixNeuf = velo.Prixneuf,
-                TailleMax = velo.TailleMax.TailleCm,
-                TailleMin = velo.TailleMin.TailleCm,
-                NomModele = velo.LeModele.NomModele,
-                Categorie = velo.LaCategorie.NomCategorie,
-                Etat = velo.Etat.NomEtat,
-                Nbkms = velo.Nbkms,
-                Poids = velo.Poids,
-                TypeCadre = velo.Typecadre,
-                Annee = velo.Annee,
-                BestSeller = velo.BestSeller,
-            });
+            velos.Add(new VeloDtoGet(velo));
         }
     
         return velos;
