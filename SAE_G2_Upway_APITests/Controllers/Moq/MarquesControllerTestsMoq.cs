@@ -43,6 +43,27 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             CollectionAssert.AreEqual(actual_marques.Value.ToList(), marques, "Les listes ne correspondent pas");
         }
 
+        [TestMethod]
+        public void GetMarqueByIdMoq_ValidIdPassed_MarqueReturned()
+        {
+            //Arrange
+            Marque marque = new Marque(1, "Giant");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(marque);
+            //Act
+            var actual_marque = controller.GetMarqueById(1).Result;
+            //Assert
+            Assert.AreEqual(actual_marque.Value, marque, "Les marques ne correspondent pas");
+        }
+
+        [TestMethod]
+        public void GetMarqueByIdMoq_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.GetMarqueById(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+
         [TestCleanup]
         public void Cleanup()
         {
