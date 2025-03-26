@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddDbContext<UpwayDBContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("ServerDBContext")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("UpwayDBContext")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
