@@ -47,7 +47,7 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             Assert.IsInstanceOfType(action_result, typeof(OkObjectResult), "Pas OK");
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void Login_InvalidUserPassed_UnauthorizedReturned()
         {
             //Arrange
