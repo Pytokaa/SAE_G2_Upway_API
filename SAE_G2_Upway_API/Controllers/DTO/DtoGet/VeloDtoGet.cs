@@ -23,10 +23,7 @@ public class VeloDtoGet
     public RapportInspection RapportInspection { get; set; }
     public ICollection<A_Pour_Photo> LesPhotos { get; set; }
     
-    //relations pour les getbyid
     
-    public string Qualites { get; set; }
-
     public VeloDtoGet(Velo velo)
     {
         this.IdVelo = velo.IdVelo;
@@ -64,30 +61,5 @@ public class VeloDtoGet
         this.TypeCadre = velo.Typecadre;
         this.Annee = velo.Annee;
         this.BestSeller = velo.BestSeller;
-    }
-
-    public VeloDtoGet(Velo velo, RapportInspection rapportInspection)
-    {
-        this.Nom = velo.Produit.NomProduit;
-        this.NomMarque = velo.Produit.Marque.NomMarque;
-        this.PrixVelo = velo.Produit.PrixProduit;
-        this.PrixNeuf = velo.Prixneuf;
-        this.TailleMax = velo.TailleMax.TailleCm;
-        this.TailleMin = velo.TailleMin.TailleCm;
-        this.NomModele = velo.LeModele.NomModele;
-        this.Categorie = velo.LaCategorie.NomCategorie;
-        this.Etat = velo.Etat.NomEtat;
-        this.Nbkms = velo.Nbkms;
-        this.Poids = velo.Poids;
-        this.TypeCadre = velo.Typecadre;
-        this.Annee = velo.Annee;
-        this.BestSeller = velo.BestSeller;
-        
-        //relations
-
-        this.Qualites = velo.QualiteVelo;
-        this.RapportInspection = rapportInspection;
-        this.LesPhotos = velo.Produit.APhotos;
-
     }
 }
