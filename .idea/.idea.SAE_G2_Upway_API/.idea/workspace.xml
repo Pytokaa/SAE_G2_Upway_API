@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="sale mais marche">
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326074212_UpwayDbContextModelSnapshot.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326074212_UpwayDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326111109_UpwayDbContext.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326111109_UpwayDbContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/UpwayDBContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/UpwayDBContextModelSnapshot.cs" afterDir="false" />
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Alexis est un malade dans sa notation">
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,7 +335,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742983500175</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="starfoullah">
+      <option name="closed" value="true" />
+      <created>1742999983641</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1742999983641</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Alexis est un malade dans sa notation">
+      <option name="closed" value="true" />
+      <created>1743000624987</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1743000624987</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +407,9 @@
     <MESSAGE value="ajout des photos produit" />
     <MESSAGE value="Ajout de l'idVelo dans le getAll et du moteur dans le getbyid" />
     <MESSAGE value="sale mais marche" />
-    <option name="LAST_COMMIT_MESSAGE" value="sale mais marche" />
+    <MESSAGE value="starfoullah" />
+    <MESSAGE value="Alexis est un malade dans sa notation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alexis est un malade dans sa notation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -401,7 +417,14 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs</url>
           <line>56</line>
-          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'" />
+          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'">
+            <startOffsets>
+              <option value="2070" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2136" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

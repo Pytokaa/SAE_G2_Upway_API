@@ -34,7 +34,7 @@ builder.Services.AddScoped<IDataRepository<Client, Client>, ClientManager>();
 builder.Services.AddScoped<IDataRepository<Marque, Marque>, MarqueManager>();
 builder.Services.AddScoped<IDataRepository<Produit, Produit>, ProduitManager>();
 builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
-
+builder.Services.AddScoped<IDataRepository<RapportInspection, RapportInspection>, RapportInspectionManager>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
