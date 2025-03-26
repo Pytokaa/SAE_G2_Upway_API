@@ -49,39 +49,23 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetAccessoireByIdTest_ReturnsOK_AvecMoq()
         {
-            Accessoire accessoireTest = new Accessoire(
-                5,
-                35,
-                5, 
-                new DateTime(2023-01-29-23-00-00)
-                );
-
-            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
+            //Arrange
+            Accessoire accessoireTest = new Accessoire(5, 35, 5, new DateTime(2023-01-29-23-00-00));
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(accessoireTest);
-            
-            var accessoireController = new AccessoiresController(mockRepository.Object);
-            
-            var actionResult = accessoireController.GetAccessoireById(5).Result;
-            Accessoire result = new Accessoire(
-                actionResult.Value.IdAccessoire,
-                actionResult.Value.IdProduit,
-                actionResult.Value.IdCatA,
-                actionResult.Value.DateAccessoire
-            );
-            
+            //Act
+            var actionResult = accessoiresController.GetAccessoireById(5).Result;
+            // Assert
             Assert.IsNotNull(actionResult, "actionResult != null");
             Assert.IsNotNull(actionResult.Value, "actionResult.Value != null");
-            Assert.AreEqual(accessoireTest, result, "Accessoire test n'est ppas egal au resultat");
+            Assert.AreEqual(accessoireTest, actionResult.Value, "Accessoire test n'est ppas egal au resultat");
         }
 
         [TestMethod()]
         public void GetAccessoireByIdTest_ReturnsNotFound_AvecMoq()
         {
-            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
-            
-            var accessoireController = new AccessoiresController(mockRepository.Object);
-            
-            var actionResult = accessoireController.GetAccessoireById(0).Result;
+            //Act
+            var actionResult = accessoiresController.GetAccessoireById(0).Result;
+            //Assert
             Assert.IsNotNull(actionResult, "la reponse est null");
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
         }
@@ -89,24 +73,13 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void PutAccessoireTest_AvecMoq()
         {
-            Accessoire accessoireTest = new Accessoire(
-                5,
-                35,
-                5, 
-                new DateTime(2023-01-29-23-00-00)
-            );
-            AccessoireDTO accessoireModif = new AccessoireDTO(
-                35,
-                5,
-                new DateTime(2023-03-29-23-00-00)
-                );
-            
-            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
+            //Arrange
+            Accessoire accessoireTest = new Accessoire(5,35,5, new DateTime(2023-01-29-23-00-00));
+            AccessoireDTO accessoireModif = new AccessoireDTO( 35, 5, new DateTime(2023-03-29-23-00-00) );
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(accessoireTest);
-            var accessoireController = new AccessoiresController(mockRepository.Object);
-            
-            var actionResult = accessoireController.PutAccessoire(accessoireTest.IdAccessoire, accessoireModif).Result;
-            
+            //Act
+            var actionResult = accessoiresController.PutAccessoire(accessoireTest.IdAccessoire, accessoireModif).Result;
+            //Assert
             Assert.IsNotNull(actionResult, "la reponse est null");
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult), "la reponse n'est pas correctement");
         }
@@ -114,28 +87,28 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void PutAccessoireTest_InvalidId_ReturnsNotFound_AvecMoq()
         {
+            //Arrance
             AccessoireDTO accessoireModif = new AccessoireDTO(
                 35,
                 5,
                 new DateTime(2023-03-29-23-00-00)
             );
-            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
             mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns((Accessoire)null);
-            var accessoireController = new AccessoiresController(mockRepository.Object);
-            
-            var actionResult = accessoireController.PutAccessoire(0, accessoireModif).Result;
+            //Act
+            var actionResult = accessoiresController.PutAccessoire(0, accessoireModif).Result;
+            //Assert
             Assert.IsInstanceOfType(actionResult,typeof(NotFoundResult), "la reponse est null");
         }
 
         [TestMethod()]
         public void PutAccessoireTest_InvalidInput_ReturnsBadRequest_AvecMoq()
         {
+            //Arrance
             AccessoireDTO accessoireModif = new AccessoireDTO(
                 0,
                 5,
                 new DateTime(2023-03-29-23-00-00)
             );
-            var mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
             Accessoire accessoireTest = new Accessoire(
                 5,
                 35,
@@ -143,12 +116,12 @@ namespace SAE_G2_Upway_API.Controllers.Tests
                 new DateTime(2023-01-29-23-00-00)
             );
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(accessoireTest);
-            var accessoireController = new AccessoiresController(mockRepository.Object);
+            //Act
+            accessoiresController.ModelState.AddModelError("IdProduit", "l'id du produit ne peut pAS ETRE EGAL A 0");
             
-            accessoireController.ModelState.AddModelError("IdProduit", "l'id du produit ne peut pAS ETRE EGAL A 0");
+            var actionResult = accessoiresController.PutAccessoire(5, accessoireModif).Result;
             
-            var actionResult = accessoireController.PutAccessoire(5, accessoireModif).Result;
-            
+            //Assert
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "la reponse est null");
         }
 
