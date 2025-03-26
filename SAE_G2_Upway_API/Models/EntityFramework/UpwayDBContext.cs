@@ -121,19 +121,19 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasConstraintName("FK_Adresse_Commandes_Facturation");
 
                 // Configuration des colonnes
-                //entity.Property(e => e.Rue)
-                //    .HasColumnName("rue")
-                //    .HasMaxLength(100)
-                //    .IsRequired();
+                entity.Property(e => e.Rue)
+                    .HasColumnName("rue")
+                    .HasMaxLength(100)
+                    .IsRequired();
 
-                //entity.Property(e => e.Cp)
-                //    .HasColumnName("cp")
-                //    .IsRequired();
+                entity.Property(e => e.Cp)
+                    .HasColumnName("cp")
+                    .IsRequired();
 
-                //entity.Property(e => e.Ville)
-                //    .HasColumnName("ville")
-                //    .HasMaxLength(50)
-                //    .IsRequired();
+                entity.Property(e => e.Ville)
+                    .HasColumnName("ville")
+                    .HasMaxLength(50)
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Client>(entity =>
@@ -348,22 +348,22 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasConstraintName("FK_Velo_Etat");
 
                 // Configuration des colonnes
-                //entity.Property(e => e.Nbkms)
-                //    .HasColumnName("nbkms")
-                //    .IsRequired();
+                entity.Property(e => e.Nbkms)
+                    .HasColumnName("nbkms")
+                    .IsRequired();
 
-                //entity.Property(e => e.Prixneuf)
-                //    .HasColumnName("prixneuf")
-                //    .IsRequired();
+                entity.Property(e => e.Prixneuf)
+                    .HasColumnName("prixneuf")
+                    .IsRequired();
 
-                //entity.Property(e => e.Poids)
-                //    .HasColumnName("poids")
-                //    .IsRequired();
+                entity.Property(e => e.Poids)
+                    .HasColumnName("poids")
+                    .IsRequired();
 
-                //entity.Property(e => e.Typecadre)
-                //    .HasColumnName("typecadre")
-                //    .HasMaxLength(50)
-                //    .IsRequired();
+                entity.Property(e => e.Typecadre)
+                    .HasColumnName("typecadre")
+                    .HasMaxLength(50)
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Alerte>(entity =>

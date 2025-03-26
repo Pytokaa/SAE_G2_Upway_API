@@ -17,7 +17,7 @@ public class VeloDtoGet
     public double Nbkms { get; set; }
     public double Poids { get; set; }
     public string TypeCadre { get; set; }
-    public DateTime Annee { get; set; }
+    public int Annee { get; set; }
     public bool BestSeller { get; set; }
     
     //relations pour les getbyid
@@ -34,6 +34,25 @@ public class VeloDtoGet
         this.NomModele = velo.LeModele.NomModele;
         this.Categorie = velo.LaCategorie.NomCategorie;
         this.Etat = velo.Etat.NomEtat;
+        this.Nbkms = velo.Nbkms;
+        this.Poids = velo.Poids;
+        this.TypeCadre = velo.Typecadre;
+        this.Annee = velo.Annee;
+        this.BestSeller = velo.BestSeller;
+    }
+
+    public VeloDtoGet(Velo velo, bool test)
+    {
+        this.Nom = "velo.Produit.NomProduit";
+        this.UrlPhoto = "velo.Produit.Photo.Url";
+        this.NomMarque = "velo.Produit.Marque.NomMarque";
+        this.PrixVelo = 1;
+        this.PrixNeuf = velo.Prixneuf;
+        this.TailleMax = 1;
+        this.TailleMin = 1;
+        this.NomModele = "velo.LeModele.NomModele";
+        this.Categorie = "velo.LaCategorie.NomCategorie";
+        this.Etat = "velo.Etat.NomEtat";
         this.Nbkms = velo.Nbkms;
         this.Poids = velo.Poids;
         this.TypeCadre = velo.Typecadre;

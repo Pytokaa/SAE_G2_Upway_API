@@ -41,7 +41,8 @@ public partial class Velo
     public string Typecadre { get; set; }
 
     [Column("vel_annee")]
-    public DateTime Annee { get; set; }
+    [Range(2000, 2050)]
+    public int Annee { get; set; }
 
     [Column("vel_bestseller")]
     public bool BestSeller { get; set; }
@@ -106,8 +107,4 @@ public partial class Velo
     [InverseProperty(nameof(Est_Mis_Panier_Velo.PanierVelo))]
     
     public virtual ICollection<Est_Mis_Panier_Velo> ACommandes { get; set; } =  new List<Est_Mis_Panier_Velo>();
-
-    public Velo()
-    {
-    }
 }

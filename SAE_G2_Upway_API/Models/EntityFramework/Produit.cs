@@ -76,8 +76,5 @@ public partial class Produit
    
     public virtual ICollection<A_Pour_Photo> APhotos { get; set; } = new List<A_Pour_Photo>();
 
-    public Produit()
-    {
-    }
 }
 

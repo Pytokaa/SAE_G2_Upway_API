@@ -54,4 +54,5 @@ public partial class Produit
         StockProduit = stockProduit;
         DescriptionProduit = descriptionProduit;
     }
+   public Produit() { }
 }

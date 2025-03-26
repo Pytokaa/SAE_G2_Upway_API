@@ -1,3 +1,5 @@
+using SAE_G2_Upway_API.Models.EntityFramework;
+
 namespace SAE_G2_Upway_API.Controllers.DTO;
 
 public class VeloDTO
@@ -12,8 +14,26 @@ public class VeloDTO
     public double PrixNeuf { get; set; }
     public double Poids { get; set; }
     public string TypeCadre { get; set; }
-    public DateTime Annee { get; set; }
+    public int Annee { get; set; }
     public bool BestSeller { get; set; }
     public int NbVente { get; set; }
     public string QualiteVelo { get; set; }
+
+    public VeloDTO(Velo velo)
+    {
+        IdProduit = velo.IdProduit;
+        IdTailleMin = velo.IdTailleMin;
+        IdTailleMax = velo.IdTailleMax;
+        IdModele = velo.IdModele;
+        IdCat = velo.IdCat;
+        IdEtat = velo.IdEtat;
+        Nbkms = velo.Nbkms;
+        PrixNeuf = velo.Prixneuf;
+        Poids = velo.Poids;
+        TypeCadre = velo.Typecadre;
+        Annee = velo.Annee;
+        BestSeller = velo.BestSeller;
+        NbVente = velo.NbVente;
+        QualiteVelo = velo.QualiteVelo;
+    }
 }
