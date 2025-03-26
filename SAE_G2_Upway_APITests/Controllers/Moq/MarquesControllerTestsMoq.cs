@@ -64,6 +64,72 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
+        [TestMethod]
+        public void PutMarqueMoq_ValidMarquePassed_NoContentReturned()
+        {
+            //Arrange
+            Marque marque = new Marque(1, "Gigants");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(marque);
+            Marque update = new Marque(1, "Giants");
+            //Act
+            var action_result = controller.PutMarque(1, update).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
+        }
+
+        [TestMethod]
+        public void PutMarqueMoq_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.PutMarque(0, new Marque()).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+
+        [TestMethod]
+        public void PostMarqueMoq_ValidMarquePassed_CreatedAtActionReturned()
+        {
+            //Arrange
+            Marque marque = new Marque(1, "Giants");
+            //Act
+            var action_result = controller.PostMarque(marque).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(CreatedAtActionResult), "Pas un CreatedAtAction");
+        }
+
+        [TestMethod]
+        public void PostMarqueMoq_InvalidMarquePassed_BadRequestReturned()
+        {
+            //Arrange
+            Marque marque = new Marque(-1, "Giants");
+            controller.ModelState.AddModelError("ID", "L'ID ne peut aps être nul");
+            //Act
+            var action_result = controller.PostMarque(marque).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(BadRequestObjectResult), "Pas un BadRequest");
+        }
+
+        [TestMethod]
+        public void DeleteMarqueMoq_ValidIdPassed_NoContentReturned()
+        {
+            //Arrange
+            Marque marque = new Marque(1, "Giants");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(marque);
+            //Act
+            var action_result = controller.DeleteMarque(1).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
+        }
+
+        [TestMethod]
+        public void DeleteMarqueMoq_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.DeleteMarque(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+
         [TestCleanup]
         public void Cleanup()
         {
