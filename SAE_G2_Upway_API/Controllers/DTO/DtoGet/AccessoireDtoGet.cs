@@ -2,6 +2,7 @@ namespace SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 public class AccessoireDtoGet
 {
+    public int IdAccessoire { get; set; }
     public string Nom { get; set; }
     public double Prix { get; set; }
     public string Url { get; set;  }
