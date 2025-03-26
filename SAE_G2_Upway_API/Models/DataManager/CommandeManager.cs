@@ -32,8 +32,7 @@ public class CommandeManager : ICommandeRepository
             .Include(a => a.AssurancesPropose)
             .Include(a => a.LesSimilaires)
             .Include(a => a.LesAccessoires)
-            .Include(a => a.PanierVelo)
-            ;
+            .Include(a => a.PanierVelo);
     }
 
 

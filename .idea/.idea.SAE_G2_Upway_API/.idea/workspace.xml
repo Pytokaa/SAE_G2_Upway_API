@@ -10,7 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="sale mais marche">
+      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/AccessoireManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/AccessoireManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/CommandeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/CommandeManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +37,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Pytokaa/SAE_G2_Upway_API.git&quot;,
-    &quot;accountId&quot;: &quot;b880dcec-8ae1-46f1-bca6-96adcfe9ba44&quot;
+    &quot;accountId&quot;: &quot;14cc1eca-28e0-47fd-a52a-406545815808&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -149,7 +153,6 @@
       <workItem from="1742666696453" duration="739000" />
       <workItem from="1742803484559" duration="5292000" />
       <workItem from="1742810013502" duration="2592000" />
-      <workItem from="1742985905304" duration="1097000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />

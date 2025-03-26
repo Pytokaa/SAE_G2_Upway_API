@@ -20,7 +20,6 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
     private IQueryable<Velo> GetVeloWithInclude()
     {
         return upwayDbContext.Velos
-            .AsNoTracking()
             .Include(a => a.Produit)
             .ThenInclude(p => p.Marque)
             .Include(a => a.Produit)
@@ -47,17 +46,20 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
 
     public async Task<ActionResult<IEnumerable<VeloDtoGet>>> GetAllAsync()
     {
+        
+        
         List<VeloDtoGet> velos = new List<VeloDtoGet>();
 
-        var veloList = await GetVeloWithInclude().ToListAsync(); // Exécution ici
+        var veloList = await GetVeloWithInclude().ToListAsync();
 
-        foreach (var velo in veloList) // Maintenant, c'est une liste en mémoire
+        foreach (var velo in veloList) 
         {
             velos.Add(new VeloDtoGet(velo));
+            Console.WriteLine(velo.ToString());
         }
-    
+        
         return velos;
-        //return await GetVeloWithInclude().ToListAsync();
+      
     }
     public async Task<ActionResult<Velo>> GetByIdAsync(int id)
     {

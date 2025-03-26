@@ -38,4 +38,6 @@ public class AccessoireDtoGet
     {
         return HashCode.Combine(Nom, Prix, Url, Marque, Categorie, DateAccessoire);
     }
+
+   
 }

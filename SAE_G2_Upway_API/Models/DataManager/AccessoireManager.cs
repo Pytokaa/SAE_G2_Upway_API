@@ -39,6 +39,7 @@ public class AccessoireManager : IDataRepository<Accessoire, AccessoireDtoGet>
         {
             accessoires.Add(new AccessoireDtoGet()
             {
+                IdAccessoire = acc.IdAccessoire,
                 Nom = acc.Produit.NomProduit,
                 Prix = acc.Produit.PrixProduit,
                 Url = acc.Produit.Photo.Url,
