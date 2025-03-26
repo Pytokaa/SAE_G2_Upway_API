@@ -4,6 +4,7 @@ namespace SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 public class VeloDtoGet
 {
+    public int IdVelo { get; set; }
     public string Nom { get; set; }
     public string UrlPhoto { get; set; }
     public string NomMarque { get; set; }
@@ -19,11 +20,16 @@ public class VeloDtoGet
     public string TypeCadre { get; set; }
     public int Annee { get; set; }
     public bool BestSeller { get; set; }
+    public RapportInspection RapportInspection { get; set; }
+    public ICollection<A_Pour_Photo> LesPhotos { get; set; }
     
     //relations pour les getbyid
+    
+    public string Qualites { get; set; }
 
     public VeloDtoGet(Velo velo)
     {
+        this.IdVelo = velo.IdVelo;
         this.Nom = velo.Produit.NomProduit;
         this.UrlPhoto = velo.Produit.Photo.Url;
         this.NomMarque = velo.Produit.Marque.NomMarque;
@@ -62,6 +68,26 @@ public class VeloDtoGet
 
     public VeloDtoGet(Velo velo, RapportInspection rapportInspection)
     {
+        this.Nom = velo.Produit.NomProduit;
+        this.NomMarque = velo.Produit.Marque.NomMarque;
+        this.PrixVelo = velo.Produit.PrixProduit;
+        this.PrixNeuf = velo.Prixneuf;
+        this.TailleMax = velo.TailleMax.TailleCm;
+        this.TailleMin = velo.TailleMin.TailleCm;
+        this.NomModele = velo.LeModele.NomModele;
+        this.Categorie = velo.LaCategorie.NomCategorie;
+        this.Etat = velo.Etat.NomEtat;
+        this.Nbkms = velo.Nbkms;
+        this.Poids = velo.Poids;
+        this.TypeCadre = velo.Typecadre;
+        this.Annee = velo.Annee;
+        this.BestSeller = velo.BestSeller;
         
+        //relations
+
+        this.Qualites = velo.QualiteVelo;
+        this.RapportInspection = rapportInspection;
+        this.LesPhotos = velo.Produit.APhotos;
+
     }
 }

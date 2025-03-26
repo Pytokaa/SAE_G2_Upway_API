@@ -45,12 +45,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-/*app.UseCors(policy =>
+app.UseCors(policy =>
     policy.WithOrigins("https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials()
-);*/
+);
+//app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

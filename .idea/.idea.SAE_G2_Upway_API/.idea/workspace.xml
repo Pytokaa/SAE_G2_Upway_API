@@ -11,6 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Remove des method string car osef en vrai de vrai">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/Moq/CommandesControllerTestsMoq.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/Moq/CommandesControllerTestsMoq.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,7 +363,14 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs</url>
           <line>56</line>
-          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'" />
+          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'">
+            <startOffsets>
+              <option value="2070" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2136" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
