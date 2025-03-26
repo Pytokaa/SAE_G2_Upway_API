@@ -27,11 +27,14 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 
 builder.Services.AddScoped<IDataRepository<Velo, VeloDtoGet>, VeloManager>();
+builder.Services.AddScoped<IDataRepository<CategorieVelo, CategorieVelo>, CategorieVeloManager>();
+builder.Services.AddScoped<IDataRepository<CategorieAccessoire, CategorieAccessoire>, CategorieAccessoireManager>();
 builder.Services.AddScoped<IDataRepository<Accessoire, AccessoireDtoGet>, AccessoireManager>();
 builder.Services.AddScoped<IDataRepository<Client, Client>, ClientManager>();
+builder.Services.AddScoped<IDataRepository<Marque, Marque>, MarqueManager>();
 builder.Services.AddScoped<IDataRepository<Produit, Produit>, ProduitManager>();
 builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
-
+builder.Services.AddScoped<IDataRepository<RapportInspection, RapportInspection>, RapportInspectionManager>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>

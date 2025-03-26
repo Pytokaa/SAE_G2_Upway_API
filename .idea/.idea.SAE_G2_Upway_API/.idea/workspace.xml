@@ -9,9 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="sale mais marche">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg">
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +32,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Pytokaa/SAE_G2_Upway_API.git&quot;,
-    &quot;accountId&quot;: &quot;b880dcec-8ae1-46f1-bca6-96adcfe9ba44&quot;
+    &quot;accountId&quot;: &quot;14cc1eca-28e0-47fd-a52a-406545815808&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -149,7 +148,6 @@
       <workItem from="1742666696453" duration="739000" />
       <workItem from="1742803484559" duration="5292000" />
       <workItem from="1742810013502" duration="2592000" />
-      <workItem from="1742985905304" duration="1097000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -335,7 +333,31 @@
       <option name="project" value="LOCAL" />
       <updated>1742983500175</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="starfoullah">
+      <option name="closed" value="true" />
+      <created>1742999983641</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1742999983641</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Alexis est un malade dans sa notation">
+      <option name="closed" value="true" />
+      <created>1743000624987</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1743000624987</updated>
+    </task>
+    <task id="LOCAL-00026" summary="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg">
+      <option name="closed" value="true" />
+      <created>1743004263169</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1743004263169</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +390,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Debut des test unitaires" />
     <MESSAGE value="c'est bizarre" />
     <MESSAGE value="une autre test" />
     <MESSAGE value="push pour voir" />
@@ -391,7 +412,10 @@
     <MESSAGE value="ajout des photos produit" />
     <MESSAGE value="Ajout de l'idVelo dans le getAll et du moteur dans le getbyid" />
     <MESSAGE value="sale mais marche" />
-    <option name="LAST_COMMIT_MESSAGE" value="sale mais marche" />
+    <MESSAGE value="starfoullah" />
+    <MESSAGE value="Alexis est un malade dans sa notation" />
+    <MESSAGE value="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg" />
+    <option name="LAST_COMMIT_MESSAGE" value="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

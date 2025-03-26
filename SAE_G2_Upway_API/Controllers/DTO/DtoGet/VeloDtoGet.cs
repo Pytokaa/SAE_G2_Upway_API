@@ -63,4 +63,8 @@ public class VeloDtoGet
         this.BestSeller = velo.BestSeller;
     }
     public VeloDtoGet() { }
+    public override string ToString()
+    {
+        return this.Nom + " " + this.Nbkms;
+    }
 }
