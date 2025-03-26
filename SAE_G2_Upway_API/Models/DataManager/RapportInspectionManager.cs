@@ -25,7 +25,14 @@ public class RapportInspectionManager     : IDataRepository<RapportInspection, R
 
     public async Task<ActionResult<RapportInspection>> GetByIdAsync(int id)
     {
-        var rapport = upwayDbContext.RapportInspections.FirstOrDefault(u => u.IdVelo == id);
+        var rapport = upwayDbContext.RapportInspections.Include(ri => ri.LesTypes).FirstOrDefault(u => u.IdVelo == id);
+
+        foreach (var valide in rapport.LesTypes)
+        {
+            valide.LeType = upwayDbContext.Types.FirstOrDefault(u => u.Idtype == valide.IdType);
+            
+        }
+        
         return rapport;
     }
 
