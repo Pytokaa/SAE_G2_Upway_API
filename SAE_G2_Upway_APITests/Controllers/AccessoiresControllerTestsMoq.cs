@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SAE_G2_Upway_API.Controllers;
 using System;
 using System.Collections.Generic;
@@ -20,56 +20,44 @@ namespace SAE_G2_Upway_API.Controllers.Tests
     [TestClass()]
     public class AccessoiresControllerTests
     {
-        private UpwayDBContext dbContext;
-        private AccessoiresController accessoiresController;
-        private IDataRepository<Accessoire, AccessoireDtoGet> dataRepository;
+        private AccessoiresController? accessoiresController;
+        private Mock<IDataRepository<Accessoire, AccessoireDtoGet>> mockRepository;
 
         [TestInitialize]
         public void Init()
         {
-            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("Server=localhost;port=5432;Database=SAE_G2_Upway; uid=postgres; password=postgres;");
-            dbContext = new UpwayDBContext(builder.Options);
-            dataRepository = new AccessoireManager(dbContext);
-            accessoiresController = new AccessoiresController(dataRepository);
-        }
-        
-        [TestMethod()]
-        public void AccessoiresControllerTest()
-        {
-            var accessoiresController = new AccessoiresController(dataRepository);
-            Assert.IsNotNull(accessoiresController);
-            Assert.IsInstanceOfType(accessoiresController, typeof(AccessoiresController));
+            mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
+            accessoiresController = new AccessoiresController(mockRepository.Object);
         }
 
         [TestMethod()]
         public void GetAccessoiresTest_ReturnsOK()
         {
-            var result = accessoiresController.GetAccessoires().Result;
-            
-            List<AccessoireDtoGet> accessoiresDto = new List<AccessoireDtoGet>();
-
-            foreach (var item in result.Value)
-            {
-                AccessoireDtoGet accessoireDtoGet = item;
-                accessoiresDto.Add(accessoireDtoGet);
-            }
-            
-            List<Accessoire> accessoiresBase = dbContext.Accessoires.ToList();
-            
-            List<AccessoireDtoGet> lesAccessoires = new List<AccessoireDtoGet>();
-            foreach (var acc in accessoiresBase) // Maintenant, c'est une liste en mémoire
-            {
-                lesAccessoires.Add(new AccessoireDtoGet()
-                {
-                    Nom = acc.Produit.NomProduit,
-                    Prix = acc.Produit.PrixProduit,
-                    Url = acc.Produit.Photo.Url,
-                    Marque = acc.Produit.Marque.NomMarque,
-                    Categorie = acc.CategorieAccessoire.NomCatA,
-                    DateAccessoire = acc.DateAccessoire,
-                });
-            }
-            CollectionAssert.AreEqual(lesAccessoires, accessoiresDto, "Les 2 lists ne sont pas du egals");
+            //Arrange
+            List<AccessoireDtoGet> accessoires = new List<AccessoireDtoGet>([
+                new AccessoireDtoGet( 1,"Antivol Abus Bordo", 80, "images/accessoire/antivol_abus_bordo.jpg","Abus","Antivols",new DateTime(2024-11-10-00-00-00)),
+                new AccessoireDtoGet( 2,"Casque Abus Hyban 2.0", 60, "images/accessoire/casque_abus_hyban.jpg","Abus","Sacoches et paniers",new DateTime(2022-10-14-00-00-00)),
+                new AccessoireDtoGet( 3,"Antivol Kryptonite New York", 120, "images/accessoire/antivol_kryptonite_ny.jpg","Bosch","Casques",new DateTime(2022-12-10-00-00-00)),
+            ]);
+            mockRepository.Setup(x => x.GetAllAsync().Result).Returns(accessoires);
+            //Act
+            var actual_accessoires = accessoiresController.GetAccessoires().Result;
+            //Assert
+            CollectionAssert.AreEqual(actual_accessoires.Value.ToList(), accessoires, "Les listes ne correspondent pas");
+            // var result = accessoiresController.GetAccessoires().Result;
+            //
+            // List<AccessoireDtoGet> accessoiresDto = new List<AccessoireDtoGet>();
+            //
+            // foreach (var item in result.Value)
+            // {
+            //     AccessoireDtoGet accessoireDtoGet = item;
+            //     accessoiresDto.Add(accessoireDtoGet);
+            // }
+            //
+            //
+            // List<AccessoireDtoGet> lesAccessoires = new List<AccessoireDtoGet>();
+            //
+            // CollectionAssert.AreEqual(lesAccessoires, accessoiresDto, "Les 2 lists ne sont pas du egals");
         }
 
         [TestMethod()]
@@ -245,8 +233,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestCleanup]
         public void Cleanup()
         {
-            dbContext = null;
-            dataRepository = null;
+            mockRepository = null;
             accessoiresController = null;
         }
     }

@@ -16,7 +16,7 @@ using SAE_G2_Upway_API.Models.Repository;
 namespace SAE_G2_Upway_API.Controllers.Tests
 {
     [TestClass()]
-    public class ProduitsControllerTests
+    public class ProduitsControllerTestsMoq
     {
         private UpwayDBContext dbContext;
         private ProduitsController produitController;
