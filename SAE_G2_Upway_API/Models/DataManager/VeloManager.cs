@@ -36,6 +36,7 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
             .Include(a => a.RapportInspection)
             .ThenInclude(r => r.LesTypes)
             .Include(a => a.LesMoteurs)
+            .ThenInclude(lm => lm.LeMoteur)
             .Include(a => a.LesSousCategories)
             .ThenInclude(s => s.LaSousCategorie)
             .ThenInclude(sc => sc.Caracteristiques)

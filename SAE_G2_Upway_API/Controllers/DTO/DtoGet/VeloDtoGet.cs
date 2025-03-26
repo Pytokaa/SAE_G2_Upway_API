@@ -4,6 +4,7 @@ namespace SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 public class VeloDtoGet
 {
+    public int IdVelo { get; set; }
     public string Nom { get; set; }
     public string UrlPhoto { get; set; }
     public string NomMarque { get; set; }
@@ -28,6 +29,7 @@ public class VeloDtoGet
 
     public VeloDtoGet(Velo velo)
     {
+        this.IdVelo = velo.IdVelo;
         this.Nom = velo.Produit.NomProduit;
         this.UrlPhoto = velo.Produit.Photo.Url;
         this.NomMarque = velo.Produit.Marque.NomMarque;
