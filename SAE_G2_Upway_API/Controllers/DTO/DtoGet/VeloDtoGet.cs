@@ -62,4 +62,5 @@ public class VeloDtoGet
         this.Annee = velo.Annee;
         this.BestSeller = velo.BestSeller;
     }
+    public VeloDtoGet() { }
 }

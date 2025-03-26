@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using SAE_G2_Upway_API.Controllers;
 using SAE_G2_Upway_API.Controllers.DTO;
 using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
@@ -51,6 +52,15 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             var actual_velo = controller.GetVeloById(1).Result;
             //Assert
             Assert.AreEqual(actual_velo.Value, velo, "Les vélos ne correspondent pas");
+        }
+
+        [TestMethod]
+        public void GetVeloByIdMoq_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+             var action_result = controller.GetVeloById(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestCleanup]
