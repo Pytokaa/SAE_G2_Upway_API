@@ -6,7 +6,7 @@ using SAE_G2_Upway_API.Models.Repository;
 
 namespace SAE_G2_Upway_API.Models.DataManager;
 
-public class RapportInspectionManager //    : IDataRepository<RapportInspection, RapportInspection>
+public class RapportInspectionManager     : IDataRepository<RapportInspection, RapportInspection>
 {
     private readonly UpwayDBContext? upwayDbContext;
         
@@ -25,7 +25,7 @@ public class RapportInspectionManager //    : IDataRepository<RapportInspection,
 
     public async Task<ActionResult<RapportInspection>> GetByIdAsync(int id)
     {
-        var rapport = upwayDbContext.RapportInspections.FirstOrDefault(u => u.IdRapport == id);
+        var rapport = upwayDbContext.RapportInspections.FirstOrDefault(u => u.IdVelo == id);
         return rapport;
     }
 
@@ -34,4 +34,22 @@ public class RapportInspectionManager //    : IDataRepository<RapportInspection,
         await upwayDbContext.RapportInspections.AddAsync(entity);
         await upwayDbContext.SaveChangesAsync();
     }
+
+    
+    public async Task UpdateAsync(RapportInspection entityToUpdate, RapportInspection entity)
+    {
+        upwayDbContext.Entry(entityToUpdate).State = EntityState.Modified;
+        entityToUpdate.IdRapport = entity.IdRapport;
+        entityToUpdate.IdVelo = entity.IdVelo;
+        entityToUpdate.Date = entity.Date;
+        entityToUpdate.Centre = entity.Centre;
+        entityToUpdate.Historique = entity.Historique;
+        entityToUpdate.Commentaire = entity.Commentaire;
+        await upwayDbContext.SaveChangesAsync();
+    }
+    public async Task DeleteAsync(RapportInspection rapport)
+    {
+        upwayDbContext.RapportInspections.Remove(rapport);
+        await upwayDbContext.SaveChangesAsync();
+    } 
 }
