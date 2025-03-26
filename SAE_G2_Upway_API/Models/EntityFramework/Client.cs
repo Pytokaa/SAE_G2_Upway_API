@@ -13,9 +13,6 @@ public partial class Client
     [Column("clt_id")]
     public int Idclient { get; set; }
     
-    [Column("fn_id")]
-    public int IdFonction { get; set; }
-    
     [Column("clt_nom")]
     [StringLength(30)]
     public string Nomclient { get; set; }
@@ -40,10 +37,6 @@ public partial class Client
     [StringLength(100)]
     public string? UserRole { get; set; }
     
-    //relation avec la table fonction
-    [ForeignKey(nameof(IdFonction))]
-    public virtual Fonction Fonction { get; set; } = null!;
-    
     //relation avec la table alerte
     public virtual ICollection<Alerte> Alertes { get; set; } = new List<Alerte>();
     
@@ -58,8 +51,4 @@ public partial class Client
     //relation avec la table habite
     [InverseProperty(nameof(Habite.ClientHabite))]
     public virtual ICollection<Habite> HabiteA { get; set; } = new List<Habite>();
-
-    public Client()
-    {
-    }
 }

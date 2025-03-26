@@ -69,11 +69,6 @@ public class ClientsController : ControllerBase
             return NotFound();
         }
 
-        if (clientToUpdate.Value.IdFonction < 0 || clientToUpdate.Value.IdFonction == null)
-        {
-            return BadRequest();
-        }
-
         Client client = new Client(clientDto);
 
         dataRepository.UpdateAsync(clientToUpdate.Value, client);
@@ -97,16 +92,7 @@ public class ClientsController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-        Client client = new Client()
-        {
-            Nomclient = clientDto.Nom,
-            Prenomclient = clientDto.Prenom,
-            Mailclient = clientDto.Mail,
-            Telephone = clientDto.Telephone,
-            IdFonction = clientDto.IdFonction,
-            Password = clientDto.Password,
-            UserRole = clientDto.UserRole
-        };
+        Client client = new Client(clientDto);
         await dataRepository.AddAsync(client);
         return CreatedAtAction("GetAccessoireById", new { id = client.Idclient },client);
     }

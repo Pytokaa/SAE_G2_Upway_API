@@ -18,7 +18,6 @@ public partial class Client
     {
         HashCode hash = new HashCode();
         hash.Add(Idclient);
-        hash.Add(IdFonction);
         hash.Add(Nomclient);
         hash.Add(Prenomclient);
         hash.Add(Mailclient);
@@ -31,13 +30,12 @@ public partial class Client
         return hash.ToHashCode();
     }
 
-    public Client(int idclient, int idFonction, string nomclient, string prenomclient, string mailclient, 
+    public Client(int idclient, string nomclient, string prenomclient, string mailclient, 
                     string telephone, string password, ICollection<Alerte> alertes, 
                     ICollection<Commande> commandes, ICollection<Est_En_Favoris> lesFavoris, 
                     ICollection<Habite> habiteA)
     {
         Idclient = idclient;
-        IdFonction = idFonction;
         Nomclient = nomclient;
         Prenomclient = prenomclient;
         Mailclient = mailclient;
@@ -49,11 +47,10 @@ public partial class Client
         HabiteA = habiteA;
         UserRole = "User";
     }
-    public Client(int idclient, int idFonction, string nomclient, string prenomclient, string mailclient,
+    public Client(int idclient, string nomclient, string prenomclient, string mailclient,
                       string telephone, string password )
     {
         Idclient = idclient;
-        IdFonction = idFonction;
         Nomclient = nomclient;
         Prenomclient = prenomclient;
         Mailclient = mailclient;
@@ -67,9 +64,12 @@ public partial class Client
         Prenomclient = clientDto.Prenom;
         Mailclient = clientDto.Mail;
         Telephone = clientDto.Telephone;
-        IdFonction = clientDto.IdFonction;
         Password = clientDto.Password;
         UserRole = clientDto.UserRole;
     }
 
+    public Client()
+    {
+
+    }
 }

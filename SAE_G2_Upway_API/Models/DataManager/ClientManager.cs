@@ -18,7 +18,6 @@ public class ClientManager : IDataRepository<Client, Client>
     private IQueryable<Client> GetClientWithInclude()
     {
         return upwayDbContext.Clients
-            .Include(a => a.Fonction)
             .Include(a => a.Alertes)
             .Include(a => a.Commandes)
             .Include(a => a.LesFavoris)
@@ -52,10 +51,6 @@ public class ClientManager : IDataRepository<Client, Client>
         entityToUpdate.Telephone = client.Telephone;
         entityToUpdate.Password = client.Password;
         entityToUpdate.UserRole = client.UserRole;
-        
-        //relation 
-        
-        entityToUpdate.IdFonction = client.IdFonction;
         
         
 

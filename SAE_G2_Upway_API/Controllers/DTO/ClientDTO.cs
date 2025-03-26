@@ -10,7 +10,6 @@ public class ClientDTO
     public string Mail { get; set; }
     public string Telephone { get; set; }
     public string Password { get; set; }
-    public int IdFonction { get; set; }
     public string? UserRole { get; set; }
     
     public ClientDTO(Client client)
@@ -20,7 +19,6 @@ public class ClientDTO
         this.Mail = client.Mailclient;
         this.Telephone = client.Telephone;
         this.Password = client.Password;
-        this.IdFonction = client.IdFonction;
         this.UserRole = client.UserRole;
     }
 }

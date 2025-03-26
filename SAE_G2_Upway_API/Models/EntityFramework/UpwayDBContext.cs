@@ -33,7 +33,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
         public virtual DbSet<Est_Mis_Panier_Velo>Est_Mis_Panier_Velos { get; set; }
         public virtual DbSet<Est_Propose_Similaire>Est_Propose_Similaires { get; set; }
         public virtual DbSet<Etat> Etats { get; set; }
-        public virtual DbSet<Fonction> Fonctions { get; set; }
         public virtual DbSet<Habite>Habites { get; set; }
         public virtual DbSet<Marque> Marques { get; set; }
         public virtual DbSet<ModeExpedition> ModeExpeditions { get; set; }
@@ -141,13 +140,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
             {
                 // Définir la clé primaire
                 entity.HasKey(e => e.Idclient).HasName("PK_Client");
-
-                // Configuration de la relation avec la table Fonction
-                entity.HasOne(d => d.Fonction)
-                    .WithMany(f => f.Clients)
-                    .HasForeignKey(d => d.IdFonction)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_Client_Fonction");
 
                 // Configuration de la contrainte de validation pour le format de l'email
                 entity.HasCheckConstraint("chk_mailclient_format", "clt_mail ~* '^[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$'");
@@ -539,24 +531,6 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
                     .HasForeignKey(v => v.IdEtat)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Etat_Velo");
-            });
-
-            modelBuilder.Entity<Fonction>(entity =>
-            {
-                // Définir la clé primaire
-                entity.HasKey(e => e.Id).HasName("PK_Fonction");
-
-                // Configuration de la colonne NomFonction
-                entity.Property(e => e.NomFonction)
-                    .HasMaxLength(80)
-                    .IsRequired();
-
-                // Configuration de la relation avec la table Client
-                entity.HasMany(d => d.Clients)
-                    .WithOne(c => c.Fonction)
-                    .HasForeignKey(c => c.IdFonction)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_Fonction_Client");
             });
 
             modelBuilder.Entity<Marque>(entity =>
