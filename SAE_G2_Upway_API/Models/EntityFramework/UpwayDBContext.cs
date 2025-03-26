@@ -122,16 +122,14 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
 
                 // Configuration des colonnes
                 entity.Property(e => e.Rue)
-                    .HasColumnName("rue")
+                    
                     .HasMaxLength(100)
                     .IsRequired();
 
                 entity.Property(e => e.Cp)
-                    .HasColumnName("cp")
                     .IsRequired();
 
                 entity.Property(e => e.Ville)
-                    .HasColumnName("ville")
                     .HasMaxLength(50)
                     .IsRequired();
             });
