@@ -93,7 +93,7 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<int>("Cp")
                         .HasColumnType("integer")
-                        .HasColumnName("cp");
+                        .HasColumnName("adr_cp");
 
                     b.Property<int>("PaysId")
                         .HasColumnType("integer")
@@ -103,13 +103,13 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("rue");
+                        .HasColumnName("adr_rue");
 
                     b.Property<string>("Ville")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("ville");
+                        .HasColumnName("adr_ville");
 
                     b.HasKey("IdAdresse")
                         .HasName("PK_Adresse");
@@ -1260,15 +1260,15 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.Property<double>("Nbkms")
                         .HasColumnType("double precision")
-                        .HasColumnName("nbkms");
+                        .HasColumnName("vel_nbkms");
 
                     b.Property<double>("Poids")
                         .HasColumnType("double precision")
-                        .HasColumnName("poids");
+                        .HasColumnName("vel_poids");
 
                     b.Property<double>("Prixneuf")
                         .HasColumnType("double precision")
-                        .HasColumnName("prixneuf");
+                        .HasColumnName("vel_prixneuf");
 
                     b.Property<string>("QualiteVelo")
                         .IsRequired()
@@ -1280,7 +1280,7 @@ namespace SAE_G2_Upway_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("typecadre");
+                        .HasColumnName("vel_typecadre");
 
                     b.HasKey("IdVelo")
                         .HasName("PK_Velo");

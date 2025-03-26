@@ -10,12 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="sale mais marche">
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/AccessoireManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/AccessoireManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/CommandeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/CommandeManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326074212_UpwayDbContextModelSnapshot.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326074212_UpwayDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326111109_UpwayDbContext.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/20250326111109_UpwayDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/UpwayDBContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Migrations/UpwayDBContextModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -402,14 +401,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs</url>
           <line>56</line>
-          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'">
-            <startOffsets>
-              <option value="2070" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2136" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

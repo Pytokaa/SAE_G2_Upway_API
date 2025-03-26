@@ -28,4 +28,9 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20250326074212_UpwayDbContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20250326074212_UpwayDbContextModelSnapshot.Designer.cs" />
+  </ItemGroup>
+
 </Project>
