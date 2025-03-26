@@ -31,7 +31,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetAccessoiresTest_ReturnsOK()
+        public void GetAccessoiresTest_ReturnsOK_AvecMoq()
         {
             //Arrange
             List<AccessoireDtoGet> accessoires = new List<AccessoireDtoGet>([
@@ -44,20 +44,6 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             var actual_accessoires = accessoiresController.GetAccessoires().Result;
             //Assert
             CollectionAssert.AreEqual(actual_accessoires.Value.ToList(), accessoires, "Les listes ne correspondent pas");
-            // var result = accessoiresController.GetAccessoires().Result;
-            //
-            // List<AccessoireDtoGet> accessoiresDto = new List<AccessoireDtoGet>();
-            //
-            // foreach (var item in result.Value)
-            // {
-            //     AccessoireDtoGet accessoireDtoGet = item;
-            //     accessoiresDto.Add(accessoireDtoGet);
-            // }
-            //
-            //
-            // List<AccessoireDtoGet> lesAccessoires = new List<AccessoireDtoGet>();
-            //
-            // CollectionAssert.AreEqual(lesAccessoires, accessoiresDto, "Les 2 lists ne sont pas du egals");
         }
 
         [TestMethod()]

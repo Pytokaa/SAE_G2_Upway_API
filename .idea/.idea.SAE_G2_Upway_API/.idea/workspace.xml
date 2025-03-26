@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg">
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -357,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743004263169</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="heuuuu ca marche pas a cause d'une bizarerie">
+      <option name="closed" value="true" />
+      <created>1743007614434</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1743007614435</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +396,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="c'est bizarre" />
     <MESSAGE value="une autre test" />
     <MESSAGE value="push pour voir" />
     <MESSAGE value="Baaaakaaaa" />
@@ -415,7 +420,8 @@
     <MESSAGE value="starfoullah" />
     <MESSAGE value="Alexis est un malade dans sa notation" />
     <MESSAGE value="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg" />
-    <option name="LAST_COMMIT_MESSAGE" value="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg" />
+    <MESSAGE value="heuuuu ca marche pas a cause d'une bizarerie" />
+    <option name="LAST_COMMIT_MESSAGE" value="heuuuu ca marche pas a cause d'une bizarerie" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -423,14 +429,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs</url>
           <line>56</line>
-          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'">
-            <startOffsets>
-              <option value="2070" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2136" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
