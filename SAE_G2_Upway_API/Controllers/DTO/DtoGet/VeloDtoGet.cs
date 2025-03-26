@@ -90,4 +90,5 @@ public class VeloDtoGet
         this.LesPhotos = velo.Produit.APhotos;
 
     }
+    public VeloDtoGet() { }
 }
