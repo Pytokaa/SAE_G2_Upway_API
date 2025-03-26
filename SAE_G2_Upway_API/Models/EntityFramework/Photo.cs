@@ -6,6 +6,10 @@ namespace SAE_G2_Upway_API.Models.EntityFramework;
 [Table("t_e_photo_pto")]
 public partial class Photo
 {
+    public Photo()
+    {
+    }
+
     [Key]
     [Column("pto_id")]
     public int IdPhoto { get; set; }

@@ -10,8 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="sale mais marche">
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/VeloDtoGet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/VeloDtoGet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +30,12 @@
     &quot;assignee&quot;: &quot;AlexiStapleton&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Pytokaa/SAE_G2_Upway_API.git&quot;,
-    &quot;accountId&quot;: &quot;14cc1eca-28e0-47fd-a52a-406545815808&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Pytokaa/SAE_G2_Upway_API.git",
+    "accountId": "b880dcec-8ae1-46f1-bca6-96adcfe9ba44"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/502bb580f1844bd9a57c7182b3d3890f17198/03/33659572/Assert.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cad9a9e3e5b441ad9c42fd342ae45ee5848a0/53/15f621ae/Enumerable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -149,6 +149,7 @@
       <workItem from="1742666696453" duration="739000" />
       <workItem from="1742803484559" duration="5292000" />
       <workItem from="1742810013502" duration="2592000" />
+      <workItem from="1742985905304" duration="1097000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
