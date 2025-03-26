@@ -53,15 +53,15 @@ namespace SAE_G2_Upway_API.Controllers
         [ProducesResponseType(500)]
         public async Task<ActionResult<Velo>> GetVeloById(int id)
         {
-            var velo = dataRepository.GetByIdAsync(id);
+            var velo = await dataRepository.GetByIdAsync(id);
 
             if (velo == null)
             {
                 return NotFound();
             }
 
-            return velo.Result;
-        }
+            return velo;
+         }
 
         
 

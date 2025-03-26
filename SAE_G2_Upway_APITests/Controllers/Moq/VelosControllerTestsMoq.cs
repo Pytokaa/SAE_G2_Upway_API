@@ -60,7 +60,7 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
             //Act
              var action_result = controller.GetVeloById(0).Result;
             //Assert
-            Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
+            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestCleanup]
