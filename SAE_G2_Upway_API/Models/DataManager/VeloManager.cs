@@ -75,7 +75,8 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
                     if (vc.IdCaract == carac.IdCaract)
                     {
                         carac.CaracteriseVelo.Add(vc);
-                       
+                        vc.CaracteriseVelo = null;
+
                     }
                 }
             }
