@@ -37,8 +37,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-        policy.WithOrigins("http://localhost:5181"
-            , "https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")    
+        policy.WithOrigins("http://localhost:5181")    
         .AllowAnyMethod()
         .AllowAnyHeader();
     });
@@ -46,12 +45,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseCors(policy =>
+/*app.UseCors(policy =>
     policy.WithOrigins("https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials()
-);
+);*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -12,7 +12,7 @@ using SAE_G2_Upway_API.Models.EntityFramework;
 namespace SAE_G2_Upway_API.Migrations
 {
     [DbContext(typeof(UpwayDBContext))]
-    [Migration("20250318100504_UpwayDbContextModelSnapshot")]
+    [Migration("20250326074212_UpwayDbContextModelSnapshot")]
     partial class UpwayDbContextModelSnapshot
     {
         /// <inheritdoc />
@@ -290,10 +290,6 @@ namespace SAE_G2_Upway_API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idclient"));
 
-                    b.Property<int>("IdFonction")
-                        .HasColumnType("integer")
-                        .HasColumnName("fn_id");
-
                     b.Property<string>("Mailclient")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -333,8 +329,6 @@ namespace SAE_G2_Upway_API.Migrations
 
                     b.HasKey("Idclient")
                         .HasName("PK_Client");
-
-                    b.HasIndex("IdFonction");
 
                     b.ToTable("t_e_client_clt", "upway", t =>
                         {
@@ -693,27 +687,6 @@ namespace SAE_G2_Upway_API.Migrations
                         .HasName("PK_Etat");
 
                     b.ToTable("t_e_etat_eta", "upway");
-                });
-
-            modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Fonction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("fn_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("NomFonction")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("character varying(80)")
-                        .HasColumnName("fn_nom");
-
-                    b.HasKey("Id")
-                        .HasName("PK_Fonction");
-
-                    b.ToTable("t_e_fonction_fn", "upway");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Habite", b =>
@@ -1430,18 +1403,6 @@ namespace SAE_G2_Upway_API.Migrations
                     b.Navigation("SousCategorie");
                 });
 
-            modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Client", b =>
-                {
-                    b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Fonction", "Fonction")
-                        .WithMany("Clients")
-                        .HasForeignKey("IdFonction")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Fonction_Client");
-
-                    b.Navigation("Fonction");
-                });
-
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Commande", b =>
                 {
                     b.HasOne("SAE_G2_Upway_API.Models.EntityFramework.Adresse", "Adresse")
@@ -1984,11 +1945,6 @@ namespace SAE_G2_Upway_API.Migrations
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Etat", b =>
                 {
                     b.Navigation("Velos");
-                });
-
-            modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Fonction", b =>
-                {
-                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("SAE_G2_Upway_API.Models.EntityFramework.Marque", b =>

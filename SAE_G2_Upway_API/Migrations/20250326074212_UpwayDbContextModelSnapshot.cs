@@ -59,6 +59,26 @@ namespace SAE_G2_Upway_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "t_e_client_clt",
+                schema: "upway",
+                columns: table => new
+                {
+                    clt_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    clt_nom = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    clt_prenom = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    clt_mail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    clt_telephone = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
+                    clt_password = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    clt_userrole = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true, defaultValue: "User")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.clt_id);
+                    table.CheckConstraint("chk_mailclient_format", "clt_mail ~* '^[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$'");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "t_e_codereduc_codred",
                 schema: "upway",
                 columns: table => new
@@ -84,20 +104,6 @@ namespace SAE_G2_Upway_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Etat", x => x.eta_id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "t_e_fonction_fn",
-                schema: "upway",
-                columns: table => new
-                {
-                    fn_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    fn_nom = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Fonction", x => x.fn_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -258,34 +264,6 @@ namespace SAE_G2_Upway_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_e_client_clt",
-                schema: "upway",
-                columns: table => new
-                {
-                    clt_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    fn_id = table.Column<int>(type: "integer", nullable: false),
-                    clt_nom = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
-                    clt_prenom = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
-                    clt_mail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    clt_telephone = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
-                    clt_password = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    clt_userrole = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true, defaultValue: "User")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Client", x => x.clt_id);
-                    table.CheckConstraint("chk_mailclient_format", "clt_mail ~* '^[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}$'");
-                    table.ForeignKey(
-                        name: "FK_Fonction_Client",
-                        column: x => x.fn_id,
-                        principalSchema: "upway",
-                        principalTable: "t_e_fonction_fn",
-                        principalColumn: "fn_id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "t_e_modele_mdl",
                 schema: "upway",
                 columns: table => new
@@ -418,35 +396,6 @@ namespace SAE_G2_Upway_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "t_j_contient_ctn",
-                schema: "upway",
-                columns: table => new
-                {
-                    ctn_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    styp_id = table.Column<int>(type: "integer", nullable: false),
-                    typ_id = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_t_j_contient_ctn", x => x.ctn_id);
-                    table.ForeignKey(
-                        name: "FK_Type_Contient",
-                        column: x => x.typ_id,
-                        principalSchema: "upway",
-                        principalTable: "t_e_type_typ",
-                        principalColumn: "typ_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_t_j_contient_ctn_t_e_soustype_styp_styp_id",
-                        column: x => x.styp_id,
-                        principalSchema: "upway",
-                        principalTable: "t_e_soustype_styp",
-                        principalColumn: "styp_id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "t_e_alerte_alt",
                 schema: "upway",
                 columns: table => new
@@ -475,6 +424,35 @@ namespace SAE_G2_Upway_API.Migrations
                         principalTable: "t_e_taille_tle",
                         principalColumn: "tle_id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "t_j_contient_ctn",
+                schema: "upway",
+                columns: table => new
+                {
+                    ctn_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    styp_id = table.Column<int>(type: "integer", nullable: false),
+                    typ_id = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_j_contient_ctn", x => x.ctn_id);
+                    table.ForeignKey(
+                        name: "FK_Type_Contient",
+                        column: x => x.typ_id,
+                        principalSchema: "upway",
+                        principalTable: "t_e_type_typ",
+                        principalColumn: "typ_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_t_j_contient_ctn_t_e_soustype_styp_styp_id",
+                        column: x => x.styp_id,
+                        principalSchema: "upway",
+                        principalTable: "t_e_soustype_styp",
+                        principalColumn: "styp_id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1154,12 +1132,6 @@ namespace SAE_G2_Upway_API.Migrations
                 column: "scat_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_t_e_client_clt_fn_id",
-                schema: "upway",
-                table: "t_e_client_clt",
-                column: "fn_id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_t_e_commande_comm_adr_id",
                 schema: "upway",
                 table: "t_e_commande_comm",
@@ -1605,10 +1577,6 @@ namespace SAE_G2_Upway_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "t_e_adresse_adr",
-                schema: "upway");
-
-            migrationBuilder.DropTable(
-                name: "t_e_fonction_fn",
                 schema: "upway");
 
             migrationBuilder.DropTable(
