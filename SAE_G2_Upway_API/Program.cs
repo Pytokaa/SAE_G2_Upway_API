@@ -51,7 +51,7 @@ app.UseCors(policy =>
     .AllowAnyHeader()
     .AllowCredentials()
 );
-app.UseStaticFiles();
+//app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
