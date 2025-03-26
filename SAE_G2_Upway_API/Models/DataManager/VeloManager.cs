@@ -22,21 +22,27 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
         return upwayDbContext.Velos
             .AsNoTracking()
             .Include(a => a.Produit)
-            .ThenInclude(p=>p.Marque)
+            .ThenInclude(p => p.Marque)
             .Include(a => a.Produit)
             .ThenInclude(p => p.Photo)
+            .Include(a => a.Produit)
+            .ThenInclude(p => p.APhotos)
+            .ThenInclude(ap => ap.Photo)
             .Include(a => a.TailleMin)
             .Include(a => a.TailleMax)
             .Include(a => a.LeModele)
             .Include(a => a.LaCategorie)
             .Include(a => a.Etat)
             .Include(a => a.RapportInspection)
+            .ThenInclude(r => r.LesTypes)
             .Include(a => a.LesMoteurs)
+            .ThenInclude(lm => lm.LeMoteur)
             .Include(a => a.LesSousCategories)
-            .Include(a => a.Caracteristiques)
-            .Include(a => a.LesBoutiques)
-            .Include(a => a.ACommandes);
+            .ThenInclude(s => s.LaSousCategorie)
+            .ThenInclude(sc => sc.Caracteristiques)
+            .ThenInclude(r => r.CaracteriseVelo);
     }
+
     
 
     public async Task<ActionResult<IEnumerable<VeloDtoGet>>> GetAllAsync()
@@ -57,7 +63,25 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
     {
         var velo = await GetVeloWithInclude()
             .FirstOrDefaultAsync(u => u.IdVelo == id);
+        var velocarac = upwayDbContext.Velos.Include(a => a.Caracteristiques).FirstOrDefault(u => u.IdVelo == id).Caracteristiques;
+        foreach (var possede in velo.LesSousCategories)
+        {
+            
+            foreach (var carac in possede.LaSousCategorie.Caracteristiques) 
+            {
+                carac.CaracteriseVelo = new List<Est_Caracterise>();
+                foreach (var vc in velocarac)
+                {
+                    if (vc.IdCaract == carac.IdCaract)
+                    {
+                        carac.CaracteriseVelo.Add(vc);
+                        vc.CaracteriseVelo = null;
 
+                    }
+                }
+            }
+            
+        }
         return velo;
     }
     
