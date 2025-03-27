@@ -37,9 +37,9 @@ builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
 builder.Services.AddScoped<IDataRepository<RapportInspection, RapportInspection>, RapportInspectionManager>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost", policy =>
+    options.AddPolicy("AllowLocalhost", builder =>
     {
-        policy.WithOrigins("*")    
+        builder.WithOrigins("*")    
         .AllowAnyMethod()
         .AllowAnyHeader();
     });
