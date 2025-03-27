@@ -18,69 +18,31 @@ namespace SAE_G2_Upway_API.Controllers.Tests
     [TestClass()]
     public class ProduitsControllerTestsMoq
     {
-        private UpwayDBContext dbContext;
-        private ProduitsController produitController;
-        private IDataRepository<Produit, Produit> dataRepository;
+        private ProduitsController? produitController;
+        private Mock<IDataRepository<Produit, Produit>> mockRepository;
 
         [TestInitialize]
         public void Init()
         {
-            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("Server=localhost;port=5432;Database=SAE_G2_Upway; uid=postgres; password=postgres;");
-            dbContext = new UpwayDBContext(builder.Options);
-            dataRepository = new ProduitManager(dbContext);
-            produitController = new ProduitsController(dataRepository);
+            mockRepository = new Mock<IDataRepository<Produit, Produit>>();
+            produitController = new ProduitsController(mockRepository.Object);
             
         }
 
-        [TestMethod()]
-        public void ProduitsControllerTest()
-        {
-            var produitsMock = new List<Produit>
-            {
-                new Produit(1, 1, 1, "Produit A", 100, 10, "Description A"),
-                new Produit(2, 2, 2, "Produit B", 200, 20, "Description B")
-            };
-
-            // 2. Création du mock du repository
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            mockRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(produitsMock);
-
-            // 3. Création du contrôleur avec le mock
-            var produitController = new ProduitsController(mockRepository.Object);
-
-            // 4. Exécution de la méthode
-            var result = produitController.GetProduits().Result;
-
-            // 5. Vérifications
-            Assert.IsNotNull(result.Value, "La liste des produits ne doit pas être null");
-            Assert.AreEqual(2, result.Value.Count(), "Le nombre de produits est incorrect");
-            CollectionAssert.AreEquivalent(produitsMock, result.Value.ToList(), "Les produits ne correspondent pas.");
-        }
-
         [TestMethod]
-        public void GetProduits_ReturnsAllProduits()
+        public void GetProduits_ReturnsAllProduits_AvecMoq()
         {
-            var result = produitController.GetProduits().Result;
- 
-            List<Produit> resultList = new List<Produit>();
- 
-            foreach (var item in result.Value)
-            {
-                Produit produit = new Produit(
-                    item.Idproduit,
-                    item.IdPhoto,
-                    item.IdMarque,
-                    item.NomProduit,
-                    item.PrixProduit,
-                    item.StockProduit,
-                    item.DescriptionProduit
-                );
-                resultList.Add(produit);
-            }
- 
-            List<Produit> produitsBase = dbContext.Produits.ToList();
- 
-            CollectionAssert.AreEqual(produitsBase, resultList, "Get all produits ne fonctionne pas correctement");
+            //Arrange
+            List<Produit> produits = new List<Produit>([
+                new Produit(1,1,1,"Vélo tout terrain Moustache Samedi 27",2500,5,"VTT Moustache avec suspension intégrale pour le tout-terrain."),
+                new Produit(2,2,2,"Vélo de route Cube Agree C:62",2000,8,"Vélo de route ultra-léger en carbone pour la performance."),
+                new Produit(3,3,3,"Vélo cargo Giant Expédition",3200,3,"Vélo cargo solide pour transporter des charges lourdes."),
+            ]);
+            mockRepository.Setup(x => x.GetAllAsync().Result).Returns(produits);
+            //Act
+            var actual_produits = produitController.GetProduits().Result;
+            //Assert
+            CollectionAssert.AreEqual(actual_produits.Value.ToList(), produits, "Get all produits ne fonctionne pas correctement");
          }
 
         [TestMethod()]
@@ -284,8 +246,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestCleanup]
         public void Cleanup()
         {
-            dbContext = null;
-            dataRepository = null;
+            mockRepository = null;
             produitController = null;
         }
     }
