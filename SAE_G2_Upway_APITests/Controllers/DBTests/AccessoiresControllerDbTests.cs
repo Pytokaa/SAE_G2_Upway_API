@@ -46,7 +46,7 @@ public class AccessoiresControllerDbTests
     {
         //Act
         var actual_accessoire = controller.GetAccessoireById(1).Result;
-        var expected_accessoire = new AccessoireDtoGet(dbContext.Accessoires.FirstOrDefault(x => x.IdAccessoire == 1));
+        var expected_accessoire = dbContext.Accessoires.FirstOrDefault(x => x.IdAccessoire == 1);
         //Assert
         Assert.AreEqual(actual_accessoire.Value, expected_accessoire, "Les accessoires ne correspondent pas");
     }
