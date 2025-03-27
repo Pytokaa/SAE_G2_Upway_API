@@ -39,5 +39,14 @@ public class AccessoireDtoGet
         return HashCode.Combine(Nom, Prix, Url, Marque, Categorie, DateAccessoire);
     }
 
-   
+    public AccessoireDtoGet(int idAccessoire, string nom, double prix, string url, string marque, string categorie, DateTime dateAccessoire)
+    {
+        IdAccessoire = idAccessoire;
+        Nom = nom;
+        Prix = prix;
+        Url = url;
+        Marque = marque;
+        Categorie = categorie;
+        DateAccessoire = dateAccessoire;
+    }
 }

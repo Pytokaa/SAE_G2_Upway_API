@@ -1,0 +1,289 @@
+Index: SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace SAE_G2_Upway_API.Controllers.DTO.DtoGet;\r\n\r\npublic class AccessoireDtoGet\r\n{\r\n    public int IdAccessoire { get; set; }\r\n    public string Nom { get; set; }\r\n    public double Prix { get; set; }\r\n    public string Url { get; set;  }\r\n    public string Marque { get; set; }\r\n    public string Categorie { get; set; }\r\n    public DateTime DateAccessoire { get; set; }\r\n\r\n    public AccessoireDtoGet(string nom, double prix, string url, string marque, string categorie, DateTime dateAccessoire)\r\n    {\r\n        Nom = nom;\r\n        Prix = prix;\r\n        Url = url;\r\n        Marque = marque;\r\n        Categorie = categorie;\r\n        DateAccessoire = dateAccessoire;\r\n    }\r\n    public AccessoireDtoGet(){}\r\n\r\n    protected bool Equals(AccessoireDtoGet other)\r\n    {\r\n        return Nom == other.Nom && Prix.Equals(other.Prix) && Url == other.Url && Marque == other.Marque && Categorie == other.Categorie && DateAccessoire.Equals(other.DateAccessoire);\r\n    }\r\n\r\n    public override bool Equals(object? obj)\r\n    {\r\n        if (obj is null) return false;\r\n        if (ReferenceEquals(this, obj)) return true;\r\n        if (obj.GetType() != GetType()) return false;\r\n        return Equals((AccessoireDtoGet)obj);\r\n    }\r\n\r\n    public override int GetHashCode()\r\n    {\r\n        return HashCode.Combine(Nom, Prix, Url, Marque, Categorie, DateAccessoire);\r\n    }\r\n\r\n   \r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs b/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs
+--- a/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs	(revision 72f0e34570b8f388e363c86fe2ffdc08942cc9f0)
++++ b/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs	(date 1743006978617)
+@@ -39,5 +39,14 @@
+         return HashCode.Combine(Nom, Prix, Url, Marque, Categorie, DateAccessoire);
+     }
+ 
+-   
++    public AccessoireDtoGet(int idAccessoire, string nom, double prix, string url, string marque, string categorie, DateTime dateAccessoire)
++    {
++        IdAccessoire = idAccessoire;
++        Nom = nom;
++        Prix = prix;
++        Url = url;
++        Marque = marque;
++        Categorie = categorie;
++        DateAccessoire = dateAccessoire;
++    }
+ }
+\ No newline at end of file
+Index: SAE_G2_Upway_APITests/Controllers/AccessoiresControllerDbTests.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerDbTests.cs b/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerDbTests.cs
+new file mode 100644
+--- /dev/null	(date 1743005252468)
++++ b/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerDbTests.cs	(date 1743005252468)
+@@ -0,0 +1,65 @@
++using Microsoft.EntityFrameworkCore;
++using SAE_G2_Upway_API.Controllers;
++using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
++using SAE_G2_Upway_API.Models.DataManager;
++using SAE_G2_Upway_API.Models.EntityFramework;
++using SAE_G2_Upway_API.Models.Repository;
++
++namespace SAE_G2_Upway_APITests.Controllers;
++
++[TestClass]
++public class AccessoiresControllerDbTests
++{
++
++        private UpwayDBContext dbContext;
++        private AccessoiresController accessoiresController;
++        private IDataRepository<Accessoire, AccessoireDtoGet> dataRepository;
++
++        [TestInitialize]
++        public void Init()
++        {
++            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("Server=51.83.36.122;port=5432;Database=SAE_G2_Upway; uid=staale; password=2yn32i;");
++            dbContext = new UpwayDBContext(builder.Options);
++            dataRepository = new AccessoireManager(dbContext);
++            accessoiresController = new AccessoiresController(dataRepository);
++        }
++        
++        [TestMethod()]
++        public void AccessoiresControllerTest()
++        {
++            var accessoiresController = new AccessoiresController(dataRepository);
++            Assert.IsNotNull(accessoiresController);
++            Assert.IsInstanceOfType(accessoiresController, typeof(AccessoiresController));
++        }
++
++        [TestMethod()]
++        public void GetAccessoiresTest_ReturnsOK()
++        {
++            var result = accessoiresController.GetAccessoires().Result;
++            
++            List<AccessoireDtoGet> accessoiresDto = new List<AccessoireDtoGet>();
++
++            foreach (var item in result.Value)
++            {
++                AccessoireDtoGet accessoireDtoGet = item;
++                accessoiresDto.Add(accessoireDtoGet);
++            }
++            
++            List<Accessoire> accessoiresBase = dbContext.Accessoires.ToList();
++            
++            List<AccessoireDtoGet> lesAccessoires = new List<AccessoireDtoGet>();
++            foreach (var acc in accessoiresBase) // Maintenant, c'est une liste en mémoire
++            {
++                lesAccessoires.Add(new AccessoireDtoGet()
++                {
++                    Nom = acc.Produit.NomProduit,
++                    Prix = acc.Produit.PrixProduit,
++                    Url = acc.Produit.Photo.Url,
++                    Marque = acc.Produit.Marque.NomMarque,
++                    Categorie = acc.CategorieAccessoire.NomCatA,
++                    DateAccessoire = acc.DateAccessoire,
++                });
++            }
++            CollectionAssert.AreEqual(lesAccessoires, accessoiresDto, "Les 2 lists ne sont pas du egals");
++        }
++}
+\ No newline at end of file
+Index: SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs b/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTestsMoq.cs
+rename from SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs
+rename to SAE_G2_Upway_APITests/Controllers/ProduitsControllerTestsMoq.cs
+--- a/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs	(revision 72f0e34570b8f388e363c86fe2ffdc08942cc9f0)
++++ b/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTestsMoq.cs	(date 1743004940881)
+@@ -16,7 +16,7 @@
+ namespace SAE_G2_Upway_API.Controllers.Tests
+ {
+     [TestClass()]
+-    public class ProduitsControllerTests
++    public class ProduitsControllerTestsMoq
+     {
+         private UpwayDBContext dbContext;
+         private ProduitsController produitController;
+Index: .idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoGeneratedRunConfigurationManager\">\r\n    <projectFile profileName=\"IIS Express\">SAE_G2_Upway_API/SAE_G2_Upway_API.csproj</projectFile>\r\n    <projectFile profileName=\"http\">SAE_G2_Upway_API/SAE_G2_Upway_API.csproj</projectFile>\r\n    <projectFile profileName=\"https\">SAE_G2_Upway_API/SAE_G2_Upway_API.csproj</projectFile>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a6f63049-831e-40ed-ad3a-92adf422f256\" name=\"Changes\" comment=\"Alexis est un malade dans sa notation\">\r\n      <change beforePath=\"$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"DpaMonitoringSettings\">\r\n    <option name=\"firstShow\" value=\"false\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;AlexiStapleton&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Pytokaa/SAE_G2_Upway_API.git&quot;,\r\n    &quot;accountId&quot;: &quot;14cc1eca-28e0-47fd-a52a-406545815808&quot;\r\n  }\r\n}</component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/502bb580f1844bd9a57c7182b3d3890f17198/03/33659572/Assert.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cad9a9e3e5b441ad9c42fd342ae45ee5848a0/53/15f621ae/Enumerable.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98c377d82be4c36912d3e59d6d7e2a55a14898ee9757311a192711c5f4115e7/TestMethodInfo.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/AccessoiresControllerTest.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/SAE_G2_Upway_API.Tests/Controllers/ClientsControllerTests.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 5\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2uRwvH8Y4W4xwm2scOuDomzv4Zg\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;.NET Launch Settings Profile.SAE_G2_Upway_API: http.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;c849631d-643b-429d-9c2c-86dc6b2a45bc.executor&quot;: &quot;Debug&quot;,\r\n    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,\r\n    &quot;f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor&quot;: &quot;Debug&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\".NET Launch Settings Profile.SAE_G2_Upway_API: http\">\r\n    <configuration name=\"SAE_G2_Upway_API: IIS Express\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/SAE_G2_Upway_API/SAE_G2_Upway_API.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"IIS Express\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SAE_G2_Upway_API: http\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/SAE_G2_Upway_API/SAE_G2_Upway_API.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"http\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SAE_G2_Upway_API: https\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/SAE_G2_Upway_API/SAE_G2_Upway_API.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"https\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a6f63049-831e-40ed-ad3a-92adf422f256\" name=\"Changes\" comment=\"\" />\r\n      <created>1742224925180</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1742224925180</updated>\r\n      <workItem from=\"1742224928643\" duration=\"2282000\" />\r\n      <workItem from=\"1742227247198\" duration=\"1579000\" />\r\n      <workItem from=\"1742228894370\" duration=\"754000\" />\r\n      <workItem from=\"1742243489283\" duration=\"615000\" />\r\n      <workItem from=\"1742282008685\" duration=\"66000\" />\r\n      <workItem from=\"1742282469464\" duration=\"9571000\" />\r\n      <workItem from=\"1742294589319\" duration=\"43000\" />\r\n      <workItem from=\"1742419747780\" duration=\"304000\" />\r\n      <workItem from=\"1742420471905\" duration=\"6926000\" />\r\n      <workItem from=\"1742454362355\" duration=\"3223000\" />\r\n      <workItem from=\"1742663637765\" duration=\"34000\" />\r\n      <workItem from=\"1742663682695\" duration=\"28000\" />\r\n      <workItem from=\"1742663876761\" duration=\"69000\" />\r\n      <workItem from=\"1742666696453\" duration=\"739000\" />\r\n      <workItem from=\"1742803484559\" duration=\"5292000\" />\r\n      <workItem from=\"1742810013502\" duration=\"2592000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Debut des test unitaires\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742227038995</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742227038995</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"c'est bizarre\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742227375379</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742227375379</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"une autre test\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742227640232</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742227640232</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"push pour voir\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742228376387</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742228376388</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Baaaakaaaa\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742229298525</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742229298525</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"on efface les tests urinaires\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742282060557</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742282060557</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"les tests commencent de maniere okay\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742284907368</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742284907368</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Les calsspart sont ajoute on va attendre un peu avant de continuer les tests\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742287196817</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742287196817</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"oui\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742289206945</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742289206945</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Accessoire test qui avancent mais ne fonctionne pas il faut attendre que les controllers fonctionnent bien\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742291903631</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742291903631</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"oui\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742391097170</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742391097170</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"avancement des tests a l'aveugle\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742395353222</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742395353222</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"gnaaaa\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742395642755</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742395642755</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Les tests unitaires avancent grandement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742403206509</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742403206509</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"les tests marchent mais plus l'api c'est bizarre\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742425304702</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742425304702</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Changement mais j'ai du faire des betise parce que ca marche plus\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742428337953</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742428337953</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"merci mael ca remarche\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742455239104</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742455239104</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"Controller des categories accessoire et velo + marque\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742809729902</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742809729902</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Remove des method string car osef en vrai de vrai\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742812237122</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742812237122</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Ajout des caracteristiques dans le get by id\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742982721832</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742982721832</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"ajout des photos produit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742982902845</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742982902845</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Ajout de l'idVelo dans le getAll et du moteur dans le getbyid\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742983128820</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742983128820</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"sale mais marche\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742983500175</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742983500175</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"starfoullah\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742999983641</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742999983641</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Alexis est un malade dans sa notation\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1743000624987</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1743000624987</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"26\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"true\" />\r\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"false\" />\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\r\n    <MESSAGE value=\"Debut des test unitaires\" />\r\n    <MESSAGE value=\"c'est bizarre\" />\r\n    <MESSAGE value=\"une autre test\" />\r\n    <MESSAGE value=\"push pour voir\" />\r\n    <MESSAGE value=\"Baaaakaaaa\" />\r\n    <MESSAGE value=\"on efface les tests urinaires\" />\r\n    <MESSAGE value=\"les tests commencent de maniere okay\" />\r\n    <MESSAGE value=\"Merge remote-tracking branch 'origin/master'\" />\r\n    <MESSAGE value=\"Les calsspart sont ajoute on va attendre un peu avant de continuer les tests\" />\r\n    <MESSAGE value=\"Accessoire test qui avancent mais ne fonctionne pas il faut attendre que les controllers fonctionnent bien\" />\r\n    <MESSAGE value=\"oui\" />\r\n    <MESSAGE value=\"avancement des tests a l'aveugle\" />\r\n    <MESSAGE value=\"gnaaaa\" />\r\n    <MESSAGE value=\"Les tests unitaires avancent grandement\" />\r\n    <MESSAGE value=\"les tests marchent mais plus l'api c'est bizarre\" />\r\n    <MESSAGE value=\"Changement mais j'ai du faire des betise parce que ca marche plus\" />\r\n    <MESSAGE value=\"merci mael ca remarche\" />\r\n    <MESSAGE value=\"Controller des categories accessoire et velo + marque\" />\r\n    <MESSAGE value=\"Remove des method string car osef en vrai de vrai\" />\r\n    <MESSAGE value=\"Ajout des caracteristiques dans le get by id\" />\r\n    <MESSAGE value=\"ajout des photos produit\" />\r\n    <MESSAGE value=\"Ajout de l'idVelo dans le getAll et du moteur dans le getbyid\" />\r\n    <MESSAGE value=\"sale mais marche\" />\r\n    <MESSAGE value=\"starfoullah\" />\r\n    <MESSAGE value=\"Alexis est un malade dans sa notation\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Alexis est un malade dans sa notation\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"DotNet Breakpoints\">\r\n          <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs</url>\r\n          <line>56</line>\r\n          <properties documentPath=\"C:\\Users\\stapleta\\Desktop\\SAE\\SAE_G2_Upway_APITests\\Controllers\\AccessoiresControllerTests.cs\" containingFunctionPresentation=\"Method 'GetAccessoiresTest_ReturnsOK'\">\r\n            <startOffsets>\r\n              <option value=\"2070\" />\r\n            </startOffsets>\r\n            <endOffsets>\r\n              <option value=\"2136\" />\r\n            </endOffsets>\r\n          </properties>\r\n          <option name=\"timeStamp\" value=\"4\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n    <pin-to-top-manager>\r\n      <pinned-members>\r\n        <PinnedItemInfo parentTag=\"Frame#SAE_G2_Upway_API.Controllers.Tests.ProduitsControllerTests.GetProduits_ReturnsAllProduits\" memberName=\"result\" />\r\n      </pinned-members>\r\n    </pin-to-top-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml b/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml
+--- a/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml	(revision 72f0e34570b8f388e363c86fe2ffdc08942cc9f0)
++++ b/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml	(date 1743006978787)
+@@ -10,9 +10,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="Alexis est un malade dans sa notation">
+-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerDbTests.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTestsMoq.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTestsMoq.cs" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -412,23 +413,6 @@
+     <option name="LAST_COMMIT_MESSAGE" value="Alexis est un malade dans sa notation" />
+   </component>
+   <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+-          <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs</url>
+-          <line>56</line>
+-          <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'">
+-            <startOffsets>
+-              <option value="2070" />
+-            </startOffsets>
+-            <endOffsets>
+-              <option value="2136" />
+-            </endOffsets>
+-          </properties>
+-          <option name="timeStamp" value="4" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
+     <pin-to-top-manager>
+       <pinned-members>
+         <PinnedItemInfo parentTag="Frame#SAE_G2_Upway_API.Controllers.Tests.ProduitsControllerTests.GetProduits_ReturnsAllProduits" memberName="result" />
+Index: SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs b/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTestsMoq.cs
+rename from SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs
+rename to SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTestsMoq.cs
+--- a/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTests.cs	(revision 72f0e34570b8f388e363c86fe2ffdc08942cc9f0)
++++ b/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTestsMoq.cs	(date 1743006978624)
+@@ -18,58 +18,51 @@
+ namespace SAE_G2_Upway_API.Controllers.Tests
+ {
+     [TestClass()]
+-    public class AccessoiresControllerTests
++    public class AccessoiresControllerTestsMoq
+     {
+-        private UpwayDBContext dbContext;
+-        private AccessoiresController accessoiresController;
+-        private IDataRepository<Accessoire, AccessoireDtoGet> dataRepository;
++        private AccessoiresController controller;
++        private IDataRepository<Accessoire, AccessoireDtoGet> mockRepository;
+ 
+         [TestInitialize]
+         public void Init()
+         {
+-            var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("Server=localhost;port=5432;Database=SAE_G2_Upway; uid=postgres; password=postgres;");
+-            dbContext = new UpwayDBContext(builder.Options);
+-            dataRepository = new AccessoireManager(dbContext);
+-            accessoiresController = new AccessoiresController(dataRepository);
++            mockRepository = new Mock<IDataRepository<Accessoire, AccessoireDtoGet>>();
++            controller = new AccessoiresController(mockRepository.Object);
+         }
+-        
++
+         [TestMethod()]
+-        public void AccessoiresControllerTest()
++        public void GetAccessoiresTest_ReturnsOK_AvecMoq()
+         {
+-            var accessoiresController = new AccessoiresController(dataRepository);
+-            Assert.IsNotNull(accessoiresController);
+-            Assert.IsInstanceOfType(accessoiresController, typeof(AccessoiresController));
+-        }
+-
+-        [TestMethod()]
+-        public void GetAccessoiresTest_ReturnsOK()
+-        {
+-            var result = accessoiresController.GetAccessoires().Result;
+-            
+-            List<AccessoireDtoGet> accessoiresDto = new List<AccessoireDtoGet>();
+-
+-            foreach (var item in result.Value)
+-            {
+-                AccessoireDtoGet accessoireDtoGet = item;
+-                accessoiresDto.Add(accessoireDtoGet);
+-            }
+-            
+-            List<Accessoire> accessoiresBase = dbContext.Accessoires.ToList();
+-            
+-            List<AccessoireDtoGet> lesAccessoires = new List<AccessoireDtoGet>();
+-            foreach (var acc in accessoiresBase) // Maintenant, c'est une liste en mémoire
+-            {
+-                lesAccessoires.Add(new AccessoireDtoGet()
+-                {
+-                    Nom = acc.Produit.NomProduit,
+-                    Prix = acc.Produit.PrixProduit,
+-                    Url = acc.Produit.Photo.Url,
+-                    Marque = acc.Produit.Marque.NomMarque,
+-                    Categorie = acc.CategorieAccessoire.NomCatA,
+-                    DateAccessoire = acc.DateAccessoire,
+-                });
+-            }
+-            CollectionAssert.AreEqual(lesAccessoires, accessoiresDto, "Les 2 lists ne sont pas du egals");
++            //Arrange
++            List<AccessoireDtoGet> accessoires = new List<AccessoireDtoGet>([
++                new AccessoireDtoGet( "Antivol Abus Bordo", 80, "images/accessoire/antivol_abus_bordo.jpg","Abus","Antivols",,"2024-11-10T00:00:00Z")
++            ]);
++            // var result = controller.GetAccessoires().Result;
++            //
++            // List<AccessoireDtoGet> accessoiresDto = new List<AccessoireDtoGet>();
++            //
++            // foreach (var item in result.Value)
++            // {
++            //     AccessoireDtoGet accessoireDtoGet = item;
++            //     accessoiresDto.Add(accessoireDtoGet);
++            // }
++            //
++            // List<Accessoire> accessoiresBase = dbContext.Accessoires.ToList();
++            //
++            // List<AccessoireDtoGet> lesAccessoires = new List<AccessoireDtoGet>();
++            // foreach (var acc in accessoiresBase) // Maintenant, c'est une liste en mémoire
++            // {
++            //     lesAccessoires.Add(new AccessoireDtoGet()
++            //     {
++            //         Nom = acc.Produit.NomProduit,
++            //         Prix = acc.Produit.PrixProduit,
++            //         Url = acc.Produit.Photo.Url,
++            //         Marque = acc.Produit.Marque.NomMarque,
++            //         Categorie = acc.CategorieAccessoire.NomCatA,
++            //         DateAccessoire = acc.DateAccessoire,
++            //     });
++            // }
++            // CollectionAssert.AreEqual(lesAccessoires, accessoiresDto, "Les 2 lists ne sont pas du egals");
+         }
+ 
+         [TestMethod()]
+@@ -245,9 +238,8 @@
+         [TestCleanup]
+         public void Cleanup()
+         {
+-            dbContext = null;
+-            dataRepository = null;
+-            accessoiresController = null;
++            mockRepository = null;
++            controller = null;
+         }
+     }
+ }
+\ No newline at end of file

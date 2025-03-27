@@ -89,25 +89,7 @@ namespace SAE_G2_Upway_API.Controllers
             {
                 return NotFound();
             }
-            Velo velo = new Velo()
-            {
-                IdVelo = id,
-                IdProduit = veloDTO.IdProduit,
-                IdTailleMin = veloDTO.IdTailleMin,
-                IdTailleMax = veloDTO.IdTailleMax,
-                IdModele = veloDTO.IdModele,
-                IdCat = veloDTO.IdCat,
-                IdEtat = veloDTO.IdEtat,
-                Nbkms = veloDTO.Nbkms,
-                Prixneuf = veloDTO.PrixNeuf,
-                Poids = veloDTO.Poids,
-                Typecadre = veloDTO.TypeCadre,
-                Annee = veloDTO.Annee,
-                BestSeller = veloDTO.BestSeller,
-                NbVente = veloDTO.NbVente,
-                QualiteVelo = veloDTO.QualiteVelo
-
-            };
+            Velo velo = new Velo(veloDTO);
 
             
             dataRepository.UpdateAsync(veloToUpdate.Value, velo);
@@ -137,23 +119,7 @@ namespace SAE_G2_Upway_API.Controllers
                 return BadRequest(ModelState);
             }
             
-            Velo velo = new Velo()
-            {
-                IdProduit = veloDTO.IdProduit,
-                IdTailleMin = veloDTO.IdTailleMin,
-                IdTailleMax = veloDTO.IdTailleMax,
-                IdModele = veloDTO.IdModele,
-                IdCat = veloDTO.IdCat,
-                IdEtat = veloDTO.IdEtat,
-                Nbkms = veloDTO.Nbkms,
-                Prixneuf = veloDTO.PrixNeuf,
-                Poids = veloDTO.Poids,
-                Typecadre = veloDTO.TypeCadre,
-                Annee = veloDTO.Annee,
-                BestSeller = veloDTO.BestSeller,
-                NbVente = veloDTO.NbVente,
-                QualiteVelo = veloDTO.QualiteVelo
-            };
+            Velo velo = new Velo(veloDTO);
             
             
             await dataRepository.AddAsync(velo);

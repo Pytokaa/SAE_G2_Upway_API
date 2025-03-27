@@ -35,24 +35,44 @@ builder.Services.AddScoped<IDataRepository<Marque, Marque>, MarqueManager>();
 builder.Services.AddScoped<IDataRepository<Produit, Produit>, ProduitManager>();
 builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
 builder.Services.AddScoped<IDataRepository<RapportInspection, RapportInspection>, RapportInspectionManager>();
-builder.Services.AddCors(options =>
+
+builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+{
+    builder.AllowAnyMethod()
+        .SetIsOriginAllowed(_ => true)
+        .AllowAnyHeader()
+        .AllowCredentials();
+}));
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowLocalhost", builder =>
+//    {
+//        builder.AllowAnyMethod()
+//            .SetIsOriginAllowed(_ => true)
+//            .AllowAnyHeader()
+//            .AllowCredentials();
+//    });
+/*builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-        policy.WithOrigins("http://localhost:5181")    
+        policy.WithOrigins("http://51.83.36.122:5181",
+                "saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")
         .AllowAnyMethod()
         .AllowAnyHeader();
     });
-});
+});*/
 
 var app = builder.Build();
+app.UseCors("CorsPolicy");
 
-app.UseCors(policy =>
-    policy.WithOrigins("https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")
-    .AllowAnyMethod()
-    .AllowAnyHeader()
-    .AllowCredentials()
-);
+//app.UseCors(policy =>
+//    policy.WithOrigins("https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")
+//    .AllowAnyMethod()
+//    .AllowAnyHeader()
+//    .AllowCredentials()
+//);
 //app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
