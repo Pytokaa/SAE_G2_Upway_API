@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.DataManager;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SAE_G2_Upway_APITests.Controllers.DBTests
 {
@@ -37,7 +38,25 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
             var expected_clients = context.Clients.ToList();
             //Assert
             CollectionAssert.AreEqual(actual_clients.Value.ToList(), expected_clients, "Les listes ne correspondent pas");
-            
+        }
+
+        [TestMethod]
+        public void GetClientById_ValidIdPassed_ClientReturned()
+        {
+            //Act
+            var actual_client = controller.GetClientById(1).Result;
+            var expected_client = context.Clients.FirstOrDefault(x => x.Idclient == 1);
+            //Assert
+            Assert.AreEqual(actual_client.Value, expected_client, "Les clients ne correspondent pas");
+        }
+
+        [TestMethod]
+        public void GetClientById_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.GetClientById(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Problème dans la base de données : Index 0 détecté");
         }
 
         [TestCleanup]
