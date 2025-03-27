@@ -48,15 +48,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetProduitByIdTest_ReturnsOK_avecMoq()
         {
-            Produit produitTest = new Produit(
-                5,
-                5,
-                5,
-                "Vélo de ville Nakamura E-City",
-                1300,
-                10,
-                "Vélo de ville électrique idéal pour les trajets quotidiens."
-                );
+            Produit produitTest = new Produit(5,5,5,"Vélo de ville Nakamura E-City",1300,10,"Vélo de ville électrique idéal pour les trajets quotidiens.");
             
             var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitTest);
