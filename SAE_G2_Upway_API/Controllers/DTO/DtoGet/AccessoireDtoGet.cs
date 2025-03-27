@@ -1,3 +1,5 @@
+using SAE_G2_Upway_API.Models.EntityFramework;
+
 namespace SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 public class AccessoireDtoGet
@@ -5,7 +7,7 @@ public class AccessoireDtoGet
     public int IdAccessoire { get; set; }
     public string Nom { get; set; }
     public double Prix { get; set; }
-    public string Url { get; set;  }
+    public string Url { get; set; }
     public string Marque { get; set; }
     public string Categorie { get; set; }
     public DateTime DateAccessoire { get; set; }
@@ -19,6 +21,27 @@ public class AccessoireDtoGet
         Categorie = categorie;
         DateAccessoire = dateAccessoire;
     }
+    public AccessoireDtoGet(Accessoire accessoire)
+    {
+        Nom = accessoire.Produit.NomProduit;
+        Prix = accessoire.Produit.PrixProduit;
+        Url = accessoire.Produit.Photo.Url;
+        Marque = accessoire.Produit.Marque.NomMarque;
+        Categorie = accessoire.CategorieAccessoire.NomCatA;
+        DateAccessoire = accessoire.DateAccessoire;
+    }
+
+    public List<AccessoireDtoGet> ToAccessoireDTO(List<Accessoire> list)
+    {
+        List<AccessoireDtoGet> accessoiresDtoGet = new List<AccessoireDtoGet>();
+        foreach (Accessoire accessoire in list)
+        {
+            AccessoireDtoGet accDtoGet = new AccessoireDtoGet(accessoire);
+            accessoiresDtoGet.Add(accDtoGet);
+        }
+        return accessoiresDtoGet;
+    }
+
     public AccessoireDtoGet(){}
 
     protected bool Equals(AccessoireDtoGet other)
