@@ -59,6 +59,10 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         [TestMethod()]
         public void GetClientByIdMoq_InvalidIdPassed_NotFoundReturned()
         {
+            //Arrange
+            Client client = null;
+            ActionResult<Client> action_result = new ActionResult<Client>(client);
+            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns(action_result);
             //Act
             var actual_client = controller.GetClientById(0).Result;
             //Assert

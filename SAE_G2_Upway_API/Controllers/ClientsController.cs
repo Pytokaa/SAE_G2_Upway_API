@@ -40,7 +40,7 @@ public class ClientsController : ControllerBase
     {
         var client = await dataRepository.GetByIdAsync(id);
 
-        if (client == null)
+        if (client.Value == null)
         {
             return NotFound();
         }
