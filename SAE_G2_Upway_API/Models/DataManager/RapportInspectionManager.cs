@@ -25,13 +25,24 @@ public class RapportInspectionManager     : IDataRepository<RapportInspection, R
 
     public async Task<ActionResult<RapportInspection>> GetByIdAsync(int id)
     {
-        var rapport = upwayDbContext.RapportInspections.Include(ri => ri.LesTypes).FirstOrDefault(u => u.IdVelo == id);
+        var rapport = upwayDbContext.RapportInspections
+            .Include(ri => ri.LesTypes)
+            .ThenInclude(v => v.LeType)
+            .ThenInclude(t =>t.ASousTypes)
+            .ThenInclude(c => c.ContientSousType)
+            .ThenInclude(st => st.LesSurTypes)
+            .ThenInclude(sr => sr.Repare)
+            .FirstOrDefault(u => u.IdVelo == id);
 
         foreach (var valide in rapport.LesTypes)
         {
-            valide.LeType = upwayDbContext.Types.FirstOrDefault(u => u.Idtype == valide.IdType);
-            
+            foreach (var contient in valide.LeType.ASousTypes)
+            {
+                
+                contient.ContientSousType.LesSurTypes = new List<SurType>{contient.ContientSousType.LesSurTypes.FirstOrDefault()};
+            }
         }
+        
         
         return rapport;
     }

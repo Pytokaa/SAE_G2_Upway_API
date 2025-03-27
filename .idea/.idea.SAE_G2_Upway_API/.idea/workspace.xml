@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg">
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/RapportInspectionManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -357,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743004263169</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="https://www.youtube.com/watch?v=I-a-uIQhSBU petit push juste pour le plaisir">
+      <option name="closed" value="true" />
+      <created>1743005828723</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1743005828723</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +396,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="c'est bizarre" />
     <MESSAGE value="une autre test" />
     <MESSAGE value="push pour voir" />
     <MESSAGE value="Baaaakaaaa" />
@@ -415,7 +420,8 @@
     <MESSAGE value="starfoullah" />
     <MESSAGE value="Alexis est un malade dans sa notation" />
     <MESSAGE value="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg" />
-    <option name="LAST_COMMIT_MESSAGE" value="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg" />
+    <MESSAGE value="https://www.youtube.com/watch?v=I-a-uIQhSBU petit push juste pour le plaisir" />
+    <option name="LAST_COMMIT_MESSAGE" value="https://www.youtube.com/watch?v=I-a-uIQhSBU petit push juste pour le plaisir" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
