@@ -38,7 +38,7 @@ public class CommandesController : ControllerBase
         
         
         
-        if (commande == null)
+        if (commande.Value == null)
         {
             return NotFound();
         }
