@@ -38,6 +38,16 @@ public class AccessoiresControllerDbTests
         var actual_accessoires = controller.GetAccessoires().Result;
         var expected_accessoires = dbContext.AccToDtoGet(dbContext.Accessoires.ToList());
         //Assert
-        Assert.AreEqual(actual_accessoireDtoGet.Value, expected_accessoireDtoGet,"Les 2 accessoires ne sont pas du egals");
+        CollectionAssert.AreEqual(actual_accessoires.Value.ToList(), expected_accessoires,"Les 2 accessoires ne sont pas du egals");
+    }
+
+    [TestMethod()]
+    public void GetAccessoireByIdTest_ReturnsOK()
+    {
+        //Act
+        var actual_accessoire = controller.GetAccessoireById(1).Result;
+        var expected_accessoire = new AccessoireDtoGet(dbContext.Accessoires.FirstOrDefault(x => x.IdAccessoire == 1));
+        //Assert
+        Assert.AreEqual(actual_accessoire.Value, expected_accessoire, "Les accessoires ne correspondent pas");
     }
 }
