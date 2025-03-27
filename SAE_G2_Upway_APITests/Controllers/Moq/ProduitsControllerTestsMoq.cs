@@ -48,130 +48,71 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetProduitByIdTest_ReturnsOK_avecMoq()
         {
-            Produit produitTest = new Produit(5,5,5,"Vélo de ville Nakamura E-City",1300,10,"Vélo de ville électrique idéal pour les trajets quotidiens.");
-            
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitTest);
-            
-            var produitController = new ProduitsController(mockRepository.Object);
-            
+            //Arrange
+            Produit produit = new Produit(5,5,5,"Vélo de ville Nakamura E-City",1300,10,"Vélo de ville électrique idéal pour les trajets quotidiens.");
+            mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produit);
+            //Act
             var actionResult = produitController.GetProduitById(5).Result;
-            Produit result = new Produit(
-                actionResult.Value.Idproduit,
-                actionResult.Value.IdPhoto,
-                actionResult.Value.IdMarque,
-                actionResult.Value.NomProduit,
-                actionResult.Value.PrixProduit,
-                actionResult.Value.StockProduit,
-                actionResult.Value.DescriptionProduit
-                );
-            
+            //Assert
             Assert.IsNotNull(actionResult,"is not null premier ne marche pas");
             Assert.IsNotNull(actionResult.Value, "is not null second ne marche pas");
-            Assert.AreEqual(produitTest, result,"Get all produits ne fonctionne pas correctement");
+            Assert.AreEqual(produit, actionResult.Value,"Get all produits ne fonctionne pas correctement");
         }
 
         [TestMethod()]
         public void GetProduitByIdTest_ReturnsNotFound_avecMoq()
         {
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            
-            var produitController = new ProduitsController(mockRepository.Object);
-            
-            
+            //Act
             var actionResult = produitController.GetProduitById(0).Result;
+            //Assert
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
         }
 
         [TestMethod()]
         public void PutProduitTest_AvecMoq()
         {
-            Produit produitBase = new Produit(
-                5,
-                5,
-                5,
-                "Vélo de ville Nakamura E-City",
-                1300,
-                10,
-                "Vélo de ville électrique idéal pour les trajets quotidiens."
-            );
-            ProduitDTO produitModif = new ProduitDTO();
-            produitModif.IdMarque = 5;
-            produitModif.IdPhoto = 5;
-            produitModif.NomProduit = "Test";
-            produitModif.PrixProduit = 1300;
-            produitModif.StockProduit = 10;
-            produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
-
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
+            //Arrange
+            Produit produitBase = new Produit(5,5,5,"Vélo de ville Nakamura E-City",1300,10,"Vélo de ville électrique idéal pour les trajets quotidiens.");
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitBase);
-            var produitController = new ProduitsController(mockRepository.Object);
-            
+            ProduitDTO produitModif = new ProduitDTO(5,3,"Vélo de ville Nakamura E-City",1300,10,"Vélo de ville électrique idéal pour les trajets quotidiens.");
+            //Act
             var actionResult = produitController.PutProduit(5, produitModif).Result;
-            
+            //Assert
             Assert.IsInstanceOfType(actionResult, typeof(NoContentResult), "la reponse n'est pas de type NoContentResult");
         }
         
         [TestMethod()]
         public void PutProduitTest_InvalidId_ReturnsNotFound_avecMoq()
         {
-            ProduitDTO produitModif = new ProduitDTO();
-            produitModif.IdMarque = 5;
-            produitModif.IdPhoto = 5;
-            produitModif.NomProduit = "Vélo de ville Nakamura E-City";
-            produitModif.PrixProduit = 1300;
-            produitModif.StockProduit = 10;
-            produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
-
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
+            //Arrange
+            ProduitDTO produitModif = new ProduitDTO(5,5,"Vélo de ville Nakamura E-City",1300,10,"Vélo de ville électrique idéal pour les trajets quotidiens.");
             mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns((Produit)null);
-            var produitController = new ProduitsController(mockRepository.Object);
-            
+            //Act
             var actionResult = produitController.PutProduit(0, produitModif).Result;
-            
+            //Assert
             Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "la reponse n'est pas de type BadRequestResult");
         }
         
         [TestMethod()]
         public void PutProduitTest_InvalidInput_ReturnsNotFound_avecMoq()
         {
-            ProduitDTO produitModif = new ProduitDTO();
-            produitModif.IdMarque = 5;
-            produitModif.IdPhoto = 5;
-            produitModif.NomProduit = null;
-            produitModif.PrixProduit = 1300;
-            produitModif.StockProduit = 10;
-            produitModif.DescriptionProduit = "Vélo de ville électrique idéal pour les trajets quotidiens.";
-
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            var produitBase = new Produit(5, 5, 5, "Vélo", 1300, 10, "Description");
-            mockRepository.Setup(x => x.GetByIdAsync(5)).ReturnsAsync(produitBase);
-            
-            var produitController = new ProduitsController(mockRepository.Object);
-            
+            //Arrange
+            ProduitDTO produitDto = new ProduitDTO();
             produitController.ModelState.AddModelError("NomProduit", "Le nom du produit est obligatoire");
-            
-            var actionResult = produitController.PutProduit(5, produitModif).Result;
-            
+            //Act
+            var actionResult = produitController.PutProduit(5, produitDto).Result;
+            //Assert
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "la reponse n'est pas de type BadRequestResult");
         }
 
         [TestMethod()]
         public void PostProduitTest_AvecMoq()
         {
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            var produitController = new ProduitsController(mockRepository.Object);
-            
-            ProduitDTO produitTest = new ProduitDTO();
-            produitTest.IdMarque = 1;
-            produitTest.IdPhoto = 1;
-            produitTest.NomProduit = "oui";
-            produitTest.PrixProduit = 13;
-            produitTest.StockProduit = 10;
-            produitTest.DescriptionProduit = "dv";
-            
+            //Arrange
+            ProduitDTO produitTest = new ProduitDTO(1,1,"oui",13,10,"dv");
+            //Act
             var actionResult = produitController.PostProduit(new ProduitDTO()).Result;
-            
+            //Assert
             Assert.IsInstanceOfType(actionResult, typeof(ActionResult<Produit>), "la reponse n'est pas de type ActionResult<produit>");
             Assert.IsInstanceOfType(actionResult.Result, typeof(CreatedAtActionResult), "la reponse n'est pas de type CreatedAtActionResult");
             var result = actionResult.Result as CreatedAtActionResult;
@@ -181,57 +122,36 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void PostProduitTest_InvalidInput_ReturnsBadRequest_avecMoq()
         {
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
-            var produitController = new ProduitsController(mockRepository.Object);
-            
+            //Arrange   
             ProduitDTO produitTest = new ProduitDTO();
-            produitTest.IdMarque = 1;
-            produitTest.IdPhoto = 1;
-            produitTest.NomProduit = null;
-            produitTest.PrixProduit = 13;
-            produitTest.StockProduit = 10;
-            produitTest.DescriptionProduit = "dv";
-            
             produitController.ModelState.AddModelError("NomProduit", "Le nom du produit est obligatoire");
-            
-            var actionResult = produitController.PostProduit(new ProduitDTO()).Result;
-            
+            //Act
+            var actionResult = produitController.PostProduit(produitTest).Result;
+            //Assert
             Assert.IsInstanceOfType(actionResult, typeof(ActionResult<Produit>), "la reponse n'est pas de type ActionResult<produit>");
-            
             Assert.IsInstanceOfType(actionResult.Result, typeof(BadRequestObjectResult), "la reponse n'est pas de type BadRequestResult");
         }
 
         [TestMethod()]
         public void DeleteProduitTest_AvecMoq()
         {
-            Produit produitBase = new Produit(
-                5,
-                5,
-                5,
-                "Vélo de ville Nakamura E-City",
-                1300,
-                10,
-                "Vélo de ville électrique idéal pour les trajets quotidiens."
-            );
-            
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
+            //Arrange
+            Produit produitBase = new Produit(5,5,5,"Vélo de ville Nakamura E-City",1300,10,"Vélo de ville électrique idéal pour les trajets quotidiens.");
             mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produitBase);
-            var produitController = new ProduitsController(mockRepository.Object);
-            
+            //Act
             var actionResult = produitController.DeleteProduit(5).Result;
-            
+            //Assert
             Assert.IsInstanceOfType(actionResult.Result, typeof(NoContentResult), "la reponse n'est pas de type NoContentResult");
         }
         
         [TestMethod()]
         public void DeleteProduitTest_InvalidId_ReturnsNotFound_avecMoq()
         {
-            var mockRepository = new Mock<IDataRepository<Produit, Produit>>();
+            //Arrange
             mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns((Produit)null);
-            var produitController = new ProduitsController(mockRepository.Object);
-            
+            //Act
             var actionResult = produitController.DeleteProduit(0).Result;
-            
+            //Assert
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
         }
 
