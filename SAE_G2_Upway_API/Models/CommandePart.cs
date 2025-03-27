@@ -48,5 +48,47 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
             IdClient = commandeDto.IdClient;
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Commande commande &&
+                   IdCommande == commande.IdCommande &&
+                   DateCommande == commande.DateCommande &&
+                   IdCode == commande.IdCode &&
+                   IdStatut == commande.IdStatut &&
+                   IdModeExp == commande.IdModeExp &&
+                   IdAdresse == commande.IdAdresse &&
+                   IdBoutique == commande.IdBoutique &&
+                   IdAdresseFactu == commande.IdAdresseFactu &&
+                   IdModePayement == commande.IdModePayement &&
+                   IdClient == commande.IdClient;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(IdCommande);
+            hash.Add(DateCommande);
+            hash.Add(IdCode);
+            hash.Add(IdStatut);
+            hash.Add(IdModeExp);
+            hash.Add(IdAdresse);
+            hash.Add(IdBoutique);
+            hash.Add(IdAdresseFactu);
+            hash.Add(IdModePayement);
+            hash.Add(IdClient);
+            hash.Add(Code);
+            hash.Add(Statut);
+            hash.Add(ModeExpedition);
+            hash.Add(Adresse);
+            hash.Add(Boutique);
+            hash.Add(AdresseFactu);
+            hash.Add(ModePayement);
+            hash.Add(Client);
+            hash.Add(AssurancesPropose);
+            hash.Add(LesSimilaires);
+            hash.Add(LesAccessoires);
+            hash.Add(PanierVelo);
+            return hash.ToHashCode();
+        }
     }
 }
