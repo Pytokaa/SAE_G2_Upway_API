@@ -39,12 +39,21 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", builder =>
     {
-        builder.WithOrigins("http://localhost:5185",
-                "https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")    
+        builder.WithOrigins("*")    
         .AllowAnyMethod()
         .AllowAnyHeader();
     });
 });
+/*builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost", policy =>
+    {
+        policy.WithOrigins("http://51.83.36.122:5181",
+                "saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});*/
 
 var app = builder.Build();
 
