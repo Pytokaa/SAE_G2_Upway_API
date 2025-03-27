@@ -1056,6 +1056,16 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
             return result;
         }
 
+        public List<VeloDtoGet> VeloToDtoGet(List<Velo> list)
+        {
+            List<VeloDtoGet> result = new List<VeloDtoGet>();
+            foreach (Velo item in list) 
+            {
+                VeloDtoGet velo = new VeloDtoGet(item);
+                result.Add(velo);
+            }
+            return result;
+        }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
