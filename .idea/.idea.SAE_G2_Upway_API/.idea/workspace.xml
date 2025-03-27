@@ -10,10 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerDbTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/AccessoiresControllerTestsMoq.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/Moq/AccessoiresControllerTestsMoq.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTestsMoq.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/ProduitsControllerTestsMoq.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +150,7 @@
       <workItem from="1742803484559" duration="5292000" />
       <workItem from="1742810013502" duration="2592000" />
       <workItem from="1743007854298" duration="743000" />
-      <workItem from="1743059547008" duration="1741000" />
+      <workItem from="1743059547008" duration="2479000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -379,7 +376,39 @@
       <option name="project" value="LOCAL" />
       <updated>1743008603480</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="petit push pour victor megias">
+      <option name="closed" value="true" />
+      <created>1743061550104</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1743061550104</updated>
+    </task>
+    <task id="LOCAL-00030" summary="oui oui">
+      <option name="closed" value="true" />
+      <created>1743061642345</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1743061642345</updated>
+    </task>
+    <task id="LOCAL-00031" summary="https://">
+      <option name="closed" value="true" />
+      <created>1743061673772</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1743061673772</updated>
+    </task>
+    <task id="LOCAL-00032" summary="encore un push">
+      <option name="closed" value="true" />
+      <created>1743061816193</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1743061816193</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,10 +441,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="push pour voir" />
-    <MESSAGE value="Baaaakaaaa" />
-    <MESSAGE value="on efface les tests urinaires" />
-    <MESSAGE value="les tests commencent de maniere okay" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests" />
     <MESSAGE value="Accessoire test qui avancent mais ne fonctionne pas il faut attendre que les controllers fonctionnent bien" />
@@ -437,7 +462,11 @@
     <MESSAGE value="https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/9/6/1/9782012254169/tsp20121001194531/Quelle-belle-journee.jpg" />
     <MESSAGE value="heuuuu ca marche pas a cause d'une bizarerie" />
     <MESSAGE value="Je pars en japonais Konbanwa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Je pars en japonais Konbanwa" />
+    <MESSAGE value="petit push pour victor megias" />
+    <MESSAGE value="oui oui" />
+    <MESSAGE value="https://" />
+    <MESSAGE value="encore un push" />
+    <option name="LAST_COMMIT_MESSAGE" value="encore un push" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
