@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Controllers;
 using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
@@ -46,8 +47,25 @@ public class AccessoiresControllerDbTests
     {
         //Act
         var actual_accessoire = controller.GetAccessoireById(1).Result;
-        var expected_accessoire = new AccessoireDtoGet(dbContext.Accessoires.FirstOrDefault(x => x.IdAccessoire == 1));
+        var expected_accessoire = dbContext.Accessoires.FirstOrDefault(x => x.IdAccessoire == 1);
         //Assert
         Assert.AreEqual(actual_accessoire.Value, expected_accessoire, "Les accessoires ne correspondent pas");
+    }
+
+    [TestMethod()]
+    public void GetAccessoireByIdTest_InvalidId_ReturnsNotFound()
+    {
+        //Act
+        var actual_accessoire = controller.GetAccessoireById(0).Result;
+        //Assert
+        Assert.IsInstanceOfType(actual_accessoire.Result, typeof(NotFoundResult), "Ce n'est pas d'instance NOTFOUND");
+    }
+    
+    [TestCleanup]
+    public void Cleanup() 
+    {
+        dbContext = null;
+        dataRepository = null;
+        controller = null;
     }
 }

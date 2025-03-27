@@ -31,7 +31,7 @@ public class MarquesController : ControllerBase
     public async Task<ActionResult<Marque>> GetMarqueById(int id)
     {
         var marque = await dataRepository.GetByIdAsync(id);
-        if (marque == null)
+        if (marque.Value == null)
         {
             return NotFound();
         }

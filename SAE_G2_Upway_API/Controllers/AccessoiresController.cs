@@ -55,7 +55,7 @@ public class AccessoiresController : ControllerBase
     {
         var accessoire = await dataRepository.GetByIdAsync(id);
         
-        if (accessoire == null)
+        if (accessoire.Value == null)
         {
             return NotFound();
         }
