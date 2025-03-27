@@ -63,4 +63,4 @@ public class AccessoireDtoGet
         Categorie = categorie;
         DateAccessoire = dateAccessoire;
     }
-}
+}  
