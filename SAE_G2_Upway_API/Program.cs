@@ -37,9 +37,9 @@ builder.Services.AddScoped<ICommandeRepository, CommandeManager>();
 builder.Services.AddScoped<IDataRepository<RapportInspection, RapportInspection>, RapportInspectionManager>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost", policy =>
+    options.AddPolicy("AllowLocalhost", builder =>
     {
-        policy.WithOrigins("http://localhost:5185",
+        builder.WithOrigins("http://localhost:5185",
                 "https://saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")    
         .AllowAnyMethod()
         .AllowAnyHeader();
