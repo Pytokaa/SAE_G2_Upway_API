@@ -55,7 +55,7 @@ namespace SAE_G2_Upway_API.Controllers
         {
             var velo = await dataRepository.GetByIdAsync(id);
 
-            if (velo == null)
+            if (velo.Value == null)
             {
                 return NotFound();
             }
