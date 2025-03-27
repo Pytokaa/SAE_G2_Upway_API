@@ -58,10 +58,14 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         [TestMethod]
         public void GetMarqueByIdMoq_InvalidIdPassed_NotFoundReturned()
         {
+            //Arrange
+            Marque marque = null;
+            ActionResult<Marque> action_result = new ActionResult<Marque>(marque);
+            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns(action_result);
             //Act
-            var action_result = controller.GetMarqueById(0).Result;
+            var actual_marque = controller.GetMarqueById(0).Result;
             //Assert
-            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
+            Assert.IsInstanceOfType(actual_marque.Result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestMethod]

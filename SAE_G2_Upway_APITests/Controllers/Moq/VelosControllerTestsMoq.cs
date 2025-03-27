@@ -58,10 +58,13 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         [TestMethod]
         public void GetVeloByIdMoq_InvalidIdPassed_NotFoundReturned()
         {
+            Velo velo = null;
+            ActionResult<Velo> actionResult = new ActionResult<Velo>(velo);
+            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns(actionResult);
             //Act
-             var action_result = controller.GetVeloById(0).Result;
+             var actual_velo = controller.GetVeloById(0).Result;
             //Assert
-            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
+            Assert.IsInstanceOfType(actual_velo.Result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestMethod]

@@ -58,6 +58,7 @@ public class ProduitsControllerDbTests
             var actual_produit = controller.GetProduitById(0).Result;
             //Assert
             Assert.IsNull(actual_produit.Value, "Les produits ne correspondent pas");
+            Assert.IsInstanceOfType(actual_produit.Result, typeof(NotFoundResult),"Le Resultat n'est pas un notfoundresult");
         }
         
         [TestCleanup]

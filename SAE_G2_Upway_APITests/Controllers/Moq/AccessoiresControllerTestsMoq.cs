@@ -63,11 +63,14 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void GetAccessoireByIdTest_ReturnsNotFound_AvecMoq()
         {
+            Accessoire accessoire = null;
+            ActionResult<Accessoire> actionResult = new ActionResult<Accessoire>(accessoire);
+            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns(actionResult);
             //Act
-            var actionResult = accessoiresController.GetAccessoireById(0).Result;
+            var actual_accessoire = accessoiresController.GetAccessoireById(0).Result;
             //Assert
-            Assert.IsNotNull(actionResult, "la reponse est null");
-            Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
+            Assert.IsNotNull(actual_accessoire, "la reponse est null");
+            Assert.IsInstanceOfType(actual_accessoire.Result, typeof(NotFoundResult), "la reponse n'est pas de type NotFoundResult");
         }
 
         [TestMethod()]
