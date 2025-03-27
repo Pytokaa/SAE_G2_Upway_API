@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
 namespace SAE_G2_Upway_API.Models.EntityFramework
 {
@@ -1043,6 +1044,16 @@ namespace SAE_G2_Upway_API.Models.EntityFramework
             });
 
             OnModelCreatingPartial(modelBuilder);
+        }
+        public List<AccessoireDtoGet> AccToDtoGet(List<Accessoire> list)
+        {
+            List<AccessoireDtoGet> result = new List<AccessoireDtoGet>();
+            foreach (Accessoire item in list)
+            {
+                AccessoireDtoGet acc = new AccessoireDtoGet(item);
+                result.Add(acc);
+            }
+            return result;
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

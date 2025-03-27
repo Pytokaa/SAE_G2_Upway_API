@@ -1,4 +1,6 @@
 using SAE_G2_Upway_API.Models.EntityFramework;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SAE_G2_Upway_API.Controllers.DTO.DtoGet;
 
@@ -29,17 +31,6 @@ public class AccessoireDtoGet
         Marque = accessoire.Produit.Marque.NomMarque;
         Categorie = accessoire.CategorieAccessoire.NomCatA;
         DateAccessoire = accessoire.DateAccessoire;
-    }
-
-    public List<AccessoireDtoGet> ToAccessoireDTO(List<Accessoire> list)
-    {
-        List<AccessoireDtoGet> accessoiresDtoGet = new List<AccessoireDtoGet>();
-        foreach (Accessoire accessoire in list)
-        {
-            AccessoireDtoGet accDtoGet = new AccessoireDtoGet(accessoire);
-            accessoiresDtoGet.Add(accDtoGet);
-        }
-        return accessoiresDtoGet;
     }
 
     public AccessoireDtoGet(){}

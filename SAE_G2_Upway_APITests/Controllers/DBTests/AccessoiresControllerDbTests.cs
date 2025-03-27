@@ -36,27 +36,7 @@ public class AccessoiresControllerDbTests
     {
         //Arrange
         var actual_accessoires = controller.GetAccessoires().Result;
-        var expected_accessoires = dbContext.Accessoires.ToList();
-        // List<AccessoireDtoGet> actual_accessoiresDtoGet = new List<AccessoireDtoGet>();
-        // List<AccessoireDtoGet> expected_accessoiresDtoGet = new List<AccessoireDtoGet>();
-        // //Act
-        // foreach (var item in actual_accessoires.Value)
-        // {
-        //     AccessoireDtoGet accessoireDtoGet = item;
-        //     actual_accessoiresDtoGet.Add(accessoireDtoGet);
-        // }
-        // foreach (var acc in expected_accessoires) // Maintenant, c'est une liste en mémoire
-        // {
-        //     expected_accessoiresDtoGet.Add(new AccessoireDtoGet()
-        //     {
-        //         Nom = acc.Produit.NomProduit,
-        //         Prix = acc.Produit.PrixProduit,
-        //         Url = acc.Produit.Photo.Url,
-        //         Marque = acc.Produit.Marque.NomMarque,
-        //         Categorie = acc.CategorieAccessoire.NomCatA,
-        //         DateAccessoire = acc.DateAccessoire,
-        //     });
-        // }
+        var expected_accessoires = dbContext.AccToDtoGet(dbContext.Accessoires.ToList());
         //Assert
         CollectionAssert.AreEqual(actual_accessoires.Value.ToList(), expected_accessoires, "Les 2 lists ne sont pas du egals");
     }
