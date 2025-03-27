@@ -39,8 +39,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-        policy.WithOrigins("*",
-                "saeupwayapi-egdpataudtctggay.francecentral-01.azurewebsites.net")    
+        policy.WithOrigins("*")    
         .AllowAnyMethod()
         .AllowAnyHeader();
     });
