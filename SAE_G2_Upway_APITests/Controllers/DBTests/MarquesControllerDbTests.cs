@@ -5,15 +5,15 @@ using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
-namespace SAE_G2_Upway_APITests.Controllers;
-
-[TestClass]
-public class MarquesControllerDbTests
+namespace SAE_G2_Upway_APITests.Controllers.DBTests
 {
+    [TestClass]
+    public class MarquesControllerDbTests
+    {
         private UpwayDBContext? context;
         private IDataRepository<Marque, Marque>? dataRepository;
         private MarquesController? controller;
-        
+
 
         [TestInitialize]
         public void Init()
@@ -61,10 +61,11 @@ public class MarquesControllerDbTests
         }
 
         [TestCleanup]
-        public void Cleanup() 
+        public void Cleanup()
         {
             context = null;
             dataRepository = null;
             controller = null;
         }
+    }
 }

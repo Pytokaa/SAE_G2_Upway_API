@@ -6,11 +6,11 @@ using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
-namespace SAE_G2_Upway_APITests.Controllers;
-
-[TestClass]
-public class ProduitsControllerDbTests
+namespace SAE_G2_Upway_APITests.Controllers.DBTests
 {
+    [TestClass]
+    public class ProduitsControllerDbTests
+    {
         private UpwayDBContext dbContext;
         private ProduitsController controller;
         private IDataRepository<Produit, Produit> dataRepository;
@@ -28,7 +28,7 @@ public class ProduitsControllerDbTests
         public void ProduitsControllerTest()
         {
             //Assert
-           Assert.IsNotNull(controller);
+            Assert.IsNotNull(controller);
         }
 
         [TestMethod()]
@@ -38,7 +38,7 @@ public class ProduitsControllerDbTests
             var actual_produits = controller.GetProduits().Result;
             var expected_produits = dbContext.Produits.ToList();
             //Assert
-            CollectionAssert.AreEqual(expected_produits, actual_produits.Value.ToList(),"Les listes ne correspondent pas");
+            CollectionAssert.AreEqual(expected_produits, actual_produits.Value.ToList(), "Les listes ne correspondent pas");
         }
 
         [TestMethod]
@@ -58,9 +58,9 @@ public class ProduitsControllerDbTests
             var actual_produit = controller.GetProduitById(0).Result;
             //Assert
             Assert.IsNull(actual_produit.Value, "Les produits ne correspondent pas");
-            Assert.IsInstanceOfType(actual_produit.Result, typeof(NotFoundResult),"Le Resultat n'est pas un notfoundresult");
+            Assert.IsInstanceOfType(actual_produit.Result, typeof(NotFoundResult), "Le Resultat n'est pas un notfoundresult");
         }
-        
+
         [TestCleanup]
         public void Cleanup()
         {
@@ -68,4 +68,5 @@ public class ProduitsControllerDbTests
             dataRepository = null;
             controller = null;
         }
+    }
 }

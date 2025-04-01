@@ -18,9 +18,9 @@ public class VelosControllerTest
     [TestInitialize]
     public void Init()
     {
-        var builder = new DbContextOptionsBuilder<UpwayDbContext>().UseNpgsql("Server=51.83.36.122;port=5432;Database=SAE_G2_Upway; uid=staale; password=2yn32i;");
+        /*var builder = new DbContextOptionsBuilder<UpwayDbContext>().UseNpgsql("Server=51.83.36.122;port=5432;Database=SAE_G2_Upway; uid=staale; password=2yn32i;");
         context = new UpwayDbContext(builder.Options);
         dataRepository = new VeloManager(context);
-        controller = new VelosController(dataRepository);
+        controller = new VelosController(dataRepository);*/
     }
 }

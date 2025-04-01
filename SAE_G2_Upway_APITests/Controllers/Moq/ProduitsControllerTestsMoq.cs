@@ -13,7 +13,7 @@ using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
-namespace SAE_G2_Upway_API.Controllers.Tests
+namespace SAE_G2_Upway_APITests.Controllers.Moq
 {
     [TestClass()]
     public class ProduitsControllerTestsMoq
@@ -65,7 +65,7 @@ namespace SAE_G2_Upway_API.Controllers.Tests
             //Arrange
             Produit produit = null;
             ActionResult<Produit> actionResult = new ActionResult<Produit>(produit);
-            mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(actionResult);
+            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns(actionResult);
             //Act
             var actual_produit = produitController.GetProduitById(0).Result;
             //Assert
@@ -100,7 +100,9 @@ namespace SAE_G2_Upway_API.Controllers.Tests
         [TestMethod()]
         public void PutProduitTest_InvalidInput_ReturnsNotFound_avecMoq()
         {
-            //Arrange
+            //Arranges
+            Produit produit = new Produit();
+            mockRepository.Setup(x => x.GetByIdAsync(5).Result).Returns(produit);
             ProduitDTO produitDto = new ProduitDTO();
             produitController.ModelState.AddModelError("NomProduit", "Le nom du produit est obligatoire");
             //Act

@@ -15,7 +15,7 @@ using SAE_G2_Upway_API.Models.DataManager;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 
-namespace SAE_G2_Upway_API.Controllers.Tests
+namespace SAE_G2_Upway_APITests.Controllers.Moq
 {
     [TestClass()]
     public class AccessoiresControllerTests
