@@ -33,16 +33,14 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
                 new Client(2, "Dagan", "Leo", "leo.dagan@carmelide.uk", "0666666666", "T0u&Le&Brûler"),
                 new Client(3, "Du Lac", "Lancelot", "lancelot.dulac@kaamelott.uk", "0605030201", "1lF@utT0utF@1reS0itMême")
             ]));
-            controller.GetClients();
+            var initList = controller.GetClients().Result;
         }
 
         [TestMethod]
         public void Login_ValidUserPassed_OkObjectReturned()
         {
-            //Arrange
-            Client client = new Client(1, "Pendragon", "Arthur", "arth.pend@kaamelott.uk", "0678912345", "K@@mel011");
             //Act
-            var action_result = controller.Login(client);
+            var action_result = controller.Login("arth.pend@kaamelott.uk", "K@@mel011");
             //Assert
             Assert.IsInstanceOfType(action_result, typeof(OkObjectResult), "Pas OK");
         }
@@ -50,10 +48,8 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         [TestMethod]
         public void Login_InvalidUserPassed_UnauthorizedReturned()
         {
-            //Arrange
-            Client client = new Client(4, "Lenchanteur", "Merlin", "merlin.lenchanteur@demonpucelle.uk", "0661626364", "Pet1tEtM@rr0n");
             //Act
-            var action_result = controller.Login(client);
+            var action_result = controller.Login("merlin.lenchanteur@demonpucelle.uk", "Pet1tEtM@rr0n");
             //Assert
             Assert.IsInstanceOfType(action_result, typeof(UnauthorizedResult), "Pas Unauthorized");
         }

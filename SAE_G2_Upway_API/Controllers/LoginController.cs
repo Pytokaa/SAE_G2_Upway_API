@@ -26,18 +26,24 @@ namespace SAE_G2_Upway_API.Controllers
         }
 
         [HttpGet]
-        public async void GetClients()
+        public async Task<ActionResult> GetClients()
         {
             var action_result = await dataRepository.GetAllAsync();
             appUsers = action_result.Value.ToList();
+            if (appUsers == null || appUsers.Count == 0) 
+            {
+                return BadRequest();
+            }
+            return Ok(appUsers);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login([FromBody] Client login)
+        public IActionResult Login(string mail, string password)
         {
+            var osef = GetClients().Result;
             IActionResult response = Unauthorized();
-            Client user = AuthenticateUser(login);
+            Client user = AuthenticateUser(mail, password);
             if (user != null)
             {
                 var tokenString = GenerateJwtToken(user);
@@ -49,9 +55,9 @@ namespace SAE_G2_Upway_API.Controllers
             }
             return response;
         }
-        private Client AuthenticateUser(Client user)
+        private Client AuthenticateUser(string mail, string password)
         {
-            return appUsers.SingleOrDefault(x => x.Mailclient.ToUpper() == user.Mailclient.ToUpper() && x.Password == user.Password);
+            return appUsers.SingleOrDefault(x => x.Mailclient.ToUpper() == mail.ToUpper() && x.Password == password);
         }
         private string GenerateJwtToken(Client userInfo)
         {
