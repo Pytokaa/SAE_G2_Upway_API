@@ -48,6 +48,24 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
             Assert.AreEqual(actual_commande.Value, expected_commande, "Les commandes ne correspondent pas");
         }
 
+        [TestMethod]
+        public void GetCommandeById_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.GetCommandeById(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+        [TestMethod]
+        public void GetCommandesByClientId_ValidIdPassed_CommandesReturned()
+        {
+            //Act
+            var actual_commandes = controller.GetCommandesByClientId(1).Result;
+            var expected_commandes = context.Commandes.Where(x => x.IdClient == 1).ToList();
+            //Assert
+            CollectionAssert.AreEqual(actual_commandes.Value.ToList(), expected_commandes, "Les listes ne correspondent pas");
+        }
+
         [TestCleanup]
         public void Cleanup()
         {
