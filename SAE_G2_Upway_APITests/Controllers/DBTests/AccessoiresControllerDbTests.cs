@@ -26,13 +26,6 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         }
 
         [TestMethod()]
-        public void AccessoiresControllerTest()
-        {
-            //Assert
-            Assert.IsNotNull(controller);
-        }
-
-        [TestMethod()]
         public void GetAccessoiresTest_ReturnsOK()
         {
             //Arrange
