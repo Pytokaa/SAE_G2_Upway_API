@@ -92,9 +92,18 @@ public class ClientsController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-        Client client = new Client(clientDto);
+
+        Client client = new Client()
+        {
+            Nomclient = clientDto.Nomclient,
+            Prenomclient = clientDto.Prenomclient,
+            Mailclient = clientDto.Mailclient,
+            Telephone = clientDto.Telephone,
+            Password = clientDto.Password,
+            UserRole = clientDto.UserRole
+        };
         await dataRepository.AddAsync(client);
-        return CreatedAtAction("GetAccessoireById", new { id = client.Idclient },client);
+        return CreatedAtAction("GetClientById", new { id = client.Idclient },client);
     }
 
 

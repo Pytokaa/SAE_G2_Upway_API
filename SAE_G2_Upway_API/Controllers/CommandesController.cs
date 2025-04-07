@@ -78,7 +78,7 @@ public class CommandesController : ControllerBase
         }
         Commande commande = new Commande(commandeDTO);
         await dataRepository.AddAsync(commande);
-        return CreatedAtAction("GetAccessoireById", new { id = commande.IdCommande }, commande);
+        return CreatedAtAction("GetCommandeById", new { id = commande.IdCommande }, commande);
     }
     [HttpDelete("{id}")]
     [ProducesResponseType(204)]

@@ -60,16 +60,13 @@ public partial class Client
     }
     public Client(ClientDTO clientDto)
     {
-        Nomclient = clientDto.Nom;
-        Prenomclient = clientDto.Prenom;
-        Mailclient = clientDto.Mail;
+        Nomclient = clientDto.Nomclient;
+        Prenomclient = clientDto.Prenomclient;
+        Mailclient = clientDto.Mailclient;
         Telephone = clientDto.Telephone;
         Password = clientDto.Password;
         UserRole = clientDto.UserRole;
     }
 
-    public Client()
-    {
-
-    }
+    public Client() { }
 }
