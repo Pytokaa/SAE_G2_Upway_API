@@ -69,7 +69,7 @@ public class RapportsInspectionController : ControllerBase
         }
 
         await dataRepository.AddAsync(rapport);
-        return CreatedAtAction("GetRapportInspectionById", new { id = rapport.IdRapport }, rapport);
+        return CreatedAtAction("GetRapportInspectionByIdVelo", new { id = rapport.IdRapport }, rapport);
     }
     
     [HttpDelete("{id}")]
