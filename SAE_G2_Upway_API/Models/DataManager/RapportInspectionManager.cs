@@ -28,21 +28,30 @@ public class RapportInspectionManager     : IDataRepository<RapportInspection, R
         var rapport = upwayDbContext.RapportInspections
             .Include(ri => ri.LesTypes)
             .ThenInclude(v => v.LeType)
-            .ThenInclude(t =>t.ASousTypes)
+            .ThenInclude(t => t.ASousTypes)
             .ThenInclude(c => c.ContientSousType)
-            .ThenInclude(st => st.LesSurTypes)
-            .ThenInclude(sr => sr.Repare)
+            .ThenInclude(srt => srt.LesSurTypes
+            )
             .FirstOrDefault(u => u.IdVelo == id);
 
-        foreach (var valide in rapport.LesTypes)
+        foreach (var type in rapport.LesTypes)
         {
-            foreach (var contient in valide.LeType.ASousTypes)
+            foreach (var sousType in type.LeType.ASousTypes)
             {
-                
-                contient.ContientSousType.LesSurTypes = new List<SurType>{contient.ContientSousType.LesSurTypes.FirstOrDefault()};
+                List<SurType> toAdd = new List<SurType>();
+                foreach (var surtype in sousType.ContientSousType.LesSurTypes)
+                {
+                    if (surtype.Repare && surtype.Checke)
+                    {
+                        toAdd.Add(surtype);
+                    }
+                }
+
+                sousType.ContientSousType.LesSurTypes = toAdd;
             }
         }
         
+
         
         return rapport;
     }
