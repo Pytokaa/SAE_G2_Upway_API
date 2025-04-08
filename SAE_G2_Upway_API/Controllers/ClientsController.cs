@@ -95,16 +95,7 @@ public class ClientsController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-
-        Client client = new Client()
-        {
-            Nomclient = clientDto.Nomclient,
-            Prenomclient = clientDto.Prenomclient,
-            Mailclient = clientDto.Mailclient,
-            Telephone = clientDto.Telephone,
-            Password = BCrypt.Net.BCrypt.EnhancedHashPassword(clientDto.Password, 13),
-            UserRole = clientDto.UserRole
-        };
+        Client client = new Client(clientDto);
         await dataRepository.AddAsync(client);
         return CreatedAtAction("GetClientById", new { id = client.Idclient },client);
     }
