@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using SAE_G2_Upway_API.Controllers;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
@@ -27,15 +28,49 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void GetAllCategories_Succeed()
         {
             //Arrange
-            var expected_accessoires = new List<CategorieAccessoire>([
+            var expected_cateAccs = new List<CategorieAccessoire>([
                 new CategorieAccessoire(1, "Casque"),
                 new CategorieAccessoire(2, "Gants"),
                 new CategorieAccessoire(3, "Truc")]);
-            mockRepository.Setup(x => x.GetAllAsync().Result).Returns(expected_accessoires);
+            mockRepository.Setup(x => x.GetAllAsync().Result).Returns(expected_cateAccs);
             //Act
-            var actual_accessoires = controller.GetCategoriesAccessoire().Result;
+            var actual_cateAccs = controller.GetCategoriesAccessoire().Result;
             //assert
-            CollectionAssert.AreEqual(actual_accessoires.Value.ToList(), expected_accessoires, "Les listes ne correspondent pas");
+            CollectionAssert.AreEqual(actual_cateAccs.Value.ToList(), expected_cateAccs, "Les listes ne correspondent pas");
+        }
+
+        [TestMethod]
+        public void GetCategorieById_ValidIdPassed_CategorieReturned()
+        {
+            //Arrange
+            var expected_cateAcc = new CategorieAccessoire(1, "Gants");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(expected_cateAcc);
+            //Act
+            var actual_cateAcc = controller.GetCategorieAccessoireById(1).Result;
+            //Assert
+            Assert.AreEqual(actual_cateAcc.Value, expected_cateAcc, "Les catégorie accessoire ne correspondent pas");
+        }
+
+        [TestMethod]
+        public void GetCategorieById_InvalidIdPassed_NotFoundReturned()
+        {
+            //Act
+            var action_result = controller.GetCategorieAccessoireById(0).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
+        }
+
+        [TestMethod]
+        public void PutCategorie_ValidIdPassed_NoContentReturned()
+        {
+            //Arrange
+            var original_cateAcc = new CategorieAccessoire(1, "Gatns");
+            var modified_cateAcc = new CategorieAccessoire(1, "Gants");
+            mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(original_cateAcc);
+            //Act
+            var action_result = controller.PutCategorieAccessoire(1, modified_cateAcc).Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
         }
 
         [TestCleanup]

@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 using SAE_G2_Upway_API.Controllers.DTO;
+using BCrypt;
+using BCrypt.Net;
+
 namespace SAE_G2_Upway_API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
@@ -99,7 +102,7 @@ public class ClientsController : ControllerBase
             Prenomclient = clientDto.Prenomclient,
             Mailclient = clientDto.Mailclient,
             Telephone = clientDto.Telephone,
-            Password = clientDto.Password,
+            Password = BCrypt.Net.BCrypt.EnhancedHashPassword(clientDto.Password, 13),
             UserRole = clientDto.UserRole
         };
         await dataRepository.AddAsync(client);
