@@ -57,7 +57,7 @@ namespace SAE_G2_Upway_API.Controllers
         }
         private Client AuthenticateUser(string mail, string password)
         {
-            return appUsers.SingleOrDefault(x => x.Mailclient.ToUpper() == mail.ToUpper() && BCrypt.Net.BCrypt.EnhancedVerify(x.Password, password));
+            return appUsers.SingleOrDefault(x => x.Mailclient.ToUpper() == mail.ToUpper() && BCrypt.Net.BCrypt.EnhancedVerify(password, x.Password));
         }
         private string GenerateJwtToken(Client userInfo)
         {
