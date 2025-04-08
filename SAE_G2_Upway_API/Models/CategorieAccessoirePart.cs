@@ -15,6 +15,7 @@ public partial class CategorieAccessoire
                IdCatA == accessoire.IdCatA &&
                NomCatA == accessoire.NomCatA;
     }
+    public CategorieAccessoire(){}
 
     public override int GetHashCode()
     {
