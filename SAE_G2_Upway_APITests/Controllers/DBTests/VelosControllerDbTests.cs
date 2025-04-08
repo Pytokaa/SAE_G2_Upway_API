@@ -18,7 +18,7 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
     [TestClass()]
     public class VelosControllerDbTests
     {
-        private UpwayDbContext? context;
+        private UpwayDBContext? context;
         private IDataRepository<Velo, VeloDtoGet>? dataRepository;
         private VelosController? controller;
 
@@ -26,7 +26,7 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         public void Init()
         {
             var builder = new DbContextOptionsBuilder<UpwayDBContext>().UseNpgsql("Server=51.83.36.122;port=5432;Database=SAE_G2_Upway; uid=staale; password=2yn32i;");
-            context = new UpwayDbContext(builder.Options);
+            context = new UpwayDBContext(builder.Options);
             dataRepository = new VeloManager(context);
             controller = new VelosController(dataRepository);
         }
@@ -46,7 +46,7 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         {
             //Act
             var actual_velo = controller.GetVeloById(1).Result;
-            var expected_velo = context.Velo.FirstOrDefault(x => x.Idvelo == 1);
+            var expected_velo = context.Velos.FirstOrDefault(x => x.IdVelo == 1);
             //Assert
             Assert.AreEqual(actual_velo.Value, expected_velo, "les velos ne correspondent pas");
         }
