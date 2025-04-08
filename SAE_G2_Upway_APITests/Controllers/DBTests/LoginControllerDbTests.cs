@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.DataManager;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using SAE_G2_Upway_API.Controllers.DTO;
 
 namespace SAE_G2_Upway_APITests.Controllers.DBTests
 {
@@ -38,6 +39,7 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         public void Login_ValidClientPassed_OkReturned()
         {
             //Arrange
+            var newClient = new Client(new ClientDTO("Fripon", "Francky", "francky.lefripon@gmail.com", "0123456789", "CheveuxSpaghettis"));
             var client = context.Clients.FirstOrDefault();
             //Act
             var action_result = controller.Login(client.Mailclient, client.Password);
