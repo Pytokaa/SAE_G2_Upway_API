@@ -12,29 +12,29 @@ using System.Threading.Tasks;
 namespace SAE_G2_Upway_APITests.Controllers.Moq
 {
     [TestClass]
-    public class CategoriesAccessoireControllerTestsMoq
+    public class CategoriesVeloControllerTestsMoq
     {
-        private CategoriesAccessoireController? controller;
-        private Mock<IDataRepository<CategorieAccessoire, CategorieAccessoire>> mockRepository;
+        private CategoriesVeloController? controller;
+        private Mock<IDataRepository<CategorieVelo, CategorieVelo>> mockRepository;
 
         [TestInitialize]
         public void Init()
         {
-            mockRepository = new Mock<IDataRepository<CategorieAccessoire, CategorieAccessoire>>();
-            controller = new CategoriesAccessoireController(mockRepository.Object);
+            mockRepository = new Mock<IDataRepository<CategorieVelo, CategorieVelo>>();
+            controller = new CategoriesVeloController(mockRepository.Object);
         }
 
         [TestMethod]
         public void GetAllCategories_Succeed()
         {
             //Arrange
-            var expected_cateAccs = new List<CategorieAccessoire>([
-                new CategorieAccessoire(1, "Casque"),
-                new CategorieAccessoire(2, "Gants"),
-                new CategorieAccessoire(3, "Truc")]);
+            var expected_cateAccs = new List<CategorieVelo>([
+                new CategorieVelo(1, "VTC"),
+                new CategorieVelo(2, "VTT"),
+                new CategorieVelo(3, "BMX")]);
             mockRepository.Setup(x => x.GetAllAsync().Result).Returns(expected_cateAccs);
             //Act
-            var actual_cateAccs = controller.GetCategoriesAccessoire().Result;
+            var actual_cateAccs = controller.GetCategoriesVelo().Result;
             //assert
             CollectionAssert.AreEqual(actual_cateAccs.Value.ToList(), expected_cateAccs, "Les listes ne correspondent pas");
         }
@@ -43,19 +43,19 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void GetCategorieById_ValidIdPassed_CategorieReturned()
         {
             //Arrange
-            var expected_cateAcc = new CategorieAccessoire(1, "Gants");
+            var expected_cateAcc = new CategorieVelo(1, "VTT");
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(expected_cateAcc);
             //Act
-            var actual_cateAcc = controller.GetCategorieAccessoireById(1).Result;
+            var actual_cateAcc = controller.GetCategorieVeloById(1).Result;
             //Assert
-            Assert.AreEqual(actual_cateAcc.Value, expected_cateAcc, "Les catégorie accessoire ne correspondent pas");
+            Assert.AreEqual(actual_cateAcc.Value, expected_cateAcc, "Les catégorie Velo ne correspondent pas");
         }
 
         [TestMethod]
         public void GetCategorieById_InvalidIdPassed_NotFoundReturned()
         {
             //Act
-            var action_result = controller.GetCategorieAccessoireById(0).Result;
+            var action_result = controller.GetCategorieVeloById(0).Result;
             //Assert
             Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
         }
@@ -64,11 +64,11 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void PutCategorie_ValidIdPassed_NoContentReturned()
         {
             //Arrange
-            var original_cateAcc = new CategorieAccessoire(1, "Gatns");
-            var modified_cateAcc = new CategorieAccessoire(1, "Gants");
+            var original_cateAcc = new CategorieVelo(1, "TVT");
+            var modified_cateAcc = new CategorieVelo(1, "VTT");
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(original_cateAcc);
             //Act
-            var action_result = controller.PutCategorieAccessoire(1, modified_cateAcc).Result;
+            var action_result = controller.PutCategorieVelo(1, modified_cateAcc).Result;
             //Assert
             Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
         }
@@ -77,7 +77,7 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void PutCategorie_InvalidIdPassed_NotFoundReturned()
         {
             //Act
-            var action_result = controller.PutCategorieAccessoire(0, new CategorieAccessoire()).Result;
+            var action_result = controller.PutCategorieVelo(0, new CategorieVelo()).Result;
             //Assert
             Assert.IsInstanceOfType(action_result, typeof(NotFoundResult));
         }
@@ -86,9 +86,9 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void PostCategorie_ValidCategoriePassed_CreatedAtActionResult()
         {
             //Arrange
-            var newCate = new CategorieAccessoire(1, "Gants");
+            var newCate = new CategorieVelo(1, "VTT");
             //Act
-            var action_result = controller.PostCategorieAccessoire(newCate).Result;
+            var action_result = controller.PostCategorieVelo(newCate).Result;
             //Assert
             Assert.IsInstanceOfType(action_result.Result, typeof(CreatedAtActionResult), "Pas un CreatedAtAction");
         }
@@ -97,10 +97,10 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void PostCategorie_InvalidCategoriePassed_BadRequestObjectReturned()
         {
             //Arrange
-            var newCate = new CategorieAccessoire();
+            var newCate = new CategorieVelo();
             controller.ModelState.AddModelError("ID", "Aucun ID n'a été renseigné");
             //Act
-            var action_result = controller.PostCategorieAccessoire(newCate).Result;
+            var action_result = controller.PostCategorieVelo(newCate).Result;
             //Assert
             Assert.IsInstanceOfType(action_result.Result, typeof(BadRequestObjectResult), "Pas une BadRequest");
         }
@@ -109,10 +109,10 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void DeleteCategorie_ValidIdPassed_NoContentReturned()
         {
             //Assert
-            var cate = new CategorieAccessoire(1, "Gants");
+            var cate = new CategorieVelo(1, "VTT");
             mockRepository.Setup(x => x.GetByIdAsync(1).Result).Returns(cate);
             //Act
-            var action_result = controller.DeleteCategorieAccessoire(1).Result;
+            var action_result = controller.DeleteCategorieVelo(1).Result;
             //Assert
             Assert.IsInstanceOfType(action_result, typeof(NoContentResult), "Pas un NoContent");
         }
@@ -121,13 +121,13 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         public void DeleteCategorie_invalidIdPassed_NotFoundReturned()
         {
             //Act
-            var action_result = controller.DeleteCategorieAccessoire(0).Result;
+            var action_result = controller.DeleteCategorieVelo(0).Result;
             //Assert
             Assert.IsInstanceOfType(action_result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestCleanup]
-        public void Cleanup() 
+        public void Cleanup()
         {
             mockRepository = null;
             controller = null;
