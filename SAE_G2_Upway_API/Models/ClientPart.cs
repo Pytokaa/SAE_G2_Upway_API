@@ -40,7 +40,7 @@ public partial class Client
         Prenomclient = prenomclient;
         Mailclient = mailclient;
         Telephone = telephone;
-        Password = password;
+        Password = BCrypt.Net.BCrypt.EnhancedHashPassword(password,13);
         Alertes = alertes;
         Commandes = commandes;
         LesFavoris = lesFavoris;
@@ -55,7 +55,7 @@ public partial class Client
         Prenomclient = prenomclient;
         Mailclient = mailclient;
         Telephone = telephone;
-        Password = password;
+        Password = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 13);
         UserRole = "User";
     }
     public Client(ClientDTO clientDto)
@@ -64,7 +64,7 @@ public partial class Client
         Prenomclient = clientDto.Prenomclient;
         Mailclient = clientDto.Mailclient;
         Telephone = clientDto.Telephone;
-        Password = clientDto.Password;
+        Password = BCrypt.Net.BCrypt.EnhancedHashPassword(clientDto.Password,13);
         UserRole = clientDto.UserRole;
     }
 

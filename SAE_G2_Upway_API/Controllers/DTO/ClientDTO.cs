@@ -21,5 +21,15 @@ public class ClientDTO
         this.Password = client.Password;
         this.UserRole = client.UserRole;
     }
+    public ClientDTO(string nomclient, string prenomclient, string mailclient, string telephone, string password)
+    {
+        Nomclient = nomclient;
+        Prenomclient = prenomclient;
+        Mailclient = mailclient;
+        Telephone = telephone;
+        Password = password;
+        UserRole = "User";
+    }
+
     public ClientDTO(){}
 }

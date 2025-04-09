@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using SAE_G2_Upway_API.Models.EntityFramework;
 using SAE_G2_Upway_API.Models.Repository;
 using SAE_G2_Upway_API.Controllers.DTO;
+using BCrypt;
+using BCrypt.Net;
+
 namespace SAE_G2_Upway_API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
@@ -92,16 +95,7 @@ public class ClientsController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-
-        Client client = new Client()
-        {
-            Nomclient = clientDto.Nomclient,
-            Prenomclient = clientDto.Prenomclient,
-            Mailclient = clientDto.Mailclient,
-            Telephone = clientDto.Telephone,
-            Password = clientDto.Password,
-            UserRole = clientDto.UserRole
-        };
+        Client client = new Client(clientDto);
         await dataRepository.AddAsync(client);
         return CreatedAtAction("GetClientById", new { id = client.Idclient },client);
     }

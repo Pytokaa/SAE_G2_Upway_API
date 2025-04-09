@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +34,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///home/elioth/Documents/Repository Git/Upway_SAE/API10/SAE_G2_Upway_API/Models/CategorieAccessoirePart.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/elioth/Documents/Repository Git/Upway_SAE/API10/SAE_G2_Upway_API/Controllers/CommandesController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -144,8 +142,6 @@
       <workItem from="1742666696453" duration="739000" />
       <workItem from="1742803484559" duration="5292000" />
       <workItem from="1742810013502" duration="2592000" />
-      <workItem from="1744093205717" duration="6923000" />
-      <workItem from="1744112298824" duration="108000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -387,15 +383,7 @@
       <option name="project" value="LOCAL" />
       <updated>1744018443870</updated>
     </task>
-    <task id="LOCAL-00031" summary="Reparation du pigné">
-      <option name="closed" value="true" />
-      <created>1744093466359</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1744093466359</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,6 +416,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="on efface les tests urinaires" />
     <MESSAGE value="les tests commencent de maniere okay" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests" />
@@ -452,8 +441,7 @@
     <MESSAGE value="Ajout du get rapport D'inspection" />
     <MESSAGE value="correction du postclient" />
     <MESSAGE value="petites corrections de controllers" />
-    <MESSAGE value="Reparation du pigné" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reparation du pigné" />
+    <option name="LAST_COMMIT_MESSAGE" value="petites corrections de controllers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
