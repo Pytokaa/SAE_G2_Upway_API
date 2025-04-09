@@ -57,10 +57,14 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         [TestMethod]
         public void GetRapportByIdVeloMoq_InvalidIdPassed_NotFoundReturned()
         {
+            //Arrange
+            RapportInspection? rapport = null;
+            ActionResult<RapportInspection>? action_result = new ActionResult<RapportInspection>(rapport);
+            mockRepository.Setup(x => x.GetByIdAsync(0).Result).Returns(action_result);
             //Act
-            var action_result = controller.GetRapportInspectionByIdVelo(0).Result;
+            var actual_rapport = controller.GetRapportInspectionByIdVelo(0).Result;
             //Assert
-            Assert.IsInstanceOfType(action_result.Result, typeof(NotFoundResult), "Pas un NotFound");
+            Assert.IsInstanceOfType(actual_rapport.Result, typeof(NotFoundResult), "Pas un NotFound");
         }
 
         [TestMethod]

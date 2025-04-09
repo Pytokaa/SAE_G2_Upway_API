@@ -31,7 +31,7 @@ public class RapportsInspectionController : ControllerBase
     public async Task<ActionResult<RapportInspection>> GetRapportInspectionByIdVelo(int id)
     {
         var rapport = await dataRepository.GetByIdAsync(id);
-        if (rapport == null)
+        if (rapport.Value == null)
         {
             return NotFound();
         }

@@ -9,11 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="petit changement pour victor">
-      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/CategoriesAccessoireControllerDbTests.cs" afterDir="false" />
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="suite des tests">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/CategoriesAccessoireController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/CategoriesAccessoireController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/CategorieAccessoirePart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/CategorieAccessoirePart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/RapportsInspectionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/RapportsInspectionControllerDbTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/RapportsInspectionControllerDbTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/Moq/RapportsInspectionControllerTestsMoq.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/Moq/RapportsInspectionControllerTestsMoq.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,26 +60,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.SAE_G2_Upway_API: http.executor&quot;: &quot;Run&quot;,
-    &quot;88c6faff-a77f-46d2-b1e8-7321b0cbca74.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;c849631d-643b-429d-9c2c-86dc6b2a45bc.executor&quot;: &quot;Debug&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor&quot;: &quot;Debug&quot;,
-    &quot;fc1b8647-2351-4a94-aa00-9f787ddf6f6a.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.SAE_G2_Upway_API: http.executor": "Run",
+    "3ca90b6f-b7b5-4d93-b2a4-29203ab1c284.executor": "Debug",
+    "88c6faff-a77f-46d2-b1e8-7321b0cbca74.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "c849631d-643b-429d-9c2c-86dc6b2a45bc.executor": "Debug",
+    "dart.analysis.tool.window.visible": "false",
+    "f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor": "Debug",
+    "fc1b8647-2351-4a94-aa00-9f787ddf6f6a.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SAE_G2_Upway_API: http">
     <configuration name="SAE_G2_Upway_API: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SAE_G2_Upway_API/SAE_G2_Upway_API.csproj" />
@@ -153,7 +154,7 @@
       <workItem from="1742810013502" duration="2592000" />
       <workItem from="1744112863591" duration="127000" />
       <workItem from="1744114191409" duration="2920000" />
-      <workItem from="1744181024233" duration="7030000" />
+      <workItem from="1744181024233" duration="9660000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -419,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744187040284</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="suite des tests">
+      <option name="closed" value="true" />
+      <created>1744190810142</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1744190810142</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +461,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests" />
     <MESSAGE value="Accessoire test qui avancent mais ne fonctionne pas il faut attendre que les controllers fonctionnent bien" />
     <MESSAGE value="oui" />
     <MESSAGE value="avancement des tests a l'aveugle" />
@@ -477,7 +485,8 @@
     <MESSAGE value="ca ne marche pas haaaaaa" />
     <MESSAGE value="je ne sais toujours pas pourquoi mais velodbtest ne marche pas" />
     <MESSAGE value="petit changement pour victor" />
-    <option name="LAST_COMMIT_MESSAGE" value="petit changement pour victor" />
+    <MESSAGE value="suite des tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="suite des tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -487,6 +496,19 @@
           <line>56</line>
           <properties documentPath="C:\Users\stapleta\Desktop\SAE\SAE_G2_Upway_APITests\Controllers\AccessoiresControllerTests.cs" containingFunctionPresentation="Method 'GetAccessoiresTest_ReturnsOK'" />
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/RapportsInspectionControllerDbTests.cs</url>
+          <line>46</line>
+          <properties documentPath="C:\Users\bojod\RiderProjects\SAE_G2_Upway_API\SAE_G2_Upway_APITests\Controllers\DBTests\RapportsInspectionControllerDbTests.cs" containingFunctionPresentation="Method 'GetRapportInspectionById_InvalidId_Failed'">
+            <startOffsets>
+              <option value="1774" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1844" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
