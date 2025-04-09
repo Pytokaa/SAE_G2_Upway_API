@@ -35,7 +35,7 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         {
             //Act
             var actual_clients = controller.GetClients().Result;
-            var expected_clients = context.Clients.ToList();
+            var expected_clients = context.Clients.OrderBy(x => x.Idclient).ToList();
             //Assert
             CollectionAssert.AreEqual(actual_clients.Value.ToList(), expected_clients, "Les listes ne correspondent pas");
         }

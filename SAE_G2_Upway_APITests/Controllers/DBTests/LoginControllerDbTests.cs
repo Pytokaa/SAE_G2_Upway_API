@@ -38,11 +38,8 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         [TestMethod]
         public void Login_ValidClientPassed_OkReturned()
         {
-            //Arrange
-            var newClient = new Client(new ClientDTO("Fripon", "Francky", "francky.lefripon@gmail.com", "0123456789", "CheveuxSpaghettis"));
-            var client = context.Clients.FirstOrDefault();
             //Act
-            var action_result = controller.Login(client.Mailclient, client.Password);
+            var action_result = controller.Login("francky.lefripon@gmail.com", "CheveuxSpaghettis");
             //Assert
             Assert.IsInstanceOfType(action_result, typeof(OkObjectResult), "Pas OK");
         }

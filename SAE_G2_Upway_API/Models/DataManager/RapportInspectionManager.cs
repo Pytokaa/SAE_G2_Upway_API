@@ -33,26 +33,26 @@ public class RapportInspectionManager     : IDataRepository<RapportInspection, R
             .ThenInclude(srt => srt.LesSurTypes
             )
             .FirstOrDefault(u => u.IdVelo == id);
-
-        foreach (var type in rapport.LesTypes)
+        if(rapport != null)
         {
-            foreach (var sousType in type.LeType.ASousTypes)
+            foreach (var type in rapport.LesTypes)
             {
-                List<SurType> toAdd = new List<SurType>();
-                foreach (var surtype in sousType.ContientSousType.LesSurTypes)
+                foreach (var sousType in type.LeType.ASousTypes)
                 {
-                    if (surtype.Repare && surtype.Checke)
+                    List<SurType> toAdd = new List<SurType>();
+                    foreach (var surtype in sousType.ContientSousType.LesSurTypes)
                     {
-                        toAdd.Add(surtype);
+                        if (surtype.Repare && surtype.Checke)
+                        {
+                            toAdd.Add(surtype);
+                        }
                     }
-                }
 
-                sousType.ContientSousType.LesSurTypes = toAdd;
+                    sousType.ContientSousType.LesSurTypes = toAdd;
+                }
             }
         }
-        
 
-        
         return rapport;
     }
 
