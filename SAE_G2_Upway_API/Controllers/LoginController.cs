@@ -29,8 +29,12 @@ namespace SAE_G2_Upway_API.Controllers
         public async Task<ActionResult> GetClients()
         {
             var action_result = await dataRepository.GetAllAsync();
+            if (action_result.Value == null)
+            {
+                return BadRequest();
+            }
             appUsers = action_result.Value.ToList();
-            if (appUsers == null || appUsers.Count == 0) 
+            if (appUsers.Count == 0) 
             {
                 return BadRequest();
             }
