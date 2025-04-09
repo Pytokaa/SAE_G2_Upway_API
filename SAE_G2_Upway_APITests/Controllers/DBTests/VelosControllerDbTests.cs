@@ -36,7 +36,7 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         {
             //act
             var actual_velos = controller.GetVelos().Result;
-            var expected_velos = context.Velos.ToList();
+            var expected_velos = context.Velos.OrderBy(x => x.IdVelo).ToList();
             List<VeloDtoGet> actual_veloDto = new List<VeloDtoGet>();
             foreach (var velo in expected_velos)
             {

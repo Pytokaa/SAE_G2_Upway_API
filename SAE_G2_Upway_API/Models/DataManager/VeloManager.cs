@@ -65,24 +65,27 @@ public class VeloManager : IDataRepository<Velo, VeloDtoGet>
     {
         var velo = await GetVeloWithInclude()
             .FirstOrDefaultAsync(u => u.IdVelo == id);
-        var velocarac = upwayDbContext.Velos.Include(a => a.Caracteristiques).FirstOrDefault(u => u.IdVelo == id).Caracteristiques;
-        foreach (var possede in velo.LesSousCategories)
+        if (velo != null)
         {
-            
-            foreach (var carac in possede.LaSousCategorie.Caracteristiques) 
+            var velocarac = upwayDbContext.Velos.Include(a => a.Caracteristiques).FirstOrDefault(u => u.IdVelo == id).Caracteristiques;
+            foreach (var possede in velo.LesSousCategories)
             {
-                carac.CaracteriseVelo = new List<Est_Caracterise>();
-                foreach (var vc in velocarac)
-                {
-                    if (vc.IdCaract == carac.IdCaract)
-                    {
-                        carac.CaracteriseVelo.Add(vc);
-                        vc.CaracteriseVelo = null;
 
+                foreach (var carac in possede.LaSousCategorie.Caracteristiques)
+                {
+                    carac.CaracteriseVelo = new List<Est_Caracterise>();
+                    foreach (var vc in velocarac)
+                    {
+                        if (vc.IdCaract == carac.IdCaract)
+                        {
+                            carac.CaracteriseVelo.Add(vc);
+                            vc.CaracteriseVelo = null;
+
+                        }
                     }
                 }
+
             }
-            
         }
         return velo;
     }
