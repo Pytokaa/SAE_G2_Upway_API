@@ -23,16 +23,19 @@ public class CommandeManager : ICommandeRepository
     {
         return upwayDbContext.Commandes
                 .Include(a => a.Code)
-            .Include(a => a.Statut)
-            .Include(a => a.ModeExpedition)
-            .Include(a => a.Adresse)
-            .Include(a => a.Boutique)
-            .Include(a => a.AdresseFactu)
-            .Include(a => a.Client)
-            .Include(a => a.AssurancesPropose)
-            .Include(a => a.LesSimilaires)
-            .Include(a => a.LesAccessoires)
-            .Include(a => a.PanierVelo);
+                .Include(a => a.ModePayement)
+                .Include(a => a.Statut)
+                .Include(a => a.ModeExpedition)
+                .Include(a => a.Adresse)
+                .Include(a => a.Boutique)
+                .Include(a => a.AdresseFactu)
+                .Include(a => a.Client)
+                .Include(a => a.AssurancesPropose)
+                .Include(a => a.LesSimilaires)
+                .Include(a => a.LesAccessoires)
+                .Include(a => a.PanierVelo)
+                .ThenInclude(p => p.PanierVelo)
+                .ThenInclude(e => e.Produit);
     }
 
 
