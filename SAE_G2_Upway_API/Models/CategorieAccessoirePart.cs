@@ -1,4 +1,6 @@
 ﻿
+using SAE_G2_Upway_API.Models.Repository;
+
 namespace SAE_G2_Upway_API.Models.EntityFramework;
 
 public partial class CategorieAccessoire
@@ -15,10 +17,14 @@ public partial class CategorieAccessoire
                IdCatA == accessoire.IdCatA &&
                NomCatA == accessoire.NomCatA;
     }
-    public CategorieAccessoire(){}
+    public CategorieAccessoire(IDataRepository<CategorieAccessoire, CategorieAccessoire> dataRepository){}
 
     public override int GetHashCode()
     {
         return HashCode.Combine(IdCatA, NomCatA);
+    }
+
+    public CategorieAccessoire()
+    {
     }
 }

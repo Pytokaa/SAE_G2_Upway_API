@@ -30,7 +30,7 @@ public class CategoriesVeloController : ControllerBase
     public async Task<ActionResult<CategorieVelo>> GetCategorieVeloById(int id)
     {
         var cateVelo = await dataRepository.GetByIdAsync(id);
-        if (cateVelo == null)
+        if (cateVelo.Value == null)
         {
             return NotFound();
         }

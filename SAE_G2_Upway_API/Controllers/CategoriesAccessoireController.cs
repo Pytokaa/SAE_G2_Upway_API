@@ -29,7 +29,7 @@ public class CategoriesAccessoireController : ControllerBase
     public async Task<ActionResult<CategorieAccessoire>> GetCategorieAccessoireById(int id)
     {
         var cateAcce = await dataRepository.GetByIdAsync(id);
-        if (cateAcce == null)
+        if (cateAcce.Value == null)
         {
             return NotFound();
         }

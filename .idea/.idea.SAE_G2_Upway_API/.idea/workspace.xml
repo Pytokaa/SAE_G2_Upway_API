@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="je ne sais toujours pas pourquoi mais velodbtest ne marche pas">
+    <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="petit changement pour victor">
+      <change afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/CategoriesAccessoireControllerDbTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/CommandeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/DataManager/CommandeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/CategoriesAccessoireController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/CategoriesAccessoireController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/CategorieAccessoirePart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Models/CategorieAccessoirePart.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +153,7 @@
       <workItem from="1742810013502" duration="2592000" />
       <workItem from="1744112863591" duration="127000" />
       <workItem from="1744114191409" duration="2920000" />
-      <workItem from="1744181024233" duration="4983000" />
+      <workItem from="1744181024233" duration="7030000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -409,7 +411,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744186602540</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="petit changement pour victor">
+      <option name="closed" value="true" />
+      <created>1744187040284</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1744187040284</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +452,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests" />
     <MESSAGE value="Accessoire test qui avancent mais ne fonctionne pas il faut attendre que les controllers fonctionnent bien" />
     <MESSAGE value="oui" />
@@ -467,7 +476,8 @@
     <MESSAGE value="petites corrections de controllers" />
     <MESSAGE value="ca ne marche pas haaaaaa" />
     <MESSAGE value="je ne sais toujours pas pourquoi mais velodbtest ne marche pas" />
-    <option name="LAST_COMMIT_MESSAGE" value="je ne sais toujours pas pourquoi mais velodbtest ne marche pas" />
+    <MESSAGE value="petit changement pour victor" />
+    <option name="LAST_COMMIT_MESSAGE" value="petit changement pour victor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
