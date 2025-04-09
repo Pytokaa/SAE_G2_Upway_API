@@ -36,9 +36,15 @@ namespace SAE_G2_Upway_APITests.Controllers.DBTests
         {
             //act
             var actual_velos = controller.GetVelos().Result;
-            var expected_velos = context.VeloToDtoGet(context.Velos.ToList());
+            var expected_velos = context.Velos.ToList();
+            List<VeloDtoGet> actual_veloDto = new List<VeloDtoGet>();
+            foreach (var velo in expected_velos)
+            {
+                VeloDtoGet veloDto = new VeloDtoGet(velo);
+                actual_veloDto.Add(veloDto);
+            }
             //Assert
-            CollectionAssert.AreEqual(actual_velos.Value.ToList(), expected_velos, "Les listes ne correspondent pas");
+            CollectionAssert.AreEqual(actual_velos.Value.ToList(), actual_veloDto, "Les listes ne correspondent pas");
         }
 
         [TestMethod]

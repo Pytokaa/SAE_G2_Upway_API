@@ -67,4 +67,57 @@ public class VeloDtoGet
     {
         return this.Nom + " " + this.Nbkms;
     }
+
+    protected bool Equals(VeloDtoGet other)
+    {
+        return IdVelo == other.IdVelo && Nom == other.Nom && UrlPhoto == other.UrlPhoto && NomMarque == other.NomMarque && PrixVelo.Equals(other.PrixVelo) && PrixNeuf.Equals(other.PrixNeuf) && TailleMax.Equals(other.TailleMax) && TailleMin.Equals(other.TailleMin) && NomModele == other.NomModele && Categorie == other.Categorie && Etat == other.Etat && Nbkms.Equals(other.Nbkms) && Poids.Equals(other.Poids) && TypeCadre == other.TypeCadre && Annee == other.Annee;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != GetType()) return false;
+        return Equals((VeloDtoGet)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        var hashCode = new HashCode();
+        hashCode.Add(IdVelo);
+        hashCode.Add(Nom);
+        hashCode.Add(UrlPhoto);
+        hashCode.Add(NomMarque);
+        hashCode.Add(PrixVelo);
+        hashCode.Add(PrixNeuf);
+        hashCode.Add(TailleMax);
+        hashCode.Add(TailleMin);
+        hashCode.Add(NomModele);
+        hashCode.Add(Categorie);
+        hashCode.Add(Etat);
+        hashCode.Add(Nbkms);
+        hashCode.Add(Poids);
+        hashCode.Add(TypeCadre);
+        hashCode.Add(Annee);
+        return hashCode.ToHashCode();
+    }
+
+    public VeloDtoGet(int idVelo, string nom, string urlPhoto, string nomMarque, double prixVelo, double prixNeuf, double tailleMax, double tailleMin, string nomModele, string categorie, string etat, double nbkms, double poids, string typeCadre, int annee)
+    {
+        IdVelo = idVelo;
+        Nom = nom;
+        UrlPhoto = urlPhoto;
+        NomMarque = nomMarque;
+        PrixVelo = prixVelo;
+        PrixNeuf = prixNeuf;
+        TailleMax = tailleMax;
+        TailleMin = tailleMin;
+        NomModele = nomModele;
+        Categorie = categorie;
+        Etat = etat;
+        Nbkms = nbkms;
+        Poids = poids;
+        TypeCadre = typeCadre;
+        Annee = annee;
+    }
 }
