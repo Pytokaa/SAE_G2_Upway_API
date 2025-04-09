@@ -31,7 +31,7 @@ public class AccessoireDtoGet
         Marque = accessoire.Produit.Marque.NomMarque;
         Categorie = accessoire.CategorieAccessoire.NomCatA;
         DateAccessoire = accessoire.DateAccessoire;
-    }
+    } 
 
     public AccessoireDtoGet(){}
 

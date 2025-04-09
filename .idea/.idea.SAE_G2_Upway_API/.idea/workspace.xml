@@ -11,7 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a6f63049-831e-40ed-ad3a-92adf422f256" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SAE_G2_Upway_API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/VelosControllerTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/VelosControllerTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/AccessoireDtoGet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/VeloDtoGet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/DTO/DtoGet/VeloDtoGet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/VelosController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_API/Controllers/VelosController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/VelosControllerDbTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_G2_Upway_APITests/Controllers/DBTests/VelosControllerDbTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +40,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///home/elioth/Documents/Repository Git/Upway_SAE/API10/SAE_G2_Upway_API/Controllers/CommandesController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2e49d132ea68ff47071c64476ae29138fa965dc555ef7c3f4991586431de241/Task.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98c377d82be4c36912d3e59d6d7e2a55a14898ee9757311a192711c5f4115e7/TestMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df3a5d166359f3be77c6a4c18d8b451173aecfe3a6673cbe1545fdc424a40/Assert.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -56,24 +61,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.SAE_G2_Upway_API: http.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;c849631d-643b-429d-9c2c-86dc6b2a45bc.executor&quot;: &quot;Debug&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.SAE_G2_Upway_API: http.executor": "Run",
+    "88c6faff-a77f-46d2-b1e8-7321b0cbca74.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "c849631d-643b-429d-9c2c-86dc6b2a45bc.executor": "Debug",
+    "dart.analysis.tool.window.visible": "false",
+    "f59a41e6-8671-4a78-b9c8-98bd4a112fac.executor": "Debug",
+    "fc1b8647-2351-4a94-aa00-9f787ddf6f6a.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SAE_G2_Upway_API: http">
     <configuration name="SAE_G2_Upway_API: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SAE_G2_Upway_API/SAE_G2_Upway_API.csproj" />
@@ -146,6 +153,8 @@
       <workItem from="1742803484559" duration="5292000" />
       <workItem from="1742810013502" duration="2592000" />
       <workItem from="1744112863591" duration="127000" />
+      <workItem from="1744114191409" duration="2920000" />
+      <workItem from="1744181024233" duration="3838000" />
     </task>
     <task id="LOCAL-00001" summary="Debut des test unitaires">
       <option name="closed" value="true" />
@@ -387,7 +396,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744018443870</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="ca ne marche pas haaaaaa">
+      <option name="closed" value="true" />
+      <created>1744118191663</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1744118191663</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +437,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="on efface les tests urinaires" />
     <MESSAGE value="les tests commencent de maniere okay" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Les calsspart sont ajoute on va attendre un peu avant de continuer les tests" />
@@ -445,7 +461,8 @@
     <MESSAGE value="Ajout du get rapport D'inspection" />
     <MESSAGE value="correction du postclient" />
     <MESSAGE value="petites corrections de controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="petites corrections de controllers" />
+    <MESSAGE value="ca ne marche pas haaaaaa" />
+    <option name="LAST_COMMIT_MESSAGE" value="ca ne marche pas haaaaaa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
