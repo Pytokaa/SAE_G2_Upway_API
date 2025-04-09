@@ -37,6 +37,32 @@ namespace SAE_G2_Upway_APITests.Controllers.Moq
         }
 
         [TestMethod]
+        public void GetClients_EmptyList_BadRequestReturned()
+        {
+            //Arrange
+            var list = new List<Client>();
+            mockRepository.Setup(x => x.GetAllAsync().Result).Returns(list);
+            //Act
+            var action_result = controller.GetClients().Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(BadRequestResult), "Pas une BadRequest");
+
+        }
+
+        [TestMethod]
+        public void GetClients_NullList_BadRequestReturned()
+        {
+            //Arrange
+            List<Client> list = null;
+            mockRepository.Setup(x => x.GetAllAsync().Result).Returns(list);
+            //Act
+            var action_result = controller.GetClients().Result;
+            //Assert
+            Assert.IsInstanceOfType(action_result, typeof(BadRequestResult), "Pas une BadRequest");
+
+        }
+
+        [TestMethod]
         public void Login_ValidUserPassed_OkObjectReturned()
         {
             //Act
